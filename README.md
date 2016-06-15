@@ -1,4 +1,4 @@
-# EZ-DB
+# Vital Health
 
 > Project Description
 
