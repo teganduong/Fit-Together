@@ -1,6 +1,6 @@
-# Plant.io
+# EZ-DB
 
-> What if plants can talk and tell you that they need to be watered or that they were uncomfortable in the direct sunlight? Plant.io turns a boring plant into a smart and fun plant that has sensors to collect data from its surroundings, including soil moisture levels, temperature, and light intensity. In addition, it integrates speech recognition so you can interact with your plant. 
+> Project Description
 
 ## Team
 
