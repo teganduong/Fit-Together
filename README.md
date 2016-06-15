@@ -1,6 +1,6 @@
 # Vital Health
 
-> Project Description
+> The world of healthcare can be cluttered with unnecessary inefficiencies and noise when our main focus should be on the patients’ health. Vital Health is an electronic health record system that provides a smooth and seamless integration and interface for healthcare providers. The software allows access to evidence-based tools that providers can use to make decisions about a patient’s care. In addition, it automates and streamlines provider workflow.
 
 ## Team
 
