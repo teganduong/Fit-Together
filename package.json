@@ -1,20 +1,14 @@
 {
-  "name": "Vital Health",
+  "name": "vital-health",
   "version": "0.0.2",
   "description": "Clinical health system software designed with clinicians in mind",
   "author": "Tegan Duong, Lynn Chen, AJ Grande, Peter Chim",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "clean": "rm -rf dev dist",
-    "build": "npm run build-server-prod && npm run build-client-prod",
-    "build-client-prod": "HOST=localhost PORT=3000 PROTOCOL=http NODE_ENV=production webpack --progress",
-    "build-server-prod": "babel src/server -d dist/server",
     "watch-client": "webpack --watch --progress",
     "watch-server": "babel --watch src/server -d dev/server",
-    "server-dev": "nodemon dev/server/server.js",
-    "server-prod": "HOST=localhost PORT=3000 node dist/server/server.js",
-    "lint": "eslint src --color",
+    "lint": "eslint src --color"
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -26,7 +20,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.8.0",
     "css-loader": "^0.23.1",
-    "eslint": "^2.9.0",
+    "eslint": "^2.12.0",
     "eslint-plugin-babel": "^3.2.0",
     "fs": "0.0.2",
     "isomorphic-fetch": "^2.2.1",

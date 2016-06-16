@@ -1,10 +1,8 @@
-const isDev = process.env.NODE_ENV !== 'production';
 const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
   context: path.join(__dirname, 'src'),
-  devtool: isDev ? 'inline-sourcemap' : null,
   entry: './client/app.js',
   module: {
     loaders: [
@@ -24,7 +22,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.join(__dirname, `/${isDev ? 'dev' : 'dist'}/client/`),
+    path: path.join(__dirname, 'dev/client/'),
     filename: 'app.js',
   },
   plugins: isDev ? [] : [
@@ -38,5 +36,5 @@ module.exports = {
       mangle: false,
       sourcemap: false,
     }),
-  ],
+  ]
 };
