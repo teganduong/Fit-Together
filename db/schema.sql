@@ -1,3 +1,4 @@
+-- from root project folder -- psql < db/schema.sql
 DROP DATABASE IF EXISTS vitalhealthdb;
 
 CREATE DATABASE vitalhealthdb;
