@@ -8,7 +8,8 @@ exports.getPatients = (callback) => {
 };
 
 exports.addPatient = (params, callback) => {
-  const queryStr = 'insert into patients(name, dob, phone, address, ssn, email, sex) values ($1, $2, $3, $4, $5, $6, $7)';
+  const queryStr = 'insert into patients(name, dob, phone, address, ssn, email, sex) ' + 
+                                'values ($1, $2, $3, $4, $5, $6, $7)';
   db.any(queryStr, params, (err, results) => {
     callback(err, results);
   });

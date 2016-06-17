@@ -8,7 +8,8 @@ exports.getPatients = (req, res) => {
 };
 
 exports.addPatient = (req, res) => {
-  const params = [req.body.name, req.body.dob, req.body.phone, req.body.address, req.body.ssn, req.body.email, req.body.sex];
+  const params = [req.body.name, req.body.dob, req.body.phone, req.body.address,
+                  req.body.ssn, req.body.email, req.body.sex];
   patient.addPatient(params, (err, results) => {
     if (err) { console.error('Error in adding patient: ', err); }
     res.sendStatus(201);
