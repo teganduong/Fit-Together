@@ -8,7 +8,8 @@ exports.getDoctors = (req, res) => {
 };
 
 exports.addDoctor = (req, res) => {
-  doctor.addDoctor((err, results) => {
+  const params = [req.body.name, req.body.dob, req.body.office, req.body.phone, req.body.sex];
+  doctor.addDoctor(params, (err, results) => {
     if (err) { console.error('Error in adding doctor: ', err); }
     res.sendStatus(201);
   });
