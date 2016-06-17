@@ -34,7 +34,7 @@ const exampleDoctorData = [
 
 // seeds doctors table with example data
 exampleDoctorData.forEach((doctor, index) => {
-  setTimeout(() => doctorsCtrl.addDoctor({body: doctor}, null), index * 200);
+  setTimeout(() => doctorsCtrl.addDoctor({ body: doctor }, null), index * 200);
 });
 
 setTimeout(process.exit, exampleDoctorData.length * 200);

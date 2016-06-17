@@ -3,8 +3,8 @@ const doctors = require('../controllers/doctorsCtrl.js');
 
 module.exports = (app) => {
   app.get('/api/patients', patients.getPatients);
-  app.post('/api/patients', patients.addNewPatient);
-  app.post('/api/patients/:patientId', patients.updatePatientInfo);
+  app.post('/api/patients', patients.addPatient);
+  // app.post('/api/patients/:patientId', patients.updatePatientInfo);
 
   app.get('/api/doctors', doctors.getDoctors);
   app.post('/api/doctors', doctors.addDoctor);
