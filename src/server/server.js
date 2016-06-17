@@ -5,6 +5,8 @@ const routes = require('./routes/routes');
 const app = express();
 const db = require('./db/connection.js');
 
+app.use('/', staticRoutes);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../client')));
