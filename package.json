@@ -10,6 +10,7 @@
     "start": "npm run build; open http://localhost:3000; nodemon dev/server/server.js",
     "watch-c": "webpack --watch --progress",
     "watch-s": "babel --watch src/server -d dev/server",
+    "seed": "node src/server/testData/seedDoctors.js",
     "lint": "eslint src --color",
     "test": "npm run lint"
   },

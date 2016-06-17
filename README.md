@@ -44,6 +44,11 @@ Install repo's dependencies:
 npm install
 ```
 
+To seed the database with example data:
+```sh
+npm run seed
+```
+
 To build and run:
 ```sh
 npm start
