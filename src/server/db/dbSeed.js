@@ -9,12 +9,12 @@ patientProfileData = [
     ssn: 276341234 
   },
   {
-    name: 'Thomas, John',
+    name: 'Thomas, Dan',
     dob: '09/17/1962',
     sex: 'M',
     address: ‘3414 22nd St, San Francisco, CA 94110’,
     phone: '4157771234',
-    email: ‘thomasjohn22@gmail.com’,
+    email: ‘thomasdan22@gmail.com’,
     ssn: 276671234 
   },
   {
