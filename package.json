@@ -7,10 +7,10 @@
   "private": true,
   "scripts": {
     "build": "babel src/server -d dev/server --copy-files; webpack",
-    "start": "npm run build; open http://localhost:3000; nodemon dev/server/server.js",
+    "start": "npm run build; nodemon dev/server/server.js; open http://localhost:3000",
     "watch-c": "webpack --watch --progress",
     "watch-s": "babel --watch src/server -d dev/server",
-    "seed": "node src/server/testData/seedDoctors.js",
+    "seed": "node src/server/testData/seedDoctors.js; node src/server/testData/seedPatients.js",
     "lint": "eslint src --color",
     "test": "npm run lint"
   },
