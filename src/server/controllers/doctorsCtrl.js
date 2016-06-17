@@ -6,3 +6,10 @@ exports.getDoctors = (req, res) => {
     res.json(results);
   });
 };
+
+exports.addDoctor = (req, res) => {
+  doctor.addDoctor((err, results) => {
+    if (err) { console.error('Error in adding doctor: ', err); }
+    res.sendStatus(201);
+  });
+};
