@@ -68,6 +68,11 @@ Before making any pull requests, be sure to run the command below to make sure n
 npm test
 ```
 
+Also, after every rebase be sure to run 
+```sh
+npm start
+```
+to see check that the code still works.
 
 ### Roadmap
 
