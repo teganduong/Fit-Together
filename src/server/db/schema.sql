@@ -1,4 +1,4 @@
--- from root project folder -- psql < src/db/schema.sql
+-- from root project folder -- psql < src/server/db/schema.sql
 DROP DATABASE IF EXISTS vitalhealthdb;
 
 CREATE DATABASE vitalhealthdb;
@@ -9,16 +9,16 @@ CREATE TABLE doctors (
   id SERIAL PRIMARY KEY,
   name VARCHAR(50),
   dob DATE,
-  office VARCHAR(250),
-  phone INTEGER,
+  office VARCHAR(255),
+  phone VARCHAR(10),
   sex VARCHAR(10)
 );
 
 CREATE TABLE patients (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(250),
+  name VARCHAR(50),
   dob DATE,
-  phone INTEGER,
+  phone VARCHAR(10),
   address VARCHAR(250),
   ssn INTEGER,
   email VARCHAR(50),
