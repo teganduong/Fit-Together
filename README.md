@@ -26,7 +26,12 @@
 ## Requirements
 
 - Node 0.10.x
+- Webpack
 
+Webpack needs to be installed globally
+```sh
+sudo npm install -g webpack 
+```
 
 ## Development
 
@@ -34,11 +39,35 @@
 
 From within the root directory:
 
+Install repo's dependencies:
 ```sh
-sudo npm install -g bower
 npm install
-bower install
 ```
+
+To build and run:
+```sh
+npm start
+```
+
+Running the commmand may open your browser to localhost:3000,
+just hit the refresh button once to see the page.
+
+If you want to autoupdate on saved changes made to client files, run in a separate terminal window:
+```sh
+npm watch-c
+```
+You may need to refresh the browser to see it change.
+
+If you want to autoupdate on saved changes made to server files, run in a separate terminal window:
+```sh
+npm watch-s
+```
+
+Before making any pull requests, be sure to run the command below to make sure no tests are broken and the linting is okay.
+```sh
+npm test
+```
+
 
 ### Roadmap
 
