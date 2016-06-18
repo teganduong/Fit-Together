@@ -44,18 +44,11 @@ CREATE TABLE visits (
   complaint VARCHAR(250),
   doctor_id INTEGER REFERENCES doctors (id),
   diagnosis_id INTEGER REFERENCES diagnosis (id),
-  medication_id INTEGER REFERENCES medications (id),
   patient_id INTEGER REFERENCES patients (id)
 );
 
-CREATE TABLE history (
+CREATE TABLE visit_medication (
   id SERIAL PRIMARY KEY,
-  patient_id INTEGER REFERENCES patients (id),
-  visit_id INTEGER REFERENCES visits (id)
-);
-
-CREATE TABLE patient_medication (
-  id SERIAL PRIMARY KEY,
-  medication_id INTEGER REFERENCES medications (id),
-  patient_id INTEGER REFERENCES patients (id)
+  visit_id INTEGER REFERENCES visits (id),
+  medication_id INTEGER REFERENCES medications (id)
 );
