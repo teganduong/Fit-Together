@@ -1,16 +1,32 @@
-const doctor = require('../models/doctors.js');
+const db = require('../db/connection.js');
 
 exports.getDoctors = (req, res) => {
-  doctor.getDoctors((err, results) => {
-    if (err) { console.error('Error in getting doctors: ', err); }
-    res.json(results);
-  });
+  db.any('select * from doctors')
+    .then((data) => {
+      res.status(200)
+        .json({
+          status: 'success',
+          data: data,
+          message: 'Retrieved ALL doctors'
+        });
+    })
+    .catch((err) => {
+      console.error('error in retrieving doctors: ', err);
+    });
 };
 
 exports.addDoctor = (req, res) => {
-  const params = [req.body.name, req.body.dob, req.body.office, req.body.phone, req.body.sex];
-  doctor.addDoctor(params, (err, results) => {
-    if (err) { console.error('Error in adding doctor: ', err); }
-    res.sendStatus(201);
-  });
+  db.none('insert into doctors(name, dob, office, phone, sex)' +
+      'values(${name}, ${dob}, ${office}, ${phone}, ${sex})',
+    req.body)
+    .then(() => {
+      res.status(201)
+        .json({
+          status: 'success',
+          message: 'Inserted doctor into db'
+        });
+    })
+    .catch((err) => {
+      console.error('error in adding doctor: ', err);
+    });
 };
