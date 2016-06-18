@@ -28,7 +28,7 @@ const exampleDoctorData = [
     dob: '1972-11-02',
     office: '4800 5th St, San Francisco, CA 94102',
     phone: '6088092158',
-    sex: 'F' 
+    sex: 'F'
   }
 ];
 

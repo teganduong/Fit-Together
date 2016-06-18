@@ -1,23 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import thunk from 'redux-thunk';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { Router, Route, browserHistory } from 'react-router';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
-// class App extends React.Component {
-const App = () => (
-  <div>
-    React Init
-  </div>
+import * as reducers from './reducers';
+reducers.routing = routerReducer;
+
+import App from './components/App';
+import PostDoc from './containers/PostDoc';
+
+const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
+const history = syncHistoryWithStore(browserHistory, store);
+
+render(
+  <Provider store={store}>
+    <Router history={history}>
+      <Route path="/" component={App} />
+      <Route path="/postdoc" component={PostDoc} />
+    </Router>
+  </Provider>,
+  document.getElementById('app')
 );
-
-ReactDOM.render(<App />, document.getElementById('app'));
-
-
-// To create a react component that has STATES, use this:
-// class App extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         React Init
-//       </div>
-//     );
-//   }
-// }
