@@ -1,11 +1,13 @@
-const patients = require('../controllers/patientsCtrl.js');
-const doctors = require('../controllers/doctorsCtrl.js');
+const express = require('express');
+const router = express.Router();
+const patients = require('../controllers/patientsCtrl');
+const doctors = require('../controllers/doctorsCtrl');
 
-module.exports = (app) => {
-  app.get('/api/patients', patients.getPatients);
-  app.post('/api/patients', patients.addPatient);
-  // app.post('/api/patients/:patientId', patients.updatePatientInfo);
+router.get('/api/patients', patients.getPatients);
+router.post('/api/patients', patients.addPatient);
+// router.post('/api/patients/:patientId', patients.updatePatientInfo);
 
-  app.get('/api/doctors', doctors.getDoctors);
-  app.post('/api/doctors', doctors.addDoctor);
-};
+router.get('/api/doctors', doctors.getDoctors);
+router.post('/api/doctors', doctors.addDoctor);
+
+module.exports = router;
