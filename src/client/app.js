@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom';
 import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -10,18 +10,17 @@ import * as reducers from './reducers';
 reducers.routing = routerReducer;
 
 import App from './components/App';
-import Login from './components/Login';
+import PostDoc from './containers/PostDoc';
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
 const history = syncHistoryWithStore  (browserHistory, store);
 
-ReactDOM.render(
+render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App}>
-        <Route path="Login" component={Login} />
-      </Route>
+      <Route path="/" component={App}/>
+      <Route path="/postdoc" component={PostDoc}/>
     </Router>
   </Provider>,
   document.getElementById('app')
-)
+);
