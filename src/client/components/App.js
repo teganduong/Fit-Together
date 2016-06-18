@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const App = () => (
   <div>
     React Init
-    <Link to='/postdoc'>Postdoc</Link>
+    <Link to="/postdoc">Postdoc</Link>
   </div>
 );
 

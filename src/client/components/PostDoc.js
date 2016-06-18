@@ -47,3 +47,7 @@ export default class PostDoc extends React.Component {
     );
   }
 }
+
+PostDoc.propTypes = {
+  postDoc: React.PropTypes.func.isRequired
+};

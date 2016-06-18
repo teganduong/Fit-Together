@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { render } from 'react-dom';
 import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
@@ -13,7 +13,7 @@ import App from './components/App';
 import PostDoc from './containers/PostDoc';
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
-const history = syncHistoryWithStore (browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store);
 
 render(
   <Provider store={store}>

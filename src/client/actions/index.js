@@ -4,7 +4,7 @@ export const ERROR = 'ERROR';
 
 const url = 'http://localhost:3000/api';
 
-export const error = error => ({ type: 'ERROR', data: error });
+export const error = err => ({ type: 'ERROR', data: err });
 
 export const addDoctor = doctor => {
   console.log('info for add doctor', doctor); 
