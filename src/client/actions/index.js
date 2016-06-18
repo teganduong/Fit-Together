@@ -1,9 +1,16 @@
-//action types
+// Action Types
 export const ADD_DOCTOR = 'ADD_DOCTOR';
+export const ERROR = 'ERROR';
 
 const url = 'http://localhost:3000/api';
 
-export const addDoctor = doctor => {console.log('THESE ARE DOCTORS', doctor); return { type: types.ADD_DOCTOR, data: doctor }};
+export const error = error => ({ type: 'ERROR', data: error });
+
+export const addDoctor = doctor => {
+  console.log('info for add doctor', doctor); 
+  return { type: ADD_DOCTOR, data: doctor };
+};
+
 export const postDoc = (name, dob, office, phone, sex) => {
   const payload = JSON.stringify({ name, dob, office, phone, sex });
   return dispatch => (
@@ -20,5 +27,5 @@ export const postDoc = (name, dob, office, phone, sex) => {
     .then(doc => dispatch(addDoctor(doc)))
     .catch(err => dispatch(error(err)))
   );
-}
+};
 

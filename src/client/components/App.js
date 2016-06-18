@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const App = ({children}) => (
+const App = () => (
   <div>
     React Init
-      <Link to='/postdoc'>Postdoc</Link>
-      {children}
+    <Link to='/postdoc'>Postdoc</Link>
   </div>
 );
 
