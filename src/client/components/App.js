@@ -5,6 +5,7 @@ const App = () => (
   <div>
     React Init
     <Link to="/postdoc">Postdoc</Link>
+    <Link to="/login">Login</Link>
   </div>
 );
 
