@@ -1,5 +1,7 @@
 ### node etc ###
 
+src/client/assets/lib/
+
 # Logs
 logs
 *.log
