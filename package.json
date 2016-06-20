@@ -13,6 +13,7 @@
     "watch-s": "babel --watch src/server -d dev/server --copy-files",
     "seed": "node src/server/testData/seedDoctors.js; node src/server/testData/seedPatients.js",
     "lint": "eslint src --color",
+    "move-assets": "cp -R src/client/assets dev/client/",
     "test": "npm run lint"
   },
   "devDependencies": {

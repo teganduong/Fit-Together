@@ -3,7 +3,7 @@ const config = {
   entry: {
     javascript: './app.js', // take in javascript entry point
     html: './index.html', // take in the client's index.html
-    css: ['./assets/css/style.css', './assets/css/Home.css', './assets/css/Main.css']    
+    css: './assets/css/style.css'   
   },
 
   output: {
