@@ -11,6 +11,8 @@ reducers.routing = routerReducer;
 
 import App from './components/App';
 import PostDoc from './containers/PostDoc';
+import Home from './containers/Home';
+import Main from './containers/Main';
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
 const history = syncHistoryWithStore(browserHistory, store);
@@ -20,6 +22,8 @@ render(
     <Router history={history}>
       <Route path="/" component={App} />
       <Route path="/postdoc" component={PostDoc} />
+      <Route path="/home" component={Home} />
+      <Route path="/main" component={Main} />
     </Router>
   </Provider>,
   document.getElementById('app')
