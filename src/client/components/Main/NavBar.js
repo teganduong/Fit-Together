@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 
 const NavBar = () => (
-  <nav className="navbar navbar-default navbar-fixed-top">
+  <nav className="navbar navbar-default navbar-fixed-top nav-main">
     <div className="container">
       <div className="navbar-header">
-        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <button 
+          type="button" 
+          className="navbar-toggle collapsed" 
+          data-toggle="collapse" 
+          data-target="#navbar" 
+          aria-expanded="false" 
+          aria-controls="navbar"
+        >
           <span className="icon-bar"></span>
           <span className="icon-bar"></span>
           <span className="icon-bar"></span>
@@ -13,13 +20,12 @@ const NavBar = () => (
       </div>
       <div id="navbar" className="navbar-collapse collapse">
         <ul className="nav navbar-nav">
-          <li><a href="#">Home</a></li>
+          <li><a href="#menu-toggle" id="menu-toggle">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <ul className="nav navbar-nav navbar-right">
-          <li><a href="../navbar/">Login</a></li>
-          <li><a href="../navbar-static-top/">Signup</a></li>
+          <li><a>Signout</a></li>
         </ul>
       </div>
     </div>
