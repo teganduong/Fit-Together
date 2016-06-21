@@ -1,39 +1,57 @@
 const DummyData = [
   {
-    name: "Lavon Hilll I",
-    BMI: 20.57,
-    age: 12,
-    birthday: "1994-10-26T00:00:00.000Z",
-    city: "Annatown",
-    married: true,
+    name: 'Jessica Jones',
+    bmi: 20.5,
+    bp_high: 103,
+    bp_low: 73,
+    wt: 140, 
+    glucose: 120, 
     index: 1
   },
   {
-    name: "Clovis Pagac",
-    BMI: 24.28,
-    age: 26,
-    birthday: "1995-11-10T00:00:00.000Z",
-    city: "South Eldredtown",
-    married: false,
-    index: 3
+    name: 'Jessica Jones',
+    bmi: 23.6,
+    bp_high: 99,
+    bp_low: 67,
+    wt: 143, 
+    glucose: 122,
+    index: 2 
   },
   {
-    name: "Gaylord Paucek",
-    BMI: 24.41,
-    age: 30,
-    birthday: "1975-06-12T00:00:00.000Z",
-    city: "Koeppchester",
-    married: true,
-    index: 5
+    name: 'Jessica Jones',
+    bmi: 26.9,
+    bp_high: 112,
+    bp_low: 84,
+    wt: 146, 
+    glucose: 124,
+    index: 3 
   },
   {
-    name: "Ashlynn Kuhn MD",
-    BMI: 23.77,
-    age: 32,
-    birthday: "1985-08-09T00:00:00.000Z",
-    city: "West Josiemouth",
-    married: false,
-    index: 6
+    name: 'Jessica Jones',
+    bmi: 24.2,
+    bp_high: 105,
+    bp_low: 79,
+    wt: 142, 
+    glucose: 121,
+    index: 4 
+  },
+  {
+    name: 'Jessica Jones',
+    bmi: 21.3,
+    bp_high: 101,
+    bp_low: 77,
+    wt: 140, 
+    glucose: 120,
+    index: 5 
+  },
+  {
+    name: 'Jessica Jones',
+    bmi: 28.8,
+    bp_high: 131,
+    bp_low: 97,
+    wt: 150, 
+    glucose: 127,
+    index: 6 
   }
 ];
 

@@ -4,6 +4,7 @@
 	border-color: #1f2324;
 	border-style: solid;
 	display: inline-block;
+	background-color: #ecf0f1;
 }
 .patient-info-container {
 	margin-top: 20px;
@@ -55,8 +56,73 @@
 
 .data-container {
 	position: relative;
-	float: right;
+	width: 45%;
+	display: inline-block;
+	margin: 10px;
+	/*float: right;*/
+/*	border-width: 3px;
+	border-color: #c0392b;
+	border-style: solid;*/
+}
+
+.chart-container {
+	/*position: relative;*/
+	width: 100%;
+	/*margin: 10px;*/
+/*	border-width: 3px;
+	border-color: #c0392b;
+	border-style: solid;*/
+}
+
+.panel-body {
+	width: 100%;
+}
+
+.chart {
+	/*position: relative;*/
+	width: 100%;
 	border-width: 3px;
 	border-color: #c0392b;
 	border-style: solid;
+}
+
+.chart-info {
+	/*position: relative;*/
+	width: 100%;
+	text-align: center;
+	border-width: 3px;
+	border-color: #c0392b;
+	border-style: solid;
+}
+
+#bp-heading {
+	color: #ffffff;
+	background-color: #e72713;
+}
+#bp-output {
+	color: #e72713;
+}
+
+#bmi-heading {
+	color: #ffffff;
+	background-color: #ff7f0e;
+}
+#bmi-output {
+	color: #ff7f0e;
+}
+
+#wt-heading {
+	color: #ffffff;
+	background-color: #40d652;
+}
+#wt-output {
+	color: #40d652;
+}
+
+#glucose-heading {
+	color: #ffffff;
+	background-color: #43abd9;
+}
+#glucose-output {
+	color: #43abd9;
 }
