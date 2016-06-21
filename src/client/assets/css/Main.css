@@ -68,8 +68,11 @@
 }
 
 .main-container {
-    width: 100px;
-    height: 100px;
-    background:;
+    position: absolute;
+    top: 8%;
+    left: 21%;
+    height: 91%;
+    width: 77%;
+    background-color: #ecf0f1;
 }
 
