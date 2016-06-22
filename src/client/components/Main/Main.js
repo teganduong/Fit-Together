@@ -6,8 +6,8 @@ import PatientProfile from './PatientProfile/PatientProfile';
 const Main = () => (
   <div>
     <NavBar />
-    <SideNavBar />
     <PatientProfile />
+    <SideNavBar />
   </div>
 );
 
