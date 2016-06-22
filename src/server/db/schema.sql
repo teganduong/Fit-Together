@@ -5,50 +5,63 @@ CREATE DATABASE vitalhealthdb;
 
 \c vitalhealthdb;
 
-CREATE TABLE doctors (
+CREATE TABLE user (
   id SERIAL PRIMARY KEY,
   name VARCHAR(50),
+  username VARCHAR(50),
+  password VARCHAR(50),
+  email VARCHAR(100),
+  weight INTEGER,
+  bmi DECIMAL,
   dob DATE,
-  office VARCHAR(255),
-  phone VARCHAR(10),
-  sex VARCHAR(10)
+  goal VARCHAR(255),
+  points INTEGER
 );
 
-CREATE TABLE patients (
+CREATE TABLE team (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(50),
-  dob DATE,
-  phone VARCHAR(10),
-  address VARCHAR(250),
-  ssn INTEGER,
-  email VARCHAR(50),
-  sex VARCHAR(10)
+  name VARCHAR(100),
+  description VARCHAR(255)
 );
 
-CREATE TABLE diagnosis (
+CREATE TABLE challenges (
   id SERIAL PRIMARY KEY,
-  category VARCHAR(250)
-);
-CREATE TABLE medications (
-  id SERIAL PRIMARY KEY,
-  dosage VARCHAR(50),
-  brand_name VARCHAR(50),
-  generic_name VARCHAR(50),
-  condition VARCHAR(250)
+  name VARCHAR(100),
+  description VARCHAR(255)
 );
 
-CREATE TABLE visits (
+CREATE TABLE steps (
   id SERIAL PRIMARY KEY,
-  date_of_visit DATE,
-  time_of_visit TIME,
-  complaint VARCHAR(250),
-  doctor_id INTEGER REFERENCES doctors (id),
-  diagnosis_id INTEGER REFERENCES diagnosis (id),
-  patient_id INTEGER REFERENCES patients (id)
+
 );
 
-CREATE TABLE visit_medication (
+CREATE TABLE daily_activities (
   id SERIAL PRIMARY KEY,
-  visit_id INTEGER REFERENCES visits (id),
-  medication_id INTEGER REFERENCES medications (id)
+  type VARCHAR(50),
+  description VARCHAR(255),
+  date_peformed DATE,
+);
+
+CREATE TABLE incentives (
+  id SERIAL PRIMARY KEY,
+  type VARCHAR(50),
+  description VARCHAR(255),
+);
+
+CREATE TABLE users_team (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users (id),
+  team_id INTEGER REFERENCES teams (id)
+);
+
+CREATE TABLE users_daily_activities (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users (id),
+  daily_activity_id INTEGER REFERENCES daily_activities (id)
+);
+
+CREATE TABLE users_incentives (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users (id),
+  incentive_id INTEGER REFERENCES incentives (id)
 );
