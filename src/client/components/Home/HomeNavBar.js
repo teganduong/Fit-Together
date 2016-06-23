@@ -16,7 +16,7 @@ const HomeNavBar = () => (
           <span className="icon-bar"></span>
           <span className="icon-bar"></span>
         </button>
-        <a className="navbar-brand" href="#">Vital Health</a>
+        <a className="navbar-brand" href="#">Fit Together</a>
       </div>
       <div id="navbar" className="navbar-collapse collapse">
         <ul className="nav navbar-nav">

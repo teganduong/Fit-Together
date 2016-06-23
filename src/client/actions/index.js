@@ -1,4 +1,4 @@
-// Action Types
+// TODO: CHANGE redux actions
 export const ADD_DOCTOR = 'ADD_DOCTOR';
 export const ERROR = 'ERROR';
 
