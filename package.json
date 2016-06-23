@@ -11,7 +11,7 @@
     "watch": "npm run watch-c & npm run watch-s",
     "watch-c": "npm run move-assets; webpack --watch --progress",
     "watch-s": "babel --watch src/server -d dev/server --copy-files",
-    "seed": "node src/server/testData/seedDoctors.js; node src/server/testData/seedPatients.js",
+    "seed": "node src/server/testData/seedUsers.js",
     "lint": "eslint src --color",
     "move-assets": "cp -R src/client/assets dev/client/",
     "test": "npm run lint"
