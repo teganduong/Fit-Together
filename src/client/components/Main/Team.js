@@ -27,7 +27,6 @@ const teamA = [
   }
 ];
 
-
 const TeamInfo = () => (
   <div>
     <div className="container team-main">
@@ -65,10 +64,8 @@ const TeamInfo = () => (
           <TeamEntry teamMemberA={teamMember} key={index} />
         )}
       </div>
-
     </div>
-
-</div>
+  </div>
 );
 
 export default TeamInfo;
