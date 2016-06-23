@@ -1,54 +1,78 @@
 -- from root directory -- psql < src/server/db/schema.sql
-DROP DATABASE IF EXISTS vitalhealthdb;
+-- DROP DATABASE IF EXISTS vitalhealthdb;
+-- CREATE DATABASE vitalhealthdb;
+-- \c vitalhealthdb;
 
-CREATE DATABASE vitalhealthdb;
+-- DROP DATABASE IF EXISTS fidgetywidget;
+-- CREATE DATABASE fidgetywidget;
+\c fidgetywidget;
 
-\c vitalhealthdb;
+DROP TABLE IF EXISTS users_teams;
+DROP TABLE IF EXISTS users_daily_activities;
+DROP TABLE IF EXISTS users_incentives;
+DROP TABLE IF EXISTS challenges;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS daily_activities;
+DROP TABLE IF EXISTS incentives;
+DROP TABLE IF EXISTS teams;
 
-CREATE TABLE doctors (
+CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(50),
-  dob DATE,
-  office VARCHAR(255),
-  phone VARCHAR(10),
-  sex VARCHAR(10)
+  username VARCHAR(50),
+  password VARCHAR(50),
+  email VARCHAR(100),
+  weight INTEGER,
+  bmi DECIMAL,
+  goal VARCHAR(255),
+  points INTEGER
 );
 
-CREATE TABLE patients (
+CREATE TABLE challenges (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(50),
-  dob DATE,
-  phone VARCHAR(10),
-  address VARCHAR(250),
-  ssn INTEGER,
-  email VARCHAR(50),
-  sex VARCHAR(10)
+  name VARCHAR(100),
+  description VARCHAR(255),
+  challenger INTEGER REFERENCES users (id),
+  opponent INTEGER REFERENCES users (id),
+  winner INTEGER
 );
 
-CREATE TABLE diagnosis (
+CREATE TABLE teams (
   id SERIAL PRIMARY KEY,
-  category VARCHAR(250)
-);
-CREATE TABLE medications (
-  id SERIAL PRIMARY KEY,
-  dosage VARCHAR(50),
-  brand_name VARCHAR(50),
-  generic_name VARCHAR(50),
-  condition VARCHAR(250)
+  name VARCHAR(100),
+  description VARCHAR(255)
 );
 
-CREATE TABLE visits (
+CREATE TABLE daily_activities (
   id SERIAL PRIMARY KEY,
-  date_of_visit DATE,
-  time_of_visit TIME,
-  complaint VARCHAR(250),
-  doctor_id INTEGER REFERENCES doctors (id),
-  diagnosis_id INTEGER REFERENCES diagnosis (id),
-  patient_id INTEGER REFERENCES patients (id)
+  type VARCHAR(50),
+  category VARCHAR(50),
+  description VARCHAR(255),
+  date_peformed DATE,
+  count DECIMAL,
+  units VARCHAR
 );
 
-CREATE TABLE visit_medication (
+CREATE TABLE incentives (
   id SERIAL PRIMARY KEY,
-  visit_id INTEGER REFERENCES visits (id),
-  medication_id INTEGER REFERENCES medications (id)
+  type VARCHAR(50),
+  description VARCHAR(255)
+);
+
+CREATE TABLE users_teams (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users (id),
+  team_id INTEGER REFERENCES teams (id)
+);
+
+CREATE TABLE users_daily_activities (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users (id),
+  daily_activity_id INTEGER REFERENCES daily_activities (id)
+);
+
+CREATE TABLE users_incentives (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users (id),
+  incentive_id INTEGER REFERENCES incentives (id)
 );
