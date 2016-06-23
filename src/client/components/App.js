@@ -6,9 +6,12 @@ const App = ({ children }) => (
     {children}
     <Link to="/postdoc">Postdoc</Link>
     <Link to="/home">Home</Link>
-    <Link to="/dash">Dashboard</Link>
+    <Link to="/dashboard">Dashboard</Link>
   </div>
 );
 
+App.propTypes = {
+  children: React.PropTypes.element.isRequired
+};
 
 export default App;

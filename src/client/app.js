@@ -33,14 +33,15 @@ render(
       <Route path="/" component={App} >
         <Route path="postdoc" component={PostDoc} />
         <Route path="home" component={Home} />
-        <Route path="dash" component={Main} >
+        <Route path="dashboard" component={Main} >
           <IndexRoute component={PatientProfile} />
-          <Route path="/dash/log"component={PlaceHolder} />
-          <Route path="/dash/stats"component={Stats} />
-          <Route path="/dash/goals"component={PlaceHolder} />
-          <Route path="/dash/challenges"component={PlaceHolder} />
-          <Route path="/dash/teams"component={PlaceHolder} />
-          <Route path="/dash/tips"component={PlaceHolder} />
+          <Route path="/settings"component={PlaceHolder} />
+          <Route path="/dashboard/log"component={PlaceHolder} />
+          <Route path="/dashboard/stats"component={Stats} />
+          <Route path="/dashboard/goals"component={PlaceHolder} />
+          <Route path="/dashboard/challenges"component={PlaceHolder} />
+          <Route path="/dashboard/teams"component={PlaceHolder} />
+          <Route path="/dashboard/tips"component={PlaceHolder} />
         </Route>
       </Route>
     </Router>
