@@ -119,67 +119,6 @@ app.get('/auth/moves/callback',
     // Successful authentication, redirect home.
     res.redirect('/');
   });
-app.use(express.static(path.join(__dirname, '../client')));
-app.use('/', routes);
-
-const fitbitStrategy = new FitbitStrategy({
-  clientID: config.Fitbit.clientID,
-  clientSecret: config.Fitbit.clientSecret,
-  scope: ['activity', 'heartrate', 'location', 'profile'],
-  callbackURL: config.Fitbit.callbackURL
-}, (accessToken, refreshToken, profile, done) => {
-  // TODO: save accessToken here for later use
-
-  done(null, {
-    accessToken: accessToken,
-    refreshToken: refreshToken,
-    profile: profile
-  });
-});
-
-passport.use(fitbitStrategy);
-
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
-});
-
-const fitbitAuthenticate = passport.authenticate('fitbit', {
-  successRedirect: '/',
-  failureRedirect: '/auth/fitbit/failure'
-});
-
-app.get('/auth/fitbit', fitbitAuthenticate);
-app.get('/auth/fitbit/callback', fitbitAuthenticate);
-app.get('/auth/fitbit/success', (req, res, next) => {
-  res.send(req.user);
-});
-
-passport.use(new MovesStrategy({
-  clientID: config.Moves.clientID,
-  clientSecret: config.Moves.clientSecret,
-  scope: ['activity', 'location'],
-  callbackURL: config.Moves.callbackURL
-},
-  (accessToken, refreshToken, profile, done) => {
-    process.nextTick(() => {
-      return done(null, profile);
-    });
-  }
-));
-
-app.get('/auth/moves',
-  passport.authenticate('moves'));
-
-app.get('/auth/moves/callback', 
-  passport.authenticate('moves', { failureRedirect: '/login' }),
-  (req, res) => {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index.html'));

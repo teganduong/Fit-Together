@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-const SignupModal = () => (
+class SignupModal extends Component {
+  constructor(props) {
+    super(props);
+  } 
 
   handleSubmit(event) {
     event.preventDefault();
@@ -88,5 +91,9 @@ const SignupModal = () => (
     );
   }
 }
+
+SignupModal.propTypes = {
+  postUser: React.PropTypes.func,
+};
 
 export default SignupModal;
