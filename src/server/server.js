@@ -11,6 +11,9 @@ const app = express();
 const config = require('./config.js');
 const MovesStrategy = require('passport-moves').Strategy;
 const usersCtrl = require('./controllers/usersCtrl.js');
+const LocalPassport = require('./authentication/LocalPassport');
+
+// LocalPassport();
 
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(cookieParser());

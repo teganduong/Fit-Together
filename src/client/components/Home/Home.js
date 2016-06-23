@@ -4,11 +4,11 @@ import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 import LandingImage from './LandingImage';
 
-const Home = () => (
+const Home = (props) => (
   <div>
     <HomeNavBar />
     <LoginModal />
-    <SignupModal />
+    <SignupModal postUser={props.postUser}/>
     <LandingImage />
   </div>
 );

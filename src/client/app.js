@@ -15,6 +15,7 @@ import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
 import Main from './containers/Main';
 import Team from './components/Main/Team';
+import SignUp from './containers/SignUp';
 
 // Dashbboard Components
 import Profile from './components/Dashboard/Profile/Profile.js';
