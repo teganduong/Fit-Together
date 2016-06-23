@@ -3,12 +3,16 @@ import NavBar from './NavBar';
 import SideNavBar from './SideNavBar';
 import PatientProfile from './PatientProfile/PatientProfile';
 
-const Main = () => (
+const Main = ({ children }) => (
   <div>
     <NavBar />
-    <PatientProfile />
     <SideNavBar />
+    {children}
   </div>
 );
+
+Main.propTypes = {
+  children: React.PropTypes.element.isRequired
+};
 
 export default Main;
