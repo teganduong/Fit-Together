@@ -1,20 +1,17 @@
 -- from root directory -- psql < src/server/db/schema.sql
--- DROP DATABASE IF EXISTS vitalhealthdb;
--- CREATE DATABASE vitalhealthdb;
--- \c vitalhealthdb;
 
--- DROP DATABASE IF EXISTS fidgetywidget;
--- CREATE DATABASE fidgetywidget;
+DROP DATABASE IF EXISTS fidgetywidget;
+CREATE DATABASE fidgetywidget;
 \c fidgetywidget;
 
-DROP TABLE IF EXISTS users_teams;
-DROP TABLE IF EXISTS users_daily_activities;
-DROP TABLE IF EXISTS users_incentives;
-DROP TABLE IF EXISTS challenges;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS daily_activities;
-DROP TABLE IF EXISTS incentives;
-DROP TABLE IF EXISTS teams;
+-- DROP TABLE IF EXISTS users_teams;
+-- DROP TABLE IF EXISTS users_daily_activities;
+-- DROP TABLE IF EXISTS users_incentives;
+-- DROP TABLE IF EXISTS challenges;
+-- DROP TABLE IF EXISTS users;
+-- DROP TABLE IF EXISTS daily_activities;
+-- DROP TABLE IF EXISTS incentives;
+-- DROP TABLE IF EXISTS teams;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
