@@ -1,3 +1,4 @@
+// TODO: DELETE of CHANGE seeds
 const patientsCtrl = require('../controllers/patientsCtrl.js');
 
 const examplePatientData = [

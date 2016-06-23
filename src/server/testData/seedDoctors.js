@@ -1,4 +1,4 @@
-// to seed doctors table, do 'npm run seed' from root directory
+// TODO: DELETE of CHANGE seeds
 const doctorsCtrl = require('../controllers/doctorsCtrl.js');
 
 const exampleDoctorData = [
