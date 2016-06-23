@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
 const patient = {
-	allergies: ['cows milk', 'weeds', 'egg yolk', 'butter'],
-	medications: ['Fortecortin (deksametazon) 2 mg tbl - 6mg'],
-	problems: ['Conductive hearing loss, bilateral', 'Respiratory syncytial virus pneumonia', 'Acute amoebic dysentery', 'Superficial frostbite of neck']
-}
+  allergies: ['cows milk', 'weeds', 'egg yolk', 'butter'],
+  medications: ['Fortecortin (deksametazon) 2 mg tbl - 6mg'],
+  problems: ['Conductive hearing loss, bilateral', 'Respiratory syncytial virus pneumonia', 
+    'Acute amoebic dysentery', 'Superficial frostbite of neck']
+};
 
 const PatientRightInfo = () => (
   <div className="right-container">
@@ -14,7 +15,7 @@ const PatientRightInfo = () => (
       </div>
       <div className="panel-body">
           {patient.allergies.map(allergy =>
-          	<li>{allergy}</li>
+            <li>{allergy}</li>
           )}
       </div>
     </div>
@@ -24,7 +25,7 @@ const PatientRightInfo = () => (
       </div>
       <div className="panel-body">
         {patient.medications.map(medication =>
-      	  <li>{medication}</li>
+          <li>{medication}</li>
         )}
       </div>
     </div>
@@ -34,7 +35,7 @@ const PatientRightInfo = () => (
       </div>
       <div className="panel-body">
         {patient.problems.map(problem =>
-      	  <li>{problem}</li>
+          <li>{problem}</li>
         )}
       </div>
     </div>

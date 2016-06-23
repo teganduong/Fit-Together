@@ -9,16 +9,16 @@ import GlucoseChart from '../PatientProfile/GlucoseChart';
 
 const Stats = () => (
   <div className="main-container">
-  <div className="top-container">
-    <div>
-      <BmiChart />
-      <BpChart />
+    <div className="top-container">
+      <div>
+        <BmiChart />
+        <BpChart />
+      </div>
+      <div>
+        <WtChart />
+        <GlucoseChart />
+      </div>
     </div>
-    <div>
-      <WtChart />
-      <GlucoseChart />
-    </div>
-  </div>
   </div>
 );
 
