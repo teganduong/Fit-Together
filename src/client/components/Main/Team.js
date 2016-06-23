@@ -65,54 +65,10 @@ const TeamInfo = () => (
           <TeamEntry teamMemberA={teamMember} key={index} />
         )}
       </div>
-=======
-    image: "https://camo.githubusercontent.com/5e6eb0b00d714eb5b8ec84254205c61c2a97c68d/687474703a2f2f6f63746f6465782e6769746875622e636f6d2f696d616765732f77616c646f6361742e6a7067"
-  },
-  {
-    name: 'Sis',
-    image: "https://assets-cdn.github.com/images/modules/styleguide/linktocat.png"
-  },
-  {
-    name: 'Bro',
-    image: "https://octodex.github.com/images/gangnamtocat.png"
-  },
-  {
-    name: 'Grandpa',
-    image: "https://stevegrunwell.github.io/wordpress-git/assets/heisencat.png"
-  }
-];
 
-const teamB = [
-  {
-    name: 'Uncle',
-    image: "https://avatars3.githubusercontent.com/u/1142544?v=3&s=460"
-  },
-  {
-    name: 'Auntie',
-    image: "https://avatars3.githubusercontent.com/u/1142544?v=3&s=460"
-  },
-  {
-    name: 'Big Cuz',
-    image: "https://developer.github.com/assets/images/electrocat.png"
-  },
-  {
-    name: 'Little Cuz',
-    image: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRVp_TMaZGGQQ7HkzjtYKKjQQqzVi9D6ASl1_6WCLK9F-tcyKvGIQ"
-  }
-];
+    </div>
 
-const TeamInfo = () => (
-  <div className="panel panel-default user-info-container">
-    <div className="team-user">
-      <img src={user.image} id="team-user-image" alt="test" className="img-circle" />
-    </div>
-    <div className="team-info">
-      {teamA.map((teamMember, index) =>
-        <TeamEntry teamMemberA={teamMember} key={index} />
-      )}
->>>>>>> resolve rebase conflict
-    </div>
-  </div>
+</div>
 );
 
 export default TeamInfo;

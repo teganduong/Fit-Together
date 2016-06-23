@@ -14,9 +14,9 @@ TeamEntry.propTypes = {
 
 =======
 const TeamEntry = ({teamMemberA}) => (
-  <div className="panel panel-default patient-info-container">
+  <div className="teamMember-image">
     <img src={teamMemberA.image} id="team-user-image" alt="test" className="img-circle" />
-    <li>{teamMemberA.name}</li>
+    <div>{teamMemberA.name}</div>
   </div>
 );
 

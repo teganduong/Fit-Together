@@ -120,10 +120,10 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use('/', routes);
 
 const fitbitStrategy = new FitbitStrategy({
-  clientID: config.clientID,
-  clientSecret: config.clientSecret,
+  clientID: config.Fitbit.clientID,
+  clientSecret: config.Fitbit.clientSecret,
   scope: ['activity','heartrate','location','profile'],
-  callbackURL: config.callbackURL
+  callbackURL: config.Fitbit.callbackURL
 }, function(accessToken, refreshToken, profile, done) {
   // TODO: save accessToken here for later use
 
@@ -152,16 +152,15 @@ const fitbitAuthenticate = passport.authenticate('fitbit', {
 
 app.get('/auth/fitbit', fitbitAuthenticate);
 app.get('/auth/fitbit/callback', fitbitAuthenticate);
-
 app.get('/auth/fitbit/success', function(req, res, next) {
   res.send(req.user);
 });
 
 passport.use(new MovesStrategy({
-    clientID: "nFod8IWw0YVBaa43incO69zA3c4aUSRy",
-    clientSecret: "shA584APICIHSzDWcknWbake2if94aKy4ailIZ2WjY9n693bQ7p8xPjFU9tTztXu",
+    clientID: config.Moves.clientID,
+    clientSecret: config.Moves.clientSecret,
     scope: ['activity','location'],
-    callbackURL: "http://localhost:3000/auth/moves/callback"
+    callbackURL: config.Moves.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function () {
