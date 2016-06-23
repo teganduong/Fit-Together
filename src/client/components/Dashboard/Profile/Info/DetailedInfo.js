@@ -4,15 +4,15 @@ import React, { Component } from 'react';
 
 
 const DetailedInfo = () => (
-  <div className="panel panel-default person-detailed-container">
-    <div className="person-detailed">
+  <div className="panel panel-default user-detailed-container">
+    <div className="user-detailed">
       <p>test</p>
       <p>test</p>
       <p>test</p>
       <p>test</p>
       <p>test</p>
     </div>
-    <div className="person-detailed">
+    <div className="user-detailed">
       <p>test</p>
       <p>test</p>
       <p>test</p>
