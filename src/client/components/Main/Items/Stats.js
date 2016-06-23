@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import PatientInfo from '../PatientProfile/PatientInfo';
-import PatientRightInfo from '../PatientProfile/PatientRightInfo';
-import PatientDetailedInfo from '../PatientProfile/PatientDetailedInfo';
-import BmiChart from '../PatientProfile/BmiChart';
-import BpChart from '../PatientProfile/BpChart';
-import WtChart from '../PatientProfile/WtChart';
-import GlucoseChart from '../PatientProfile/GlucoseChart';
+import BmiChart from '../Profile/Charts/BmiChart';
+import BpChart from '../Profile/Charts/BpChart';
+import WtChart from '../Profile/Charts/WtChart';
+import GlucoseChart from '../Profile/Charts/GlucoseChart';
 
 const Stats = () => (
   <div className="main-container">

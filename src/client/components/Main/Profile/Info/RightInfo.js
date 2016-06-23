@@ -1,6 +1,8 @@
+// TODO: This is a container for information
+// May not be needed, DELETE if necessary
 import React, { Component } from 'react';
 
-const patient = {
+const person = {
   allergies: ['cows milk', 'weeds', 'egg yolk', 'butter'],
   medications: ['Fortecortin (deksametazon) 2 mg tbl - 6mg'],
   problems: ['Conductive hearing loss, bilateral', 'Respiratory syncytial virus pneumonia', 
@@ -14,7 +16,7 @@ const PatientRightInfo = () => (
         <h3 className="panel-title">Allergies</h3>
       </div>
       <div className="panel-body">
-          {patient.allergies.map(allergy =>
+          {person.allergies.map(allergy =>
             <li>{allergy}</li>
           )}
       </div>
@@ -24,7 +26,7 @@ const PatientRightInfo = () => (
         <h3 className="panel-title">Medications</h3>
       </div>
       <div className="panel-body">
-        {patient.medications.map(medication =>
+        {person.medications.map(medication =>
           <li>{medication}</li>
         )}
       </div>
@@ -34,7 +36,7 @@ const PatientRightInfo = () => (
         <h3 className="panel-title">Problems</h3>
       </div>
       <div className="panel-body">
-        {patient.problems.map(problem =>
+        {person.problems.map(problem =>
           <li>{problem}</li>
         )}
       </div>

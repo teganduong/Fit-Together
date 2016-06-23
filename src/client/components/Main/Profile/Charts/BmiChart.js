@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { LineChart, BarChart } from 'react-d3-basic';
-import chartData from './DummyData';
+import chartData from '../DummyData';
 
 const title = 'User sample';
 const x = d => d.index;

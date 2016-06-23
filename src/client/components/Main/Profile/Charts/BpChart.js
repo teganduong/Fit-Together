@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { LineChart, BarChart } from 'react-d3-basic';
-import chartData from './DummyData';
+import chartData from '../DummyData';
 
 const title = 'User sample';
 const x = d => d.index;
@@ -14,17 +14,22 @@ const margins = {
 };
 const chartSeries = [
   {
-    field: 'wt',
-    name: 'Weight',
-    color: '#40d652'
+    field: 'bp_high',
+    name: 'Blood Pressure High',
+    color: '#e72713'
   },
+  {
+    field: 'bp_low',
+    name: 'Blood Pressure Low',
+    color: '#e72713'
+  }
 ];
 
-const WtChart = () => (
+const BpChart = () => (
   <div className="data-container">
     <div className="panel panel-default chart-container">
-      <div className="panel-heading" id="wt-heading">
-        <h3 className="panel-title">Weight</h3>
+      <div className="panel-heading" id="bp-heading">
+        <h3 className="panel-title">Blood Pressure</h3>
       </div>
       <div className="panel-body">
         <div className="row chart">
@@ -40,11 +45,11 @@ const WtChart = () => (
         </div>
         <div className="row chart-info">
           <p>As of: 02-Mar-2016 at 22:28</p>
-          <h2 id="wt-output">150 lbs</h2>
+          <h2 id="bp-output">118 mm[Hg]</h2>
         </div>
       </div>
     </div>
   </div>
 );
 
-export default WtChart;
+export default BpChart;
