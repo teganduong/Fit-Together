@@ -1,7 +1,7 @@
 {
-  "name": "vital-health",
+  "name": "fit-together",
   "version": "0.0.3",
-  "description": "Clinical health system software designed with clinicians in mind",
+  "description": "Fit health software designed with fitness lovers in mind",
   "author": "Tegan Duong, Lynn Chen, AJ Grande, Peter Chim",
   "license": "MIT",
   "private": true,
@@ -9,7 +9,7 @@
     "build": "babel src/server -d dev/server --copy-files; webpack",
     "start": "npm run watch & nodemon dev/server/server.js & open http://localhost:3000",
     "watch": "npm run watch-c & npm run watch-s",
-    "watch-c": "npm run move-assets; webpack --watch --progress",
+    "watch-c": "npm run move-assets & webpack --watch --progress",
     "watch-s": "babel --watch src/server -d dev/server --copy-files",
     "seed": "node src/server/testData/seedUsers.js",
     "lint": "eslint src --color",
@@ -32,6 +32,7 @@
     "mongodb": "^2.1.20",
     "morgan": "^1.7.0",
     "nodemon": "^1.9.2",
+    "rd3": "^0.6.3",
     "webpack": "^1.13.1"
   },
   "dependencies": {
@@ -44,7 +45,6 @@
     "express": "~4.13.1",
     "isomorphic-fetch": "^2.2.1",
     "mongoose": "^4.5.0",
-    "nodemon": "^1.9.2",
     "pg": "^5.1.0",
     "pg-promise": "^4.6.4",
     "react": "^15.0.2",
@@ -57,5 +57,8 @@
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "serve-favicon": "~2.3.0"
+  },
+  "peerDependencies": {
+    "react-dom": "^0.14.7"
   }
 }
