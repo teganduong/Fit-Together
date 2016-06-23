@@ -1,7 +1,7 @@
 import PlaceHolder from '../../PlaceHolder.js';
 
-const Challenges = () => (
+const Logs = () => (
   <PlaceHolder />
 );
 
-export default PlaceHolder;
+export default Logs;

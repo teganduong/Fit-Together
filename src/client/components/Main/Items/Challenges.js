@@ -4,4 +4,4 @@ const Challenges = () => (
   <PlaceHolder />
 );
 
-export default PlaceHolder;
+export default Challenges;
