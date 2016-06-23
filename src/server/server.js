@@ -125,9 +125,9 @@ app.use('/', routes);
 const fitbitStrategy = new FitbitStrategy({
   clientID: config.Fitbit.clientID,
   clientSecret: config.Fitbit.clientSecret,
-  scope: ['activity','heartrate','location','profile'],
+  scope: ['activity', 'heartrate', 'location', 'profile'],
   callbackURL: config.Fitbit.callbackURL
-}, function(accessToken, refreshToken, profile, done) {
+}, (accessToken, refreshToken, profile, done) => {
   // TODO: save accessToken here for later use
 
   done(null, {
@@ -135,16 +135,15 @@ const fitbitStrategy = new FitbitStrategy({
     refreshToken: refreshToken,
     profile: profile
   });
-
 });
 
 passport.use(fitbitStrategy);
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-passport.deserializeUser(function(obj, done) {
+passport.deserializeUser((obj, done) => {
   done(null, obj);
 });
 
@@ -155,35 +154,29 @@ const fitbitAuthenticate = passport.authenticate('fitbit', {
 
 app.get('/auth/fitbit', fitbitAuthenticate);
 app.get('/auth/fitbit/callback', fitbitAuthenticate);
-app.get('/auth/fitbit/success', function(req, res, next) {
+app.get('/auth/fitbit/success', (req, res, next) => {
   res.send(req.user);
 });
 
 passport.use(new MovesStrategy({
-    clientID: config.Moves.clientID,
-    clientSecret: config.Moves.clientSecret,
-    scope: ['activity','location'],
-    callbackURL: config.Moves.callbackURL
-  },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      
-      // To keep the example simple, the user's Foursquare profile is returned
-      // to represent the logged-in user.  In a typical application, you would
-      // want to associate the Foursquare account with a user record in your
-      // database, and return that user instead.
+  clientID: config.Moves.clientID,
+  clientSecret: config.Moves.clientSecret,
+  scope: ['activity', 'location'],
+  callbackURL: config.Moves.callbackURL
+},
+  (accessToken, refreshToken, profile, done) => {
+    process.nextTick(() => {
       return done(null, profile);
     });
   }
 ));
-
 
 app.get('/auth/moves',
   passport.authenticate('moves'));
 
 app.get('/auth/moves/callback', 
   passport.authenticate('moves', { failureRedirect: '/login' }),
-  function(req, res) {
+  (req, res) => {
     // Successful authentication, redirect home.
     res.redirect('/');
   });
