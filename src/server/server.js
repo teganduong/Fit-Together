@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'FidgetyWidgets' }));
+app.use(session({secret: 'FidgetyWidgets'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', routes);
@@ -27,7 +27,7 @@ app.use('/', routes);
 const fitbitStrategy = new FitbitStrategy({
   clientID: config.Fitbit.clientID,
   clientSecret: config.Fitbit.clientSecret,
-  scope: ['activity', 'heartrate', 'location', 'profile'],
+  scope: ['activity','heartrate','location','profile'],
   callbackURL: config.Fitbit.callbackURL
 }, (accessToken, refreshToken, activity, done) => {
   process.nextTick(() => {
@@ -43,6 +43,7 @@ const fitbitStrategy = new FitbitStrategy({
     };
   console.log('INSIDE FITBIT', userData);
     // usersCtrl.findUser({ body: userData.name });
+}, function(accessToken, refreshToken, profile, done) {
 
     usersCtrl.findUser({ body: userData.name }, function(err, user) {
       if(err) {
@@ -69,14 +70,15 @@ const fitbitStrategy = new FitbitStrategy({
   // });
   }
 );
+});
 
 passport.use(fitbitStrategy);
 
-passport.serializeUser((user, done) => {
+passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
-passport.deserializeUser((obj, done) => {
+passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
@@ -87,7 +89,7 @@ const fitbitAuthenticate = passport.authenticate('fitbit', {
 
 app.get('/auth/fitbit', fitbitAuthenticate);
 app.get('/auth/fitbit/callback', fitbitAuthenticate);
-app.get('/auth/fitbit/success', (req, res, next) => {
+app.get('/auth/fitbit/success', function(req, res, next) {
   res.send(req.user);
 });
 
@@ -99,6 +101,13 @@ passport.use(new MovesStrategy({
 },
   (accessToken, refreshToken, profile, done) => {
     process.nextTick(() => {
+    clientID: config.Moves.clientID,
+    clientSecret: config.Moves.clientSecret,
+    scope: ['activity','location'],
+    callbackURL: config.Moves.callbackURL
+  },
+  function(accessToken, refreshToken, profile, done) {
+    process.nextTick(function () {
       
       // To keep the example simple, the user's Foursquare profile is returned
       // to represent the logged-in user.  In a typical application, you would
@@ -115,7 +124,7 @@ app.get('/auth/moves',
 
 app.get('/auth/moves/callback', 
   passport.authenticate('moves', { failureRedirect: '/login' }),
-  (req, res) => {
+  function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');
   });

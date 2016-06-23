@@ -10,10 +10,12 @@ import * as reducers from './reducers';
 reducers.routing = routerReducer;
 
 import App from './components/App';
+import PostDoc from './containers/PostDoc';
 import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
 import Main from './containers/Main';
 import Team from './components/Main/Team';
+import SignUp from './containers/SignUp';
 
 // Dashbboard Components
 import Profile from './components/Dashboard/Profile/Profile.js';
@@ -32,11 +34,12 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App} >
+        <Route path="postdoc" component={PostDoc} />
         <Route path="home" component={Home} />
         <Route path="dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />
         <Route path="dashboard" component={Main} >
-          <Route path="/team" component={Team} />
+        <Route path="/team" component={Team} />
           <IndexRoute component={PatientProfile} />
           <Route path="/settings"component={PlaceHolder} />
           <Route path="/dashboard/log"component={PlaceHolder} />

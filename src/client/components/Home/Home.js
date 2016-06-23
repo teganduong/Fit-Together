@@ -8,13 +8,9 @@ const Home = (props) => (
   <div>
     <HomeNavBar />
     <LoginModal />
-    <SignupModal postUser={props.postUser} />
+    <SignupModal postUser={props.postUser}/>
     <LandingImage />
   </div>
 );
 
 export default Home;
-
-Home.propTypes = {
-  postUser: React.PropTypes.func.isRequired
-};
