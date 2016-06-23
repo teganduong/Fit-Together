@@ -1,2 +1,5 @@
-@import url('Main.css');
-@import url('Home.css');
+// TODO: Webpack this together
+@import 'Dashboard.css';
+@import 'Home.css';
+@import 'Profile.css';
+

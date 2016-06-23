@@ -1,3 +1,5 @@
+// TODO: change reducers to fit our needs
+
 import {
   ADD_DOCTOR,
 } from '../actions/index.js';

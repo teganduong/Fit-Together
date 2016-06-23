@@ -1,6 +1,6 @@
-# Vital Health
+# Fit Together
 
-> The world of healthcare can be cluttered with unnecessary inefficiencies and noise when our main focus should be on the patients’ health. Vital Health is an electronic health record system that provides a smooth and seamless integration and interface for healthcare providers. The software allows access to evidence-based tools that providers can use to make decisions about a patient’s care. In addition, it automates and streamlines provider workflow.
+> For those who love to breathe deep, get active, and stay connected, we offer you the experience that is sure to please: Fit Together. Fit Together integrates with your FitBit, your Move devices, or your phone to log real-time responses from your daily fitness regimen. We analyze that data to present personalized suggestions and statistics to help you stay on track with your goals. We also make fitness fun by inviting you to compete with friends, families, and anyone in the world with challenges and character leveling. Are you ready to Fit Together?
 
 ## Team
 
@@ -87,3 +87,6 @@ View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## TODO
+UPDATE README 6/23/16

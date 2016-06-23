@@ -1,3 +1,5 @@
+// TODO: Top Nav bar. May want to DELETE if not needed
+// Currently used in views
 import React, { Component } from 'react';
 
 const NavBar = () => (
@@ -16,7 +18,7 @@ const NavBar = () => (
           <span className="icon-bar"></span>
           <span className="icon-bar"></span>
         </button>
-        <a className="navbar-brand" href="#">Vital Health</a>
+        <a className="navbar-brand" href="#">Fit Together</a>
       </div>
       <div id="navbar" className="navbar-collapse collapse">
         <ul className="nav navbar-nav">

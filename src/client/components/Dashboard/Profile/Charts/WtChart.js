@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { LineChart, BarChart } from 'react-d3-basic';
-import chartData from './DummyData';
+import chartData from '../DummyData';
 
 const title = 'User sample';
 const x = d => d.index;
@@ -14,17 +14,17 @@ const margins = {
 };
 const chartSeries = [
   {
-    field: 'glucose',
-    name: 'Glucose',
-    color: '#43abd9'
+    field: 'wt',
+    name: 'Weight',
+    color: '#40d652'
   },
 ];
 
-const GlucoseChart = () => (
+const WtChart = () => (
   <div className="data-container">
     <div className="panel panel-default chart-container">
-      <div className="panel-heading" id="glucose-heading">
-        <h3 className="panel-title">Glucose Level</h3>
+      <div className="panel-heading" id="wt-heading">
+        <h3 className="panel-title">Weight</h3>
       </div>
       <div className="panel-body">
         <div className="row chart">
@@ -40,11 +40,11 @@ const GlucoseChart = () => (
         </div>
         <div className="row chart-info">
           <p>As of: 02-Mar-2016 at 22:28</p>
-          <h2 id="glucose-output">127 mg/dL</h2>
+          <h2 id="wt-output">150 lbs</h2>
         </div>
       </div>
     </div>
   </div>
 );
 
-export default GlucoseChart;
+export default WtChart;

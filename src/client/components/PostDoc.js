@@ -1,3 +1,5 @@
+// TODO: This is a practice doc for posting info. Used for reference
+// May want to DELETE if not needed
 import React from 'react';
 
 export default class PostDoc extends React.Component {

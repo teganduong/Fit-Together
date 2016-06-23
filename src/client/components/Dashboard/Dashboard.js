@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar';
 import SideNavBar from './SideNavBar';
-import PatientProfile from './PatientProfile/PatientProfile';
 
-const Main = ({ children }) => (
+const Dashboard = ({ children }) => (
   <div>
     <NavBar />
     <SideNavBar />
@@ -11,8 +10,8 @@ const Main = ({ children }) => (
   </div>
 );
 
-Main.propTypes = {
+Dashboard.propTypes = {
   children: React.PropTypes.element.isRequired
 };
 
-export default Main;
+export default Dashboard;
