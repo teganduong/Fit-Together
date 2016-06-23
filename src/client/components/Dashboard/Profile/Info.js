@@ -2,7 +2,7 @@
 // CHANGE info as needed
 import React, { Component } from 'react';
 
-const person = {
+const user = {
   name: 'Jessica Jones',
   age: 36,
   gender: 'Female',
@@ -12,19 +12,19 @@ const person = {
   image: 'http://i988.photobucket.com/albums/af3/TheLightChasers/Portraits/portrait-sigma-50mm-f14-hsm-canon-eos-5d-mk2-face-Favimcom-473053_zpsd55e8d8e.jpg'
 };
 
-const PatientInfo = () => (
-  <div className="panel panel-default person-info-container">
-    <div className="person-info">
-      <img src={person.image} id="person-image" alt="test" className="img-circle" />
+const Info = () => (
+  <div className="panel panel-default user-info-container">
+    <div className="user-info">
+      <img src={user.image} id="user-image" alt="test" className="img-circle" />
     </div>
-    <div className="person-info">
-      <h4>{person.name}</h4>
-      <p>Age: {person.age}</p>
-      <p>Gender: {person.gender}</p>
-      <p>DOB: {person.dob}</p>
-      <p>Address: {person.address}</p>
+    <div className="user-info">
+      <h4>{user.name}</h4>
+      <p>Age: {user.age}</p>
+      <p>Gender: {user.gender}</p>
+      <p>DOB: {user.dob}</p>
+      <p>Address: {user.address}</p>
     </div>
   </div>
 );
 
-export default PatientInfo;
+export default Info;
