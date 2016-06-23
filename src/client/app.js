@@ -12,17 +12,17 @@ reducers.routing = routerReducer;
 import App from './components/App';
 import PostDoc from './containers/PostDoc';
 import Home from './containers/Home';
-import Main from './containers/Main';
+import Dashboard from './containers/Dashboard';
 
 // Dashbboard Components
-import Profile from './components/Main/Profile/Profile.js';
+import Profile from './components/Dashboard/Profile/Profile.js';
 import PlaceHolder from './components/PlaceHolder.js';
 
-import Stats from './components/Main/Items/Stats.js';
-import Goals from './components/Main/Items/Goals.js';
-import Challenges from './components/Main/Items/Logs.js';
-import Teams from './components/Main/Items/Teams.js';
-import Tips from './components/Main/Items/Tips.js';
+import Stats from './components/Dashboard/Items/Stats.js';
+import Goals from './components/Dashboard/Items/Goals.js';
+import Challenges from './components/Dashboard/Items/Logs.js';
+import Teams from './components/Dashboard/Items/Teams.js';
+import Tips from './components/Dashboard/Items/Tips.js';
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
 const history = syncHistoryWithStore(browserHistory, store);
@@ -33,7 +33,7 @@ render(
       <Route path="/" component={App} >
         <Route path="postdoc" component={PostDoc} />
         <Route path="home" component={Home} />
-        <Route path="dashboard" component={Main} >
+        <Route path="dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />
           <Route path="/settings"component={PlaceHolder} />
           <Route path="/dashboard/log"component={PlaceHolder} />
