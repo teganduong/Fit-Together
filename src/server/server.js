@@ -13,8 +13,6 @@ const MovesStrategy = require('passport-moves').Strategy;
 const usersCtrl = require('./controllers/usersCtrl.js');
 const LocalPassport = require('./authentication/LocalPassport');
 
-// LocalPassport();
-
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -27,7 +25,7 @@ app.use('/', routes);
 const fitbitStrategy = new FitbitStrategy({
   clientID: config.Fitbit.clientID,
   clientSecret: config.Fitbit.clientSecret,
-  scope: ['activity','heartrate','location','profile'],
+  scope: ['activity', 'heartrate', 'location', 'profile'],
   callbackURL: config.Fitbit.callbackURL
 }, (accessToken, refreshToken, activity, done) => {
   process.nextTick(() => {
@@ -63,6 +61,7 @@ const fitbitStrategy = new FitbitStrategy({
     }
   });
 
+
   // done(null, {
   //   accessToken: accessToken,
   //   refreshToken: refreshToken,
@@ -74,11 +73,11 @@ const fitbitStrategy = new FitbitStrategy({
 
 passport.use(fitbitStrategy);
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-passport.deserializeUser(function(obj, done) {
+passport.deserializeUser((obj, done) => {
   done(null, obj);
 });
 
@@ -89,7 +88,7 @@ const fitbitAuthenticate = passport.authenticate('fitbit', {
 
 app.get('/auth/fitbit', fitbitAuthenticate);
 app.get('/auth/fitbit/callback', fitbitAuthenticate);
-app.get('/auth/fitbit/success', function(req, res, next) {
+app.get('/auth/fitbit/success', (req, res, next) => {
   res.send(req.user);
 });
 
@@ -101,13 +100,6 @@ passport.use(new MovesStrategy({
 },
   (accessToken, refreshToken, profile, done) => {
     process.nextTick(() => {
-    clientID: config.Moves.clientID,
-    clientSecret: config.Moves.clientSecret,
-    scope: ['activity','location'],
-    callbackURL: config.Moves.callbackURL
-  },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
       
       // To keep the example simple, the user's Foursquare profile is returned
       // to represent the logged-in user.  In a typical application, you would
