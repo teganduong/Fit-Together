@@ -1,25 +1,74 @@
-.nav-main {
-    background-color: #6827a9;
-    border-color: #6827a9;
-}
-
-.nav-main .container .navbar-brand, .nav-main #navbar li a{
-   color: #fafdfd;
-}
+@import url('http://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url('http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css');
 
 #sidebar-wrapper {
-    margin-top: 55px;
     z-index: 1000;
     position: fixed;
-    left: 230px;
-    width: 220px;
     height: 100%;
-    margin-left: -250px;
     overflow-y: auto;
     background: #edf1f2;
+    width: 220px;
+    background: #2a2a2a;
+}
+
+#sidebar-title {
+    font: 16px/1 'Montserrat', sans-serif;
+    line-height: 65px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    color: #eee;
+    border-bottom: 1px solid #222;
+    background: #2a2a2a;
+    margin-bottom: 0px;
+}
+
+.sidebar-nav {
+    list-style: none;
+}
+
+.sidebar-nav li {
+    position: relative;
+    width: 220px;
+    left: -40px;
+}
+
+.sidebar-nav li a {
+    position: relative;
+    display: block;
+    padding: 12px 0px 12px 29px;
+    /*font-size: 12px;*/
+    font: 12px/1 'Montserrat', sans-serif;
+    color: #eee;
+    border-bottom: 1px solid #222;
+    text-decoration: none;
+}
+
+.sidebar-nav li a:hover {
+  background: #444;
 }
 
 
+/*List Item icons from Font Awesome*/
+.sidebar-nav li a:before {
+  font: 14px fontawesome;
+  position: relative;
+  top: 1px;
+  left: -12px;
+}
+
+.sidebar-nav li:nth-child(1) a:before { content: '\f00a'; }
+.sidebar-nav li:nth-child(2) a:before { content: '\f0c0'; }
+.sidebar-nav li:nth-child(3) a:before { content: '\f0e8'; }
+.sidebar-nav li:nth-child(4) a:before { content: '\f201'; }
+.sidebar-nav li:nth-child(5) a:before { content: '\f012'; }
+.sidebar-nav li:nth-child(6) a:before { content: '\f115'; }
+.sidebar-nav li:nth-child(7) a:before { content: '\f087'; }
+.sidebar-nav li:nth-child(8) a:before { content: '\f085'; }
+.sidebar-nav li:nth-child(9) a:before { content: '\f023'; }
+
+
+/*
 .sidebar-nav {
     position: absolute;
     top: 0;
