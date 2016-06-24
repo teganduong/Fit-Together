@@ -37,7 +37,7 @@ const exampleUserTeamData = [
   }
 ];
 
-teamsCtrl.findTeam({ user_id: 1 }, null);
+teamsCtrl.findTeam({ body: { user_id: 1, team_id: 1 } }, null);
 
 // // seeds teams table with example data
 // exampleTeamData.forEach((team, index) => {
