@@ -48,9 +48,9 @@ CREATE TABLE daily_activities (
   type VARCHAR(50),
   category VARCHAR(50),
   description VARCHAR(255),
-  date_peformed DATE,
+  date_performed VARCHAR(50),
   count DECIMAL,
-  units VARCHAR
+  units VARCHAR(50)
 );
 
 CREATE TABLE incentives (

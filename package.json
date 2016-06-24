@@ -11,10 +11,11 @@
     "watch": "npm run watch-c & npm run watch-s",
     "watch-c": "npm run move-assets & webpack --watch --progress",
     "watch-s": "babel --watch src/server -d dev/server --copy-files",
-    "seed": "node src/server/testData/seedUsers.js",
+    "seed": "node src/server/testData/seedUsers.js; node src/server/testData/seedTeams.js; node src/server/testData/seedActivities.js;",
     "lint": "eslint src --color",
     "move-assets": "cp -R src/client/assets dev/client/",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "seed-test": "node src/server/testData/seedTeams.js"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",

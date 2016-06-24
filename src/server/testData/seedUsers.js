@@ -34,7 +34,7 @@ const exampleUserData = [
 ];
 
 // finds a user in the database
-usersCtrl.findUser({ body: { username: 'jjones' } }, null);
+// usersCtrl.findUser({ body: { username: 'jjones' } }, null);
 
 // seeds users table with example data
 exampleUserData.forEach((user, index) => {
