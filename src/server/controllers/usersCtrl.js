@@ -30,3 +30,17 @@ exports.findUser = (req, res) => {
     });
 };
 
+exports.getUserInfo = (req, res) => {
+  db.one('select * from users where id=${req.params.userId}')
+    .then(user => {
+      res.status(200)
+        .json({
+          status: 'success',
+          data: user,
+          message: 'Retrieved user information!'
+        });
+    })
+    .catch((err) => {
+      console.error('error in retrieving user info: ', err);
+    });
+};

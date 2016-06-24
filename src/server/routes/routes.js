@@ -5,6 +5,7 @@ const MovesPassport = require('../authentication/MovesPassport');
 const users = require('../controllers/usersCtrl');
 const passport = require('passport');
 
+router.get('/api/users/:userId', users.getUserInfo);
 router.post('/api/users', users.addUser);
 
 router.get('/auth/fitbit', 
