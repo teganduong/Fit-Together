@@ -1,9 +1,9 @@
-import * as types from '../constants/actionTypes';
+import * as c from '../constants/constants';
 
-export const error = err => ({ type: 'ERROR', data: err });
+export const error = err => ({ type: c.ERROR, data: err });
 
 export const receiveUser = user => {
-  return { type: RECEIVE_USER, data: user };
+  return { type: c.RECEIVE_USER, data: user };
 };
 
 export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
@@ -21,6 +21,35 @@ export const addUser = (name, username, password, email, weight, bmi, goal, poin
     })
     .then(res => res.json())
     .then(user => dispatch(receiveUser(user)))
+    .catch(err => dispatch(error(err)))
+  );
+};
+
+
+export const fetchUser = (userId) => (
+  dispatch => (
+    fetch(`/api/users/${userId}`, {
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(userInfo => dispatch(receiveUser(userInfo)))
+    .catch(err => dispatch(error(err)))
+  )
+);
+
+export const updateUserInfo = (userInfo) => {
+  const info = JSON.stringify({ userInfo });
+  return dispatch => (
+    fetch(`/api/users/${userInfo.userId}`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      credentials: 'same-origin',
+      body: info,
+    })
+    .then(() => dispatch({ type: c.UPDATE_USER_INFO, data: userInfo }))
+    .then(() => dispatch(fetchUser()))
     .catch(err => dispatch(error(err)))
   );
 };
