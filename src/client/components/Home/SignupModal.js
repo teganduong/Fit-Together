@@ -17,9 +17,7 @@ class SignupModal extends Component {
       goal: this.refs.goal.value,
       points: 0
     };
-    console.log('shows formdata', formData);
-    this.props.postUser(formData.name, formData.username, formData.password, formData.email, formData.weight, formData.bmi, formData.goal, formData.points);
-    console.log('inside signup and posted')
+    this.props.postUser(formData);
   }
 
   render() {
@@ -31,8 +29,8 @@ class SignupModal extends Component {
               <button type="button" className="close" data-dismiss="modal">&times;</button>
               <h4 className="modal-title">Signup</h4>
             </div>
-              <form onSubmit={this.handleSubmit.bind(this)}>
-            <div className="modal-body">
+            <form onSubmit={this.handleSubmit.bind(this)}>
+              <div className="modal-body">
                 <div className="form-group">
                   <input 
                     type="firstName" 
@@ -76,8 +74,8 @@ class SignupModal extends Component {
                     ref="goal"
                     placeholder="Enter goal"
                   />
-              </div>
-            </div>
+                </div>
+             </div>
             <div className="modal-footer">
               <button type="submit" className="btn btn-default">Login</button>
               <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -87,8 +85,8 @@ class SignupModal extends Component {
         </div>
       </div>
     );
-  };
-};
+  }
+}
 
 SignupModal.propTypes = {
   postUser: React.PropTypes.func,

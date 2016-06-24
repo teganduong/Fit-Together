@@ -2,49 +2,31 @@ import React, { Component } from 'react';
 import TeamEntry from './TeamEntry';
 
 const user = {
-  name: "Scarlet",
+  name: 'Scarlet',
   score: 1000,
   steps: 2000,
-  image: "https://pbs.twimg.com/profile_images/721759338034044929/uu8JkkSl.jpg"
+  image: 'https://pbs.twimg.com/profile_images/721759338034044929/uu8JkkSl.jpg'
 };
 
 const teamA = [
   {
     name: 'Mom',
-    image: "https://camo.githubusercontent.com/5e6eb0b00d714eb5b8ec84254205c61c2a97c68d/687474703a2f2f6f63746f6465782e6769746875622e636f6d2f696d616765732f77616c646f6361742e6a7067"
+    image: 'https://camo.githubusercontent.com/5e6eb0b00d714eb5b8ec84254205c61c2a97c68d/687474703a2f2f6f63746f6465782e6769746875622e636f6d2f696d616765732f77616c646f6361742e6a7067'
   },
   {
     name: 'Sis',
-    image: "https://assets-cdn.github.com/images/modules/styleguide/linktocat.png"
+    image: 'https://assets-cdn.github.com/images/modules/styleguide/linktocat.png'
   },
   {
     name: 'Bro',
-    image: "https://octodex.github.com/images/gangnamtocat.png"
+    image: 'https://octodex.github.com/images/gangnamtocat.png'
   },
   {
     name: 'Grandpa',
-    image: "https://stevegrunwell.github.io/wordpress-git/assets/heisencat.png"
+    image: 'https://stevegrunwell.github.io/wordpress-git/assets/heisencat.png'
   }
 ];
 
-const teamB = [
-  {
-    name: 'Uncle',
-    image: "https://avatars3.githubusercontent.com/u/1142544?v=3&s=460"
-  },
-  {
-    name: 'Auntie',
-    image: "https://avatars3.githubusercontent.com/u/1142544?v=3&s=460"
-  },
-  {
-    name: 'Big Cuz',
-    image: "https://developer.github.com/assets/images/electrocat.png"
-  },
-  {
-    name: 'Little Cuz',
-    image: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRVp_TMaZGGQQ7HkzjtYKKjQQqzVi9D6ASl1_6WCLK9F-tcyKvGIQ"
-  }
-];
 
 const TeamInfo = () => (
   <div>
@@ -62,14 +44,15 @@ const TeamInfo = () => (
           </div>
         </div>
       </div>
-    <div className="row">
-      <div className="col-sm-6 col-md-6 playA">
+      <div className="row">
+        <div className="col-sm-6 col-md-6 playA">
           <img src={teamA[0].image} id="team-user-image" alt="test" className="img-circle" />
           <p>Team Lead: Joe</p>
-      </div>
-      <div className="col-sm-6 col-md-6 playB">
+        </div>
+        <div className="col-sm-6 col-md-6 playB">
           <img src={teamA[1].image} id="team-user-image" alt="test" className="img-circle" />
           <p className="team-user-steps">Team Lead: Doe</p>
+        </div>
       </div>
       <div>
         Teammates: 
@@ -82,8 +65,6 @@ const TeamInfo = () => (
           <TeamEntry teamMemberA={teamMember} key={index} />
         )}
       </div>
-    </div>
-
   </div>
   </div>
 );
