@@ -3,14 +3,6 @@ import React, { Component } from 'react';
 class SignupModal extends Component {
   constructor(props) {
     super(props);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    console.log("INSIDE SIGNUP MODAL", props);
->>>>>>> parent of d69e2bd... complete linting
-=======
-    console.log("INSIDE SIGNUP MODAL", props);
->>>>>>> parent of d69e2bd... complete linting
   } 
 
   handleSubmit(event) {
@@ -97,12 +89,9 @@ class SignupModal extends Component {
     );
   };
 };
-<<<<<<< HEAD
 
 SignupModal.propTypes = {
   postUser: React.PropTypes.func,
 };
-=======
->>>>>>> parent of d69e2bd... complete linting
 
 export default SignupModal;
