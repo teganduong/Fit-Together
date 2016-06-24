@@ -12,6 +12,14 @@ const app = express();
 const port = process.env.PORT || 3000;
 // MovesPassport();
 // FitbitPassport();
+const redisClient = require('./db/redisConnection.js');
+
+// Test to make sure redis connection works
+// app.get('/', (req, res) => {
+//   redisClient.hmset('token', 'jjones', 123, 'johnyj', 123, 'jeffj', 123, (err, response) => {
+//     console.log(response, 'wee in');
+//   });
+// });
 
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(cookieParser());

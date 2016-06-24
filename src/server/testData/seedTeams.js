@@ -37,16 +37,17 @@ const exampleUserTeamData = [
   }
 ];
 
-teamsCtrl.findTeam({ body: { user_id: 1, team_id: 1 } }, null);
+// find team and members given a user_id and team_id
+// teamsCtrl.findTeam({ body: { user_id: 1, team_id: 1 } }, null);
 
-// // seeds teams table with example data
-// exampleTeamData.forEach((team, index) => {
-//   setTimeout(() => teamsCtrl.createTeam({ body: team }, null), index * 200);
-// });
+// seeds teams table with example data
+exampleTeamData.forEach((team, index) => {
+  setTimeout(() => teamsCtrl.createTeam({ body: team }, null), index * 200);
+});
 
-// // seeds users_teams table with example data
-// exampleUserTeamData.forEach((userTeam, index) => {
-//   setTimeout(() => teamsCtrl.addToTeam({ body: userTeam }, null), index * 200);
-// });
+// seeds users_teams table with example data
+exampleUserTeamData.forEach((userTeam, index) => {
+  setTimeout(() => teamsCtrl.addToTeam({ body: userTeam }, null), index * 200);
+});
 
-// setTimeout(process.exit, exampleTeamData.length * 200);
+setTimeout(process.exit, exampleTeamData.length * 200);
