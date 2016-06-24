@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "build": "babel src/server -d dev/server --copy-files; webpack",
-    // "start": "npm run watch & nodemon dev/server/server.js & open http://localhost:3000",
+    "start": "npm run watch & nodemon dev/server/server.js & open http://localhost:3000",
     "watch": "npm run watch-c & npm run watch-s",
     "watch-c": "npm run move-assets & webpack --watch --progress",
     "watch-s": "babel --watch src/server -d dev/server --copy-files",

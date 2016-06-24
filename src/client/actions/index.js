@@ -1,8 +1,4 @@
-// Action Types
-export const ADD_USER = 'ADD_USER';
-export const ERROR = 'ERROR';
-
-const url = 'http://localhost:3000/api';
+import * as types from '../constants/actionTypes';
 
 export const error = err => ({ type: 'ERROR', data: err });
 
@@ -15,7 +11,7 @@ export const postUser = (name, username, password, email, weight, bmi, goal, poi
   const payload = JSON.stringify({ name, username, password, email, weight, bmi, goal, points });
 
   return dispatch => (
-    fetch(`${url}/users`, {
+    fetch('/api/user', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
