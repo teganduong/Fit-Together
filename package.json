@@ -43,8 +43,14 @@
     "d3": "^3.5.17",
     "es6-promise": "^3.2.1",
     "express": "~4.13.1",
+    "express-session": "^1.13.0",
     "isomorphic-fetch": "^2.2.1",
     "mongoose": "^4.5.0",
+<<<<<<< e1062e0e2f825837fda6150e47cabcd02028f492
+=======
+    "nodemon": "^1.9.2",
+    "passport": "^0.3.2",
+>>>>>>> resolve rebase conflict
     "pg": "^5.1.0",
     "pg-promise": "^4.6.4",
     "react": "^15.0.2",

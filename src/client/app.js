@@ -13,6 +13,8 @@ import App from './components/App';
 import PostDoc from './containers/PostDoc';
 import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
+import Main from './containers/Main';
+import Login from './components/Main/Login';
 
 // Dashbboard Components
 import Profile from './components/Dashboard/Profile/Profile.js';
