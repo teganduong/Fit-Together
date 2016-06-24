@@ -29,7 +29,8 @@ exports.createTeam = (req, res) => {
 };
 
 // Find a team and members given a user_id and team_id
-// [1] Given a team_id --> get all user_id's of the team except for current user_id --> return array of users_id's
+// [1] Given a team_id --> get all user_id's of the team except for current user_id 
+//     --> return array of users_id's
 // [2] Given an array of the user_id's --> get all the users ---> return array of users 
 // [3] Given a team_id --> get the team from the team table --> return team
 // [4] Should send the team and array of users in the response
