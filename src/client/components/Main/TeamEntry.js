@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+<<<<<<< 4d9c51d108f6e4d76afb116753c5981a4ec0df81
 const TeamEntry = ({ teamMemberA }) => (
   <div className="teamMember-image">
     <img src={teamMemberA.image} id="team-user-image" alt="test" className="img-circle" />
@@ -11,4 +12,13 @@ TeamEntry.propTypes = {
   teamMemberA: React.PropTypes.object.isRequired,
 };
 
+=======
+const TeamEntry = ({teamMemberA}) => (
+  <div className="panel panel-default patient-info-container">
+    <img src={teamMemberA.image} id="team-user-image" alt="test" className="img-circle" />
+    <li>{teamMemberA.name}</li>
+  </div>
+);
+
+>>>>>>> resolve rebase conflict
 export default TeamEntry;

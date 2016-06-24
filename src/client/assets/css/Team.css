@@ -1,0 +1,15 @@
+.team-user {
+  width: 100%;
+  border-width: 3px;
+  border-style: solid;
+  display: inline-block;
+  background-color: #8e24aa;
+}
+
+#team-user-image {
+  width: 180px;
+  height: 180px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

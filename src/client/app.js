@@ -14,6 +14,7 @@ import PostDoc from './containers/PostDoc';
 import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
 import Main from './containers/Main';
+import Team from './components/Main/Team';
 
 // Dashbboard Components
 import Profile from './components/Dashboard/Profile/Profile.js';
@@ -36,6 +37,9 @@ render(
         <Route path="home" component={Home} />
         <Route path="dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />
+        <Route path="dashboard" component={Main} >
+        <Route path="/team" component={Team} />
+          <IndexRoute component={PatientProfile} />
           <Route path="/settings"component={PlaceHolder} />
           <Route path="/dashboard/log"component={PlaceHolder} />
           <Route path="/dashboard/stats"component={Stats} />

@@ -15,7 +15,6 @@ const usersCtrl = require('./controllers/usersCtrl.js');
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(express.cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: 'FidgetyWidgets' }));
 app.use(passport.initialize());
@@ -117,6 +116,11 @@ app.get('/auth/moves/callback',
     // Successful authentication, redirect home.
     res.redirect('/');
   });
+app.use(express.static(path.join(__dirname, '../client')));
+app.use('/', routes);
+// app.use(expressSession({secret: 'FidgetyWidgets'}));
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index.html'));
