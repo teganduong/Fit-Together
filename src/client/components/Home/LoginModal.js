@@ -24,6 +24,8 @@ const LoginModal = () => (
               id="pwd" 
               placeholder="Enter password" 
             />
+            <a href="/auth/fitbit" class="btn btn-primary">Fitbit</a>
+            <a href="/auth/moves" class="btn btn-primary">Moves</a>
           </div>
         </div>
         <div className="modal-footer">

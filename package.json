@@ -49,6 +49,7 @@
     "mongoose": "^4.5.0",
     "nodemon": "^1.9.2",
     "passport": "^0.3.2",
+    "passport-fitbit-oauth2": "^1.0.1",
     "pg": "^5.1.0",
     "pg-promise": "^4.6.4",
     "react": "^15.0.2",
