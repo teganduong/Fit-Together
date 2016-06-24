@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({secret: 'FidgetyWidgets'}));
+app.use(session({ secret: 'FidgetyWidgets' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', routes);
@@ -50,7 +50,6 @@ const fitbitStrategy = new FitbitStrategy({
       if(user) {
         return done(null, user);
       } else {
-        
         usersCtrl.addUser({ body: userData.name }, function(err, user) {
           if(err) {
             return done(err, null);
@@ -60,16 +59,6 @@ const fitbitStrategy = new FitbitStrategy({
         });
     }
   });
-
-
-  // done(null, {
-  //   accessToken: accessToken,
-  //   refreshToken: refreshToken,
-  //   profile: profile
-  // });
-  }
-);
-});
 
 passport.use(fitbitStrategy);
 
@@ -116,7 +105,7 @@ app.get('/auth/moves',
 
 app.get('/auth/moves/callback', 
   passport.authenticate('moves', { failureRedirect: '/login' }),
-  function(req, res) {
+  (req, res) => {
     // Successful authentication, redirect home.
     res.redirect('/');
   });
