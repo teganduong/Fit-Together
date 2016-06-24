@@ -18,10 +18,10 @@ import Profile from './components/Dashboard/Profile/Profile.js';
 import PlaceHolder from './components/PlaceHolder.js';
 
 import Stats from './components/Dashboard/Items/Stats.js';
-import Goals from './components/Dashboard/Items/Goals.js';
 import Challenges from './components/Dashboard/Items/Logs.js';
 import Teams from './components/Dashboard/Items/Teams.js';
 import Tips from './components/Dashboard/Items/Tips.js';
+import UserInfo from './components/Dashboard/Items/Settings.js';
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
 const history = syncHistoryWithStore(browserHistory, store);
@@ -33,10 +33,9 @@ render(
         <Route path="home" component={Home} />
         <Route path="dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />
-          <Route path="/settings"component={PlaceHolder} />
+          <Route path="/dashboard/settings"component={UserInfo} />
           <Route path="/dashboard/log"component={PlaceHolder} />
           <Route path="/dashboard/stats"component={Stats} />
-          <Route path="/dashboard/goals"component={PlaceHolder} />
           <Route path="/dashboard/challenges"component={PlaceHolder} />
           <Route path="/dashboard/teams"component={Teams} />
           <Route path="/dashboard/tips"component={PlaceHolder} />
