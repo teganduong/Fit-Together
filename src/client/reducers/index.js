@@ -1,12 +1,12 @@
 // TODO: change reducers to fit our needs
 
 import {
-  ADD_DOCTOR,
+  RECEIVE_USER,
 } from '../actions/index.js';
 
-export const doctor = (state, action) => {
+export const user = (state, action) => {
   switch (action.type) {
-    case ADD_DOCTOR: {
+    case RECEIVE_USER: {
       return action.data || state;
     }
     default:

@@ -1,20 +1,16 @@
-// TODO: CHANGE redux actions
-export const ADD_DOCTOR = 'ADD_DOCTOR';
-export const ERROR = 'ERROR';
-
-const url = 'http://localhost:3000/api';
+import * as types from '../constants/actionTypes';
 
 export const error = err => ({ type: 'ERROR', data: err });
 
-export const addDoctor = doctor => {
-  console.log('info for add doctor', doctor); 
-  return { type: ADD_DOCTOR, data: doctor };
+export const receiveUser = user => {
+  return { type: RECEIVE_USER, data: user };
 };
 
-export const postDoc = (name, dob, office, phone, sex) => {
-  const payload = JSON.stringify({ name, dob, office, phone, sex });
+export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
+  const payload = JSON.stringify({ name, username, password, email, weight, bmi, goal, points });
+
   return dispatch => (
-    fetch(`${url}/doctors`, {
+    fetch('/api/users', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -24,8 +20,7 @@ export const postDoc = (name, dob, office, phone, sex) => {
       body: payload,
     })
     .then(res => res.json())
-    .then(doc => dispatch(addDoctor(doc)))
+    .then(user => dispatch(receiveUser(user)))
     .catch(err => dispatch(error(err)))
   );
 };
-

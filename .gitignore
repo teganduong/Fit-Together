@@ -31,3 +31,7 @@ node_modules/
 bower_components/
 npm-debug.*
 .DS_Store
+
+# Passport Configuration
+./src/server/config.js
+

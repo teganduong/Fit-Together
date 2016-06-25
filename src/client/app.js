@@ -10,7 +10,6 @@ import * as reducers from './reducers';
 reducers.routing = routerReducer;
 
 import App from './components/App';
-import PostDoc from './containers/PostDoc';
 import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
 
@@ -31,7 +30,6 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App} >
-        <Route path="postdoc" component={PostDoc} />
         <Route path="home" component={Home} />
         <Route path="dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />
@@ -40,7 +38,7 @@ render(
           <Route path="/dashboard/stats"component={Stats} />
           <Route path="/dashboard/goals"component={PlaceHolder} />
           <Route path="/dashboard/challenges"component={PlaceHolder} />
-          <Route path="/dashboard/teams"component={PlaceHolder} />
+          <Route path="/dashboard/teams"component={Teams} />
           <Route path="/dashboard/tips"component={PlaceHolder} />
         </Route>
       </Route>
