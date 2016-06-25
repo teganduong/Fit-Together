@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport');
 const FitbitPassport = require('../authentication/FitbitPassport');
 const MovesPassport = require('../authentication/MovesPassport');
 const passport = require('passport');

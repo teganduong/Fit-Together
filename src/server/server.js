@@ -1,106 +1,31 @@
-
 const express = require('express');
-const router = express.Router();
-const FitbitPassport = require('../authentication/FitbitPassport');
-const MovesPassport = require('../authentication/MovesPassport');
-const users = require('../controllers/usersCtrl');
-const teams = require('../controllers/teamsCtrl');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const routes = require('./routes/routes');
+const db = require('./db/connection.js');
+const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
-const db = require('../db/connection.js');
-const queryHelper = require('../queryHelper');
+const FitbitPassport = require('./authentication/FitbitPassport');
+const MovesPassport = require('./authentication/MovesPassport');
+const config = require('./config/api-keys');
+const app = express();
+const port = process.env.PORT || 3000;
+const redisClient = require('./db/redisConnection.js');
 
-/**  Users **/
-router.get('/api/users/:username', users.getUserInfo);
-router.post('/api/users', users.addUser);
-router.post('/userteams', teams.getUserTeams);
-router.post('/teammembers', teams.getTeamMembers);
-router.post('/createteam', teams.createTeam);
-router.post('/deleteteam', teams.deleteTeam);
-router.get('/api/user', (req, res) => {
-  if (req.user) {
-    console.log('insider req', req.user.username);
-    db.any('select * from users where username=$1', [req.user.username])
-  .then(data => {
-    res.json(data);
-  })
-  .catch(error => {
-    console.error('error in adding user: ', error);
-  });
-  }
+app.use(express.static(path.join(__dirname, '../client')));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({ secret: 'FidgetyWidgets' }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/', routes);
+
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-router.get('/api/user', (req, res) => {
-  if (req.user) {
-    console.log('insider req', req.user.username);
-    db.any('select * from users where username=$1', [req.user.username])
-  .then(data => {
-    // success;
-    console.log('this is data', data);
-    res.json(data);
-  })
-  .catch(error => {
-    console.error('error in adding user: ', error);
-  });
-  }
-});
-
-/**  Auth **/
-router.get('/auth/fitbit',
-  passport.authenticate('fitbit'));
-
-router.get('/auth/fitbit/callback', 
-  passport.authenticate('fitbit', { failureRedirect: '/login', failureFlash: true }),
-  (req, res) => {
-    console.log('inside /fitbit/callback of router >>');
-    if (req.user) {
-      const userData = {
-        accessToken: req.user.accessToken,
-        id: req.user.profile.id,
-        username: req.user.profile.displayName
-      };
-      queryHelper.getUserData(userData.id, userData.accessToken);
-      res.redirect('/dashboard');
-    }
-  }
-);
-
-router.get('/auth/moves', passport.authenticate('moves'));
-
-router.get('/auth/moves/callback', 
-  passport.authenticate('moves', { failureRedirect: '/login' }),
-  (req, res) => {
-    console.log('inside callback', req.user);
-    const username = req.user;
-    res.redirect('/dashboard');
-  }
-);
-
-// router.post('/signout', (req, res) => {
-//   req.session.destroy((err) => {
-//     res.redirect('/'); 
-//   });
-//   console.log('logged out');
-// });
-
-router.get('/signout', (req, res) => {
-  console.log('logging out');
-  req.logout();
-  res.redirect('/');
-});
-
-router.get('/signup', 
-  passport.authenticate('local-signup', {
-    successRedirect: '/', 
-    failureRedirect: '/signup',
-    failureFlash: true 
-  })
-);
-
-router.post('/login', passport.authenticate('local-login', {
-  successRedirect: '/', // redirect to the secure profile section
-  failureRedirect: '/login', // redirect back to the signup page if there is an error
-  failureFlash: true // allow flash messages
-}));
-
-module.exports = router;
+app.listen(port, () => console.log('Server is listening on port ', port, '\nRefresh the browser '));
