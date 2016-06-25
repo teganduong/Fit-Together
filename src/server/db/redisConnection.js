@@ -11,22 +11,56 @@ client.on('error', (err) => {
 
 module.exports = client;
 
-// client.hmset('points', 'jjones', 0, 'johnyj', 0, 'jeffj', 0);
-// client hmset('token', 'jjones', 123, 'johnyj', 123, 'jeffj', 123);
 
 exports.storeToken = (req, res) => {
-  client.hmset('token', req.body.username, req.body.token);
+  client.setAsync('token:' + req.body.username + ':', req.body.token)
+    .then(() => res.status(201).send('success'))
+    .catch((err) => res.status(400));
 };
 
 exports.deleteToken = (req, res) => {
-  client.hdel('token', req.body.username);
+  client.delAsync('token:' + req.body.username + ':')
+    .then(() => res.status(200).send('deleted'))
+    .catch((err) => res.status(400));
 };
 
 exports.iniitializeUser = (req, res) => {
-  client.hmset('points', req.body.username, 0);
+  client.setAsync('user:' + req.body.username + ':points:', req.body.points)
+    .then(() => client.setAsync('user:' + req.body.username + '::', req.body....))
+    .then(() => client.setAsync('user:' + req.body.username + '::', req.body....))
+    .then(() => client.setAsync('user:' + req.body.username + '::', req.body....))
+    .then(() => res.status(201).send('success'))
+    .catch((err) => res.status(400));
 };
 
 exports.updatePoints = (req, res) => {
-  client.hmset('points', req.body.username, req.body.points);
+  client.setAsync('user:' + req.body.username + ':points:', req.body.points)
+    .then(() => res.status(201).send('success'))
+    .catch((err) => res.status(400));
 };
 
+// // Test in server.js to make sure async works --> you have to promisify in the same js file
+// const redis = require('redis');
+// const bluebird = require('bluebird');
+// bluebird.promisifyAll(redis.RedisClient.prototype);
+// bluebird.promisifyAll(redis.Multi.prototype);
+// const client = redis.createClient('6379', 'localhost');
+
+// app.get('/', (req, res) => {
+// 	client.setAsync('token:' + 'jjones' + ':', 12345)
+// 	  .then(() => {
+// 	    return client.getAsync('token:jjones:');
+// 	  })
+// 	  .then((data) => {
+// 	  	req.data = data;
+// 	  	console.log('data', data);
+// 	  	return client.getAsync('token:jjones:');
+// 	  })
+// 	  .then((next) => {
+// 	  	console.log('next', next);
+// 	  	console.log('req.data', req.data);
+// 	  })
+// 	  .catch((err) => {
+// 	  	console.log('err');
+// 	  });
+// });
