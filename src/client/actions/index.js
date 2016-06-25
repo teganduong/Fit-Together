@@ -1,10 +1,9 @@
 import * as c from '../constants/constants';
+import fetch from 'isomorphic-fetch';
 
 export const error = err => ({ type: c.ERROR, data: err });
 
-export const receiveUser = user => {
-  return { type: c.RECEIVE_USER, data: user };
-};
+export const receiveUser = user => ({ type: c.RECEIVE_USER, data: user });
 
 export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
   const payload = JSON.stringify({ name, username, password, email, weight, bmi, goal, points });
@@ -25,10 +24,10 @@ export const addUser = (name, username, password, email, weight, bmi, goal, poin
   );
 };
 
+export const fetchUser = (username) => (
 
-export const fetchUser = (userId) => (
   dispatch => (
-    fetch(`/api/users/${userId}`, {
+    fetch(`/api/users/${username}`, {
       credentials: 'same-origin'
     })
     .then(res => res.json())
@@ -37,18 +36,18 @@ export const fetchUser = (userId) => (
   )
 );
 
-export const updateUserInfo = (userInfo) => {
+export const updateUser = (userInfo) => {
   const info = JSON.stringify({ userInfo });
   return dispatch => (
-    fetch(`/api/users/${userInfo.userId}`, {
-      method: 'POST',
+    fetch('/api/users', {
+      method: 'PUT',
       headers: {
         'Content-type': 'application/json'
       },
       credentials: 'same-origin',
       body: info,
     })
-    .then(() => dispatch({ type: c.UPDATE_USER_INFO, data: userInfo }))
+    .then(() => dispatch({ type: c.UPDATE_USER, data: userInfo }))
     .then(() => dispatch(fetchUser()))
     .catch(err => dispatch(error(err)))
   );

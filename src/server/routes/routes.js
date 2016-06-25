@@ -5,7 +5,7 @@ const MovesPassport = require('../authentication/MovesPassport');
 const users = require('../controllers/usersCtrl');
 const passport = require('passport');
 
-router.get('/api/users/:userId', users.getUserInfo);
+router.get('/api/users/:username', users.getUserInfo);
 router.post('/api/users', users.addUser);
 
 router.get('/auth/fitbit', 
@@ -32,6 +32,7 @@ router.get('/auth/moves/callback',
   passport.authenticate('moves', { failureRedirect: '/login' }),
   (req, res) => {
     res.redirect('/');
-});
+  }
+);
 
 module.exports = router;

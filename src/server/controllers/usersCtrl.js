@@ -31,7 +31,7 @@ exports.findUser = (req, res) => {
 };
 
 exports.getUserInfo = (req, res) => {
-  db.one('select * from users where id=${req.params.userId}')
+  db.one('select * from users where username=${username}', req.params)
     .then(user => {
       res.status(200)
         .json({

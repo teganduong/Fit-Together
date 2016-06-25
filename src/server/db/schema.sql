@@ -1,7 +1,7 @@
 -- from root directory -- psql < src/server/db/schema.sql
 
-DROP DATABASE IF EXISTS fidgetywidget;
-CREATE DATABASE fidgetywidget;
+-- DROP DATABASE IF EXISTS fidgetywidget;
+-- CREATE DATABASE fidgetywidget;
 \c fidgetywidget;
 
 -- DROP TABLE IF EXISTS users_teams;

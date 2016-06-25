@@ -1,7 +1,5 @@
-// TODO: change reducers to fit our needs
-
 import {
-  RECEIVE_USER,
+  RECEIVE_USER
 } from '../actions/index.js';
 
 export const user = (state, action) => {
@@ -10,6 +8,6 @@ export const user = (state, action) => {
       return action.data || state;
     }
     default:
-      return state || [];
+      return state || {};
   }
 };

@@ -21,7 +21,7 @@ import Stats from './components/Dashboard/Items/Stats.js';
 import Challenges from './components/Dashboard/Items/Logs.js';
 import Teams from './components/Dashboard/Items/Teams.js';
 import Tips from './components/Dashboard/Items/Tips.js';
-import UserInfo from './components/Dashboard/Items/Settings.js';
+import UserContainer from './containers/UserInfo.js';
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
 const history = syncHistoryWithStore(browserHistory, store);
@@ -30,10 +30,10 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App} >
-        <Route path="home" component={Home} />
+        <IndexRoute component={Home} />
         <Route path="dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />
-          <Route path="/dashboard/settings"component={UserInfo} />
+          <Route path="/dashboard/settings"component={UserContainer} />
           <Route path="/dashboard/log"component={PlaceHolder} />
           <Route path="/dashboard/stats"component={Stats} />
           <Route path="/dashboard/challenges"component={PlaceHolder} />

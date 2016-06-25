@@ -1,2 +1,2 @@
-export const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
-export const RECEIVE_USER_INFO = 'RECEIVE_USER_INFO';
+export const UPDATE_USER = 'UPDATE_USER';
+export const RECEIVE_USER = 'RECEIVE_USER';
