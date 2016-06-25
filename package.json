@@ -51,6 +51,7 @@
     "passport": "^0.3.2",
     "passport-fitbit-oauth2": "^1.0.1",
     "passport-local": "^1.0.0",
+    "passport-moves": "0.0.1",
     "pg": "^5.1.0",
     "pg-promise": "^4.6.4",
     "react": "^15.0.2",
