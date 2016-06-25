@@ -1,8 +1,12 @@
 const passport = require('passport');
 const FitbitStrategy = require('passport-fitbit-oauth2').FitbitOAuth2Strategy;
 const usersCtrl = require('../controllers/usersCtrl.js');
+<<<<<<< 238ca0c661d7827e2884ad758aaadd13e59bcf81
 const config = require('../config/api-keys.js');
 const db = require('../db/connection.js');
+=======
+const config = require('../config.js');
+>>>>>>> complete fitbit and moves integration
 
 const addFitbitUser = (userData, done, accessToken, profile) => {
   console.log('inside addFitbitUser >>>>');
@@ -47,6 +51,7 @@ passport.use(new FitbitStrategy({
     console.log('inside FitbitStrategy >>>');
     const userData = {
       name: profile._json.user.fullName,
+<<<<<<< 238ca0c661d7827e2884ad758aaadd13e59bcf81
       username: profile._json.user.displayName,
       password: profile._json.user.displayName,
       email: profile._json.user.gender,
@@ -71,6 +76,31 @@ passport.serializeUser((user, done) => {
   console.log('insider serializeUser', userObj);
   done(null, userObj);
 });
+=======
+      username: profile._json.user.fullName,
+      password: profile._json.user.encodedId,
+      email: profile._json.user.gender,
+      weight: profile._json.user.weight,
+      bmi: 21.3,
+      goal: 'refactored',
+      points: 0
+    };
+    process.nextTick(() => {
+      usersCtrl.addUser({ body: userData });
+     });
+   })
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
+
+module.exports = passport;
+>>>>>>> complete fitbit and moves integration
 
 passport.deserializeUser((obj, done) => {
   done(null, obj);

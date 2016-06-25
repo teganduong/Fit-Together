@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 const FitbitPassport = require('../authentication/FitbitPassport');
 const MovesPassport = require('../authentication/MovesPassport');
 const passport = require('passport');
@@ -24,6 +25,9 @@ router.post('/api/leaveteam', redis.leaveTeam);
 router.post('/api/otherteams', redis.getOtherTeams);
 router.post('/api/jointeam', redis.joinTeam);
 
+router.post('/api/createteam', teams.createTeam);
+router.post('/api/deleteteam', teams.deleteTeam);
+router.post('/api/otherteams', teams.getOtherTeams);
 router.get('/api/usersleep', sleep.getSleep);
 
 router.get('/api/user', (req, res) => {
@@ -78,13 +82,6 @@ router.get('/auth/moves/callback',
   }
 );
 
-// router.post('/signout', (req, res) => {
-//   req.session.destroy((err) => {
-//     res.redirect('/'); 
-//   });
-//   console.log('logged out');
-// });
-
 router.get('/signout', (req, res) => {
   console.log('logging out');
   req.logout();
@@ -99,10 +96,5 @@ router.get('/signup',
   })
 );
 
-router.post('/login', passport.authenticate('local-login', {
-  successRedirect: '/', // redirect to the secure profile section
-  failureRedirect: '/login', // redirect back to the signup page if there is an error
-  failureFlash: true // allow flash messages
-}));
 
 module.exports = router;

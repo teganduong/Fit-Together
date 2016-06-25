@@ -11,6 +11,7 @@ passport.use(new MovesStrategy({
   callbackURL: config.Moves.callbackURL
 }, 
   (accessToken, refreshToken, profile, done) => {
+<<<<<<< 238ca0c661d7827e2884ad758aaadd13e59bcf81
     console.log('this is id', profile._json.userId, accessToken, refreshToken);
     const userData = {
       name: profile._json.userId,
@@ -49,4 +50,23 @@ passport.deserializeUser((obj, done) => {
 module.exports = passport;
 
 
+=======
+    done(null, {
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+      profile: profile
+    });
+  })
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
+
+module.exports = passport;
+>>>>>>> complete fitbit and moves integration
 
