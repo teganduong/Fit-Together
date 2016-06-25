@@ -1,78 +1,139 @@
-.nav-main {
-    background-color: #6827a9;
-    border-color: #6827a9;
-}
+@import url('http://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url('http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css');
 
-.nav-main .container .navbar-brand, .nav-main #navbar li a{
-   color: #fafdfd;
+body {
+    display: flex;
+    height: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
 }
 
 #sidebar-wrapper {
-    margin-top: 55px;
     z-index: 1000;
-    position: fixed;
-    left: 230px;
-    width: 220px;
+    position: absolute;
     height: 100%;
-    margin-left: -250px;
     overflow-y: auto;
     background: #edf1f2;
+    width: 220px;
+    background: #2a2a2a;
 }
 
+#sidebar-title {
+    font: 16px/1 'Montserrat', sans-serif;
+    line-height: 65px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    color: #eee;
+    border-bottom: 1px solid #222;
+    background: #2a2a2a;
+    margin-bottom: 0px;
+}
 
 .sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 250px;
-    margin: 0;
-    padding: 0;
     list-style: none;
 }
 
-.sidebar-part {
-    width: 250px;
-    list-style: none;
+.sidebar-nav li {
+    position: relative;
+    width: 220px;
+    /*width: 20%;*/
+    left: 0px;
 }
 
-.sidebar-nav > .sidebar-brand {
-    height: 15px;
-    font-size: 14px;
-    text-indent: 60px;
-    margin-top: 20px
-}
-
-.sidebar-nav > .sidebar-brand a {
-    color: #202020;
-}
-
-.sidebar-nav .sidebar-part li {
-    text-indent: 20px;
-    line-height: 30px;
-}
-
-.sidebar-nav .sidebar-part li a {
+.sidebar-nav li a {
+    position: relative;
     display: block;
-    text-decoration: none;
-    color: #999999;
-}
-
-.sidebar-nav .sidebar-part li a:hover {
-    text-decoration: none;
-    color: #fafdfd;
-    background: rgba(255,66,20,0.8);
-}
-
-.sidebar-nav .sidebar-part li a:active,
-.sidebar-nav .sidebar-part li a:focus {
+    padding: 12px 0px 12px 29px;
+    font: 12px/1 'Montserrat', sans-serif;
+    color: #eee;
+    border-bottom: 1px solid #222;
     text-decoration: none;
 }
 
-.main-container {
-    position: absolute;
-    margin-top: 55px;
-    left: 21%;
-    height: 91%;
-    width: 77%;
-    background-color: #ecf0f1;
+.sidebar-nav li a:hover {
+    background: #444;
 }
 
+
+/*List Item icons from Font Awesome*/
+.sidebar-nav li a:before {
+    font: 14px fontawesome;
+    position: relative;
+    top: 1px;
+    left: -12px;
+}
+
+.sidebar-nav li:nth-child(1) a:before { content: '\f00a'; }
+.sidebar-nav li:nth-child(2) a:before { content: '\f0c0'; }
+.sidebar-nav li:nth-child(3) a:before { content: '\f0e8'; }
+.sidebar-nav li:nth-child(4) a:before { content: '\f201'; }
+.sidebar-nav li:nth-child(5) a:before { content: '\f012'; }
+.sidebar-nav li:nth-child(6) a:before { content: '\f115'; }
+.sidebar-nav li:nth-child(7) a:before { content: '\f087'; }
+.sidebar-nav li:nth-child(8) a:before { content: '\f085'; }
+.sidebar-nav li:nth-child(9) a:before { content: '\f023'; }
+
+.top-nav {
+    list-style-type: hidden;
+    overflow: hidden;
+    background-color: #eee;
+    height: 66px;
+    flex: 1;
+    transform: translate3d(220px, 0, 0);
+    transition: transform .3s;
+    margin-bottom: 0px;
+
+    border-width: 0.5px;
+    border-color: red;
+    border-style: solid;
+}
+
+.main-container.isOpen {
+    transform: translate3d(220px, 0, 0);
+}
+
+.toggleSidebar {
+  cursor: pointer;
+}
+
+.toggleSidebar:before {
+  content: '\f0c9';
+  font: 42px fontawesome;
+}
+
+.top-nav a {
+    text-decoration: none;
+    margin-top: 0px;
+
+}
+
+/*#top-square {
+    position: relative;
+    display: block;
+    height: 66px;
+    width: 66px;
+    border: 1px solid #222;
+    background-color: #eee;
+    list-style: none;
+}
+
+#top-square a {
+    font: 12px/1 'Montserrat', sans-serif;
+    text-decoration: none;
+    font: 14px fontawesome;
+    position: relative;
+    color: #eee;
+    top: 17px;
+    left: 18px;
+}
+
+#top-square a:before {
+    font: 15px fontawesome;
+    position: relative;
+    top: 2px;
+    left: -4px;
+}
+
+.top-nav li:nth-child(1) a:before { content: '\f0c0'; }
+*/

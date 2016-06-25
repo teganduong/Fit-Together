@@ -2,6 +2,7 @@
 const activitiesCtrl = require('../controllers/activitiesCtrl.js');
 const exampleActivitiesData = [
   {
+    user_id: 1,
     type: 'exercise',
     category: 'walking',
     description: 'at the park',
@@ -10,6 +11,7 @@ const exampleActivitiesData = [
     units: 'steps'
   },
   {
+    user_id: 1,
     type: 'exercise',
     category: 'lifting',
     description: 'bench press, 3 sets of 10 reps',
@@ -18,6 +20,7 @@ const exampleActivitiesData = [
     units: 'reps'
   },
   {
+    user_id: 1,
     type: 'exercise',
     category: 'running',
     description: '3 mile run',
@@ -26,6 +29,7 @@ const exampleActivitiesData = [
     units: 'minutes'
   },
   {
+    user_id: 1,
     type: 'nutrition',
     category: 'breakfast',
     description: 'frosted flakes w/ protein shake',
@@ -34,6 +38,7 @@ const exampleActivitiesData = [
     units: 'calories'
   },
   {
+    user_id: 1,
     type: 'nutrition',
     category: 'lunch',
     description: 'burger, fries, and soda',
@@ -42,20 +47,21 @@ const exampleActivitiesData = [
     units: 'calories'
   },
   {
+    user_id: 1,
     type: 'nutrition',
     category: 'dinner',
     description: 'steak and eggs',
     date_performed: '2016-05-26',
     count: 950,
     units: 'calories'
-  },
+  }
 ];
 
 // seeds activities table with example data
-activitiesCtrl.findUserActvities({ body: { username: 'jjones' } }, null);
+// activitiesCtrl.findUserActvities({ body: { username: 'jjones' } }, null);
 
 exampleActivitiesData.forEach((activity, index) => {
   setTimeout(() => activitiesCtrl.addActivity({ body: activity }, null), index * 200);
 });
 
-setTimeout(process.exit, exampleActivityData.length * 200);
+setTimeout(process.exit, exampleActivitiesData.length * 200);
