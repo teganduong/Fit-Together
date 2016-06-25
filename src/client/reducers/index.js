@@ -1,5 +1,6 @@
 import {
   RECEIVE_USER,
+<<<<<<< 069647cf62de35972e1f216b8233617efdb20633
   RECEIVE_TEAMS,
   RECEIVE_OTHER_TEAMS,
   RECEIVE_MEMBERS,
@@ -16,6 +17,9 @@ import {
   REMOVE_OTHER_TEAM,
   ADD_OTHER_TEAM
 } from '../constants/constants.js';
+=======
+} from '../actions/index.js';
+>>>>>>> fix bugs
 
 export const user = (state, action) => {
   switch (action.type) {

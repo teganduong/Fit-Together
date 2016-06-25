@@ -51,7 +51,7 @@ const LoginModal = () => (
           <button type="button" className="close" data-dismiss="modal">&times;</button>
           <h4 className="modal-title">Login</h4>
         </div>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form>
           <div className="modal-body">
             <div className="form-group">
               <input 
