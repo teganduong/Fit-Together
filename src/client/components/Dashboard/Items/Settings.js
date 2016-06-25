@@ -18,7 +18,6 @@ const UserInfo = ({ user }) => (
       <button 
         type="button" 
         className="btn btn-primary"
-        onClick={this.openModal}
         data-toggle="modal" 
         data-target="#editProfileModal"
       >
@@ -75,10 +74,10 @@ const UserInfo = ({ user }) => (
       </div>
     </div>
   </div>
-);
+); 
 
 UserInfo.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.object
 }; 
 
 export default UserInfo;
