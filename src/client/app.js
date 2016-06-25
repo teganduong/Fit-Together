@@ -38,7 +38,7 @@ render(
           <Route path="/dashboard/stats"component={Stats} />
           <Route path="/dashboard/goals"component={PlaceHolder} />
           <Route path="/dashboard/challenges"component={PlaceHolder} />
-          <Route path="/dashboard/teams"component={PlaceHolder} />
+          <Route path="/dashboard/teams"component={Teams} />
           <Route path="/dashboard/tips"component={PlaceHolder} />
         </Route>
       </Route>
