@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class SignupModal extends Component {
   constructor(props) {
     super(props);
+    console.log('inside signup', props);
   } 
 
   handleSubmit(event) {
@@ -17,7 +18,7 @@ class SignupModal extends Component {
       goal: this.refs.goal.value,
       points: 0
     };
-    this.props.postUser(formData);
+  this.props.addUser(formData.name, formData.username, formData.password, formData.email, formData.weight, formData.bmi, formData.goal, formData.points);
   }
 
   render() {

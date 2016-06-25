@@ -1,12 +1,12 @@
 // TODO: change reducers to fit our needs
 
 import {
-  ADD_USER,
+  RECEIVE_USER,
 } from '../actions/index.js';
 
 export const user = (state, action) => {
   switch (action.type) {
-    case ADD_USER: {
+    case RECEIVE_USER: {
       return action.data || state;
     }
     default:

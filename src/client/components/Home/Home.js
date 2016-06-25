@@ -8,7 +8,7 @@ const Home = (props) => (
   <div>
     <HomeNavBar />
     <LoginModal />
-    <SignupModal postUser={props.postUser} />
+    <SignupModal addUser={props.addUser} />
     <LandingImage />
   </div>
 );

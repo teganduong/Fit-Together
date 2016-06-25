@@ -1,21 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const FitbitPassport = require('../authentication/FitbitPassport');
+const MovesPassport = require('../authentication/MovesPassport');
 const users = require('../controllers/usersCtrl');
 const passport = require('passport');
-// const passport = require('passport-fitbit-oauth2').FitbitOAuth2Strategy;
 
 router.post('/api/users', users.addUser);
 
 router.get('/auth/fitbit', 
   passport.authenticate('fitbit', {
-    successRedirect: '/auth/fitbit/success',
+    successRedirect: '/dashboard',
     failureRedirect: '/auth/fitbit/failure'
   })
 );
 router.get('/auth/fitbit/callback', 
   passport.authenticate('fitbit', {
-    successRedirect: '/auth/fitbit/success',
+    successRedirect: '/dashboard',
     failureRedirect: '/auth/fitbit/failure'
   })
 );
