@@ -27,6 +27,16 @@
   <body>
     <div id="app"></div>
     <script src="bundle.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.toggleSidebar').on('click', function() {
+          console.log('bang');
+          $('.main-container').toggleClass('isOpen');
+        });
+      });
+
+      </script>
+  
   </body>
 
 </html>

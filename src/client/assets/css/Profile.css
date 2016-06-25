@@ -1,16 +1,27 @@
+.main-container {
+	flex: 1;
+	transform: translate3d(0, 0, 0);
+	transition: transform .3s;
+}
+
+.main-container.isOpen {
+	transform: translate3d(220px, 0, 0);
+}
+
 .top-container {
 	width: 100%;
-	border-width: 3px;
-	border-color: #1f2324;
+	border-width: 0.5px;
+	border-color: red;
 	border-style: solid;
 	display: inline-block;
-	background-color: #ecf0f1;
+	background-color: #eee;
 }
+
 .user-info-container {
 	margin-top: 20px;
 	margin-left: 20px;
 	width: 60%;
-	border-width: 3px;
+	border-width: 0.5px;
 	border-color: #1f2324;
 	border-style: solid;
 	display: inline-block;
@@ -38,7 +49,7 @@
 	display: inline-block;
 	margin-top: 20px;
 	margin-right: 20px;
-	border-width: 3px;
+	border-width: 0.5px;
 	border-color: #1f2324;
 	border-style: solid;
 }
@@ -48,7 +59,7 @@
 	margin-left: 20px;
 	width: 60%;
 	height: 40%;
-	border-width: 3px;
+	border-width: 0.5px;
 	border-color: #1f2324;
 	border-style: solid;
 	display: inline-block;

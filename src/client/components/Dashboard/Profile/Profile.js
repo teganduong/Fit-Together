@@ -13,14 +13,6 @@ const Profile = () => (
       <Info />
       <RightInfo />
       <DetailedInfo />
-      <div>
-        <BmiChart />
-        <BpChart />
-      </div>
-      <div>
-        <WtChart />
-        <GlucoseChart />
-      </div>
     </div>
   </div>
 );

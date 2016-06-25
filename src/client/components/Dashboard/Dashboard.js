@@ -5,6 +5,8 @@ import SideNavBar from './SideNavBar';
 const Dashboard = ({ children }) => (
   <div>
     <SideNavBar />
+    <NavBar />
+    {children}
   </div>
 );
 
