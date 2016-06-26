@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 const HomeNavBar = () => (
   <nav className="navbar navbar-default navbar-fixed-top">
@@ -26,7 +27,7 @@ const HomeNavBar = () => (
         </ul>
         <ul className="nav navbar-nav navbar-right">
           <li><a data-toggle="modal" data-target="#loginModal">Login</a></li>
-          <li><a data-toggle="modal" data-target="#signupModal">Signup</a></li>
+          <li><Link to="/signup">Create Account</Link></li>
         </ul>
       </div>
     </div>
