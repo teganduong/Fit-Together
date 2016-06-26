@@ -30,7 +30,6 @@
     "eslint-plugin-import": "^1.8.1",
     "eslint-plugin-jsx-a11y": "^1.5.3",
     "eslint-plugin-react": "^5.1.1",
-    "morgan": "^1.7.0",
     "nodemon": "^1.9.2",
     "rd3": "^0.6.3",
     "webpack": "^1.13.1"
@@ -46,7 +45,6 @@
     "express": "~4.13.1",
     "express-session": "^1.13.0",
     "isomorphic-fetch": "^2.2.1",
-    "mongoose": "^4.5.0",
     "passport": "^0.3.2",
     "passport-fitbit-oauth2": "^1.0.1",
     "passport-local": "^1.0.0",
