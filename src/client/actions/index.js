@@ -1,7 +1,7 @@
 import * as c from '../constants/constants';
 import fetch from 'isomorphic-fetch';
 
-export const error = err => ({ type: c.ERROR, data: err });
+export const error = err => ({ type: c.REQUEST_ERROR, data: err });
 
 export const receiveUser = user => ({ type: c.RECEIVE_USER, data: user });
 

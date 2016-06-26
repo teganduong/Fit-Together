@@ -1,6 +1,6 @@
 import {
   RECEIVE_USER
-} from '../actions/index.js';
+} from '../constants/constants.js';
 
 export const user = (state, action) => {
   switch (action.type) {
