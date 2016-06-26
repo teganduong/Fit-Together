@@ -6,30 +6,24 @@ export default class Dashboard extends Component {
   constructor(props) {
     super(props);
 
-    this.props.fetchUser('jjones');
-  }
-
-  componentWillMount() {
-    console.log('inside componentWillMount of Dashboard');
-    this.props.fetchUser('jjones');
-    // this.props.fetchUser(this.props.user.username);
+    this.props.fetchUser(this.props.params.username);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('inside componentWillReceiveProps of Dashboard');
-    console.log('this.props.user: ', this.props.user);
-    console.log('nextProps: ', nextProps);
     if (nextProps.user !== this.props.user) {
       this.props.fetchUser(nextProps.user.username);
     }
   }
 
   render() {
+    let { username } = this.props.params;
     return (
       <div>
         <NavBar />
-        <SideNavBar />
-        {this.props.children}
+        <SideNavBar username={username} />
+        {this.props.children && React.cloneElement(this.props.children, {
+          user: this.props.user.data
+        })}
       </div>
     );
   }
@@ -38,5 +32,6 @@ export default class Dashboard extends Component {
 Dashboard.propTypes = {
   children: PropTypes.element.isRequired,
   fetchUser: PropTypes.func,
-  user: PropTypes.object
+  user: PropTypes.object,
+  params: PropTypes.object
 };

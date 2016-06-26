@@ -1,16 +1,5 @@
 import React, { PropTypes } from 'react';
 
-// const user = {
-//   name: 'Jessica Jones',
-//   username: 'jjones',
-//   password: 'jjones',
-//   email: 'jjones@gmail.com',
-//   weight: 145,
-//   bmi: 21.3,
-//   goal: 'Live a healthy lifestyle',
-//   points: 0
-// };
-
 const UserInfo = ({ user }) => (
   <div className="main-container">
     <div className="top-container modal-container">

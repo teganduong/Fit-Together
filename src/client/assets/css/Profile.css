@@ -10,12 +10,9 @@
 
 .top-container {
 	width: 100%;
-	border-width: 2px;
-	border-color: #1f2324;
-	border-style: solid;
 	display: inline-block;
 	background-color: #ecf0f1;
-	padding: 5px;
+	padding: 15px 20px 15px;
 }
 
 .user-info-container {
@@ -32,10 +29,13 @@
 	display: inline-block;
 	position: relative;
 	vertical-align: middle;
-	padding: 5px 5px 5px 14px;
-/*	border-width: 3px;
-	border-color: #1f2324;
-	border-style: solid;*/
+	padding: 15px 20px 15px;
+	font-size: 16px;
+}
+
+.user-info label {
+	color: #26a69a;
+	font-size: 16px;
 }
 
 #user-image {
@@ -79,10 +79,6 @@
 	width: 45%;
 	display: inline-block;
 	margin: 10px;
-	/*float: right;*/
-/*	border-width: 3px;
-	border-color: #c0392b;
-	border-style: solid;*/
 }
 
 .chart-container {
