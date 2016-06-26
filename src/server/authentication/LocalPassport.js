@@ -1,47 +1,25 @@
-// import passport from 'passport';
-// import { Strategy } from 'passport-local';
-// import User from './models/User';
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const usersCtrl = require('../controllers/usersCtrl.js');
+const config = require('../config.js');
 
-// const id = '_id';
+passport.use('local-login', new LocalStrategy({
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true 
+},
+  function(req, email, password, done) { 
+    done(null, {
+      email: email
 
-// export default () => {
-//   // Serialize sessions
-//   passport.serializeUser((user, done) => done(null, user[id]));
+    });
+  }
+)
 
-//   // Deserialize sessions
-//   passport.deserializeUser((id, done) => {
-//     User.findOne({
-//       _id: id,
-//     }, '-password', (err, user) => {
-//       done(err, user);
-//     });
-//   });
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
 
-//   passport.use(new Strategy({
-//     usernameField: 'email',
-//     passwordField: 'password',
-//   },
-//     (email, password, done) => {
-//       User.findOne({
-//         email,
-//       },
-//       (err, user) => {
-//         if (err) {
-//           return done(err);
-//         }
-//         if (!user) {
-//           return done(null, false, {
-//             message: 'User not found',
-//           });
-//         }
-//         return user.authenticate(password, (error, isMatch) => {
-//           if (!isMatch) {
-//             return done(null, false, {
-//               message: 'Incorrect password',
-//             });
-//           }
-//           return done(null, { _id: user[id], name: user.name, email: user.email });
-//         });
-//       });
-//     }));
-// };
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});

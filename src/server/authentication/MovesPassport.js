@@ -3,7 +3,6 @@ const MovesStrategy = require('passport-moves').Strategy;
 const usersCtrl = require('../controllers/usersCtrl.js');
 const config = require('../config.js');
 
-
 passport.use(new MovesStrategy({
   clientID: config.Moves.clientID,
   clientSecret: config.Moves.clientSecret,
