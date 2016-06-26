@@ -73,12 +73,6 @@ router.get('/signout', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/api/checkAuth', (req, res, next) => {
-  if (req.isAuthenticated())
-    return next();
-  res.redirect('/');
-})
-
 router.get('/signup', 
   passport.authenticate('local-signup', {
     successRedirect: '/', 

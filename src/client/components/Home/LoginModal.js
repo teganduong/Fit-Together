@@ -4,7 +4,24 @@ import fetch from 'isomorphic-fetch';
 class LoginModal extends Component {
   constructor(props) {
     super(props);
+
+    console.log('inside login', props);
   } 
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const formData = {
+      name: this.refs.firstName.value,
+      username: this.refs.userName.value,
+      password: this.refs.password.value,
+      email: this.refs.email.value,
+      weight: this.refs.weight.value,
+      bmi: this.refs.bmi.value,
+      goal: this.refs.goal.value,
+      points: 0
+    };
+    this.props.addUser(formData.name, formData.username, formData.password, formData.email, formData.weight, formData.bmi, formData.goal, formData.points);
+  }
 
   render() {
     return (

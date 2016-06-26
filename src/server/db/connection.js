@@ -22,7 +22,6 @@ module.exports = db;
 
 // Run to log into amazon rds db instance
 /* psql --host=fidgetywidget.c67fs1cxhe7n.us-west-2.rds.amazonaws.com --port=5432 --username=fidgetywidget --password --dbname=fidgetywidget
-*/
 
 // Connect to local PostgreSQL database
 // const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/vitalhealthdb';
