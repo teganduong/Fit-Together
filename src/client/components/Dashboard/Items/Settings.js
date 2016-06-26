@@ -21,7 +21,7 @@ const UserInfo = ({ user }) => (
     </div>
 
     <div 
-      className="modal fade" 
+      className="modal fade z-depth-0" 
       id="editProfileModal" 
       tabindex="-1" 
       role="dialog" aria-labelledby="myModalLabel"

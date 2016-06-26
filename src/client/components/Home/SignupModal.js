@@ -31,13 +31,13 @@ class SignupModal extends Component {
           <div>
             <div className="form-group">
               <input 
-                type="firstName" 
+                type="text" 
                 className="form-control" 
                 ref="firstName" 
-                placeholder="Enter first name" 
+                placeholder="Enter full name" 
               />
               <input 
-                type="userName" 
+                type="text" 
                 className="form-control" 
                 ref="userName" 
                 placeholder="Enter username" 
@@ -55,19 +55,19 @@ class SignupModal extends Component {
                 placeholder="Enter email"
               />
               <input
-                type="weight"
+                type="number"
                 className="form-control"
                 ref="weight"
                 placeholder="Enter weight"
               />
               <input
-                type="bmi"
+                type="number"
                 className="form-control"
                 ref="bmi"
                 placeholder="Enter bmi"
               />
               <input
-                type="goal"
+                type="text"
                 className="form-control"
                 ref="goal"
                 placeholder="Enter goal"
