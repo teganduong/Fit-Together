@@ -2,6 +2,15 @@
 
 \c fidgetywidget;
 
+-- DROP TABLE IF EXISTS users_teams;    
+-- DROP TABLE IF EXISTS users_daily_activities;    
+-- DROP TABLE IF EXISTS users_incentives;    
+-- DROP TABLE IF EXISTS challenges;    
+-- DROP TABLE IF EXISTS users;   
+-- DROP TABLE IF EXISTS daily_activities;    
+-- DROP TABLE IF EXISTS incentives;    
+-- DROP TABLE IF EXISTS teams;
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(50),
