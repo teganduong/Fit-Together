@@ -1,0 +1,2 @@
+export const RECEIVE_USER = 'RECEIVE_USER';
+export const REQUEST_ERROR = 'REQUEST_ERROR';

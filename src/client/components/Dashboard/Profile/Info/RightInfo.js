@@ -5,8 +5,7 @@ import React, { Component } from 'react';
 const user = {
   allergies: ['cows milk', 'weeds', 'egg yolk', 'butter'],
   medications: ['Fortecortin (deksametazon) 2 mg tbl - 6mg'],
-  problems: ['Conductive hearing loss, bilateral', 'Respiratory syncytial virus pneumonia', 
-    'Acute amoebic dysentery', 'Superficial frostbite of neck']
+  goal: 'Lose 15 pounds by 08/24/16'
 };
 
 const RightInfo = () => (
@@ -33,12 +32,10 @@ const RightInfo = () => (
     </div>
     <div className="panel panel-default side-panel">
       <div className="panel-heading">
-        <h3 className="panel-title">Problems</h3>
+        <h3 className="panel-title">Goal</h3>
       </div>
       <div className="panel-body">
-        {user.problems.map(problem =>
-          <li>{problem}</li>
-        )}
+        <p>{user.goal}</p>
       </div>
     </div>
   </div>

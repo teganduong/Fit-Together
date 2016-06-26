@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 
 class SignupModal extends Component {
   constructor(props) {
     super(props);
-    console.log('inside signup', props);
   } 
 
   handleSubmit(event) {
@@ -18,79 +18,73 @@ class SignupModal extends Component {
       goal: this.refs.goal.value,
       points: 0
     };
-  this.props.addUser(formData.name, formData.username, formData.password, formData.email, formData.weight, formData.bmi, formData.goal, formData.points);
+    this.props.addUser(formData.name, formData.username, formData.password, formData.email, 
+      formData.weight, formData.bmi, formData.goal, formData.points);
+
+    browserHistory.push(`/dashboard/${formData.username}`);
   }
 
   render() {
     return (
-      <div className="modal fade" id="signupModal" role="dialog">
-        <div className="modal-dialog modal-sm">
-          <div className="modal-content">
-            <div className="modal-header">
-              <button type="button" className="close" data-dismiss="modal">&times;</button>
-              <h4 className="modal-title">Signup</h4>
+      <div className="signupForm">
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <div>
+            <div className="form-group">
+              <input 
+                type="text" 
+                className="form-control" 
+                ref="firstName" 
+                placeholder="Enter full name" 
+              />
+              <input 
+                type="text" 
+                className="form-control" 
+                ref="userName" 
+                placeholder="Enter username" 
+              />
+              <input 
+                type="password" 
+                className="form-control" 
+                ref="password" 
+                placeholder="Enter password" 
+              />
+              <input
+                type="email"
+                className="form-control"
+                ref="email"
+                placeholder="Enter email"
+              />
+              <input
+                type="number"
+                className="form-control"
+                ref="weight"
+                placeholder="Enter weight"
+              />
+              <input
+                type="number"
+                className="form-control"
+                ref="bmi"
+                placeholder="Enter bmi"
+              />
+              <input
+                type="text"
+                className="form-control"
+                ref="goal"
+                placeholder="Enter goal"
+              />
             </div>
-            <form onSubmit={this.handleSubmit.bind(this)}>
-              <div className="modal-body">
-                <div className="form-group">
-                  <input 
-                    type="firstName" 
-                    className="form-control" 
-                    ref="firstName" 
-                    placeholder="Enter first name" 
-                  />
-                  <input 
-                    type="userName" 
-                    className="form-control" 
-                    ref="userName" 
-                    placeholder="Enter username" 
-                  />
-                  <input 
-                    type="password" 
-                    className="form-control" 
-                    ref="password" 
-                    placeholder="Enter password" 
-                  />
-                  <input
-                    type="email"
-                    className="form-control"
-                    ref="email"
-                    placeholder="Enter email"
-                  />
-                  <input
-                    type="weight"
-                    className="form-control"
-                    ref="weight"
-                    placeholder="Enter weight"
-                  />
-                  <input
-                    type="bmi"
-                    className="form-control"
-                    ref="bmi"
-                    placeholder="Enter bmi"
-                  />
-                  <input
-                    type="goal"
-                    className="form-control"
-                    ref="goal"
-                    placeholder="Enter goal"
-                  />
-                </div>
-             </div>
-            <div className="modal-footer">
-              <button type="submit" className="btn btn-default">Login</button>
-              <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
-            </div>
-          </form>
           </div>
-        </div>
+          <div className="signupButton">
+            <button type="submit" className="btn btn-default">Sign up</button>
+          </div>
+        </form>
       </div>
     );
   }
 }
 
 SignupModal.propTypes = {
-  postUser: React.PropTypes.func,
+  addUser: React.PropTypes.func,
 };
 
 export default SignupModal;

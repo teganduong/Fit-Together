@@ -12,16 +12,17 @@ reducers.routing = routerReducer;
 import App from './components/App';
 import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
+import Signup from './containers/Auth';
 
 // Dashbboard Components
 import Profile from './components/Dashboard/Profile/Profile.js';
 import PlaceHolder from './components/PlaceHolder.js';
 
 import Stats from './components/Dashboard/Items/Stats.js';
-import Goals from './components/Dashboard/Items/Goals.js';
 import Challenges from './components/Dashboard/Items/Logs.js';
 import Teams from './components/Dashboard/Items/Teams.js';
 import Tips from './components/Dashboard/Items/Tips.js';
+import UserInfo from './components/Dashboard/Items/Settings';
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
 const history = syncHistoryWithStore(browserHistory, store);
@@ -30,16 +31,16 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App} >
-        <Route path="home" component={Home} />
-        <Route path="dashboard" component={Dashboard} >
+        <Route path="/signup" component={Signup} />
+        <IndexRoute component={Home} />
+        <Route path="dashboard/:username" component={Dashboard} >
           <IndexRoute component={Profile} />
-          <Route path="/settings"component={PlaceHolder} />
-          <Route path="/dashboard/log"component={PlaceHolder} />
-          <Route path="/dashboard/stats"component={Stats} />
-          <Route path="/dashboard/goals"component={PlaceHolder} />
-          <Route path="/dashboard/challenges"component={PlaceHolder} />
-          <Route path="/dashboard/teams"component={Teams} />
-          <Route path="/dashboard/tips"component={PlaceHolder} />
+          <Route path="/dashboard/:username/settings"component={UserInfo} />
+          <Route path="/dashboard/:username/log"component={PlaceHolder} />
+          <Route path="/dashboard/:username/stats"component={Stats} />
+          <Route path="/dashboard/:username/challenges"component={PlaceHolder} />
+          <Route path="/dashboard/:username/teams"component={Teams} />
+          <Route path="/dashboard/:username/tips"component={PlaceHolder} />
         </Route>
       </Route>
     </Router>

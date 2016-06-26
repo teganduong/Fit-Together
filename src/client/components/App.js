@@ -4,8 +4,6 @@ import { Link } from 'react-router';
 const App = ({ children }) => (
   <div>
     {children}
-    <Link to="/home">Home</Link>
-    <Link to="/dashboard">Dashboard</Link>
   </div>
 );
 

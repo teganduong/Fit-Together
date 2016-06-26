@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-const SideNavBar = () => (
+const SideNavBar = ({ username }) => (
   <div id="sidebar-wrapper">
     <p id="sidebar-title">Fit Together</p>
     <ul className="sidebar-nav">
-      <li><Link to="/dashboard">My Dashboard</Link></li>
-      <li><Link to="/dashboard/teams">Teams</Link></li>
-      <li><Link to="/dashboard/challenges">Challenges</Link></li>
-      <li><Link to="/dashboard/goals">Goals</Link></li>
-      <li><Link to="/dashboard/stats">Stats</Link></li>
-      <li><Link to="/dashboard/log">Log</Link></li>
-      <li><Link to="/dashboard/tips">Tips</Link></li>
-      <li><Link to="/settings">Settings</Link></li>
-      <li><Link to="/home">Signout</Link></li>
+      <li><Link to={`/dashboard/${username}`}>My Dashboard</Link></li>
+      <li><Link to={`/dashboard/${username}/settings`}>Settings</Link></li>
+      <li><Link to={`/dashboard/${username}/log`}>Log</Link></li>
+      <li><Link to={`/dashboard/${username}/stats`}>Stats</Link></li>
+      <li><Link to={`/dashboard/${username}/challenges`}>Challenges</Link></li>
+      <li><Link to={`/dashboard/${username}/teams`}>Teams</Link></li>
+      <li><Link to={`/dashboard/${username}/tips`}>Tips</Link></li>
+      <li><Link to="/">Signout</Link></li>
     </ul>
   </div>
 );
+
+SideNavBar.propTypes = {
+  username: PropTypes.string
+};
 
 export default SideNavBar;

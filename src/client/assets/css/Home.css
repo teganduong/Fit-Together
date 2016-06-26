@@ -17,3 +17,12 @@
     left:0px;
     z-index:1000;
 }
+
+.signupForm {
+  padding: 20px;
+  width: 300px;
+  margin: 0 50%;
+}
+.signupButton {
+  text-align: center;
+}

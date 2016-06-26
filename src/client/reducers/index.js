@@ -1,8 +1,7 @@
-// TODO: change reducers to fit our needs
-
 import {
   RECEIVE_USER,
-} from '../actions/index.js';
+  REQUEST_ERROR
+} from '../constants/constants.js';
 
 export const user = (state, action) => {
   switch (action.type) {
@@ -10,6 +9,16 @@ export const user = (state, action) => {
       return action.data || state;
     }
     default:
-      return state || [];
+      return state || {};
+  }
+};
+
+export const error = (state, action) => {
+  switch (action.type) {
+    case REQUEST_ERROR: {
+      return action.data || state;
+    }
+    default:
+      return state || {};
   }
 };
