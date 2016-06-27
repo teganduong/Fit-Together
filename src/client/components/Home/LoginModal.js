@@ -1,7 +1,27 @@
-
 import React, { Component } from 'react';
+import fetch from 'isomorphic-fetch';
 
-const LoginModal = () => (
+class LoginModal extends Component {
+  constructor(props) {
+    super(props);
+  } 
+
+// handleSubmit() {
+// fetch('/auth/fitbit', {
+//       method: 'GET',
+//     headers: {
+//       'Access-Control-Allow-Origin': '*'
+//    },
+//    dataTy: 'text/html',
+//    crossDomain:true
+//   }).then(function(json) {
+//     console.log('parsed json', json);
+//   }).catch(function(ex) {
+//     console.log('parsing failed', ex);
+//   });
+// }
+render() {
+  return (
   <div className="modal fade" id="loginModal" role="dialog">
     <div className="modal-dialog modal-sm">
       <div className="modal-content">
@@ -37,5 +57,7 @@ const LoginModal = () => (
     </div>
   </div>
 );
+}
+}
 
 export default LoginModal;

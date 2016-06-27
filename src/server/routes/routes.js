@@ -7,6 +7,7 @@ const users = require('../controllers/usersCtrl');
 const teams = require('../controllers/teamsCtrl');
 const passport = require('passport');
 const flash = require('connect-flash');
+import { browserHistory } from 'react-router';
 
 /**  Users **/
 router.get('/api/users/:username', users.getUserInfo);
@@ -23,16 +24,21 @@ router.get('/auth/fitbit',
 router.get('/auth/fitbit/callback', 
   passport.authenticate('fitbit', { failureRedirect: '/login', failureFlash: true }),
   (req, res) => {
-    console.log('inside callback', req.user);
-    res.redirect(`/dashboard/${req.user}`);
+    console.log('inside callback', req, req.user);
+    let username = req.user;
+    res.send(req.user);
+    res.redirect('/dashboard');
   });
+
 
 router.get('/auth/moves', passport.authenticate('moves'));
 
 router.get('/auth/moves/callback', 
   passport.authenticate('moves', { failureRedirect: '/login' }),
   (req, res) => {
-    res.redirect('/');
+    console.log('inside callback', req.user);
+    let username = req.user;
+    res.redirect(`/dashboard/${username}`);
   }
 );
 

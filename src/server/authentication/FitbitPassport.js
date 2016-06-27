@@ -26,6 +26,7 @@ passport.use(new FitbitStrategy({
         'values(${name}, ${username}, ${password}, ${email}, ${weight}, ${bmi}, ${goal})  returning username',
          userData)
       .then(data => {
+        console.log('data inside nexttick', data);
         return done(null, data.username);
       })
       .catch((error) => {
@@ -38,6 +39,7 @@ passport.use(new FitbitStrategy({
 );
 
 passport.serializeUser((user, done) => {
+
   done(null, user);
 });
 

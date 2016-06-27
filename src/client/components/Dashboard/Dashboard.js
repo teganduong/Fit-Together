@@ -7,16 +7,22 @@ export default class Dashboard extends Component {
     super(props);
     console.log(props, 'dsfadsfadsf');
     this.props.fetchUser(this.props.params.username);
+    console.log('THIS IS DASHBOARD USER', props);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
       this.props.fetchUser(nextProps.user.username);
     }
+        console.log('THIS IS DASHBOARD USER', nextProps);
+
   }
 
   render() {
+
     let { username } = this.props.params;
+        console.log('THIS IS DASHBOARD USER', this.props);
+
     return (
       <div>
         <SideNavBar username={username} />
