@@ -11,7 +11,6 @@ client.on('error', (err) => {
 
 module.exports = client;
 
-
 exports.storeToken = (req, res) => {
   client.setAsync('token:' + req.body.username + ':', req.body.token)
     .then(() => res.status(201).send('success'))
