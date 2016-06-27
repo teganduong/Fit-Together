@@ -22,25 +22,32 @@ passport.use(new FitbitStrategy({
       points: 0
     };
     process.nextTick(() => {
-      db.one('insert into users(name, username, password, email, weight, bmi, goal)' +
-        'values(${name}, ${username}, ${password}, ${email}, ${weight}, ${bmi}, ${goal})  returning username',
+      db.none('insert into users(name, username, password, email, weight, bmi, goal)' +
+        'values(${name}, ${username}, ${password}, ${email}, ${weight}, ${bmi}, ${goal})',
          userData)
-      .then(data => {
-        console.log('data inside nexttick', data);
-        return done(null, data.username);
+      .then(() => {
+        return done(null, {
+          accessToken: accessToken,
+          profile: profile
+        });
       })
       .catch((error) => {
         console.log(error);
         return done(error, null);
       });
-     });
-   }
-  )
+    });
+  })
 );
 
 passport.serializeUser((user, done) => {
-
-  done(null, user);
+  const userObj = {
+    accessToken: user.accessToken,
+    provider: user.profile.provider,
+    id: user.profile.id,
+    username: user.profile.displayName
+  };
+  console.log('insider serializeUser', userObj);
+  done(null, userObj);
 });
 
 passport.deserializeUser((obj, done) => {
@@ -48,4 +55,6 @@ passport.deserializeUser((obj, done) => {
 });
 
 module.exports = passport;
+
+
 

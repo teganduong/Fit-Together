@@ -24,9 +24,15 @@ router.get('/auth/fitbit',
 router.get('/auth/fitbit/callback', 
   passport.authenticate('fitbit', { failureRedirect: '/login', failureFlash: true }),
   (req, res) => {
-    console.log('inside callback', req, req.user);
-    let username = req.user;
-    res.send(req.user);
+    console.log('INSIDE CALLBACK==============', req.user);
+    if(req.user) {
+      const userData = {
+        accessToken: req.user.accessToken,
+        id: req.user.profile.id,
+        username: req.user.profile.displayName
+      };
+      // rUtil.setUserToken(userId, req.user.accessToken);
+    }
     res.redirect('/dashboard');
   });
 
