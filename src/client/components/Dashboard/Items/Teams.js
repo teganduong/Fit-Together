@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import TeamEntry from './TeamEntry';
 
 const user = {
@@ -8,65 +8,163 @@ const user = {
   image: 'https://pbs.twimg.com/profile_images/721759338034044929/uu8JkkSl.jpg'
 };
 
-const teamA = [
+const exampleMembers = [
   {
-    name: 'Mom',
-    image: 'https://camo.githubusercontent.com/5e6eb0b00d714eb5b8ec84254205c61c2a97c68d/687474703a2f2f6f63746f6465782e6769746875622e636f6d2f696d616765732f77616c646f6361742e6a7067'
+    username: 'Mom',
+    user_icon: 'https://camo.githubusercontent.com/5e6eb0b00d714eb5b8ec84254205c61c2a97c68d/687474703a2f2f6f63746f6465782e6769746875622e636f6d2f696d616765732f77616c646f6361742e6a7067'
   },
   {
-    name: 'Sis',
-    image: 'https://assets-cdn.github.com/images/modules/styleguide/linktocat.png'
+    username: 'Sis',
+    user_icon: 'https://assets-cdn.github.com/images/modules/styleguide/linktocat.png'
   },
   {
-    name: 'Bro',
-    image: 'https://octodex.github.com/images/gangnamtocat.png'
+    username: 'Bro',
+    user_icon: 'https://octodex.github.com/images/gangnamtocat.png'
   },
   {
-    name: 'Grandpa',
-    image: 'https://stevegrunwell.github.io/wordpress-git/assets/heisencat.png'
+    username: 'Grandpa',
+    user_icon: 'https://stevegrunwell.github.io/wordpress-git/assets/heisencat.png'
+  }
+];
+
+const exampleTeamData = [
+  {
+    user_id: 1,
+    name: 'Bay Area Hikers',
+    description: 'This group is for people who love to hike in the great outdoors',
+    team_icon: 'http://www.womenshealthmag.com/sites/womenshealthmag.com/files/images/0410-youcan-hiking-0008.jpg'
+  },
+  {
+    user_id: 2,
+    name: 'Yoga and Pilates',
+    description: 'Wanna stretch and be enlightened? This group is for you',
+    team_icon: 'http://www.womenshealthmag.com/sites/womenshealthmag.com/files/images/0410-youcan-hiking-0008.jpg'
+  },
+  {
+    user_id: 3,
+    name: 'Weekend Bootcamp',
+    description: 'Wanna exercise during the weekend? Meet likemided people just like you',
+    team_icon: 'http://www.womenshealthmag.com/sites/womenshealthmag.com/files/images/0410-youcan-hiking-0008.jpg'
   }
 ];
 
 
-const TeamInfo = () => (
-  <div>
-    <div className="container team-main">
-      <div className="team-user">
-        <div className="row">
-          <div className="col-sm-4 col-md-4">
-            <p className="team-user-score">total score: {user.score}</p>
-          </div>
-          <div className="col-sm-4 col-md-4">
-            <img src={user.image} id="team-user-image" alt="test" className="img-circle" />
-          </div>
-          <div className="col-sm-4 col-md-4">
-            <p className="team-user-steps">total steps: {user.steps}</p>
-          </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-sm-6 col-md-6 playA">
-          <img src={teamA[0].image} id="team-user-image" alt="test" className="img-circle" />
-          <p>Team Lead: Joe</p>
-        </div>
-        <div className="col-sm-6 col-md-6 playB">
-          <img src={teamA[1].image} id="team-user-image" alt="test" className="img-circle" />
-          <p className="team-user-steps">Team Lead: Doe</p>
-        </div>
-      </div>
-      <div>
-        Teammates: 
-      </div>
-      <div>
-        Select Teams: 
-      </div>
-      <div className="team-info">
-        {teamA.map((teamMember, index) =>
-          <TeamEntry teamMemberA={teamMember} key={index} />
-        )}
-      </div>
-    </div>
-  </div>
-);
+class UserTeamPage extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-export default TeamInfo;
+  render() {
+    return (
+      <div className="main-container">
+        <div className="team-header">
+          <div className="team-header-items">
+            <h3>Teams</h3>
+          </div>
+          <div className="team-header-items team-header-button-container">
+            <button type="button" className="btn btn-success">Create New Team</button>
+          </div>
+          <div className="team-header-items team-header-button-container">
+            <button type="button" className="btn btn-default">Find New Team</button>
+          </div>  
+        </div>
+        <UserTeamList teams={exampleTeamData} />
+      </div>
+    );
+  }
+}
+
+class UserTeamList extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <ul>
+          {this.props.teams.map(team =>
+            <UserTeamListItem team={team} />
+          )}
+        </ul>
+      </div>
+    );
+  }
+}
+
+UserTeamList.propTypes = {
+  teams: PropTypes.object.isRequired
+};
+
+// This class should fetch all the users from this team list item
+class UserTeamListItem extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="team-list-container">
+        <div className="team-info-container">
+          <div className="team-icon-container">
+            <img src={this.props.team.team_icon} className="team-icon img-circle" alt="test" />
+          </div>
+          <div className="team-title-container">
+            <p>{this.props.team.name}</p>
+            <p>{this.props.team.description}</p>
+            <button type="button" className="btn btn-danger">Leave Team</button>
+          </div>
+        </div>
+        <div className="team-members-container">
+          <TeamMemberList members={exampleMembers} />
+        </div>
+      </div>
+    );
+  }
+}
+
+UserTeamListItem.propTypes = {
+  team: PropTypes.object.isRequired,
+  members: PropTypes.object.isRequired
+};
+
+class TeamMemberList extends Component {
+  constructor(props) {
+    super(props); 
+  }
+
+  render() {
+    return (
+      <ul>
+       {this.props.members.map(member =>
+         <TeamMember member={member} />
+       )};
+      </ul>
+    );
+  }
+}
+
+TeamMemberList.propTypes = {
+  members: PropTypes.object.isRequired
+};
+
+class TeamMember extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="team-member">
+        <img src={this.props.member.user_icon} className="user-icon img-circle" alt="test" />
+        <p>{this.props.member.username}</p>
+      </div>
+    );
+  }
+}
+
+TeamMember.propTypes = {
+  member: PropTypes.object.isRequired
+};
+
+export default UserTeamPage;

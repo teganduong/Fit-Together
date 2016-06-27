@@ -2,8 +2,8 @@ import * as c from '../constants/constants';
 import fetch from 'isomorphic-fetch';
 
 export const error = err => ({ type: c.REQUEST_ERROR, data: err });
-
 export const receiveUser = user => ({ type: c.RECEIVE_USER, data: user });
+export const receiveUserTeams = teams => ({ type: c.RECEIVE_TEAMS, data: teams });
 
 export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
   const payload = JSON.stringify({ name, username, password, email, weight, bmi, goal, points });
@@ -52,3 +52,14 @@ export const updateUser = (userInfo) => {
     .catch(err => dispatch(error(err)))
   );
 };
+
+export const fetchUserTeams = (userId) => (
+  dispatch => (
+    fetch('/userteams', {
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(teams => dispatch(receiveUserTeams(teams)))
+    .catch(err => dispatch(error(err)))
+  )
+);

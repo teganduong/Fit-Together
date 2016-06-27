@@ -76,3 +76,19 @@ exports.addToTeam = (req, res) => {
       res.status(404);
     });
 };
+
+exports.getUserTeams = (req, res) => {
+  db.query('select * from teams where id=' + 
+      '(select team_id from users_teams where user_id=${user_id})', req.params)
+    .then((data) => {
+      res.status(200)
+        .json({
+          status: 'success',
+          data: data,
+          message: 'successfully retrieved user\'s teams'
+        });
+    })
+    .catch((err) => {
+      console.log('error in retrieving user\'s teams', err);
+    });
+};

@@ -8,6 +8,16 @@ body {
     overflow-x: hidden;
 }
 
+.main-container {
+    flex: 1;
+    transform: translate3d(220px, 0, 0);
+    transition: transform .3s;
+}
+
+.main-container.isOpen {
+    transform: translate3d(220px, 0, 0);
+}
+
 #sidebar-wrapper {
     z-index: 1000;
     position: absolute;
