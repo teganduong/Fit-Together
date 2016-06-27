@@ -4,8 +4,8 @@ const db = require('../db/connection.js');
 // [1] Given a team --> insert into the team table --> return team_id
 // [2] Given a user_id and team_id --> insert into the users_teams table
 exports.createTeam = (req, res) => {
-  db.one('insert into teams(name, description)' + 
-      'values(${name}, ${description}) returning id', req.body)
+  db.one('insert into teams(name, description, team_icon)' + 
+      'values(${name}, ${description}, ${team_icon}) returning id', req.body)
     .then((teamId) => {
       const userTeam = {
         user_id: req.body.user_id,
