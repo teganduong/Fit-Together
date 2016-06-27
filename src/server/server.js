@@ -8,16 +8,21 @@ const session = require('express-session');
 const passport = require('passport');
 const FitbitPassport = require('./authentication/FitbitPassport');
 const MovesPassport = require('./authentication/MovesPassport');
+const config = require('./config');
 const app = express();
 const port = process.env.PORT || 3000;
 
 const redisClient = require('./db/redisConnection.js');
 
 app.use(express.static(path.join(__dirname, '../client')));
-app.use(cookieParser());
+app.use(cookieParser(config.session.secret));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'FidgetyWidgets' }));
+app.use(session({ 
+  secret: config.session.secret,
+  resave: false,
+  saveUninitialized: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', routes);
