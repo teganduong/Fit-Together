@@ -37,6 +37,7 @@ render(
         <Route path="/login" component={Login} />
         <IndexRoute component={Home} />
         <Route path="/dashboard" component={Dashboard} >
+        <Route path="dashboard/:username" component={Dashboard} >
           <IndexRoute component={Profile} />
           <Route path="/dashboard/settings"component={UserInfo} />
           <Route path="/dashboard/log"component={PlaceHolder} />

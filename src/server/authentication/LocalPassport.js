@@ -8,24 +8,24 @@ var isValidPassword = function(user, password) {
     return bCrypt.compareSync(password, user.password);
   };
 // use the Local Strategy (locally saved username and password, i.e. not OAuth)
-passport.use('local-login', new LocalStrategy(
-function(username, password, done) {
-    // run the Mongo query for the user requested
-  process.nextTick(() => {
-    console.log('this is username', username, password);
-    db.one('select * from users where username=$1', [username])
-    .then(data => {
-      console.log('found user');
-      console.log('this is data and pass', data, data.password);
-      if(data.password === password) {
-        return done(null, data.username);
-      }
-    })
-    .catch(function(error) {
-      console.log(error);
-      return done(error, null);
+passport.use('local-login', new LocalStrategy({
+  passReqToCallback: false 
+},
+  (username, password, done) => {
+    process.nextTick(() => {
+      db.one('select * from users where username=$1', [username])
+      .then(data => {
+        console.log('found user');
+        console.log('this is data and pass', data, data.password);
+        if(data.password === password) {
+          return done(null, data.username);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+        return done(error, null);
+      });
     });
-   });
   })
 );
 

@@ -6,6 +6,7 @@ const LocalPassport = require('../authentication/LocalPassport');
 const users = require('../controllers/usersCtrl');
 const teams = require('../controllers/teamsCtrl');
 const passport = require('passport');
+const flash = require('connect-flash');
 
 /**  Users **/
 router.get('/api/users/:username', users.getUserInfo);
@@ -16,23 +17,15 @@ router.post('/createteam', teams.createTeam);
 router.post('/deleteteam', teams.deleteTeam);
 
 /**  Auth **/
-router.get('/auth/fitbit', 
-  passport.authenticate('fitbit', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/auth/fitbit/failure'
-  })
-);
+router.get('/auth/fitbit',
+  passport.authenticate('fitbit'));
 
 router.get('/auth/fitbit/callback', 
-  passport.authenticate('fitbit', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/auth/fitbit/failure'
-  })
-);
-
-router.get('/auth/fitbit/success', (req, res, next) => {
-  res.send(req.user);
-});
+  passport.authenticate('fitbit', { failureRedirect: '/login', failureFlash: true }),
+  (req, res) => {
+    console.log('inside callback', req.user);
+    res.redirect(`/dashboard/${req.user}`);
+  });
 
 router.get('/auth/moves', passport.authenticate('moves'));
 
@@ -57,8 +50,8 @@ router.get('/signup',
 );
 
 router.post('/login', passport.authenticate('local-login', {
-  successRedirect : '/dashboard', // redirect to the secure profile section
-  failureRedirect : '/', // redirect back to the signup page if there is an error
+  successRedirect : '/', // redirect to the secure profile section
+  failureRedirect : '/login', // redirect back to the signup page if there is an error
   failureFlash : true // allow flash messages
 }));
 

@@ -6,6 +6,7 @@ const routes = require('./routes/routes');
 const db = require('./db/connection.js');
 const session = require('express-session');
 const passport = require('passport');
+const flash = require('connect-flash');
 const FitbitPassport = require('./authentication/FitbitPassport');
 const MovesPassport = require('./authentication/MovesPassport');
 const config = require('./config');

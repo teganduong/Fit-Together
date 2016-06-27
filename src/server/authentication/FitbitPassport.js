@@ -13,17 +13,25 @@ passport.use(new FitbitStrategy({
   (accessToken, refreshToken, profile, done) => {
     const userData = {
       name: profile._json.user.fullName,
-      username: profile._json.user.fullName,
-      password: profile._json.user.encodedId,
+      username: profile._json.user.displayName,
+      password: profile._json.user.displayName,
       email: profile._json.user.gender,
       weight: profile._json.user.weight,
       bmi: 21.3,
-      goal: 'refactored',
+      goal: accessToken,
       points: 0
     };
-    console.log(profile);
     process.nextTick(() => {
-      usersCtrl.addUser({ body: userData });
+      db.one('insert into users(name, username, password, email, weight, bmi, goal)' +
+        'values(${name}, ${username}, ${password}, ${email}, ${weight}, ${bmi}, ${goal})  returning username',
+         userData)
+      .then(data => {
+        return done(null, data.username);
+      })
+      .catch((error) => {
+        console.log(error);
+        return done(error, null);
+      });
      });
    }
   )
