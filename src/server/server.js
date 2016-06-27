@@ -14,21 +14,15 @@ const app = express();
 const port = process.env.PORT || 3000;
 const redisClient = require('./db/redisConnection.js');
 
-const sessionOpts = {
-  secret: config.session.secret,
-  resave: false, 
-  saveUninitialized: true, 
-};
-
 app.use(express.static(path.join(__dirname, '../client')));
-app.use(cookieParser(config.session.secret));
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session(sessionOpts));
+app.use(session({ secret: 'FidgetyWidgets' }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 app.use('/', routes);
+
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index.html'));

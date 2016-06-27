@@ -28,6 +28,7 @@ const HomeNavBar = () => (
         <ul className="nav navbar-nav navbar-right">
           <li><a data-toggle="modal" data-target="#loginModal">Login</a></li>
           <li><Link to="/signup">Create Account</Link></li>
+          <li><Link to="/login">log in</Link></li>
         </ul>
       </div>
     </div>

@@ -13,6 +13,7 @@ import App from './components/App';
 import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
 import Signup from './containers/Auth';
+import Login from './components/Home/LoginModal';
 
 // Dashbboard Components
 import Profile from './components/Dashboard/Profile/Profile.js';
@@ -33,6 +34,7 @@ render(
     <Router history={history}>
       <Route path="/" component={App} >
         <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login} />
         <IndexRoute component={Home} />
         <Route path="/dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />

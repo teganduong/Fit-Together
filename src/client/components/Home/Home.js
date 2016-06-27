@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import HomeNavBar from './HomeNavBar';
 import LoginModal from './LoginModal';
 import LandingImage from './LandingImage';
@@ -13,5 +13,9 @@ const Home = (props) => (
   </div>
 );
 
+Home.propTypes = {
+  getUser: PropTypes.func,
+  addUser: PropTypes.func
+};
 
 export default Home;
