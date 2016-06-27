@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cors = require('express-cors')
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const routes = require('./routes/routes');
@@ -14,6 +15,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 const redisClient = require('./db/redisConnection.js');
 
+app.use(cors({
+  allowedOrigins: [
+    'fitbit.com'
+  ]
+}))
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(cookieParser());
 app.use(bodyParser.json());

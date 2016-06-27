@@ -7,8 +7,12 @@ const users = require('../controllers/usersCtrl');
 const teams = require('../controllers/teamsCtrl');
 const passport = require('passport');
 const flash = require('connect-flash');
+<<<<<<< 63cbc1bf800ad5e04c29db6e08098d4b1d9a37b6
 const db = require('../db/connection.js');
 const queryHelper = require('../queryHelper');
+=======
+import { browserHistory } from 'react-router';
+>>>>>>> push data from db to front end
 
 /**  Users **/
 router.get('/api/users/:username', users.getUserInfo);

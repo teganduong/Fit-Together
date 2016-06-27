@@ -29,6 +29,12 @@ import UserInfo from './components/Dashboard/Items/Settings';
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
 const history = syncHistoryWithStore(browserHistory, store);
 
+// function isLoggedIn(req, res, next) {
+//   if (req.isAuthenticated())
+//     return next();
+//   res.redirect('/');
+// }
+
 render(
   <Provider store={store}>
     <Router history={history}>
