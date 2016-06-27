@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const FitbitPassport = require('../authentication/FitbitPassport');
 const MovesPassport = require('../authentication/MovesPassport');
+const LocalPassport = require('../authentication/LocalPassport');
 const users = require('../controllers/usersCtrl');
 const teams = require('../controllers/teamsCtrl');
 const passport = require('passport');
@@ -55,11 +56,17 @@ router.get('/signup',
   })
 );
 
-router.get('/login', 
-  passport.authenticate('local-login', {
-    successRedirect : '/', 
-    failureRedirect : '/login',
-    failureFlash : true 
-  })
-);
+router.post('/login', passport.authenticate('local-login', {
+  successRedirect : '/dashboard', // redirect to the secure profile section
+  failureRedirect : '/', // redirect back to the signup page if there is an error
+  failureFlash : true // allow flash messages
+}));
+
+// router.get('/login', 
+//   passport.authenticate('local-login', {
+//     successRedirect : '/dashboard', 
+//     failureRedirect : '/login',
+//     failureFlash : true 
+//   })
+// );
 module.exports = router;
