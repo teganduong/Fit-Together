@@ -1,3 +1,4 @@
+
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
@@ -12,7 +13,8 @@ const SideNavBar = ({ username }) => (
       <li><Link to="/dashboard/challenges">Challenges</Link></li>
       <li><Link to="/dashboard/teams">Teams</Link></li>
       <li><Link to="/dashboard/tips">Tips</Link></li>
-      <li><a href="/signout" action="post">Signout</a></li>    </ul>
+      <li><Link to="/">Signout</Link></li>
+    </ul>
   </div>
 );
 
@@ -21,11 +23,3 @@ SideNavBar.propTypes = {
 };
 
 export default SideNavBar;
-
-      // <li><Link to={`/dashboard/${username}`}>My Dashboard</Link></li>
-      // <li><Link to={`/dashboard/${username}/settings`}>Settings</Link></li>
-      // <li><Link to={`/dashboard/${username}/log`}>Log</Link></li>
-      // <li><Link to={`/dashboard/${username}/stats`}>Stats</Link></li>
-      // <li><Link to={`/dashboard/${username}/challenges`}>Challenges</Link></li>
-      // <li><Link to={`/dashboard/${username}/teams`}>Teams</Link></li>
-      // <li><Link to={`/dashboard/${username}/tips`}>Tips</Link></li>

@@ -1,0 +1,50 @@
+
+.debug {
+  border-width: 2px;
+  border-color: red;
+  border-style: solid;
+}
+​
+.horizontal-dash {
+  width: 65%;
+  overflow: scroll;
+  white-space: nowrap;
+  padding-right: 35%;
+  margin:20px;
+}
+​
+.log-container p {
+  font-size: 24px;
+  padding: 5px 5px;
+  margin: 0;
+}
+​
+.log-activity {
+  margin: 5px 5px;
+  padding: 5px 5px;
+}
+​
+.log-activity.card {
+  display: inline-block;
+  height: 250px;
+  width: 250px;
+}
+.log-activity.card > .image {
+  height: 90%;
+  width: 90%;
+  margin: 0px auto;
+}
+​
+.log-activity.card > .content {
+  text-align: center;
+  font-size: 24px;
+}
+​
+​
+.log-activity th, .log-activity td {
+  padding-left: 5px;
+} 
+​
+.log-activity input {
+  width: 100px;
+}
