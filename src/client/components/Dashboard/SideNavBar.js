@@ -12,6 +12,7 @@ const SideNavBar = ({ username }) => (
       <li><Link to={`/dashboard/${username}/challenges`}>Challenges</Link></li>
       <li><Link to={`/dashboard/${username}/teams`}>Teams</Link></li>
       <li><Link to={`/dashboard/${username}/tips`}>Tips</Link></li>
+      <li><Link to={`/dashboard/${username}/maps`}>Maps</Link></li>
       <li><Link to="/">Signout</Link></li>
     </ul>
   </div>

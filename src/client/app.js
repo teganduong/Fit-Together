@@ -23,6 +23,7 @@ import Challenges from './components/Dashboard/Items/Logs.js';
 import Teams from './components/Dashboard/Items/Teams.js';
 import Tips from './components/Dashboard/Items/Tips.js';
 import UserInfo from './components/Dashboard/Items/Settings';
+import Maps from './components/Dashboard/Items/Maps';
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
 const history = syncHistoryWithStore(browserHistory, store);
@@ -41,6 +42,7 @@ render(
           <Route path="/dashboard/:username/challenges"component={PlaceHolder} />
           <Route path="/dashboard/:username/teams"component={Teams} />
           <Route path="/dashboard/:username/tips"component={PlaceHolder} />
+          <Route path="/dashboard/:username/maps"component={Maps} />
         </Route>
       </Route>
     </Router>
