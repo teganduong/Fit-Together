@@ -4,6 +4,7 @@ import TeamsList from './TeamsList';
 class TeamsView extends Component {
   constructor(props) {
     super(props);
+    console.log('team', props);
     this.props.fetchUserTeams({ user_id: 1 });
     this.teams = [];
   }
@@ -26,7 +27,7 @@ class TeamsView extends Component {
             <button type="button" className="btn btn-default">Find New Team</button>
           </div>  
         </div>
-        <TeamsList teams={this.teams} />
+        <TeamsList teams={this.teams} fetchTeamMembers={this.props.fetchTeamMembers.bind(this)} />
       </div>
     );
   }
@@ -34,7 +35,8 @@ class TeamsView extends Component {
 
 TeamsView.propTypes = {
   teams: PropTypes.object,
-  fetchUserTeams: PropTypes.func
+  fetchUserTeams: PropTypes.func,
+  fetchTeamMembers: PropTypes.func
 };
 
 export default TeamsView;

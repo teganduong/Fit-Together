@@ -10,6 +10,7 @@ const passport = require('passport');
 router.get('/api/users/:username', users.getUserInfo);
 router.post('/api/users', users.addUser);
 router.post('/userteams', teams.getUserTeams);
+router.post('/teammembers', teams.getTeamMembers);
 
 /**  Auth **/
 router.get('/auth/fitbit', 

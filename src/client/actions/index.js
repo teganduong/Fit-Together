@@ -4,6 +4,7 @@ import fetch from 'isomorphic-fetch';
 export const error = err => ({ type: c.REQUEST_ERROR, data: err });
 export const receiveUser = user => ({ type: c.RECEIVE_USER, data: user });
 export const receiveUserTeams = teams => ({ type: c.RECEIVE_TEAMS, data: teams });
+export const receiveTeamMembers = members => ({ type: c.RECEIVE_MEMBERS, data: members });
 
 export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
   const payload = JSON.stringify({ name, username, password, email, weight, bmi, goal, points });
@@ -70,3 +71,23 @@ export const fetchUserTeams = (obj) => (
     .catch(err => dispatch(error(err)))
   )
 );
+
+export const fetchTeamMembers = (obj) => (
+  dispatch => (
+    fetch('/teammembers', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(obj)
+    })
+    .then(res => res.json())
+    .then(response => {
+      console.log('response', response.data);
+      dispatch(receiveTeamMembers(response.data));
+    })
+    .catch(err => dispatch(error(err)))
+  )
+);
+

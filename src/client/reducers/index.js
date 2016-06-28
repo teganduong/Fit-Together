@@ -1,6 +1,7 @@
 import {
   RECEIVE_USER,
   RECEIVE_TEAMS,
+  RECEIVE_MEMBERS,
   REQUEST_ERROR
 } from '../constants/constants.js';
 
@@ -17,6 +18,16 @@ export const user = (state, action) => {
 export const teams = (state, action) => {
   switch (action.type) {
     case RECEIVE_TEAMS: {
+      return action.data || state;
+    }
+    default:
+      return state || {};
+  }
+};
+
+export const members = (state, action) => {
+  switch (action.type) {
+    case RECEIVE_MEMBERS: {
       return action.data || state;
     }
     default:

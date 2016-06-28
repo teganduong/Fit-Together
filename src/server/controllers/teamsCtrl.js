@@ -82,7 +82,7 @@ exports.getUserTeams = (req, res) => {
   db.query('select * from teams where id=ANY' + 
       '(select team_id from users_teams where user_id=${user_id})', req.body)
     .then((data) => {
-      console.log(data, 'data');
+      // console.log(data, 'data');
       res.status(200)
         .json({
           status: 'success',
@@ -92,5 +92,25 @@ exports.getUserTeams = (req, res) => {
     })
     .catch((err) => {
       console.log('error in retrieving user\'s teams', err);
+      // res.status(400);
     });
+};
+
+exports.getTeamMembers = (req, res) => {
+  db.query('select * from users where id=' + 
+      '(select user_id from users_teams where team_id=${team_id} and ' + 
+      'user_id!=${user_id})', req.body)
+  .then((data) => {
+    console.log(data);
+    res.status(200)
+      .json({
+        status: 'success',
+        data: data,
+        message: 'successfully found retreived team members'
+      });
+  })
+  .catch((err) => {
+    console.log('error in retreiving team members', err);
+    // res.status(400);
+  });
 };

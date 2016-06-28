@@ -19,8 +19,9 @@ import Profile from './components/Dashboard/Profile/Profile.js';
 import PlaceHolder from './components/PlaceHolder.js';
 
 import Stats from './components/Dashboard/Items/Stats.js';
-import Challenges from './components/Dashboard/Items/Challenges.js';
+import Challenges from './components/Dashboard/Items/Challenges/Challenges';
 import Teams from './containers/Teams'; // redux container
+// import TeamMemberList from './containers/TeamMemberList'; // redux container
 import Tips from './components/Dashboard/Items/Tips.js';
 import UserInfo from './components/Dashboard/Items/Settings';
 import Maps from './components/Dashboard/Items/Maps';
@@ -49,6 +50,9 @@ render(
   </Provider>,
   document.getElementById('app')
 );
+
+            // <Route path="/dashboard/teams"component={TeamMemberList} />
+          // </Route>
 
           // <Route path="/dashboard/:username/settings"component={UserInfo} />
           // <Route path="/dashboard/:username/log"component={PlaceHolder} />

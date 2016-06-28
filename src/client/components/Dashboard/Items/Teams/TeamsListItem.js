@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import TeamMemberList from './TeamMemberList';
+// import TeamMemberList from '../../../../containers/TeamMemberList';
 
 const exampleMembers = [
   {
@@ -39,7 +40,7 @@ class TeamsListItem extends Component {
           </div>
         </div>
         <div className="team-members-container">
-          <TeamMemberList members={exampleMembers} />
+          <TeamMemberList members={exampleMembers} team={this.props.team} fetchTeamMembers={this.props.fetchTeamMembers.bind(this)} />
         </div>
       </div>
     );
@@ -47,8 +48,9 @@ class TeamsListItem extends Component {
 }
 
 TeamsListItem.propTypes = {
-  team: PropTypes.object.isRequired,
-  members: PropTypes.object.isRequired
+  team: PropTypes.object,
+  members: PropTypes.array,
+  fetchTeamMembers: PropTypes.func
 };
 
 export default TeamsListItem;
