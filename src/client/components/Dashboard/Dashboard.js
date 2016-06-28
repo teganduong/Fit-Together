@@ -5,27 +5,30 @@ import SideNavBar from './SideNavBar';
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
-    console.log(props, 'dsfadsfadsf');
-    this.props.fetchUser(this.props.params.username);
-    console.log('THIS IS DASHBOARD USER', props);
   }
 
+  componentDidMount() {
+    this.props.getUser();
+  }
+  
   componentWillReceiveProps(nextProps) {
-    if (nextProps.user !== this.props.user) {
-      this.props.fetchUser(nextProps.user.username);
-    }
-        console.log('THIS IS DASHBOARD USER', nextProps);
+      // this.props.fetchUser(nextProps.user);
+    console.log('these are nextProps in dashboard', nextProps);
+    // if (nextProps.user !== this.props.user) {
+    // }
 
   }
 
   render() {
 
-    let { username } = this.props.params;
-        console.log('THIS IS DASHBOARD USER', this.props);
+    let { user } = this.props;
+        console.log('THIS IS DASHBOARD USER', this.props.user);
 
     return (
       <div>
         <SideNavBar username={username} />
+        <NavBar />
+        <SideNavBar username={user} />
         {this.props.children && React.cloneElement(this.props.children, {
           user: this.props.user.data
         })}

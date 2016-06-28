@@ -20,7 +20,7 @@ exports.addUser = (req, res) => {
 };
 
 exports.getUserInfo = (req, res) => {
-  db.one('select * from users where username=${username}', req.params)
+  db.one('select * from users where username=${username}', req.body)
     .then(user => {
       res.status(200)
         .json({

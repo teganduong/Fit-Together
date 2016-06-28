@@ -7,7 +7,7 @@ const db = require('../db/connection.js');
 passport.use(new FitbitStrategy({
   clientID: config.Fitbit.clientID,
   clientSecret: config.Fitbit.clientSecret,
-  scope: ['activity', 'heartrate', 'location', 'profile'],
+  scope: ['activity', 'heartrate', 'location', 'profile', 'sleep'],
   callbackURL: config.Fitbit.callbackURL
 }, 
   (accessToken, refreshToken, profile, done) => {

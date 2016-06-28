@@ -7,7 +7,8 @@ const users = require('../controllers/usersCtrl');
 const teams = require('../controllers/teamsCtrl');
 const passport = require('passport');
 const flash = require('connect-flash');
-import { browserHistory } from 'react-router';
+const db = require('../db/connection.js');
+const queryHelper = require('../queryHelper');
 
 /**  Users **/
 router.get('/api/users/:username', users.getUserInfo);
@@ -16,6 +17,18 @@ router.post('/userteams', teams.getUserTeams);
 router.post('/teammembers', teams.getTeamMembers);
 router.post('/createteam', teams.createTeam);
 router.post('/deleteteam', teams.deleteTeam);
+router.get('/api/user', (req, res) => {
+  console.log('insider req', req.user.username);
+  db.any("select * from users where username=$1", [req.user.username])
+  .then(data => {
+      // success;
+      console.log('this is data', data);
+  res.json(data);
+  })
+  .catch(error => {
+      console.error('error in adding user: ', error);
+  });
+});
 
 /**  Auth **/
 router.get('/auth/fitbit',
@@ -24,18 +37,17 @@ router.get('/auth/fitbit',
 router.get('/auth/fitbit/callback', 
   passport.authenticate('fitbit', { failureRedirect: '/login', failureFlash: true }),
   (req, res) => {
-    console.log('INSIDE CALLBACK==============', req.user);
     if(req.user) {
       const userData = {
         accessToken: req.user.accessToken,
         id: req.user.profile.id,
         username: req.user.profile.displayName
       };
-      // rUtil.setUserToken(userId, req.user.accessToken);
+      queryHelper.getUserData(userData.id, userData.accessToken);
+      res.redirect('/dashboard');
     }
-    res.redirect('/dashboard');
-  });
-
+  }
+);
 
 router.get('/auth/moves', passport.authenticate('moves'));
 
