@@ -30,8 +30,9 @@ router.get('/api/user', (req, res) => {
 });
 
 router.get('/api/user', (req, res) => {
-  console.log('insider req', req.user.username);
-  db.any('select * from users where username=$1', [req.user.username])
+  if (req.user) {
+    console.log('insider req', req.user.username);
+    db.any('select * from users where username=$1', [req.user.username])
   .then(data => {
     // success;
     console.log('this is data', data);
@@ -40,6 +41,7 @@ router.get('/api/user', (req, res) => {
   .catch(error => {
     console.error('error in adding user: ', error);
   });
+  }
 });
 
 /**  Auth **/

@@ -13,7 +13,6 @@ import App from './components/App';
 import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
 import Signup from './containers/Auth';
-import Login from './components/Home/LoginModal';
 
 // Dashbboard Components
 import Profile from './components/Dashboard/Profile/Profile.js';
@@ -29,18 +28,11 @@ import UserInfo from './components/Dashboard/Items/Settings';
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
 const history = syncHistoryWithStore(browserHistory, store);
 
-// function isLoggedIn(req, res, next) {
-//   if (req.isAuthenticated())
-//     return next();
-//   res.redirect('/');
-// }
-
 render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App} >
         <Route path="/signup" component={Signup} />
-        <Route path="/login" component={Login} />
         <IndexRoute component={Home} />
         <Route path="/dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />

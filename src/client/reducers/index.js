@@ -5,10 +5,14 @@ import {
   CREATE_TEAM,
   REMOVE_TEAM,
   REQUEST_ERROR,
+<<<<<<< dd6dc0ffe5126173371356b0c77d8be31b17770e
   RECEIVE_EXERCISE,
   RECEIVE_FOOD,
   RECEIVE_MEM,
   RECEIVE_SLEEP,
+=======
+  SIGN_OUT
+>>>>>>> implement signout
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
