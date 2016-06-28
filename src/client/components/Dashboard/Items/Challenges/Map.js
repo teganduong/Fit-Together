@@ -1,7 +1,7 @@
 import React from 'react';
 
 /* global google */
-class Maps extends React.Component {
+class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,14 +68,12 @@ class Maps extends React.Component {
 
   render() {
     return (
-      <div className="main-container">
-        <div className="top-container">
-          <div id="map"></div>
-        </div>
+      <div className="top-container">
+        <div id="map"></div>
       </div>
     );
   }
 
 }
 
-export default Maps;
+export default Map;

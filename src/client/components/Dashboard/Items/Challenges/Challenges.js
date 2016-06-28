@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Map from './Map';
 
 class Challenges extends Component {
   constructor(props) {
@@ -10,9 +11,10 @@ class Challenges extends Component {
       <div className="main-container">
         <div className="challenge-header">
           <div>
-            <h3>Challenges</h3>
+            <p>Challenges</p>
           </div>
         </div>
+        <Map />
       </div>
     );
   }

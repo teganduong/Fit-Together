@@ -15,7 +15,8 @@
     "lint": "eslint src --color",
     "move-assets": "cp -R src/client/assets dev/client/",
     "test": "npm run lint",
-    "seed-test": "node src/server/testData/seedSleep.js; node src/server/testData/seedMem.js;  node src/server/testData/seedExercise.js;  node src/server/testData/seedFood.js",
+    "seed-log": "node src/server/testData/seedSleep.js; node src/server/testData/seedMem.js;  node src/server/testData/seedExercise.js;  node src/server/testData/seedFood.js",
+    "seed-test": "node src/server/testData/seedTeams.js;",
     "json": "node src/server/testData/seedSleep.js"
   },
   "devDependencies": {

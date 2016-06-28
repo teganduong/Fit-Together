@@ -5,7 +5,6 @@ const SideNavBar = ({ username }) => (
   <div id="sidebar-wrapper">
     <p id="sidebar-title">Fit Together</p>
     <ul className="sidebar-nav">
-      <li><Link to={"/dashboard/maps"}>Maps</Link></li>
       <li><Link to="/dashboard">My Dashboard</Link></li>
       <li><Link to="/dashboard/settings">Settings</Link></li>
       <li><Link to="/dashboard/log">Log</Link></li>

@@ -24,7 +24,6 @@ import Teams from './containers/Teams'; // redux container
 // import TeamMemberList from './containers/TeamMemberList'; // redux container
 import Tips from './components/Dashboard/Items/Tips.js';
 import UserInfo from './components/Dashboard/Items/Settings';
-import Maps from './components/Dashboard/Items/Maps';
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
 const history = syncHistoryWithStore(browserHistory, store);
@@ -37,7 +36,6 @@ render(
         <IndexRoute component={Home} />
         <Route path="/dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />
-          <Route path="/dashboard/maps"component={Maps} />
           <Route path="/dashboard/settings"component={UserInfo} />
           <Route path="/dashboard/log"component={PlaceHolder} />
           <Route path="/dashboard/stats"component={Stats} />
