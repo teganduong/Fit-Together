@@ -36,7 +36,7 @@ export default class Dashboard extends Component {
 
 Dashboard.propTypes = {
   children: PropTypes.element.isRequired,
-  fetchUser: PropTypes.func,
   user: PropTypes.object,
   params: PropTypes.object,
+  getUser: PropTypes.func,
 };
