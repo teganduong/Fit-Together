@@ -5,7 +5,7 @@ class LoginModal extends Component {
   constructor(props) {
     super(props);
   } 
-
+  
 // handleSubmit() {
 // fetch('/auth/fitbit', {
 //       method: 'GET',

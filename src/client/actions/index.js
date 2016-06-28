@@ -14,7 +14,6 @@ export const receiveExercise = exercise => ({ type: c.RECEIVE_Exercise, data: ex
 
 export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
   const payload = JSON.stringify({ name, username, password, email, weight, bmi, goal, points });
-
   return dispatch => (
     fetch('/api/users', {
       method: 'POST',
@@ -32,13 +31,26 @@ export const addUser = (name, username, password, email, weight, bmi, goal, poin
 };
 
 export const fetchUser = (username) => (
-
   dispatch => (
     fetch(`/api/users/${username}`, {
       credentials: 'same-origin'
     })
     .then(res => res.json())
     .then(userInfo => dispatch(receiveUser(userInfo)))
+    .catch(err => dispatch(error(err)))
+  )
+);
+
+export const getUser = () => (
+  dispatch => (
+    fetch('/api/user', {
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(userInfo => {
+      console.log('userInfo inside getUser', userInfo); 
+      return dispatch(receiveUser(userInfo));
+    })
     .catch(err => dispatch(error(err)))
   )
 );
