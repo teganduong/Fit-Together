@@ -5,6 +5,7 @@ class TeamsView extends Component {
   constructor(props) {
     super(props);
     console.log('team', props);
+    this.props.createTeam();
     this.props.fetchUserTeams({ user_id: 1 });
     this.teams = [];
   }
@@ -36,7 +37,8 @@ class TeamsView extends Component {
 TeamsView.propTypes = {
   teams: PropTypes.object,
   fetchUserTeams: PropTypes.func,
-  fetchTeamMembers: PropTypes.func
+  fetchTeamMembers: PropTypes.func,
+  createTeam: PropTypes.func
 };
 
 export default TeamsView;

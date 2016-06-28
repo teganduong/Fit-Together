@@ -12,13 +12,17 @@ exports.createTeam = (req, res) => {
         team_id: teamId.id
       };
       console.log('Successly inserted team', userTeam);
-      return db.none('insert into users_teams(user_id, team_id)' + 
-        'values(${user_id}, (select id from teams where id=${team_id}))', userTeam);
+      return db.one('insert into users_teams(user_id, team_id)' + 
+        'values(${user_id}, (select id from teams where id=${team_id})) returning team_id', userTeam);
     })
-    .then(() => {
+    .then((data) => {
+      delete req.body.user_id;
+      req.body.id = data.team_id;
+      console.log(req.body, 'fdasfadsf');
       res.status(201)
         .json({
           status: 'success',
+          data: req.body,
           message: 'successfully created new team'
         });
     })
@@ -27,8 +31,6 @@ exports.createTeam = (req, res) => {
       res.status(400);
     });
 };
-
-
 
 // Find a team and members given a user_id and team_id
 // [1] Given a team_id --> get all user_id's of the team except for current user_id 
