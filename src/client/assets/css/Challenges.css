@@ -1,0 +1,17 @@
+ /*add element to the list below to show red borders */
+ .challenges-header, .map-container {
+  border-width: 0.5px;
+  border-color: red;
+  border-style: solid;
+}
+
+.challenges-header-items {
+  display: inline-block;
+  margin: 10px;
+}
+
+ .map-container, .map-map {
+	width: 50%;
+	height: 50%;
+}
+

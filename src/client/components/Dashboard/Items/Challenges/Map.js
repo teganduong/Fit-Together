@@ -68,8 +68,8 @@ class Map extends React.Component {
 
   render() {
     return (
-      <div className="top-container">
-        <div id="map"></div>
+      <div className="map-container">
+        <div className="map-map" id="map"></div>
       </div>
     );
   }

@@ -9,9 +9,9 @@ class Challenges extends Component {
   render() {
     return (
       <div className="main-container">
-        <div className="challenge-header">
-          <div>
-            <p>Challenges</p>
+        <div className="challenges-header">
+          <div className="challenges-header-items">
+            <h3>Challenges</h3>
           </div>
         </div>
         <Map />
