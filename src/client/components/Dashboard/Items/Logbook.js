@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import LogbookCard from './LogbookCard';
 import LogbookCardEntry from './LogbookCardEntry';
-<<<<<<< 24f7e4bf4bfc5c238b6fafcae67151ab4fcb0b85
-
 const dummyCards = [
   { name: 'Foods',
-    image: 'https://unsplash.com/photos/i0uHNWnwxVw' },
+    image: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTvNyTlvQ_dmAzmT-RvFCRJk_czla_HD_H7DE6BEQIw-h09Qjgm' },
   { name: 'Exercise',
-    image: 'https://unsplash.com/photos/0wtaJS_nxBQ' },
+    image: 'My Image' },
   { name: 'Sleep',
-    image: 'https://unsplash.com/photos/JCXANpeR2XI' },
-  { name: 'Mood',
-    image: 'https://unsplash.com/photos/mMhPX6TJfAY' },
-  { name: 'Energy',
-    image: 'https://unsplash.com/photos/TyQ-0lPp6e4' },
-  { name: 'Motivation',
-    image: 'https://unsplash.com/photos/no_TCkPUq_s' },        
+    image: 'My Image' },
+  { name: 'Measurements',
+    image: 'My Image' },
+  { name: 'Caffeine',
+    image: 'My Image' },
+  { name: 'Daily Mood',
+    image: 'My Image' },        
+];
 
 const Logbook = () => (
   <div className="main-container">

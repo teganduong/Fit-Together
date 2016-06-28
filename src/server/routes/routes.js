@@ -18,16 +18,16 @@ router.post('/teammembers', teams.getTeamMembers);
 router.post('/createteam', teams.createTeam);
 router.post('/deleteteam', teams.deleteTeam);
 router.get('/api/user', (req, res) => {
-  if(req.user) {
-  console.log('insider req', req.user.username);
-  db.any("select * from users where username=$1", [req.user.username])
+  if (req.user) {
+    console.log('insider req', req.user.username);
+    db.any('select * from users where username=$1', [req.user.username])
   .then(data => {
     res.json(data);
   })
   .catch(error => {
     console.error('error in adding user: ', error);
   });
-}
+  }
 });
 
 /**  Auth **/
@@ -37,7 +37,7 @@ router.get('/auth/fitbit',
 router.get('/auth/fitbit/callback', 
   passport.authenticate('fitbit', { failureRedirect: '/login', failureFlash: true }),
   (req, res) => {
-    if(req.user) {
+    if (req.user) {
       const userData = {
         accessToken: req.user.accessToken,
         id: req.user.profile.id,
@@ -55,7 +55,7 @@ router.get('/auth/moves/callback',
   passport.authenticate('moves', { failureRedirect: '/login' }),
   (req, res) => {
     console.log('inside callback', req.user);
-    let username = req.user;
+    const username = req.user;
     res.redirect(`/dashboard/${username}`);
   }
 );
@@ -82,16 +82,16 @@ router.get('/api/checkAuth', (req, res, next) => {
 
 router.get('/signup', 
   passport.authenticate('local-signup', {
-    successRedirect : '/', 
-    failureRedirect : '/signup',
-    failureFlash : true 
+    successRedirect: '/', 
+    failureRedirect: '/signup',
+    failureFlash: true 
   })
 );
 
 router.post('/login', passport.authenticate('local-login', {
-  successRedirect : '/', // redirect to the secure profile section
-  failureRedirect : '/login', // redirect back to the signup page if there is an error
-  failureFlash : true // allow flash messages
+  successRedirect: '/', // redirect to the secure profile section
+  failureRedirect: '/login', // redirect back to the signup page if there is an error
+  failureFlash: true // allow flash messages
 }));
 
 module.exports = router;

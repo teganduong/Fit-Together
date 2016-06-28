@@ -14,7 +14,7 @@ export default class Dashboard extends Component {
   render() {
     let user;
 
-    if(this.props.user[0]) {
+    if (this.props.user[0]) {
       user = this.props.user[0].name;
     } else {
       user = '';
@@ -33,6 +33,13 @@ export default class Dashboard extends Component {
 
 Dashboard.propTypes = {
   children: PropTypes.element.isRequired,
+<<<<<<< 24f7e4bf4bfc5c238b6fafcae67151ab4fcb0b85
   getUser: PropTypes.func,
   user: PropTypes.object,
+=======
+  fetchUser: PropTypes.func,
+  getUser: PropTypes.func,
+  user: PropTypes.array,
+  params: PropTypes.object
+>>>>>>> complete linting
 };
