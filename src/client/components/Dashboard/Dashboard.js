@@ -12,7 +12,6 @@ export default class Dashboard extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
       this.props.fetchUser(nextProps.user.username);
-      console.log(nextProps, '=====================');
     }
   }
 
@@ -33,5 +32,5 @@ Dashboard.propTypes = {
   children: PropTypes.element.isRequired,
   fetchUser: PropTypes.func,
   user: PropTypes.object,
-  params: PropTypes.object
+  params: PropTypes.object,
 };

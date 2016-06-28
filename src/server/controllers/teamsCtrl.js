@@ -78,9 +78,11 @@ exports.addToTeam = (req, res) => {
 };
 
 exports.getUserTeams = (req, res) => {
-  db.query('select * from teams where id=' + 
-      '(select team_id from users_teams where user_id=${user_id})', req.params)
+  console.log('req.body', req.body);
+  db.query('select * from teams where id=ANY' + 
+      '(select team_id from users_teams where user_id=${user_id})', req.body)
     .then((data) => {
+      console.log(data, 'data');
       res.status(200)
         .json({
           status: 'success',

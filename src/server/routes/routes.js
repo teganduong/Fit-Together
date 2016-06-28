@@ -9,7 +9,7 @@ const passport = require('passport');
 /**  Users **/
 router.get('/api/users/:username', users.getUserInfo);
 router.post('/api/users', users.addUser);
-router.get('/userteams', teams.getUserTeams);
+router.post('/userteams', teams.getUserTeams);
 
 /**  Auth **/
 router.get('/auth/fitbit', 

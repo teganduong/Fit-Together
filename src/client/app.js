@@ -20,7 +20,7 @@ import PlaceHolder from './components/PlaceHolder.js';
 
 import Stats from './components/Dashboard/Items/Stats.js';
 import Challenges from './components/Dashboard/Items/Challenges.js';
-import Teams from './components/Dashboard/Items/Teams.js';
+import Teams from './containers/Teams'; // redux container
 import Tips from './components/Dashboard/Items/Tips.js';
 import UserInfo from './components/Dashboard/Items/Settings';
 import Maps from './components/Dashboard/Items/Maps';

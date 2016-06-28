@@ -53,13 +53,21 @@ export const updateUser = (userInfo) => {
   );
 };
 
-export const fetchUserTeams = (userId) => (
+export const fetchUserTeams = (obj) => (
   dispatch => (
     fetch('/userteams', {
-      credentials: 'same-origin'
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(obj)
     })
     .then(res => res.json())
-    .then(teams => dispatch(receiveUserTeams(teams)))
+    .then(response => {
+      console.log('fadsfdsaf', response.data);
+      dispatch(receiveUserTeams(response.data));
+    })
     .catch(err => dispatch(error(err)))
   )
 );

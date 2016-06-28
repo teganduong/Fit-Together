@@ -27,31 +27,15 @@ const exampleMembers = [
   }
 ];
 
-const exampleTeamData = [
-  {
-    user_id: 1,
-    name: 'Bay Area Hikers',
-    description: 'This group is for people who love to hike in the great outdoors',
-    team_icon: 'http://www.womenshealthmag.com/sites/womenshealthmag.com/files/images/0410-youcan-hiking-0008.jpg'
-  },
-  {
-    user_id: 2,
-    name: 'Yoga and Pilates',
-    description: 'Wanna stretch and be enlightened? This group is for you',
-    team_icon: 'http://www.womenshealthmag.com/sites/womenshealthmag.com/files/images/0410-youcan-hiking-0008.jpg'
-  },
-  {
-    user_id: 3,
-    name: 'Weekend Bootcamp',
-    description: 'Wanna exercise during the weekend? Meet likemided people just like you',
-    team_icon: 'http://www.womenshealthmag.com/sites/womenshealthmag.com/files/images/0410-youcan-hiking-0008.jpg'
-  }
-];
-
-
 class UserTeamPage extends Component {
   constructor(props) {
     super(props);
+    this.props.fetchUserTeams({ user_id: 1 });
+    this.teams = [];
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.teams = nextProps.teams;
   }
 
   render() {
@@ -68,11 +52,16 @@ class UserTeamPage extends Component {
             <button type="button" className="btn btn-default">Find New Team</button>
           </div>  
         </div>
-        <UserTeamList teams={exampleTeamData} />
+        <UserTeamList teams={this.teams} />
       </div>
     );
   }
 }
+
+UserTeamPage.propTypes = {
+  teams: PropTypes.object,
+  fetchUserTeams: PropTypes.func
+};
 
 class UserTeamList extends Component {
   constructor(props) {
