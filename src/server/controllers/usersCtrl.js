@@ -3,8 +3,8 @@ const db = require('../db/connection.js');
 // Signup User
 exports.addUser = (req, res) => {
   console.log('req.body in addUser: ', req.body);
-  db.none('insert into users(name, username, password, email, weight, bmi, goal)' +
-      'values(${name}, ${username}, ${password}, ${email}, ${weight}, ${bmi}, ${goal})',
+  db.none('insert into users(name, username, password, email, weight, bmi, goal, points, user_icon)' +
+      'values(${name}, ${username}, ${password}, ${email}, ${weight}, ${bmi}, ${goal}, ${points}, ${user_icon})',
     req.body)
     .then(() => {
       res.status(201)

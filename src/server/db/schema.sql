@@ -20,7 +20,8 @@ CREATE TABLE users (
   weight INTEGER,
   bmi DECIMAL,
   goal VARCHAR(255),
-  points INTEGER
+  points INTEGER,
+  user_icon VARCHAR(255)
 );
 
 CREATE TABLE challenges (
