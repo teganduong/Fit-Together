@@ -13,7 +13,7 @@ export const user = (state, action) => {
       return action.data || state;
     }
     default:
-      return state || {};
+      return state || [];
   }
 };
 

@@ -18,16 +18,16 @@ router.post('/teammembers', teams.getTeamMembers);
 router.post('/createteam', teams.createTeam);
 router.post('/deleteteam', teams.deleteTeam);
 router.get('/api/user', (req, res) => {
+  if(req.user) {
   console.log('insider req', req.user.username);
   db.any("select * from users where username=$1", [req.user.username])
   .then(data => {
-      // success;
-      console.log('this is data', data);
-  res.json(data);
+    res.json(data);
   })
   .catch(error => {
-      console.error('error in adding user: ', error);
+    console.error('error in adding user: ', error);
   });
+}
 });
 
 /**  Auth **/
@@ -60,8 +60,23 @@ router.get('/auth/moves/callback',
   }
 );
 
-router.get('/logout', (req, res) => {
-  req.logout();
+router.post('/signout', (req, res) => {
+  req.session.destroy((err) => {
+    res.redirect('/'); 
+  });
+  console.log('logged out');
+});
+
+// router.post('/signout', (req, res) => {
+//   console.log('logging out');
+//   req.logout();
+//   res.redirect('/');
+// });
+
+router.get('/api/checkAuth', (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
   res.redirect('/');
 });
 
@@ -79,11 +94,4 @@ router.post('/login', passport.authenticate('local-login', {
   failureFlash : true // allow flash messages
 }));
 
-// router.get('/login', 
-//   passport.authenticate('local-login', {
-//     successRedirect : '/dashboard', 
-//     failureRedirect : '/login',
-//     failureFlash : true 
-//   })
-// );
 module.exports = router;

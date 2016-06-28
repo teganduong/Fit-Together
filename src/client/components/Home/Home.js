@@ -7,7 +7,7 @@ import SignupModal from './SignupModal';
 const Home = (props) => (
   <div>
     <HomeNavBar />
-    <LoginModal addUser={props.addUser}  />
+    <LoginModal addUser={props.addUser} getUser={props.getUser}  />
     <SignupModal addUser={props.addUser} />
     <LandingImage />
   </div>

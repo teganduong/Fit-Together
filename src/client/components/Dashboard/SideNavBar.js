@@ -12,8 +12,7 @@ const SideNavBar = ({ username }) => (
       <li><Link to="/dashboard/challenges">Challenges</Link></li>
       <li><Link to="/dashboard/teams">Teams</Link></li>
       <li><Link to="/dashboard/tips">Tips</Link></li>
-      <li><Link to="/">Signout</Link></li>
-    </ul>
+      <li><a href="/signout" action="post">Signout</a></li>    </ul>
   </div>
 );
 
