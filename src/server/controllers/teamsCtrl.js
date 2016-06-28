@@ -24,9 +24,11 @@ exports.createTeam = (req, res) => {
     })
     .catch((err) => {
       console.log('Error', err);
-      res.status(404);
+      res.status(400);
     });
 };
+
+
 
 // Find a team and members given a user_id and team_id
 // [1] Given a team_id --> get all user_id's of the team except for current user_id 
@@ -114,3 +116,4 @@ exports.getTeamMembers = (req, res) => {
     // res.status(400);
   });
 };
+
