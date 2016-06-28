@@ -65,7 +65,6 @@ export const fetchUserTeams = (obj) => (
     })
     .then(res => res.json())
     .then(response => {
-      console.log('fadsfdsaf', response.data);
       dispatch(receiveUserTeams(response.data));
     })
     .catch(err => dispatch(error(err)))

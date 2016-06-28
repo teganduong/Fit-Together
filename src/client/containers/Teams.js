@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Teams from '../components/Dashboard/Items/Teams';
+import Teams from '../components/Dashboard/Items/Teams/TeamsView';
 import { fetchUserTeams } from '../actions';
 
 const mapStateToProps = ({ teams }) => ({ teams });
