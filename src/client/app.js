@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { render } from 'react-dom';
 import thunk from 'redux-thunk';
@@ -42,6 +43,7 @@ render(
           <Route path="/dashboard/challenges"component={Challenges} />
           <Route path="/dashboard/teams"component={Teams} />
           <Route path="/dashboard/tips"component={PlaceHolder} />
+          <Route path="/dashboard/maps"component={Maps} />
         </Route>
       </Route>
     </Router>
