@@ -8,15 +8,11 @@
 .team-list-container {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-
   background: #fff;
   border-radius: 2px;
-  /*display: inline-block;*/
-  /*height: 5em;*/
   width: 98%;
   margin: 1%;
   position: relative;
-  /*width: 300px;*/
 }
 
 .team-list-container:hover {
@@ -34,7 +30,6 @@
   display: inline-block;
   width: 25%;
   height: 100%;
-  /*margin: 0;*/
   vertical-align: top;
   overflow: auto;
 }
@@ -42,7 +37,6 @@
 .team-image-container {
   position: relative;
   width: 100%;
-  /*padding-top: 100%;*/
 }
 
 .team-icon {
@@ -57,7 +51,6 @@
   display: inline-block;
   width: 75%;
   height: 100%;
-  /*margin: 0;*/
 }
 
 .team-members-container {
@@ -66,12 +59,11 @@
   height: 25%;
 }
 
-
 .user-icon {
-    position: relative;
-    width: 3.5rem;
-    height: 3.5rem;
-    margin: 0.35rem;
+  position: relative;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0.35rem;
 }
 
 .team-member {
@@ -88,42 +80,90 @@
   float: right;
 }
 
-/*.team-user {
-  width: 100%;
-  border-width: 3px;
+#createNewTeamModal {
+  z-index: 1000;
+}
+
+/*Join Team Modal styling*/
+
+/*.join-icon-container, .join-title-container {
+  border-width: 0.5px;
+  border-color: red;
   border-style: solid;
-  display: inline-block;
-  background-color:  #392D61;
-  text-align: center;
-  font-size: 20px;
-}
-
-#team-user-image {
-  width: 80px;
-  height: 80px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 5px;
-}
-
-#team-team-image {
-  width: 80px;
-  height: 80px;
-}
-
-.teamMember-image {
-  display: inline-block;
-}
-.teamMemberList {
-  list-style: none;
-  text-align: center;
-}
-
-.team-user-steps {
-  text-align: center;
-}
-
-.team-user-score {
-  text-align: center;
 }*/
+
+.join-list-container {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  background: #fff;
+  border-radius: 2px;
+  width: 45rem;
+  margin: 1%;
+  position: relative;
+}
+
+.join-list-container:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.join-team-icon {
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+  margin: 1rem;
+  border-width: 0.5px;
+  border-color: #CCCBCB;
+  border-style: solid;
+}
+
+.join-title-container {
+  position: relative;
+  display: inline-block;
+  width: 35rem;
+  height: 10rem;
+  /*margin: 0;*/
+}
+
+.join-icon-container {
+  position: relative;
+  display: inline-block;
+  width: 10rem;
+  height: 10rem;
+  /*margin: 0;*/
+  vertical-align: top;
+  overflow: auto;
+}
+
+.join-text-title {
+  margin-top: 10px;
+  margin-left: 3px;
+  margin-right: 3px;
+  font-size: 14px;
+  color: #AFADAD;
+}
+
+.join-text-body {
+  margin-top: 3px;
+  margin-left: 3px;
+  margin-right: 3px;
+  font-size: 12px;
+  color: #CCCBCB;
+}
+
+/*Create new team modal styling */
+
+.create-icon-container {
+  text-align: center;
+  margin: 1em;
+}
+
+.create-team-icon {
+  position: relative;
+  width: 15rem;
+  height: 15rem;
+  margin: 1rem;
+  border-width: 0.5px;
+  border-color: #CCCBCB;
+  border-style: solid;
+}
+
