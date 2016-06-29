@@ -30,14 +30,13 @@ class d3ChartClass {
     .each(function(d, i) {
       d3.select(this)
         .attr({
-          x: i*10 + 1,
-          y: 100,
+          x: i * 20 + 5,
+          y: 400 - (d.time * 50),
           width: 10
         });
     })
-    .attr('class', 'bar')
     .attr("height", function(d) {
-        var barHeight = d.time * 5;  // Scale up by factor of 5
+        var barHeight = d.time * 10;  // Scale up by factor of 5
         return barHeight + "px";
     });
   }
