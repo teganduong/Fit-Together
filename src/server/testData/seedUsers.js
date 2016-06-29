@@ -9,7 +9,8 @@ const exampleUserData = [
     weight: 145,
     bmi: 21.3,
     goal: 'Live a healthy lifestyle',
-    points: 0
+    points: 0,
+    user_icon: 'https://assets-cdn.github.com/images/modules/styleguide/linktocat.png'
   },
   {
     name: 'John Jacobs',
@@ -19,7 +20,8 @@ const exampleUserData = [
     weight: 180,
     bmi: 24.5,
     goal: 'Get super swole',
-    points: 0
+    points: 0,
+    user_icon: 'https://octodex.github.com/images/gangnamtocat.png'
   },
   {
     name: 'Jeffrey Jordan',
@@ -29,7 +31,19 @@ const exampleUserData = [
     weight: 170,
     bmi: 22.5,
     goal: 'Get more tone',
-    points: 0
+    points: 0,
+    user_icon: 'https://stevegrunwell.github.io/wordpress-git/assets/heisencat.png'
+  },
+  {
+    name: 'Alex Adams',
+    username: 'alexa',
+    password: 'alexa',
+    email: 'alexa@gmail.com',
+    weight: 130,
+    bmi: 20.5,
+    goal: 'Get super tone',
+    points: 0,
+    user_icon: 'https://assets-cdn.github.com/images/modules/styleguide/linktocat.png'
   }
 ];
 

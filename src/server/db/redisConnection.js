@@ -11,7 +11,6 @@ client.on('error', (err) => {
 
 module.exports = client;
 
-
 exports.storeToken = (req, res) => {
   client.setAsync('token:' + req.body.username + ':', req.body.token)
     .then(() => res.status(201).send('success'))
@@ -24,14 +23,14 @@ exports.deleteToken = (req, res) => {
     .catch((err) => res.status(400));
 };
 
-exports.iniitializeUser = (req, res) => {
-  client.setAsync('user:' + req.body.username + ':points:', req.body.points)
-    .then(() => client.setAsync('user:' + req.body.username + '::', req.body....))
-    .then(() => client.setAsync('user:' + req.body.username + '::', req.body....))
-    .then(() => client.setAsync('user:' + req.body.username + '::', req.body....))
-    .then(() => res.status(201).send('success'))
-    .catch((err) => res.status(400));
-};
+// exports.iniitializeUser = (req, res) => {
+//   client.setAsync('user:' + req.body.username + ':points:', req.body.points)
+//     .then(() => client.setAsync('user:' + req.body.username + '::', req.body....))
+//     .then(() => client.setAsync('user:' + req.body.username + '::', req.body....))
+//     .then(() => client.setAsync('user:' + req.body.username + '::', req.body....))
+//     .then(() => res.status(201).send('success'))
+//     .catch((err) => res.status(400));
+// };
 
 exports.updatePoints = (req, res) => {
   client.setAsync('user:' + req.body.username + ':points:', req.body.points)

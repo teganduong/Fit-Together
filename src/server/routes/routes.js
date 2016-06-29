@@ -3,11 +3,16 @@ const router = express.Router();
 const FitbitPassport = require('../authentication/FitbitPassport');
 const MovesPassport = require('../authentication/MovesPassport');
 const users = require('../controllers/usersCtrl');
+const teams = require('../controllers/teamsCtrl');
 const passport = require('passport');
 
 /**  Users **/
 router.get('/api/users/:username', users.getUserInfo);
 router.post('/api/users', users.addUser);
+router.post('/userteams', teams.getUserTeams);
+router.post('/teammembers', teams.getTeamMembers);
+router.post('/createteam', teams.createTeam);
+router.post('/deleteteam', teams.deleteTeam);
 
 /**  Auth **/
 router.get('/auth/fitbit', 

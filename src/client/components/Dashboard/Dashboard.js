@@ -5,7 +5,7 @@ import SideNavBar from './SideNavBar';
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
-
+    console.log(props, 'dsfadsfadsf');
     this.props.fetchUser(this.props.params.username);
   }
 
@@ -19,7 +19,6 @@ export default class Dashboard extends Component {
     let { username } = this.props.params;
     return (
       <div>
-        <NavBar />
         <SideNavBar username={username} />
         {this.props.children && React.cloneElement(this.props.children, {
           user: this.props.user.data
@@ -33,5 +32,5 @@ Dashboard.propTypes = {
   children: PropTypes.element.isRequired,
   fetchUser: PropTypes.func,
   user: PropTypes.object,
-  params: PropTypes.object
+  params: PropTypes.object,
 };

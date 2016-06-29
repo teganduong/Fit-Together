@@ -1,3 +1,4 @@
+
 .main-container {
 	flex: 1;
 	transform: translate3d(0, 0, 0);
@@ -9,7 +10,6 @@
 .main-container.isOpen {
 	transform: translate3d(220px, 0, 0);
 }
-
 .top-container {
 	width: 100%;
 	display: inline-block;

@@ -4,27 +4,50 @@ const db = require('../db/connection.js');
 // [1] Given a team --> insert into the team table --> return team_id
 // [2] Given a user_id and team_id --> insert into the users_teams table
 exports.createTeam = (req, res) => {
-  db.one('insert into teams(name, description)' + 
-      'values(${name}, ${description}) returning id', req.body)
+  db.one('insert into teams(name, description, team_icon)' + 
+      'values(${name}, ${description}, ${team_icon}) returning id', req.body)
     .then((teamId) => {
       const userTeam = {
         user_id: req.body.user_id,
         team_id: teamId.id
       };
       console.log('Successly inserted team', userTeam);
-      return db.none('insert into users_teams(user_id, team_id)' + 
-        'values(${user_id}, (select id from teams where id=${team_id}))', userTeam);
+      return db.one('insert into users_teams(user_id, team_id)' + 
+        'values(${user_id}, (select id from teams where id=${team_id}))' +
+        ' returning team_id', userTeam);
     })
-    .then(() => {
+    .then((data) => {
+      delete req.body.user_id;
+      req.body.id = data.team_id;
       res.status(201)
         .json({
           status: 'success',
+          data: req.body,
           message: 'successfully created new team'
         });
     })
     .catch((err) => {
       console.log('Error', err);
-      res.status(404);
+      res.status(400);
+    });
+};
+
+exports.deleteTeam = (req, res) => {
+  db.none('delete from users_teams where team_id=${team_id}', req.body)
+    .then(() => {
+      db.none('delete from teams where id=${team_id}', req.body);
+    })
+    .then(() => {
+      res.status(201)
+        .json({
+          status: 'success',
+          data: req.body,
+          message: 'successfully deleted team'
+        });
+    })
+    .catch((err) => {
+      console.log('Error', err);
+      res.status(400);
     });
 };
 
@@ -54,7 +77,7 @@ exports.findTeam = (req, res) => {
   })
   .catch((err) => {
     console.log('Error:', err);
-    // res.status(404);
+    res.status(400);
   });
 };
 
@@ -76,3 +99,41 @@ exports.addToTeam = (req, res) => {
       res.status(404);
     });
 };
+
+exports.getUserTeams = (req, res) => {
+  console.log('req.body', req.body);
+  db.query('select * from teams where id=ANY' + 
+      '(select team_id from users_teams where user_id=${user_id})', req.body)
+    .then((data) => {
+      res.status(200)
+        .json({
+          status: 'success',
+          data: data,
+          message: 'successfully retrieved user\'s teams'
+        });
+    })
+    .catch((err) => {
+      console.log('error in retrieving user\'s teams', err);
+      res.status(400);
+    });
+};
+
+exports.getTeamMembers = (req, res) => {
+  db.query('select * from users where id=' + 
+      '(select user_id from users_teams where team_id=${team_id} and ' + 
+      'user_id!=${user_id})', req.body)
+  .then((data) => {
+    console.log(data);
+    res.status(200)
+      .json({
+        status: 'success',
+        data: data,
+        message: 'successfully found retreived team members'
+      });
+  })
+  .catch((err) => {
+    console.log('error in retreiving team members', err);
+    res.status(400);
+  });
+};
+
