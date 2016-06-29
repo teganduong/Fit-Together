@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import NavBar from './NavBar';
 import SideNavBar from './SideNavBar';
-import Profile from './Profile/Profile';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -19,7 +17,6 @@ export default class Dashboard extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-      // this.props.fetchUser(nextProps.user);
     console.log('these are nextProps in dashboard', nextProps);
     // if (nextProps.user !== this.props.user) {
     // }
@@ -31,10 +28,10 @@ export default class Dashboard extends Component {
 
     return (
       <div className="row">
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <SideNavBar />
         </div>
-        <div className="col-md-10">
+        <div className="col-sm-10">
           {this.props.children && React.cloneElement(this.props.children, {
             user: user
           })}
