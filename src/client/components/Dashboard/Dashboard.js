@@ -27,15 +27,11 @@ export default class Dashboard extends Component {
     console.log('user in Dashboard: ', user);
 
     return (
-      <div className="row">
-        <div className="col-sm-2">
-          <SideNavBar />
-        </div>
-        <div className="col-sm-10">
+      <div>
+        <SideNavBar />
           {this.props.children && React.cloneElement(this.props.children, {
             user: user
           })}
-        </div>
       </div>
     );
   }

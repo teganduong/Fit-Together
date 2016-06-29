@@ -52,14 +52,14 @@ body {
 
 .sidebar-nav li {
   position: relative;
-  /*width: 220px;*/
-  left: 0px;
+  width: 220px;
+  left: -40px;
 }
 
 .sidebar-nav li a {
   position: relative;
   display: block;
-  padding: 12px 0px 12px 9px;
+  padding: 12px 0px 12px 28px;
   font: 12px/1 'Montserrat', sans-serif;
   color: #fffef8;
   text-decoration: none;
