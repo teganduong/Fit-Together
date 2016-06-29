@@ -50,7 +50,7 @@ export const getUser = () => (
     .then(res => res.json())
     .then(userInfo => {
       console.log('userInfo inside getUser', userInfo); 
-      return dispatch(receiveUser(userInfo));
+      return dispatch(receiveUser(userInfo[0]));
     })
     .catch(err => dispatch(error(err)))
   )
