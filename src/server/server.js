@@ -9,7 +9,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const FitbitPassport = require('./authentication/FitbitPassport');
 const MovesPassport = require('./authentication/MovesPassport');
-const config = require('./config');
+const config = require('./api/api-keys');
 const app = express();
 const port = process.env.PORT || 3000;
 

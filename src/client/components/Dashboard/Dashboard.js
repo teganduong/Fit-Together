@@ -9,6 +9,11 @@ export default class Dashboard extends Component {
 
   componentDidMount() {
     this.props.getUser();
+    console.log('inside dashboard', this.props.user);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('inside dashboard', nextProps);
   }
 
   render() {

@@ -1,7 +1,7 @@
 const passport = require('passport');
 const FitbitStrategy = require('passport-fitbit-oauth2').FitbitOAuth2Strategy;
 const usersCtrl = require('../controllers/usersCtrl.js');
-const config = require('../config.js');
+const config = require('../api/api-keys.js');
 const db = require('../db/connection.js');
 
 passport.use(new FitbitStrategy({
@@ -55,6 +55,3 @@ passport.deserializeUser((obj, done) => {
 });
 
 module.exports = passport;
-
-
-

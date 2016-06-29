@@ -8,4 +8,5 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Signup = connect(null, mapDispatchToProps)(SignupModal);
+
 export default Signup;

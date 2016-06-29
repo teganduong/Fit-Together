@@ -56,29 +56,28 @@ router.get('/auth/moves/callback',
   (req, res) => {
     console.log('inside callback', req.user);
     const username = req.user;
-    res.redirect(`/dashboard/${username}`);
+    res.redirect('/dashboard');
   }
 );
 
-router.post('/signout', (req, res) => {
-  req.session.destroy((err) => {
-    res.redirect('/'); 
-  });
-  console.log('logged out');
-});
-
 // router.post('/signout', (req, res) => {
-//   console.log('logging out');
-//   req.logout();
-//   res.redirect('/');
+//   req.session.destroy((err) => {
+//     res.redirect('/'); 
+//   });
+//   console.log('logged out');
 // });
 
-router.get('/api/checkAuth', (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  }
+router.get('/signout', (req, res) => {
+  console.log('logging out');
+  req.logout();
   res.redirect('/');
 });
+
+router.get('/api/checkAuth', (req, res, next) => {
+  if (req.isAuthenticated())
+    return next();
+  res.redirect('/');
+})
 
 router.get('/signup', 
   passport.authenticate('local-signup', {
@@ -89,9 +88,9 @@ router.get('/signup',
 );
 
 router.post('/login', passport.authenticate('local-login', {
-  successRedirect: '/', // redirect to the secure profile section
-  failureRedirect: '/login', // redirect back to the signup page if there is an error
-  failureFlash: true // allow flash messages
+  successRedirect: '/', 
+  failureRedirect: '/login', 
+  failureFlash: true 
 }));
 
 module.exports = router;

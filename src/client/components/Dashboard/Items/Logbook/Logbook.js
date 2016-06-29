@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import LogbookCard from './LogbookCard';
 import LogbookCardEntry from './LogbookCardEntry';
-<<<<<<< 24f7e4bf4bfc5c238b6fafcae67151ab4fcb0b85
 
 const dummyCards = [
   { name: 'Foods',
@@ -16,6 +15,7 @@ const dummyCards = [
     image: 'https://unsplash.com/photos/TyQ-0lPp6e4' },
   { name: 'Motivation',
     image: 'https://unsplash.com/photos/no_TCkPUq_s' },        
+];
 
 const Logbook = () => (
   <div className="main-container">

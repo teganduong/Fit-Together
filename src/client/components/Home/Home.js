@@ -13,9 +13,5 @@ const Home = (props) => (
   </div>
 );
 
-Home.propTypes = {
-  fetchUser: PropTypes.func,
-  getUser: PropTypes.func,
-};
 
 export default Home;

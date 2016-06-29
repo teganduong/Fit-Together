@@ -1,7 +1,7 @@
 const passport = require('passport');
 const MovesStrategy = require('passport-moves').Strategy;
 const usersCtrl = require('../controllers/usersCtrl.js');
-const config = require('../config.js');
+const config = require('../api/api-keys.js');
 const db = require('../db/connection.js');
 
 passport.use(new MovesStrategy({
