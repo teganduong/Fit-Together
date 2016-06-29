@@ -8,8 +8,8 @@ console.log(hours);
 
 class d3ChartClass {
   constructor(el, props, state) {
-    d3.select(el).append('svg');
-    this.svg = d3.select('svg')
+    this.width = props.width;
+    this.svg = d3.select(el).append('svg')
       .attr('class', 'd3')
       .attr('width', props.width)
       .attr('height', props.height);
@@ -22,14 +22,22 @@ class d3ChartClass {
     .attr('r', 22);
   }
 
-  makeBars(el, props) {
-    this.svg.selectAll('div')
-    .data(hours)
+  makeBars(el, props, objects) {
+    this.svg.selectAll('rect')
+    .data(sleepData)  // array of daily sleep data
     .enter()
-    .append('div')
+    .append('rect')
+    .each(function(d, i) {
+      d3.select(this)
+        .attr({
+          x: i*10 + 1,
+          y: 100,
+          width: 10
+        });
+    })
     .attr('class', 'bar')
-    .style("height", function(d) {
-        var barHeight = d * 5;  // Scale up by factor of 5
+    .attr("height", function(d) {
+        var barHeight = d.time * 5;  // Scale up by factor of 5
         return barHeight + "px";
     });
   }

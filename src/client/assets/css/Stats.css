@@ -3,7 +3,7 @@
   width: 900px;
 }
 
-div.bar {
+.bar {
     display: inline-block;
     width: 20px;
     height: 75px;   /* We'll override this later */
