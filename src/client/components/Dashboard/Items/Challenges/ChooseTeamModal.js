@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const ChooseTeamModal = () => (
-  <div className="modal fade" id="chooseTeamModal" role="dialog" aria-hidden="true">
+  <div className="modal fade" id="chooseTeamModal" role="dialog" data-backdrop="false">
     <div className="modal-dialog modal-sm">
       <div className="modal-content">
         <div className="modal-header">

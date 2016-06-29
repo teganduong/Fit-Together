@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const ChallengeTeamModal = () => (
-  <div className="modal fade" id="challengeTeamModal" role="dialog">
+  <div className="modal fade" id="challengeTeamModal" role="dialog" data-backdrop="false">
     <div className="modal-dialog modal-sm">
       <div className="modal-content">
         <div className="modal-header">
@@ -16,8 +16,6 @@ const ChallengeTeamModal = () => (
               id="pwd" 
               placeholder="Enter password" 
             />
-            <a href="/auth/fitbit" className="btn btn-primary">Fitbit</a>
-            <a href="/auth/moves" className="btn btn-primary">Moves</a>
           </div>
         </div>
         <div className="modal-footer">
