@@ -22,13 +22,13 @@ const Info = ({ user }) => {
       </div>
       <div>
         <div style={{ height: 20 + "px" }}>
-          <h4>{person.name}</h4>
+          <h4>{user.name}</h4>
         </div>
         <div className="row" style={{ height: 180 + "px" }}>
           <div className="col-md-2">Age: {person.age}</div>
-          <div className="col-md-3">Weight: {person.weight}</div>
+          <div className="col-md-3">Weight: {user.weight}</div>
           <div className="col-md-3">Height: {person.height}</div>
-          <div className="col-md-2">BMI: {person.bmi}</div>
+          <div className="col-md-2">BMI: {user.bmi}</div>
           <div className="col-md-2">{person.bodyFat} % Body Fat</div>
         </div>
       </div>

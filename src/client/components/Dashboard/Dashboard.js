@@ -9,11 +9,15 @@ export default class Dashboard extends Component {
 
     this.props.getUser();
   }
-  
+
+  // componentWillMount() {
+  //   this.props.getUser();
+  // }
+
   componentDidMount() {
     this.props.getUser();
   }
-  
+
   componentWillReceiveProps(nextProps) {
       // this.props.fetchUser(nextProps.user);
     console.log('these are nextProps in dashboard', nextProps);
@@ -24,6 +28,7 @@ export default class Dashboard extends Component {
   render() {
     const { user } = this.props;
     console.log('user in Dashboard: ', user);
+
     return (
       <div className="row">
         <div className="col-md-2">
@@ -41,6 +46,6 @@ export default class Dashboard extends Component {
 
 Dashboard.propTypes = {
   children: PropTypes.element.isRequired,
-  user: PropTypes.object,
   getUser: PropTypes.func,
+  user: PropTypes.object
 };
