@@ -18,12 +18,30 @@ exports.createTeam = (req, res) => {
     .then((data) => {
       delete req.body.user_id;
       req.body.id = data.team_id;
-      console.log(req.body, 'fdasfadsf');
       res.status(201)
         .json({
           status: 'success',
           data: req.body,
           message: 'successfully created new team'
+        });
+    })
+    .catch((err) => {
+      console.log('Error', err);
+      res.status(400);
+    });
+};
+
+exports.deleteTeam = (req, res) => {
+  db.none('delete from users_teams where team_id=${team_id}', req.body)
+    .then(() => {
+      db.none('delete from teams where id=${team_id}', req.body);
+    })
+    .then(() => {
+      res.status(201)
+        .json({
+          status: 'success',
+          data: req.body,
+          message: 'successfully deleted team'
         });
     })
     .catch((err) => {

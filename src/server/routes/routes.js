@@ -12,6 +12,7 @@ router.post('/api/users', users.addUser);
 router.post('/userteams', teams.getUserTeams);
 router.post('/teammembers', teams.getTeamMembers);
 router.post('/createteam', teams.createTeam);
+router.post('/deleteteam', teams.deleteTeam);
 
 /**  Auth **/
 router.get('/auth/fitbit', 

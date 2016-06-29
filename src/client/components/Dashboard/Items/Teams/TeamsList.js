@@ -11,7 +11,7 @@ class TeamsList extends Component {
       <div>
         <ul>
           {this.props.teams.map(team =>
-            <TeamsListItem team={team} fetchTeamMembers={this.props.fetchTeamMembers.bind(this)} />
+            <TeamsListItem team={team} deleteTeam={this.props.deleteTeam.bind(this)} />
           )}
         </ul>
       </div>
@@ -21,7 +21,7 @@ class TeamsList extends Component {
 
 TeamsList.propTypes = {
   teams: PropTypes.object,
-  fetchTeamMembers: PropTypes.func
+  deleteTeam: PropTypes.func
 };
 
 export default TeamsList;

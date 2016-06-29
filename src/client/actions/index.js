@@ -5,7 +5,8 @@ export const error = err => ({ type: c.REQUEST_ERROR, data: err });
 export const receiveUser = user => ({ type: c.RECEIVE_USER, data: user });
 export const receiveUserTeams = teams => ({ type: c.RECEIVE_TEAMS, data: teams });
 export const receiveTeamMembers = members => ({ type: c.RECEIVE_MEMBERS, data: members });
-export const addToTeam = team => ({ type: c.CREATE_TEAM, data: team });
+export const addToTeams = team => ({ type: c.CREATE_TEAM, data: team });
+export const removeFromTeams = team => ({ type: c.REMOVE_TEAM, data: team });
 
 export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
   const payload = JSON.stringify({ name, username, password, email, weight, bmi, goal, points });
@@ -94,7 +95,7 @@ export const fetchTeamMembers = (obj) => (
 
 
 export const createTeam = () => {
-  const payload = JSON.stringify({ user_id: 1, name: 'test3', description: 'test3', team_icon: 'test3' });
+  const payload = JSON.stringify({ user_id: 1, name: 'test4', description: 'test4', team_icon: 'test4' });
 
   return dispatch => (
     fetch('/createteam', {
@@ -107,7 +108,29 @@ export const createTeam = () => {
       body: payload,
     })
     .then(res => res.json())
-    .then(response => dispatch(addToTeam(response.data)))
+    .then(response => dispatch(addToTeams(response.data)))
+    .catch(err => dispatch(error(err)))
+  );
+};
+
+export const deleteTeam = (obj) => {
+  const payload = JSON.stringify(obj);
+
+  return dispatch => (
+    fetch('/deleteteam', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Content-length': payload.length,
+      },
+      credentials: 'same-origin',
+      body: payload,
+    })
+    .then(res => res.json())
+    .then(response => {
+      console.log('response', response.data);
+      dispatch(removeFromTeams(response.data));
+    })
     .catch(err => dispatch(error(err)))
   );
 };

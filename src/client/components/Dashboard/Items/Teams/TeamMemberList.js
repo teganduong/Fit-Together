@@ -26,8 +26,7 @@ class TeamMemberList extends Component {
 }
 
 TeamMemberList.propTypes = {
-  members: PropTypes.array,
-  fetchTeamMembers: PropTypes.func
+  members: PropTypes.array
 };
 
 export default TeamMemberList;

@@ -3,6 +3,7 @@ import {
   RECEIVE_TEAMS,
   RECEIVE_MEMBERS,
   CREATE_TEAM,
+  REMOVE_TEAM,
   REQUEST_ERROR
 } from '../constants/constants.js';
 
@@ -23,6 +24,9 @@ export const teams = (state, action) => {
     }
     case CREATE_TEAM: {
       return state.concat([action.data]);
+    }
+    case REMOVE_TEAM: {
+      return state.filter(c => c.id !== action.data.team_id);
     }
     default:
       return state || {};

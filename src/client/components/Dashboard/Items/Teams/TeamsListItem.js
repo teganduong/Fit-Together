@@ -36,11 +36,11 @@ class TeamsListItem extends Component {
           <div className="team-title-container">
             <p>{this.props.team.name}</p>
             <p>{this.props.team.description}</p>
-            <button type="button" className="btn btn-danger">Leave Team</button>
+            <button type="button" onClick={() => this.props.deleteTeam({ team_id: this.props.team.id })} className="btn btn-danger">Leave Team</button>
           </div>
         </div>
         <div className="team-members-container">
-          <TeamMemberList members={exampleMembers} team={this.props.team} fetchTeamMembers={this.props.fetchTeamMembers.bind(this)} />
+          <TeamMemberList members={exampleMembers} team={this.props.team} />
         </div>
       </div>
     );
@@ -50,7 +50,7 @@ class TeamsListItem extends Component {
 TeamsListItem.propTypes = {
   team: PropTypes.object,
   members: PropTypes.array,
-  fetchTeamMembers: PropTypes.func
+  deleteTeam: PropTypes.func
 };
 
 export default TeamsListItem;

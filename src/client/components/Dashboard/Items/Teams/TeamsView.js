@@ -5,7 +5,8 @@ class TeamsView extends Component {
   constructor(props) {
     super(props);
     console.log('team', props);
-    this.props.createTeam();
+    // this.props.createTeam();
+    // this.props.deleteTeam();
     this.props.fetchUserTeams({ user_id: 1 });
     this.teams = [];
   }
@@ -28,7 +29,7 @@ class TeamsView extends Component {
             <button type="button" className="btn btn-default">Find New Team</button>
           </div>  
         </div>
-        <TeamsList teams={this.teams} fetchTeamMembers={this.props.fetchTeamMembers.bind(this)} />
+        <TeamsList teams={this.teams} deleteTeam={this.props.deleteTeam.bind(this)} />
       </div>
     );
   }
@@ -38,7 +39,8 @@ TeamsView.propTypes = {
   teams: PropTypes.object,
   fetchUserTeams: PropTypes.func,
   fetchTeamMembers: PropTypes.func,
-  createTeam: PropTypes.func
+  createTeam: PropTypes.func,
+  deleteTeam: PropTypes.func
 };
 
 export default TeamsView;
