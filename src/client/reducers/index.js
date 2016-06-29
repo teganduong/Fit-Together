@@ -17,7 +17,7 @@ export const user = (state, action) => {
       return action.data || state;
     }
     default:
-      return state || [];
+      return state || {};
   }
 };
 
@@ -74,4 +74,4 @@ export const activity = (state, action) => {
     default:
       return state || {};
   }
-}
+};

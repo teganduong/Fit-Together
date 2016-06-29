@@ -2,7 +2,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-const SideNavBar = ({ username }) => (
+const SideNavBar = () => (
   <div id="sidebar-wrapper">
     <p id="sidebar-title">Fit Together</p>
     <ul className="sidebar-nav">
@@ -13,13 +13,9 @@ const SideNavBar = ({ username }) => (
       <li><Link to="/dashboard/challenges">Challenges</Link></li>
       <li><Link to="/dashboard/teams">Teams</Link></li>
       <li><Link to="/dashboard/tips">Tips</Link></li>
-      <li><Link to="/">Signout</Link></li>
+      <li><a href="/signout" action="post">Signout</a></li>
     </ul>
   </div>
 );
-
-SideNavBar.propTypes = {
-  username: PropTypes.string
-};
 
 export default SideNavBar;

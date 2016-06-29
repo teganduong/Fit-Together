@@ -1,36 +1,41 @@
 import React, { Component, PropTypes } from 'react';
-import NavBar from './NavBar';
 import SideNavBar from './SideNavBar';
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
+
+    this.props.getUser();
   }
+
+  // componentWillMount() {
+  //   this.props.getUser();
+  // }
 
   componentDidMount() {
     this.props.getUser();
-    console.log('inside dashboard', this.props.user);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('inside dashboard', nextProps);
+    console.log('these are nextProps in dashboard', nextProps);
+    // if (nextProps.user !== this.props.user) {
+    // }
   }
 
   render() {
-    let user;
-
-    if (this.props.user[0]) {
-      user = this.props.user[0].name;
-    } else {
-      user = '';
-    }
+    const { user } = this.props;
+    console.log('user in Dashboard: ', user);
 
     return (
-      <div>
-        <SideNavBar user={user} />
-        {this.props.children && React.cloneElement(this.props.children, {
-          user: this.props.user.data
-        })}
+      <div className="row">
+        <div className="col-sm-2">
+          <SideNavBar />
+        </div>
+        <div className="col-sm-10">
+          {this.props.children && React.cloneElement(this.props.children, {
+            user: user
+          })}
+        </div>
       </div>
     );
   }
@@ -38,7 +43,6 @@ export default class Dashboard extends Component {
 
 Dashboard.propTypes = {
   children: PropTypes.element.isRequired,
-  fetchUser: PropTypes.func,
-  user: PropTypes.object,
-  params: PropTypes.object,
+  getUser: PropTypes.func,
+  user: PropTypes.object
 };

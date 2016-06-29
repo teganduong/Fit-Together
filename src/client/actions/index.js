@@ -32,13 +32,26 @@ export const addUser = (name, username, password, email, weight, bmi, goal, poin
 };
 
 export const fetchUser = (username) => (
-
   dispatch => (
     fetch(`/api/users/${username}`, {
       credentials: 'same-origin'
     })
     .then(res => res.json())
     .then(userInfo => dispatch(receiveUser(userInfo)))
+    .catch(err => dispatch(error(err)))
+  )
+);
+
+export const getUser = () => (
+  dispatch => (
+    fetch('/api/user', {
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(userInfo => {
+      console.log('userInfo inside getUser', userInfo); 
+      return dispatch(receiveUser(userInfo[0]));
+    })
     .catch(err => dispatch(error(err)))
   )
 );

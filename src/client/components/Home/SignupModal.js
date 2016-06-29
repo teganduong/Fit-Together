@@ -13,15 +13,12 @@ class SignupModal extends Component {
       username: this.refs.userName.value,
       password: this.refs.password.value,
       email: this.refs.email.value,
-      weight: this.refs.weight.value,
-      bmi: this.refs.bmi.value,
-      goal: this.refs.goal.value,
-      points: 0
     };
-    this.props.addUser(formData.name, formData.username, formData.password, formData.email, 
-      formData.weight, formData.bmi, formData.goal, formData.points);
+    this.props.addUser(formData.name, formData.username, formData.password, formData.email);
 
-    browserHistory.push(`/dashboard/${formData.username}`);
+    setTimeout(() => {
+      browserHistory.push(`/dashboard/${formData.username}`);
+    }, 500);
   }
 
   render() {
@@ -54,28 +51,10 @@ class SignupModal extends Component {
                 ref="email"
                 placeholder="Enter email"
               />
-              <input
-                type="number"
-                className="form-control"
-                ref="weight"
-                placeholder="Enter weight"
-              />
-              <input
-                type="number"
-                className="form-control"
-                ref="bmi"
-                placeholder="Enter bmi"
-              />
-              <input
-                type="text"
-                className="form-control"
-                ref="goal"
-                placeholder="Enter goal"
-              />
             </div>
           </div>
           <div className="signupButton">
-            <button type="submit" className="btn btn-default">Sign up</button>
+            <button type="submit" className="btn btn-primary">Sign up</button>
           </div>
         </form>
       </div>
