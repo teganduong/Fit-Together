@@ -48,16 +48,3 @@ render(
   </Provider>,
   document.getElementById('app')
 );
-
-            // <Route path="/dashboard/teams"component={TeamMemberList} />
-          // </Route>
-
-          // <Route path="/dashboard/:username/settings"component={UserInfo} />
-          // <Route path="/dashboard/:username/log"component={PlaceHolder} />
-          // <Route path="/dashboard/:username/stats"component={Stats} />
-          // <Route path="/dashboard/:username/challenges"component={PlaceHolder} />
-          // <Route path="/dashboard/:username/teams"component={Teams} />
-          // <Route path="/dashboard/:username/tips"component={PlaceHolder} />
-
-
-

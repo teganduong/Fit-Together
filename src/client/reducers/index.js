@@ -4,7 +4,11 @@ import {
   RECEIVE_MEMBERS,
   CREATE_TEAM,
   REMOVE_TEAM,
-  REQUEST_ERROR
+  REQUEST_ERROR,
+  RECEIVE_EXERCISE,
+  RECEIVE_FOOD,
+  RECEIVE_MEM,
+  RECEIVE_SLEEP,
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -13,7 +17,7 @@ export const user = (state, action) => {
       return action.data || state;
     }
     default:
-      return state || {};
+      return state || [];
   }
 };
 
@@ -52,3 +56,22 @@ export const error = (state, action) => {
       return state || {};
   }
 };
+
+export const activity = (state, action) => {
+  switch (action.type) {
+    case RECEIVE_EXERCISE: {
+      return action.data || state;
+    }
+    case RECEIVE_FOOD: {
+      return action.data || state;
+    }
+    case RECEIVE_MEM: {
+      return action.data || state;
+    }
+    case RECEIVE_SLEEP: {
+      return action.data || state;
+    }
+    default:
+      return state || {};
+  }
+}

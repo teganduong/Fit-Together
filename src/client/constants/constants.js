@@ -4,3 +4,7 @@ export const RECEIVE_MEMBERS = 'RECEIVE_MEMBERS';
 export const CREATE_TEAM = 'CREATE_TEAM';
 export const REMOVE_TEAM = 'REMOVE_TEAM';
 export const REQUEST_ERROR = 'REQUEST_ERROR';
+export const RECEIVE_EXERCISE = 'RECEIVE_EXERCISE';
+// export const RECEIVE_FOOD = 'RECEIVE_FOOD';
+// export const RECEIVE_MEM = 'RECEIVE_MEM';
+// export const RECEIVE_SLEEP = 'RECEIVE_SLEEP';

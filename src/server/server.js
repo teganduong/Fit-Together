@@ -6,19 +6,24 @@ const routes = require('./routes/routes');
 const db = require('./db/connection.js');
 const session = require('express-session');
 const passport = require('passport');
+const flash = require('connect-flash');
 const FitbitPassport = require('./authentication/FitbitPassport');
 const MovesPassport = require('./authentication/MovesPassport');
+const config = require('./config/api-keys');
 const app = express();
 const port = process.env.PORT || 3000;
-// MovesPassport();
-// FitbitPassport();
+
 const redisClient = require('./db/redisConnection.js');
 
 app.use(express.static(path.join(__dirname, '../client')));
-app.use(cookieParser());
+app.use(cookieParser(config.session.secret));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'FidgetyWidgets' }));
+app.use(session({ 
+  secret: config.session.secret,
+  resave: false,
+  saveUninitialized: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', routes);
@@ -29,4 +34,3 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => console.log('Server is listening on port ', port, '\nRefresh the browser '));
-
