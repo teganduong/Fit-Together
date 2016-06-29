@@ -17,6 +17,7 @@ class Chart extends Component {
     console.log(svg);
     this.svg = svg;
     this.svg.makeDataTexts();
+    this.svg.makeScatter();
   }
 
   render() {
