@@ -42,4 +42,24 @@ router.get('/auth/moves/callback',
   }
 );
 
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
+
+router.get('/signup', 
+  passport.authenticate('local-signup', {
+    successRedirect : '/', 
+    failureRedirect : '/signup',
+    failureFlash : true 
+  })
+);
+
+router.get('/login', 
+  passport.authenticate('local-login', {
+    successRedirect : '/', 
+    failureRedirect : '/login',
+    failureFlash : true 
+  })
+);
 module.exports = router;

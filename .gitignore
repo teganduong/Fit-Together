@@ -39,4 +39,3 @@ npm-debug.*
 src/server/config.js
 .env
 Dockerfile
-

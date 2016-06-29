@@ -6,7 +6,8 @@ import LandingImage from './LandingImage';
 const Home = () => (
   <div>
     <HomeNavBar />
-    <LoginModal />
+    <LoginModal addUser={props.addUser} onClick={() => browserHistory.push('/login')} />
+    <SignupModal addUser={props.addUser} />
     <LandingImage />
   </div>
 );
