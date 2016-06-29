@@ -1,16 +1,15 @@
 module.exports = {
   Fitbit: {
     clientID: '227TQG',
-    clientSecret: 'f7cb6a6465399ae10907bae739062ede',
+    clientSecret: '6151d66e29a3bb693d5ed6897fec5aed',
     callbackURL: 'http://localhost:3000/auth/fitbit/callback'
   },
   Moves: {
     clientID: 'nFod8IWw0YVBaa43incO69zA3c4aUSRy',
-    clientSecret: '1U7l6iglpLYD1H08A85Oq303ETXP8euCjE3_gsWi6H7Xjex4G85oT75rCdKhpiVD',
+    clientSecret: 'j7O4fP35iMA83ZL7GOKl9fnp5TWQHOzCLO09mIrA1v67R1EZGijCH_Z704OSggxL',
     callbackURL: 'http://localhost:3000/auth/moves/callback'
   },
   session: {
     secret: 'FidgetyWidgetsTeam'
   }
 };
-
