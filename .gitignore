@@ -36,6 +36,6 @@ npm-debug.*
 .DS_Store
 
 # Passport Configuration
-src/server/api/api-keys.js
+src/server/config/api-keys.js
 .env
 Dockerfile
