@@ -25,6 +25,7 @@ import Teams from './containers/Teams'; // redux container
 import Tips from './components/Dashboard/Items/Tips.js';
 import UserInfo from './components/Dashboard/Items/Settings';
 import Logbook from './components/Dashboard/Items/Logbook/Logbook';
+require('./assets/css/style.css');
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
 const history = syncHistoryWithStore(browserHistory, store);
