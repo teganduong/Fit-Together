@@ -6,14 +6,14 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "babel src/server -d dev/server --copy-files; webpack",
+    "build": "babel src/server -d dev/server --copy-files; webpack; npm run move-assets",
     "start": "npm run watch & nodemon dev/server/server.js & open http://localhost:3000",
     "watch": "npm run watch-c & npm run watch-s",
     "watch-c": "npm run move-assets & webpack --watch --progress",
     "watch-s": "babel --watch src/server -d dev/server --copy-files",
     "seed": "node src/server/testData/seedUsers.js; node src/server/testData/seedTeams.js;",
     "lint": "eslint src --color",
-    "move-assets": "cp -R src/client/assets dev/client/",
+    "move-assets": "cp -R src/client/assets/ dev/client/",
     "test": "npm run lint",
     "seed-log": "node src/server/testData/seedSleep.js; node src/server/testData/seedMem.js;  node src/server/testData/seedExercise.js;  node src/server/testData/seedFood.js",
     "seed-test": "node src/server/testData/seedTeams.js;",
@@ -45,6 +45,7 @@
     "body-parser": "~1.13.2",
     "connect": "^3.4.1",
     "cookie-parser": "^1.4.3",
+    "css-loader": "^0.23.1",
     "d3": "^3.5.17",
     "es6-promise": "^3.2.1",
     "express": "~4.13.1",
@@ -70,7 +71,8 @@
     "redis": "^2.6.2",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "style-loader": "^0.13.1"
   },
   "peerDependencies": {
     "react-dom": "^0.14.7"

@@ -29,7 +29,7 @@ const config = {
       },
       {
         test: /\.css$/,
-        loader: 'file?name=assets/css/[name].[ext]',
+        loader: ['css-loader', 'style-loader'],
       },
     ],
   },
