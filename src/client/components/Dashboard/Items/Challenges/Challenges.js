@@ -19,10 +19,24 @@ class Challenges extends Component {
         </div>
         <div>
           <div className="challenges-button-container">
-            <button type="button" className="btn btn-success" data-toggle="modal" data-target="#chooseTeamModal">Choose your Team</button>
+            <button 
+              type="button" 
+              className="btn btn-success" 
+              data-toggle="modal" 
+              data-target="#chooseTeamModal"
+            >
+              Choose your Team
+            </button>
           </div>
           <div className="challenges-button-container">
-            <button type="button" className="btn btn-default" data-toggle="modal" data-target="#challengeTeamModal">Challenge a Team</button>
+            <button 
+              type="button" 
+              className="btn btn-default" 
+              data-toggle="modal" 
+              data-target="#challengeTeamModal"
+            >
+              Challenge a Team
+            </button>
           </div> 
         </div>
         <ChallengeTeamModal />

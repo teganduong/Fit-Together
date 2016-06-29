@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import TeamsList from './TeamsList';
+import CreateNewTeamModal from './CreateNewTeamModal';
+import JoinTeamModal from './JoinTeamModal';
 
 class TeamsView extends Component {
   constructor(props) {
@@ -21,13 +23,29 @@ class TeamsView extends Component {
             <h3>Teams</h3>
           </div>
           <div className="team-header-items team-header-button-container">
-            <button type="button" className="btn btn-success">Create New Team</button>
+            <button 
+              type="button" 
+              className="btn btn-success" 
+              data-toggle="modal" 
+              data-target="#createNewTeamModal"
+            >
+              Create New Team
+            </button>
           </div>
           <div className="team-header-items team-header-button-container">
-            <button type="button" className="btn btn-default">Find New Team</button>
+            <button 
+              type="button" 
+              className="btn btn-default" 
+              data-toggle="modal" 
+              data-target="#joinTeamModal"
+            >
+              Join Team
+            </button>
           </div>  
         </div>
         <TeamsList teams={this.teams} deleteTeam={this.props.deleteTeam.bind(this)} />
+        <CreateNewTeamModal />
+        <JoinTeamModal />
       </div>
     );
   }
