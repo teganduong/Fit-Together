@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import NavBar from './NavBar';
 import SideNavBar from './SideNavBar';
+import Profile from './Profile/Profile';
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
 
+    this.props.getUser();
   }
   
   componentDidMount() {
@@ -21,14 +23,17 @@ export default class Dashboard extends Component {
 
   render() {
     const { user } = this.props;
-    console.log('THIS IS DASHBOARD USER', this.props.user);
-
+    console.log('user in Dashboard: ', user);
     return (
-      <div>
-        <SideNavBar />
-        {this.props.children && React.cloneElement(this.props.children, {
-          user: user
-        })}
+      <div className="row">
+        <div className="col-md-2">
+          <SideNavBar />
+        </div>
+        <div className="col-md-10">
+          {this.props.children && React.cloneElement(this.props.children, {
+            user: user
+          })}
+        </div>
       </div>
     );
   }
@@ -37,6 +42,5 @@ export default class Dashboard extends Component {
 Dashboard.propTypes = {
   children: PropTypes.element.isRequired,
   user: PropTypes.object,
-  params: PropTypes.object,
   getUser: PropTypes.func,
 };

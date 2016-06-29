@@ -20,10 +20,18 @@
 	border-style: solid;*/
 }
 
+.top-info {
+	display: inline-flex;
+}
+
+.col-md-*, .col-sm-*, .row, .container, .col-lg-* {
+	padding: 0;
+	margin: 0;
+}
+
 .user-info-container {
-	margin-top: 20px;
-	margin-left: 20px;
-	width: 60%;
+	/*margin-top: 20px;*/
+	/*width: 60%;*/
 	border-width: 0.5px;
 	border-color: #1f2324;
 	border-style: solid;
@@ -31,14 +39,9 @@
 }
 
 .user-info {
-	display: inline-block;
 	position: relative;
 	vertical-align: middle;
-	padding: 15px 20px 15px;
 	font-size: 16px;
-	/*	border-width: 3px;
-	border-color: #1f2324;
-	border-style: solid;*/
 }
 
 .user-info label {
@@ -47,28 +50,24 @@
 }
 
 #user-image {
-    width: 130px;
-    height: 130px;
-    margin: 20px;
+  width: 200px;
+  height: 200px;
 }
 
 .right-container {
 	position: relative;
 	float: right;
-	width: 30%;
 	display: inline-block;
-	margin-top: 20px;
-	margin-right: 20px;
 	border-width: 0.5px;
 	border-color: #1f2324;
 	border-style: solid;
 }
 
 .user-detailed-container {
-	margin-top: 20px;
-	margin-left: 20px;
-	width: 60%;
-	height: 40%;
+	/*margin-top: 20px;
+	margin-left: 20px;*/
+	/*width: 60%;
+	height: 40%;*/
 	border-width: 0.5px;
 	border-color: #1f2324;
 	border-style: solid;

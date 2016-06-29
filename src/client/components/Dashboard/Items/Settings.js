@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 
 const UserInfo = ({ user }) => (
-  <div className="main-container">
-    <div className="top-container modal-container">
+  <div>
+    <div>
       <h3>Profile Information</h3>
       <button 
         type="button" 
@@ -21,7 +21,7 @@ const UserInfo = ({ user }) => (
     </div>
 
     <div 
-      className="modal fade z-depth-0" 
+      className="modal fade" 
       id="editProfileModal" 
       tabindex="-1" 
       role="dialog" aria-labelledby="myModalLabel"

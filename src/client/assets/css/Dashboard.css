@@ -2,10 +2,15 @@
 @import url('http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css');
 
 body {
-    display: flex;
+   /* display: flex;
     height: 100%;
     min-height: 100%;
-    overflow-x: hidden;
+    overflow-x: hidden;*/
+}
+
+.container-fluid {
+  padding-left: 0;
+  margin-left: -15px;
 }
 
 .main-container {
@@ -21,59 +26,56 @@ body {
 }
 
 #sidebar-wrapper {
-    z-index: 1000;
-    position: absolute;
-    height: 100%;
-    overflow-y: auto;
-    background: #edf1f2;
-    width: 220px;
-    background: #2a2a2a;
+  position: fixed;
+  height: 900px;
+  overflow-y: auto;
+  background: #edf1f2;
+  width: 220px;
+  background: linear-gradient(#21c2c5, #2f9be7); 
 }
 
 #sidebar-title {
-    font: 16px/1 'Montserrat', sans-serif;
-    line-height: 65px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 6px;
-    color: #eee;
-    border-bottom: 1px solid #222;
-    background: #2a2a2a;
-    margin-bottom: 0px;
+  font: 16px/1 'Montserrat', sans-serif;
+  line-height: 65px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  color: #213648;
+  background: #63a9ce;
+  margin-bottom: 0px;
+  padding-left: 15px;
 }
 
 .sidebar-nav {
-    list-style: none;
+  list-style: none;
 }
 
 .sidebar-nav li {
-    position: relative;
-    width: 220px;
-    /*width: 20%;*/
-    left: 0px;
+  position: relative;
+  /*width: 220px;*/
+  left: 0px;
 }
 
 .sidebar-nav li a {
-    position: relative;
-    display: block;
-    padding: 12px 0px 12px 29px;
-    font: 12px/1 'Montserrat', sans-serif;
-    color: #eee;
-    border-bottom: 1px solid #222;
-    text-decoration: none;
+  position: relative;
+  display: block;
+  padding: 12px 0px 12px 9px;
+  font: 12px/1 'Montserrat', sans-serif;
+  color: #fffef8;
+  text-decoration: none;
 }
 
-.sidebar-nav li a:hover {
-    background: #444;
+.sidebar-nav li:hover {
+  background: rgba(51, 122, 183, 0.65);
 }
 
 
 /*List Item icons from Font Awesome*/
 .sidebar-nav li a:before {
-    font: 14px fontawesome;
-    position: relative;
-    top: 1px;
-    left: -12px;
+  font: 14px fontawesome;
+  position: relative;
+  top: 1px;
+  left: -12px;
 }
 
 .sidebar-nav li:nth-child(1) a:before { content: '\f00a'; }
@@ -83,26 +85,26 @@ body {
 .sidebar-nav li:nth-child(5) a:before { content: '\f012'; }
 .sidebar-nav li:nth-child(6) a:before { content: '\f115'; }
 .sidebar-nav li:nth-child(7) a:before { content: '\f087'; }
-.sidebar-nav li:nth-child(8) a:before { content: '\f085'; }
-.sidebar-nav li:nth-child(9) a:before { content: '\f023'; }
+.sidebar-nav li:nth-child(8) a:before { content: '\e163'; }
+/*.sidebar-nav li:nth-child(9) a:before { content: '\f023'; }*/
 
 .top-nav {
-    list-style-type: hidden;
-    overflow: hidden;
-    background-color: #eee;
-    height: 66px;
-    flex: 1;
-    transform: translate3d(220px, 0, 0);
-    transition: transform .3s;
-    margin-bottom: 0px;
+  list-style-type: hidden;
+  overflow: hidden;
+  background-color: #eee;
+  height: 66px;
+  flex: 1;
+  transform: translate3d(220px, 0, 0);
+  transition: transform .3s;
+  margin-bottom: 0px;
 
-    border-width: 0.5px;
-    border-color: red;
-    border-style: solid;
+  border-width: 0.5px;
+  border-color: red;
+  border-style: solid;
 }
 
 .main-container.isOpen {
-    transform: translate3d(220px, 0, 0);
+  transform: translate3d(220px, 0, 0);
 }
 
 .toggleSidebar {
@@ -115,8 +117,8 @@ body {
 }
 
 .top-nav a {
-    text-decoration: none;
-    margin-top: 0px;
+  text-decoration: none;
+  margin-top: 0px;
 
 }
 
