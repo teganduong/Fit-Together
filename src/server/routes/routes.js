@@ -51,7 +51,7 @@ router.get('/auth/fitbit',
 router.get('/auth/fitbit/callback', 
   passport.authenticate('fitbit', { failureRedirect: '/login', failureFlash: true }),
   (req, res) => {
-    console.log('INSIDE CALLBACK==============', req.user);
+    console.log('inside /fitbit/callback of router >>');
     if (req.user) {
       const userData = {
         accessToken: req.user.accessToken,

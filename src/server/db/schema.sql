@@ -1,7 +1,7 @@
 -- from root directory -- psql < src/server/db/schema.sql
-
 \c fidgetywidget;
 
+DROP TABLE IF EXISTS users CASCADE;   
 DROP TABLE IF EXISTS users_teams;    
 DROP TABLE IF EXISTS users_food; 
 DROP TABLE IF EXISTS users_exercise; 
@@ -15,7 +15,6 @@ DROP TABLE IF EXISTS exercise;
 DROP TABLE IF EXISTS sleep;
 DROP TABLE IF EXISTS mem;      
 DROP TABLE IF EXISTS challenges;    
-DROP TABLE IF EXISTS users;   
 DROP TABLE IF EXISTS teams;
 
 DROP TABLE IF EXISTS daily_activities;    
@@ -28,6 +27,7 @@ CREATE TABLE users (
   password VARCHAR(50),
   email VARCHAR(100),
   weight INTEGER,
+  -- height DECIMAL,
   bmi DECIMAL,
   goal VARCHAR(255),
   points INTEGER DEFAULT 0,
