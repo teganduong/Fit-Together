@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import TeamMemberList from './TeamMemberList';
-// import TeamMemberList from '../../../../containers/TeamMemberList';
 
 const exampleMembers = [
   {
@@ -36,7 +35,13 @@ class TeamsListItem extends Component {
           <div className="team-title-container">
             <p>{this.props.team.name}</p>
             <p>{this.props.team.description}</p>
-            <button type="button" onClick={() => this.props.deleteTeam({ team_id: this.props.team.id })} className="btn btn-danger">Leave Team</button>
+            <button 
+              type="button" 
+              onClick={() => this.props.deleteTeam({ team_id: this.props.team.id })} 
+              className="btn btn-danger"
+            >
+              Leave Team
+            </button>
           </div>
         </div>
         <div className="team-members-container">

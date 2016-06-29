@@ -13,7 +13,8 @@ exports.createTeam = (req, res) => {
       };
       console.log('Successly inserted team', userTeam);
       return db.one('insert into users_teams(user_id, team_id)' + 
-        'values(${user_id}, (select id from teams where id=${team_id})) returning team_id', userTeam);
+        'values(${user_id}, (select id from teams where id=${team_id}))' +
+        ' returning team_id', userTeam);
     })
     .then((data) => {
       delete req.body.user_id;
@@ -76,7 +77,7 @@ exports.findTeam = (req, res) => {
   })
   .catch((err) => {
     console.log('Error:', err);
-    // res.status(404);
+    res.status(400);
   });
 };
 
@@ -104,7 +105,6 @@ exports.getUserTeams = (req, res) => {
   db.query('select * from teams where id=ANY' + 
       '(select team_id from users_teams where user_id=${user_id})', req.body)
     .then((data) => {
-      // console.log(data, 'data');
       res.status(200)
         .json({
           status: 'success',
@@ -114,7 +114,7 @@ exports.getUserTeams = (req, res) => {
     })
     .catch((err) => {
       console.log('error in retrieving user\'s teams', err);
-      // res.status(400);
+      res.status(400);
     });
 };
 
@@ -133,7 +133,7 @@ exports.getTeamMembers = (req, res) => {
   })
   .catch((err) => {
     console.log('error in retreiving team members', err);
-    // res.status(400);
+    res.status(400);
   });
 };
 

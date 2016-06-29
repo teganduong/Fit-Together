@@ -30,7 +30,3 @@ exports.addActivity = (req, res) => {
     });
 };
 
-exports.findUserActivities = (req, res) => {
-  
-};
-

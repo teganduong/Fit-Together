@@ -5,8 +5,6 @@ class TeamsView extends Component {
   constructor(props) {
     super(props);
     console.log('team', props);
-    // this.props.createTeam();
-    // this.props.deleteTeam();
     this.props.fetchUserTeams({ user_id: 1 });
     this.teams = [];
   }

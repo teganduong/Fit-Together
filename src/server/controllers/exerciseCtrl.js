@@ -29,3 +29,4 @@ exports.addExercise = (req, res) => {
       res.status(400);
     });
 };
+
