@@ -24,13 +24,13 @@ DROP TABLE IF EXISTS incentives;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(50),
-  username VARCHAR(50),
+  username VARCHAR(50) UNIQUE,
   password VARCHAR(50),
   email VARCHAR(100),
   weight INTEGER,
   bmi DECIMAL,
   goal VARCHAR(255),
-  points INTEGER,
+  points INTEGER DEFAULT 0,
   user_icon VARCHAR(255)
 );
 

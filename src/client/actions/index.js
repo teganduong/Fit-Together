@@ -14,6 +14,7 @@ export const receiveExercise = exercise => ({ type: c.RECEIVE_Exercise, data: ex
 
 export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
   const payload = JSON.stringify({ name, username, password, email, weight, bmi, goal, points });
+
   return dispatch => (
     fetch('/api/users', {
       method: 'POST',
