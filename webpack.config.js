@@ -2,8 +2,7 @@ const config = {
   context: `${__dirname}/src/client`,
   entry: {
     javascript: './app.js', // take in javascript entry point
-    html: './index.html', // take in the client's index.html
-    css: './assets/css/style.css'   
+    html: './index.html', // take in the client's index.html  
   },
 
   output: {
@@ -29,7 +28,11 @@ const config = {
       },
       {
         test: /\.css$/,
-        loader: ['css-loader', 'style-loader'],
+        loaders: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.png$/,
+        loader: 'url-loader',
       },
     ],
   },
