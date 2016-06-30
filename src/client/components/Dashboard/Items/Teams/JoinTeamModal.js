@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import JoinTeamList from './JoinTeamList';
 
 const teams = [
@@ -28,7 +28,7 @@ const teams = [
   }
 ];
 
-const JoinTeamModal = () => (
+const JoinTeamModal = (props) => (
   <div className="modal fade" id="joinTeamModal" role="dialog" data-backdrop="false">
     <div className="modal-dialog modal-m">
       <div className="modal-content">
@@ -37,7 +37,7 @@ const JoinTeamModal = () => (
           <h4 className="modal-title">Join Existing Team</h4>
         </div>
         <div className="modal-body">
-          <JoinTeamList teams={teams} />
+          <JoinTeamList teams={props.teams} />
         </div>
         <div className="modal-footer">
           <button type="button" className="btn btn-default">Join Team</button>
@@ -47,5 +47,9 @@ const JoinTeamModal = () => (
     </div>
   </div>
 );
+
+JoinTeamModal.propTypes = {
+  teams: PropTypes.object
+};
 
 export default JoinTeamModal;

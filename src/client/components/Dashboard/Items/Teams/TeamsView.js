@@ -8,11 +8,14 @@ class TeamsView extends Component {
     super(props);
     console.log('team', props);
     this.props.fetchUserTeams({ user_id: 1 });
+    this.props.fetchOtherTeams({ user_id: 1 });
     this.teams = [];
+    this.otherteams = [];
   }
 
   componentWillReceiveProps(nextProps) {
     this.teams = nextProps.teams;
+    this.otherteams = nextProps.otherteams;
   }
 
   render() {
@@ -49,8 +52,8 @@ class TeamsView extends Component {
           </div>
         </div>
         <div>
-          <CreateNewTeamModal />
-          <JoinTeamModal />
+          <CreateNewTeamModal createTeam={this.props.createTeam.bind(this)} />
+          <JoinTeamModal teams={this.otherteams} />
         </div>
       </div>
     );
@@ -60,6 +63,7 @@ class TeamsView extends Component {
 TeamsView.propTypes = {
   teams: PropTypes.object,
   fetchUserTeams: PropTypes.func,
+  fetchOtherTeams: PropTypes.func,
   fetchTeamMembers: PropTypes.func,
   createTeam: PropTypes.func,
   deleteTeam: PropTypes.func

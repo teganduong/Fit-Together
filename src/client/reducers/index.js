@@ -1,6 +1,7 @@
 import {
   RECEIVE_USER,
   RECEIVE_TEAMS,
+  RECEIVE_OTHER_TEAMS,
   RECEIVE_MEMBERS,
   CREATE_TEAM,
   REMOVE_TEAM,
@@ -31,6 +32,16 @@ export const teams = (state, action) => {
     }
     case REMOVE_TEAM: {
       return state.filter(c => c.id !== action.data.team_id);
+    }
+    default:
+      return state || {};
+  }
+};
+
+export const otherteams = (state, action) => {
+  switch (action.type) {
+    case RECEIVE_OTHER_TEAMS: {
+      return action.data || state;
     }
     default:
       return state || {};

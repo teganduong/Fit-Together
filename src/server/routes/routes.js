@@ -16,6 +16,8 @@ router.post('/userteams', teams.getUserTeams);
 router.post('/teammembers', teams.getTeamMembers);
 router.post('/createteam', teams.createTeam);
 router.post('/deleteteam', teams.deleteTeam);
+router.post('/otherteams', teams.getOtherTeams);
+
 router.get('/api/user', (req, res) => {
   if (req.user) {
     console.log('insider req', req.user.username);

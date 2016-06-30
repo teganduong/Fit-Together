@@ -8,6 +8,7 @@ export const receiveTeamMembers = members => ({ type: c.RECEIVE_MEMBERS, data: m
 export const addToTeams = team => ({ type: c.CREATE_TEAM, data: team });
 export const removeFromTeams = team => ({ type: c.REMOVE_TEAM, data: team });
 export const receiveExercise = exercise => ({ type: c.RECEIVE_Exercise, data: exercise });
+export const receiveOtherTeams = otherteams => ({ type: c.RECEIVE_OTHER_TEAMS, data: otherteams });
 // export const receiveFood = food => ({ type: c.RECEIVE_FOOD, data: food });
 // export const receiveMem = mem => ({ type: c.RECEIVE_MEM, data: mem });
 // export const receiveSleep = sleep => ({ type: c.RECEIVE_SLEEP, data: sleep });
@@ -91,6 +92,25 @@ export const fetchUserTeams = (obj) => (
   )
 );
 
+export const fetchOtherTeams = (obj) => (
+  dispatch => (
+    fetch('/otherteams', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(obj)
+    })
+    .then(res => res.json())
+    .then(response => {
+      console.log('response', response.data);
+      dispatch(receiveOtherTeams(response.data));
+    })
+    .catch(err => dispatch(error(err)))
+  )
+);
+
 export const fetchTeamMembers = (obj) => (
   dispatch => (
     fetch('/teammembers', {
@@ -111,8 +131,8 @@ export const fetchTeamMembers = (obj) => (
 );
 
 
-export const createTeam = () => {
-  const payload = JSON.stringify({ user_id: 1, name: 'test4', description: 'test4', team_icon: 'test4' });
+export const createTeam = (obj) => {
+  const payload = JSON.stringify(obj);
 
   return dispatch => (
     fetch('/createteam', {
