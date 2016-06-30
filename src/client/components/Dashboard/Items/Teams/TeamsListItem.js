@@ -36,12 +36,12 @@ class TeamsListItem extends Component {
             </div>
           </div>
           <div className="team-title-container">
-            <p>{this.props.team.name}</p>
-            <p>{this.props.team.description}</p>
+            <p className="team-text-title">{this.props.team.name}</p>
+            <p className="team-text-body">{this.props.team.description}</p>
             <button 
               type="button" 
               onClick={() => this.props.deleteTeam({ team_id: this.props.team.id })} 
-              className="btn btn-danger"
+              className="btn btn-danger btn-sm"
             >
               Leave Team
             </button>
