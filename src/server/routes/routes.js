@@ -12,11 +12,11 @@ const queryHelper = require('../queryHelper');
 /**  Users **/
 router.get('/api/users/:username', users.getUserInfo);
 router.post('/api/users', users.addUser);
-router.post('/userteams', teams.getUserTeams);
-router.post('/teammembers', teams.getTeamMembers);
-router.post('/createteam', teams.createTeam);
-router.post('/deleteteam', teams.deleteTeam);
-router.post('/otherteams', teams.getOtherTeams);
+router.post('/api/userteams', teams.getUserTeams);
+router.post('/api/teammembers', teams.getTeamMembers);
+router.post('/api/createteam', teams.createTeam);
+router.post('/api/deleteteam', teams.deleteTeam);
+router.post('/api/otherteams', teams.getOtherTeams);
 
 router.get('/api/user', (req, res) => {
   if (req.user) {

@@ -26,6 +26,18 @@ const exampleTeamData = [
     team_icon: 'http://www.slt2008.org/wp-content/uploads/2014/02/aa-Healthy-Eating.jpg'
   },
   {
+    user_id: 1,
+    name: '30 Day Ab Challenge',
+    description: 'Test yourself by doing different exercises that stimulate the abs everyday',
+    team_icon: 'http://cdn-img.health.com/sites/default/files/styles/400x400/public/migration/img/web/2013/01/slides/no-crunch-abs-400x400.jpg?itok=ekwIZz_c'
+  },
+  {
+    user_id: 1,
+    name: '31 Day Yoga Challenge',
+    description: 'Challenge yourself and get in touch with your inner yogi this month',
+    team_icon: 'http://www.healthymonadnock.org/wp-content/uploads/2014/07/yoga-pose.jpg'
+  },
+  {
     user_id: 2,
     name: 'Walk and Talk',
     description: 'This group is for people who love to hike in the great outdoors',

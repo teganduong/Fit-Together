@@ -76,7 +76,7 @@ export const updateUser = (userInfo) => {
 
 export const fetchUserTeams = (obj) => (
   dispatch => (
-    fetch('/userteams', {
+    fetch('/api/userteams', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -94,7 +94,7 @@ export const fetchUserTeams = (obj) => (
 
 export const fetchOtherTeams = (obj) => (
   dispatch => (
-    fetch('/otherteams', {
+    fetch('/api/otherteams', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -113,7 +113,7 @@ export const fetchOtherTeams = (obj) => (
 
 export const fetchTeamMembers = (obj) => (
   dispatch => (
-    fetch('/teammembers', {
+    fetch('/api/teammembers', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -135,7 +135,7 @@ export const createTeam = (obj) => {
   const payload = JSON.stringify(obj);
 
   return dispatch => (
-    fetch('/createteam', {
+    fetch('/api/createteam', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -154,7 +154,7 @@ export const deleteTeam = (obj) => {
   const payload = JSON.stringify(obj);
 
   return dispatch => (
-    fetch('/deleteteam', {
+    fetch('/api/deleteteam', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

@@ -11,17 +11,48 @@ client.on('error', (err) => {
 
 module.exports = client;
 
-exports.storeToken = (req, res) => {
-  client.setAsync('token:' + req.body.username + ':', req.body.token)
-    .then(() => res.status(201).send('success'))
-    .catch((err) => res.status(400));
-};
+const seedUsers = [
+  {
+    username: 'a',
+    password: 'b'
+  },
+  {
+    username: 'c',
+    password: 'd'
+  },
+  {
+    username: 'e',
+    password: 'f'
+  },
+  {
+    username: 'g',
+    password: 'h'
+  }
+];
 
-exports.deleteToken = (req, res) => {
-  client.delAsync('token:' + req.body.username + ':')
-    .then(() => res.status(200).send('deleted'))
-    .catch((err) => res.status(400));
-};
+// get all values in the db --> client.keysAsync('*')
+// delete all values from connection's current db --> client.flushdbAsync()
+// delete all values from all db's --> client.flushdbAsync()
+
+seedUsers.forEach((user) => {
+  // client.setAsync('username:' + user.username + ':password:', user.password)
+  //   .then(() => console.log('success'))
+  //   .catch((err) => console.log('error'));
+  client.flushallAsync().then((res) => console.log('data', res));
+});
+
+
+// exports.storeToken = (req, res) => {
+//   client.setAsync('token:' + req.body.username + ':', req.body.token)
+//     .then(() => res.status(201).send('success'))
+//     .catch((err) => res.status(400));
+// };
+
+// exports.deleteToken = (req, res) => {
+//   client.delAsync('token:' + req.body.username + ':')
+//     .then(() => res.status(200).send('deleted'))
+//     .catch((err) => res.status(400));
+// };
 
 // exports.iniitializeUser = (req, res) => {
 //   client.setAsync('user:' + req.body.username + ':points:', req.body.points)
@@ -32,11 +63,11 @@ exports.deleteToken = (req, res) => {
 //     .catch((err) => res.status(400));
 // };
 
-exports.updatePoints = (req, res) => {
-  client.setAsync('user:' + req.body.username + ':points:', req.body.points)
-    .then(() => res.status(201).send('success'))
-    .catch((err) => res.status(400));
-};
+// exports.updatePoints = (req, res) => {
+//   client.setAsync('user:' + req.body.username + ':points:', req.body.points)
+//     .then(() => res.status(201).send('success'))
+//     .catch((err) => res.status(400));
+// };
 
 // // Test in server.js to make sure async works --> you have to promisify in the same js file
 // const redis = require('redis');
