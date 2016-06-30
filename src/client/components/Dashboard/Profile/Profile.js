@@ -8,7 +8,7 @@ import WtChart from './Charts/WtChart';
 import GlucoseChart from './Charts/GlucoseChart';
 
 const Profile = ({ user }) => (
-  <div className="profile-container">
+  <div className="main-container">
     <Info user={user} />
     <DetailedInfo user={user} />
   </div>

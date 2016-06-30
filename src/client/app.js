@@ -23,7 +23,7 @@ import Challenges from './components/Dashboard/Items/Challenges/Challenges';
 import Teams from './containers/Teams'; // redux container
 // import TeamMemberList from './containers/TeamMemberList'; // redux container
 import Tips from './components/Dashboard/Items/Tips.js';
-import UserInfo from './components/Dashboard/Items/Settings';
+import Settings from './components/Dashboard/Items/Settings/Settings';
 import Logbook from './components/Dashboard/Items/Logbook/Logbook';
 require('./assets/css/style.css');
 
@@ -38,7 +38,7 @@ render(
         <IndexRoute component={Home} />
         <Route path="/dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />
-          <Route path="/dashboard/settings"component={UserInfo} />
+          <Route path="/dashboard/settings"component={Settings} />
           <Route path="/dashboard/log"component={PlaceHolder} />
           <Route path="/dashboard/stats"component={Stats} />
           <Route path="/dashboard/challenges"component={Challenges} />

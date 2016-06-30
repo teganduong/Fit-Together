@@ -1,29 +1,43 @@
 import React, { PropTypes } from 'react';
+const user = {
+  name: 'Jessica Jones',
+  username: 'jjones',
+  password: 'jjones',
+  email: 'jjones@gmail.com',
+  age: 26,
+  weight: 145,
+  height: 154.6,
+  bmi: 21.3,
+  goal: 'Live a healthy lifestyle',
+  points: 0,
+  user_icon: 'https://assets-cdn.github.com/images/modules/styleguide/linktocat.png'
+};
 
-const UserInfo = ({ user }) => (
+const Settings = () => (
   <div>
-    <div>
-      <h3>Profile Information</h3>
-      <button 
-        type="button" 
-        className="btn btn-primary"
-        data-toggle="modal" 
-        data-target="#editProfileModal"
-      >
-        Edit Profile
-      </button>
+    <div className="main-container">
+      <div>
+        <h3>Profile Information</h3>
+        <button 
+          type="button" 
+          className="btn btn-primary"
+          data-toggle="modal" 
+          data-target="#editProfileModal"
+        >
+          Edit Profile
+        </button>
+      </div>
+      <div className="user-info">
+        <div><label>Name:</label> {user.name}</div>
+        <div><label>Username:</label> {user.username}</div>
+        <div><label>Email:</label> {user.email}</div>
+        <div><label>Goal:</label> {user.goal}</div>
+      </div>
     </div>
-    <div className="user-info">
-      <div><label>Name:</label> {user.name}</div>
-      <div><label>Username:</label> {user.username}</div>
-      <div><label>Email:</label> {user.email}</div>
-      <div><label>Goal:</label> {user.goal}</div>
-    </div>
-
     <div 
       className="modal fade" 
       id="editProfileModal" 
-      tabindex="-1" 
+      tabIndex="-1" 
       role="dialog" aria-labelledby="myModalLabel"
     >
       <div className="modal-dialog" role="document">
@@ -65,8 +79,8 @@ const UserInfo = ({ user }) => (
   </div>
 ); 
 
-UserInfo.propTypes = {
+Settings.propTypes = {
   user: PropTypes.object
 }; 
 
-export default UserInfo;
+export default Settings;
