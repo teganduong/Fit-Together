@@ -3,12 +3,12 @@
 
 DROP TABLE IF EXISTS users CASCADE;   
 DROP TABLE IF EXISTS users_teams;    
-DROP TABLE IF EXISTS users_food; 
-DROP TABLE IF EXISTS users_exercise; 
-DROP TABLE IF EXISTS users_sleep;
-DROP TABLE IF EXISTS users_mem;
-DROP TABLE IF EXISTS users_daily_activities;    
-DROP TABLE IF EXISTS users_incentives;     
+-- DROP TABLE IF EXISTS users_food; 
+-- DROP TABLE IF EXISTS users_exercise; 
+-- DROP TABLE IF EXISTS users_sleep;
+-- DROP TABLE IF EXISTS users_mem;
+-- DROP TABLE IF EXISTS users_daily_activities;    
+-- DROP TABLE IF EXISTS users_incentives;     
 
 DROP TABLE IF EXISTS food; 
 DROP TABLE IF EXISTS exercise; 
@@ -17,8 +17,8 @@ DROP TABLE IF EXISTS mem;
 DROP TABLE IF EXISTS challenges;    
 DROP TABLE IF EXISTS teams;
 
-DROP TABLE IF EXISTS daily_activities;    
-DROP TABLE IF EXISTS incentives;    
+-- DROP TABLE IF EXISTS daily_activities;    
+-- DROP TABLE IF EXISTS incentives;    
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -63,13 +63,8 @@ CREATE TABLE food (
   protein DECIMAL,
   fats DECIMAL,
   carbs DECIMAL,
-  calories DECIMAL
-);
-
-CREATE TABLE users_food (
-  id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users (id),
-  food_id INTEGER REFERENCES food (id)
+  calories DECIMAL,
+  user_id INTEGER REFERENCES users (id)
 );
 
 CREATE TABLE exercise (
@@ -79,26 +74,16 @@ CREATE TABLE exercise (
   duration DECIMAL,
   distance DECIMAL,
   reps INTEGER,
-  sets INTEGER
-);
-
-CREATE TABLE users_exercise (
-  id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users (id),
-  exercise_id INTEGER REFERENCES exercise (id)
+  sets INTEGER,
+  user_id INTEGER REFERENCES users (id)
 );
 
 CREATE TABLE sleep (
   id SERIAL PRIMARY KEY,
   date_performed VARCHAR(50),
   duration DECIMAL,
-  quality DECIMAL
-);
-
-CREATE TABLE users_sleep (
-  id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users (id),
-  sleep_id INTEGER REFERENCES sleep (id)
+  quality DECIMAL,
+  user_id INTEGER REFERENCES users (id)
 );
 
 CREATE TABLE mem (
@@ -106,16 +91,8 @@ CREATE TABLE mem (
   date_performed VARCHAR(50),
   mood DECIMAL,
   energy DECIMAL,
-  motivation DECIMAL
+  motivation DECIMAL,
+  user_id INTEGER REFERENCES users (id)
 );
-
-CREATE TABLE users_mem (
-  id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users (id),
-  mem_id INTEGER REFERENCES mem (id)
-);
-
-
-
 
 
