@@ -4,7 +4,7 @@ import moment from 'moment';
 
 const today = moment().format("MM-DD-YYYY");
 
-class LogbookEnergyView extends Component {
+class LogbookMemView extends Component {
   constructor(props) {
     super(props);
     console.log('INSIDE LOGBOOKENERGY', props);
@@ -31,11 +31,11 @@ class LogbookEnergyView extends Component {
         <table>
           <tr>{LogData[3].chart.map(heading => <th>{heading}</th>)}</tr>
           <tr>{LogData[3].chart.map(heading => <td><input ref={heading} type="text" /></td>)}
-          <td><button type="submit"  onClick={() => this.handleSubmit.bind(this) }>ADD</button></td></tr>
+          <td><button type="submit" onClick={this.handleSubmit.bind(this)}>ADD</button></td></tr>
         </table>
       </div>
     );
   }
 }
 
-export default LogbookEnergyView;
+export default LogbookMemView;
