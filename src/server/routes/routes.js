@@ -8,6 +8,10 @@ const db = require('../db/connection.js');
 const queryHelper = require('../queryHelper');
 const activities = require('../controllers/activitiesCtrl');
 const entries = require('../controllers/entriesCtrl');
+const logMem = require('../controllers/memCtrl');
+const logExercise = require('../controllers/exerciseCtrl');
+const logFood = require('../controllers/foodCtrl');
+const logSleep = require('../controllers/sleepCtrl');
 
 // ------------Controller Functions--------------- 
 const users = require('../controllers/usersCtrl');
@@ -28,6 +32,10 @@ router.post('/api/createteam', teams.createTeam);
 router.post('/api/deleteteam', teams.deleteTeam);
 router.post('/api/otherteams', teams.getOtherTeams);
 router.get('/api/usersleep', sleep.getSleep);
+router.post('/api/addMem', logMem.addMem);
+router.post('/api/addExercise', logExercise.addExercise);
+router.post('/api/addFood', logFood.addFood);
+router.post('/api/addSleep', logSleep.addSleep);
 
 router.get('/api/user', (req, res) => {
   if (req.user) {

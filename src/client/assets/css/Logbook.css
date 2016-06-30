@@ -1,6 +1,6 @@
 .debug {
   border-width: 2px;
-  border-color: red;
+  border-color: purple;
   border-style: solid;
 }
 
@@ -45,4 +45,8 @@
 
 .log-activity input {
   width: 100px;
+}
+
+.log-form {
+  display: inline-block;
 }

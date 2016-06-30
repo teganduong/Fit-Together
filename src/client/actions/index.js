@@ -7,15 +7,13 @@ export const receiveUserTeams = teams => ({ type: c.RECEIVE_TEAMS, data: teams }
 export const receiveTeamMembers = members => ({ type: c.RECEIVE_MEMBERS, data: members });
 export const addToTeams = team => ({ type: c.CREATE_TEAM, data: team });
 export const removeFromTeams = team => ({ type: c.REMOVE_TEAM, data: team });
-export const receiveExercise = exercise => ({ type: c.RECEIVE_Exercise, data: exercise });
+export const receiveExercise = exercise => ({ type: c.RECEIVE_EXERCISE, data: exercise });
 export const receiveOtherTeams = otherteams => ({ type: c.RECEIVE_OTHER_TEAMS, data: otherteams });
 export const receiveSleep = sleep => ({ type: c.RECEIVE_SLEEP, data: sleep });
 export const receiveEntries = entries => ({ type: c.RECEIVE_ENTRIES, data: entries });
 export const joinUserTeam = team => ({ type: c.JOIN_TEAM, data: team });
 export const removeOtherTeam = team => ({ type: c.REMOVE_OTHER_TEAM, data: team });
 export const addOtherTeam = team => ({ type: c.ADD_OTHER_TEAM, data: team });
-// export const receiveFood = food => ({ type: c.RECEIVE_FOOD, data: food });
-// export const receiveMem = mem => ({ type: c.RECEIVE_MEM, data: mem });
 export const receiveActivities = activities => ({ type: c.RECEIVE_ACTIVITIES, data: activities });
 
 export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
@@ -236,65 +234,78 @@ export const getEntries = () => (
   }
 );
 
-// export const checkAuth = () => {
-//   return fetch('/api/checkAuth', {
-//     credentials: 'same-origin' 
-//   })
-//   .then(response => response.json());
-// };
+export const addMem = (date_performed, mood, energy, motivation) => {
+  const payload = JSON.stringify({ date_performed, mood, energy, motivation });
+  return dispatch => (
+    fetch('/api/addMem', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Content-length': payload.length,
+      },
+      credentials: 'same-origin',
+      body: payload,
+    })
+    .then(res => res.json())
+    .then(mem => {
+      console.log('successfully posted mem'); 
+      return dispatch(receiveMem(mem));
+    })
+    .catch(err => dispatch(error(err)))
+  );
+};
 
-// export const addFood = (date_performed, protein, fats, carbs, calories) => {
-//   const payload = JSON.stringify({ date_performed, protein, fats, carbs, calories });
-//   return dispatch => (
-//     fetch('/api/users', {
-//       method: 'POST',
-//       headers: {
-//         'Content-type': 'application/json',
-//         'Content-length': payload.length,
-//       },
-//       credentials: 'same-origin',
-//       body: payload,
-//     })
-//     .then(res => res.json())
-//     .then(food => dispatch(receiveFood(food)))
-//     .catch(err => dispatch(error(err)))
-//   );
-// };
 
-// export const addMem = (date_performed, mood, energy, motivation) => {
-//   const payload = JSON.stringify({ date_performed, mood, energy, motivation });
-//   return dispatch => (
-//     fetch('/api/users', {
-//       method: 'POST',
-//       headers: {
-//         'Content-type': 'application/json',
-//         'Content-length': payload.length,
-//       },
-//       credentials: 'same-origin',
-//       body: payload,
-//     })
-//     .then(res => res.json())
-//     .then(mem => dispatch(receiveMem(mem)))
-//     .catch(err => dispatch(error(err)))
-//   );
-// };
+export const addExercise = (date_performed, type, duration, distance, reps, sets) => {
+  const payload = JSON.stringify({ date_performed, type, duration, distance, reps, sets });
+  return dispatch => (
+    fetch('/api/addExercise', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Content-length': payload.length,
+      },
+      credentials: 'same-origin',
+      body: payload,
+    })
+    .then(res => res.json())
+    .then(exercise => dispatch(receiveExercise(exercise)))
+    .catch(err => dispatch(error(err)))
+  );
+};
 
-// export const addSleep = (date_performed, duration, quality) => {
-//   const payload = JSON.stringify({ date_performed, duration, quality });
-//   return dispatch => {
-//     fetch('/api/', {
-//       method: 'POST',
-//       headers: {
-//         'Content-type': 'application/json',
-//         'Content-length': payload.length,
-//       },
-//       credentials: 'same-origin',
-//       body: payload,
-//     })
-//     .then(res => res.json())
-//     .then(sleep => dispatch(receiveSleep(sleep)))
-//     .catch(err => dispatch(error(err)))
-//   );
-//   }
-// }
+export const addFood = (date_performed, protein, fats, carbs, calories) => {
+  const payload = JSON.stringify({ date_performed, protein, fats, carbs, calories });
+  return dispatch => (
+    fetch('/api/addFood', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Content-length': payload.length,
+      },
+      credentials: 'same-origin',
+      body: payload,
+    })
+    .then(res => res.json())
+    .then(food => dispatch(receiveFood(food)))
+    .catch(err => dispatch(error(err)))
+  );
+};
 
+export const addSleep = (date_performed, duration, quality) => {
+  const payload = JSON.stringify({ date_performed, duration, quality });
+  return dispatch => (
+    fetch('/api/addSleep', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Content-length': payload.length,
+      },
+      credentials: 'same-origin',
+      body: payload,
+    })
+    .then(res => res.json())
+    .then(sleep => dispatch(receiveSleep(sleep)))
+    .catch(err => dispatch(error(err)))
+  );
+};

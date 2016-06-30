@@ -58,3 +58,4 @@ Dashboard.propTypes = {
   sleep: PropTypes.array,
   getActivities: PropTypes.func
 };
+
