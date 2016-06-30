@@ -24,8 +24,8 @@ class Logbook extends Component {
           </div>
           <div className="horizontal-dash debug">
             <LogbookMemView addMem={this.props.addMem} />
-            <LogbookExerciseView addFood={this.props.addFood} />
-            <LogbookFoodView addExercise={this.props.addExercise} />
+            <LogbookExerciseView addExercise={this.props.addExercise} />
+            <LogbookFoodView addFood={this.props.addFood} />
             <LogbookSleepView addSleep={this.props.addSleep} />
           </div>      
         </div>

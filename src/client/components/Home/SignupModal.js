@@ -14,7 +14,7 @@ class SignupModal extends Component {
       password: this.refs.password.value,
       email: this.refs.email.value,
     };
-    this.props.addUser(formData.name, formData.username, formData.password, formData.email);
+    this.props.addUser(formData);
 
     setTimeout(() => {
       browserHistory.push(`/dashboard/${formData.username}`);

@@ -16,9 +16,8 @@ export const removeOtherTeam = team => ({ type: c.REMOVE_OTHER_TEAM, data: team 
 export const addOtherTeam = team => ({ type: c.ADD_OTHER_TEAM, data: team });
 export const receiveActivities = activities => ({ type: c.RECEIVE_ACTIVITIES, data: activities });
 
-export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
-  const payload = JSON.stringify({ name, username, password, email, weight, bmi, goal, points });
-
+export const addUser = (obj) => {
+  const payload = JSON.stringify(obj);
   return dispatch => (
     fetch('/api/users', {
       method: 'POST',
@@ -234,8 +233,8 @@ export const getEntries = () => (
   }
 );
 
-export const addMem = (date_performed, mood, energy, motivation) => {
-  const payload = JSON.stringify({ date_performed, mood, energy, motivation });
+export const addMem = (obj) => {
+  const payload = JSON.stringify(obj);
   return dispatch => (
     fetch('/api/addMem', {
       method: 'POST',
@@ -256,8 +255,8 @@ export const addMem = (date_performed, mood, energy, motivation) => {
 };
 
 
-export const addExercise = (date_performed, type, duration, distance, reps, sets) => {
-  const payload = JSON.stringify({ date_performed, type, duration, distance, reps, sets });
+export const addExercise = (obj) => {
+  const payload = JSON.stringify(obj);
   return dispatch => (
     fetch('/api/addExercise', {
       method: 'POST',
@@ -269,13 +268,16 @@ export const addExercise = (date_performed, type, duration, distance, reps, sets
       body: payload,
     })
     .then(res => res.json())
-    .then(exercise => dispatch(receiveExercise(exercise)))
+    .then(exercise => {
+      console.log('successfully posted exercise'); 
+      return dispatch(receiveExercise(exercise));
+    })
     .catch(err => dispatch(error(err)))
   );
 };
 
-export const addFood = (date_performed, protein, fats, carbs, calories) => {
-  const payload = JSON.stringify({ date_performed, protein, fats, carbs, calories });
+export const addFood = (obj) => {
+  const payload = JSON.stringify(obj);
   return dispatch => (
     fetch('/api/addFood', {
       method: 'POST',
@@ -287,13 +289,16 @@ export const addFood = (date_performed, protein, fats, carbs, calories) => {
       body: payload,
     })
     .then(res => res.json())
-    .then(food => dispatch(receiveFood(food)))
+    .then(food => {
+      console.log('successfully posted exercise'); 
+      return dispatch(receiveExercise(food));
+    })
     .catch(err => dispatch(error(err)))
   );
 };
 
-export const addSleep = (date_performed, duration, quality) => {
-  const payload = JSON.stringify({ date_performed, duration, quality });
+export const addSleep = (obj) => {
+  const payload = JSON.stringify(obj);
   return dispatch => (
     fetch('/api/addSleep', {
       method: 'POST',
