@@ -16,6 +16,36 @@ const user = {
 const Settings = () => (
   <div>
     <div className="main-container">
+      <div className="profile-image-container">
+        <img className="profile-image" src="http://i988.photobucket.com/albums/af3/TheLightChasers/Portraits/portrait-sigma-50mm-f14-hsm-canon-eos-5d-mk2-face-Favimcom-473053_zpsd55e8d8e.jpg"/>
+        <div className="profile-text-box">
+          <div className="profile-inner-text-box">
+            <h5 className="profile-text-small">{user.name}</h5>
+          </div>
+        </div>
+      </div>
+      <div className="profile-bottom-bar">
+        <div className="profile-stat-row">
+          <div className="profile-stat-row-item first">
+            <p className="profile-stat-value">22</p>
+            <p className="profile-stat-description">Age</p>
+          </div>
+          <div className="profile-stat-row-item">
+            <p className="profile-stat-value">63 kg</p>
+            <p className="profile-stat-description">Weight</p>
+          </div>
+        </div>
+        <div className="profile-stat-row">
+          <div className="profile-stat-row-item first">
+            <p className="profile-stat-value">20.4</p>
+            <p className="profile-stat-description">BMI</p>
+          </div>
+          <div className="profile-stat-row-item">
+            <p className="profile-stat-value">11%</p>
+            <p className="profile-stat-description">Fat</p>
+          </div>
+        </div>
+      </div>
       <div>
         <h3>Profile Information</h3>
         <button 
