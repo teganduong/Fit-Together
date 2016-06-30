@@ -7,7 +7,14 @@ const hours = sleepData.map(day => day.time);
 console.log(hours);
 const dataset = sleepData.slice(0, 10).concat(sleepData.slice(20));
 console.log(dataset);
+const scale = 8;
+const barPadding = 1;
+// const dataset = sleepData;
+const numDataPoints = 30; 
+// width based on chart width and number of data points
+// let barWidth = chartW / numDataPoints;
 
+/* eslint-disable func-names */
 const getDaysDifference = (start, end) => {
   // 1000 milliseconds per sec; 60 sec per min; 60 min per hour; 24 hours per day 
   const convertToDays = (ms) => (((ms / 1000) / 60) / 60) / 24;
@@ -26,72 +33,66 @@ const getDateAxis = (startDate, endDate) => {
 
 class d3ChartClass {
   constructor(el, props, state) {
-    this.width = props.width;
+    this.width = (props.width).match(/\d+/);
+    this.height = (props.height).match(/\d+/);
+    this.units = props.width.match(/\D+/);
+    this.state = state;
+    this.timeFrame = 30;
     this.svg = d3.select(el).append('svg')
       .attr('class', 'd3')
       .attr('width', props.width)
       .attr('height', props.height);
   }
 
-  makeCircle(el, props) {
-    this.svg.append('circle')
-    .attr('cx', '200')
-    .attr('cy', '25')
-    .attr('r', 22);
-  }
+  // makeCircle(el, props) {
+  //   this.svg.append('circle')
+  //   .attr('cx', '200')
+  //   .attr('cy', '25')
+  //   .attr('r', 22);
+  // }
 
   makeBars(el, props, objects) {
-    const scale = 25;
-    const barPadding = 1;
-    const chartW = 500;
-    const chartH = 500; 
-    // const dataset = sleepData;
-    const numDataPoints = 30;
-    // width based on chart width and number of data points
-    const barWidth = chartW / numDataPoints;
+    const barWidth = this.width / this.timeFrame;
+    const chartH = this.height;
+    const units = this.units;
+    const yPad = 1;
     this.svg.selectAll('rect')
-    .data(dataset)  // array of daily sleep data
-    .enter()
-    .append('rect')   // create the bar graph
-    .each(function(d, index) {
-      // if based on time...
-      console.log(dataset[0]['date_performed'], d.date_performed);
-      console.log(getDaysDifference(dataset[0]['date_performed'], d.date_performed));
-      let i = getDaysDifference(dataset[0]['date_performed'], d.date_performed);
-      // create bar graph based on x, y, width, and variant color
-      d3.select(this)
-        .attr({
-          x: i * barWidth + 10,
-          y: chartH - (d.time * scale),
-          width: (barWidth - barPadding),
-          fill: d => ("rgb(0, 0, " + Math.floor(d.time * scale) + ")"),
-        });
-    })
-    .attr("height", function(d) {
-        var barHeight = d.time * scale;  // Scale up by factor of 5
-        return barHeight + "px";
-    });
-    console.log(getDateAxis(dataset[0].date, dataset[dataset.length-1].date));
+      .data(dataset)  // array of daily sleep data
+      .enter()
+      .append('rect')   // create the bar graph
+      .each(function (data, index) {
+        // if based on time...
+        //console.log('hey1', data);
+        const i = getDaysDifference(dataset[0]['date_performed'], data.date_performed);
+        console.log(i);
+        // create bar graph based on x, y, width, and variant color
+        console.log('chart height ', chartH);
+        console.log('hey', data.time*scale);
+        d3.select(this)
+          .attr({
+            x: `${i * barWidth}${units}`,
+            y: `${chartH - (data.time * scale)}%`,
+            width: `${barWidth-0.5}${units}`,
+            height: `${data.time * scale-yPad}%`,
+            fill: `rgb(0, 0, ${Math.floor(data.time * scale)})`,
+          });
+      });
   }
 
   makeDataTexts(el, props, objects) {
-    const scale = 25;
-    const barPadding = 1;
-    const chartW = 500;
-    const chartH = 500; 
     // const dataset = sleepData;
     //  bar width based on chart width and number of data points
-    //  chartW / dataset.length
-    const numDataPoints = 30;
     // width based on chart width and number of data points
+    const chartW = this.width;
+    const chartH = this.height;
     const barWidth = chartW / numDataPoints;
     const fontSize = barWidth * 0.7;
     this.svg.selectAll('text')
     .data(dataset)  // array of daily sleep data
     .enter()
     .append('text')   // create the bar graph
-    .each(function(d, index) {
-      let i = getDaysDifference(dataset[0]['date_performed'], d.date_performed);
+    .each(function (d, index) {
+      const i = getDaysDifference(dataset[0]['date_performed'], d.date_performed);
       // create bar graph based on x, y, width, and variant color
       d3.select(this)
         .attr({
@@ -102,29 +103,24 @@ class d3ChartClass {
           'font-size': `${fontSize}px`,
           'text-anchor': 'middle',
         })
-        .text(d => d.time);
+        .text(data => data.time);
     });
   }
 
   makeScatter(el, props, objects) {
-    const scale = 25;
-    const barPadding = 1;
-    const chartW = 500;
-    const chartH = 500; 
     const rSize = 4;
     // const dataset = sleepData;
     //  width based on chart width and number of data points
     //  chartW / dataset.length
-
-    //  chartW / dataset.length
-    const numDataPoints = 30;
     // width based on chart width and number of data points
+    const chartW = this.width;
+    const chartH = this.height;
     const barWidth = chartW / numDataPoints - barPadding;
     this.svg.selectAll('circle')
     .data(dataset)  // array of daily sleep data
     .enter()
     .append('circle')   // create the bar graph
-    .each(function(d, index) {
+    .each(function (d, index) {
       const i = getDaysDifference(dataset[0]['date_performed'], d.date_performed);
       // create bar graph based on x, y, width, and variant color
       d3.select(this)
