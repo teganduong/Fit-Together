@@ -9,9 +9,9 @@ export const addToTeams = team => ({ type: c.CREATE_TEAM, data: team });
 export const removeFromTeams = team => ({ type: c.REMOVE_TEAM, data: team });
 export const receiveExercise = exercise => ({ type: c.RECEIVE_Exercise, data: exercise });
 export const receiveOtherTeams = otherteams => ({ type: c.RECEIVE_OTHER_TEAMS, data: otherteams });
+export const receiveSleep = sleep => ({ type: c.RECEIVE_SLEEP, data: sleep });
 // export const receiveFood = food => ({ type: c.RECEIVE_FOOD, data: food });
 // export const receiveMem = mem => ({ type: c.RECEIVE_MEM, data: mem });
-// export const receiveSleep = sleep => ({ type: c.RECEIVE_SLEEP, data: sleep });
 
 export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
   const payload = JSON.stringify({ name, username, password, email, weight, bmi, goal, points });
@@ -170,6 +170,23 @@ export const deleteTeam = (obj) => {
     })
     .catch(err => dispatch(error(err)))
   );
+};
+
+
+export const getSleep = () => {
+  console.log('get sleep dispatch');
+  return dispatch => {
+    fetch('/api/usersleep', {
+      method: 'GET',
+      credentials: 'same-origin',
+    })
+    .then(res => res.json())
+    .then(sleep => {
+      console.log('dipatched to server', sleep); 
+      return dispatch(receiveSleep(sleep.data));
+    })
+    .catch(err => dispatch(error(err)));
+  };
 };
 
 // export const checkAuth = () => {

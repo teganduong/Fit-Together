@@ -22,7 +22,7 @@ import Stats from './components/Dashboard/Items/Stats.js';
 import Challenges from './components/Dashboard/Items/Challenges/Challenges';
 import Teams from './containers/Teams'; // redux container
 // import TeamMemberList from './containers/TeamMemberList'; // redux container
-import Tips from './components/Dashboard/Items/Tips.js';
+import Tips from './components/Dashboard/Items/Tips/Tips';
 import Settings from './components/Dashboard/Items/Settings/Settings';
 import Logbook from './components/Dashboard/Items/Logbook/Logbook';
 require('./assets/css/style.css');
@@ -43,7 +43,7 @@ render(
           <Route path="/dashboard/stats"component={Stats} />
           <Route path="/dashboard/challenges"component={Challenges} />
           <Route path="/dashboard/teams"component={Teams} />
-          <Route path="/dashboard/tips"component={PlaceHolder} />
+          <Route path="/dashboard/tips"component={Tips} />
         </Route>
       </Route>
     </Router>

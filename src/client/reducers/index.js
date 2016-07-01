@@ -58,6 +58,18 @@ export const members = (state, action) => {
   }
 };
 
+
+export const sleep = (state, action) => {
+  console.log('--------------- inside reducer');
+  switch (action.type) {
+    case RECEIVE_SLEEP: {
+      return action.data || state;
+    }
+    default:
+      return state || {};
+  }
+};
+
 export const error = (state, action) => {
   switch (action.type) {
     case REQUEST_ERROR: {

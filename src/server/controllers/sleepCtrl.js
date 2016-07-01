@@ -20,3 +20,23 @@ exports.addSleep = (req, res) => {
     });
 };
 
+exports.getSleep = (req, res) => {
+  /** TESTING **/
+  console.log('FOR TESTING PURPOSES, user_id = 1');
+  req.body.user_id = 1;
+  db.any('select users.id, sleep.date_performed, sleep.duration, ' +
+    'sleep.quality from users, sleep where users.id=${user_id} ' +
+    'and sleep.user_id=${user_id}', req.body)
+    .then(user => {
+      res.status(200)
+        .json({
+          status: 'success',
+          data: user,
+          message: 'Retrieved user sleep information!'
+        });
+    })
+    .catch((err) => {
+      console.error('error in retrieving user info: ', err);
+    });
+};
+
