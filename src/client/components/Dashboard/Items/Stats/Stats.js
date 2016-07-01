@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Chart from './Chart.js';
 import sleepMemData from './dataSeedAlgo.js';
+import D from './dataConstants.js';
 
 let sleepData; 
 let memData;
@@ -20,6 +21,9 @@ class Stats extends Component {
     console.log('component constructor stats ', this.props);
     this.activities = this.props.activities;
     console.log(this.props.activities);
+    // data constants
+    this.D = D;
+    console.log('D------------------', D);
   }
 
   componentWillMount() {
@@ -39,8 +43,13 @@ class Stats extends Component {
     const dataType = 'sleep';
     return (
       <div className="main-container">
-        {console.log('===================================== inside render', this.props.activities)}
-        <Chart dataset={this.props.activities.data} chartType={chartType} dataType={dataType} />
+        {console.log('===================================== inside render', this.props.activities, this.D)}
+        <Chart 
+          dataset={this.props.activities.data} 
+          chartType={chartType} 
+          dataTitle={dataType}
+          D={this.D} 
+        />
       </div>);
   }
 }

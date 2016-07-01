@@ -1,5 +1,5 @@
 import d3 from 'd3';
-const scale = 30;
+const scale = 20;
 const barPadding = 1;
 
 /* eslint-disable func-names */
@@ -20,16 +20,21 @@ const getDateAxis = (startDate, endDate) => {
 };
 
 class d3ChartClass {
-  constructor(el, props, dataset) {
+  constructor(el, props, allData) {
     // currently only compatible with pixels
     // width, width padding, height, height padding, timeframe
     this.width = Number((props.width).match(/\d+/)) * 0.9;
     this.wPad = (props.width * 0.1) / 2;
     this.height = Number((props.height).match(/\d+/)) * 0.9;
     this.hPad = (props.height * 0.1) / 2;
-    this.dataset = dataset;
     this.timeFrame = 30;
-    this.dataType = 'quality';
+    this.dataNum = 0;
+    this.dataFieldNum = 0;
+    this.allData = allData;
+    this.D = props.D;
+    this.dataset = allData[this.dataNum];
+    // this.dataTypes = this.props.dataTitles; // this.dataset.fields[0];
+    // this.dataType = this.dataTypes[0].fields[0];
     // svg element to draw on
     this.svg = d3.select(el).append('svg')
       .attr('class', 'd3')
@@ -43,7 +48,9 @@ class d3ChartClass {
       wPad: this.wPad,
       hPad: this.hPad,
       timeFrame: this.timeFrame,
-      dataType: this.dataType
+      dataNum: this.dataNum,
+      dataFieldNum: this.dataFieldNum,
+      D: this.D
     };
   }
 
@@ -51,23 +58,51 @@ class d3ChartClass {
     const attr = this.attr;
     const barWidth = this.width / this.timeFrame;
     const chartH = this.height;
-    const units = this.units;
     const hPad = this.hPad;
     const wPad = this.wPad / 2;
-    const dataset = this.dataset;
-    this.svg.selectAll('rect')
+    const dataset = this.allData[attr.dataNum];
+    const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
+    console.log('dataset should change ', dataset, dataType);
+    this.svg.selectAll('rect.bar')
       .data(dataset)  // array of daily sleep data
       .enter()
       .append('rect')   // create the bar graph
+      .attr('class', 'bar')
       .each(function (data, index) {
         // if based on time...
         //console.log('hey1', data);
         const i = getDaysDifference(dataset[0]['date_performed'], data.date_performed);
         console.log(i);
         // create bar graph based on x, y, width, and variant color
-        console.log('chart height ', chartH);
-        console.log('hey', data[attr.dataType]*scale);
-        console.log('wpad ', wPad);
+        d3.select(this)
+          .attr({
+            x: `${i * barWidth + barWidth/2 + wPad}`,
+            y: `${chartH - (data[dataType] * scale) - hPad}`,
+            width: `${barWidth-0.5}`,
+            height: `${data[dataType] * scale}`,
+            fill: `rgb(0, 0, ${Math.floor(data[dataType] * scale)})`,
+          });
+      });
+  }
+
+  updateBars(el, props, objects) {
+    const attr = this.attr;
+    attr.dataType = attr.dataType || props.dataType;
+    const barWidth = this.width / this.timeFrame;
+    const chartH = this.height;
+    const units = this.units;
+    const hPad = this.hPad;
+    const wPad = this.wPad / 2;
+    const dataset = this.allData[attr.dataTitleNum];
+    console.log('dataset should change ', dataset);
+    this.svg.selectAll('rect.bar')
+      .data(dataset)
+      .each(function (data, index) {
+        // if based on time...
+        //console.log('hey1', data);
+        const i = getDaysDifference(dataset[0]['date_performed'], data.date_performed);
+        console.log(i);
+        // create bar graph based on x, y, width, and variant color
         d3.select(this)
           .attr({
             x: `${i * barWidth + barWidth/2 + wPad}`,
@@ -76,7 +111,7 @@ class d3ChartClass {
             height: `${data[attr.dataType] * scale}`,
             fill: `rgb(0, 0, ${Math.floor(data[attr.dataType] * scale)})`,
           });
-      });
+      });    
   }
 
   makeDataTexts(el, props, objects) {
@@ -113,6 +148,7 @@ class d3ChartClass {
     const rSize = 4;
     const attr = this.attr;
     const barWidth = attr.width / this.timeFrame - barPadding;
+    const dataset = attr.dataset;
     this.svg.selectAll('circle')
     .data(dataset)  // array of daily sleep data
     .enter()
@@ -128,7 +164,7 @@ class d3ChartClass {
           fill: datum => ("rgb(" + Math.floor(datum.time * scale) + ", 0, 0)"),
         });
     });
-    console.log(getDateAxis(dataset[0].date, dataset[dataset.length-1].date));
+    // console.log('DATES: ', getDateAxis(dataset[0].date, dataset[dataset.length-1].date));
   }
 
   makeScale(data, h, w, timeFrame) {
@@ -141,7 +177,7 @@ class d3ChartClass {
   makeAxis(m) {
     const attr = this.attr;
     const barWidth = attr.width / this.timeFrame;
-    const mScale = this.makeScale(dataset, attr.height, [attr.wPad, attr.width+attr.wPad], attr.timeFrame);
+    const mScale = this.makeScale(attr.dataset, attr.height, [attr.wPad, attr.width+attr.wPad], attr.timeFrame);
     const mAxis = d3.svg.axis()
                     .scale(mScale)
                     .orient('bottom')
@@ -154,6 +190,43 @@ class d3ChartClass {
 
   makeDateAxis(startDate, endDate, timeFrame) {
     timeFrame = this.timeFrame;
+  }
+
+  makeTitleButtons(titles, options) {
+    console.log('MAKING TITLES!!!', titles);
+    const context = this;
+    const attr = this.attr;
+    // const dataset = sleepData;
+    //  bar width based on chart width and number of data points
+    // width based on chart width and number of data points
+    const barWidth = attr.width / titles.length;
+    const fontSize = barWidth * 0.1;
+    this.svg.selectAll('text.title')
+    .data(titles)  // array of daily titles
+    .enter()
+    .append('text')   // create the bar graph
+    .attr('class', 'title')
+    .each(function (d, index) {
+      // create bar graph based on x, y, width, and variant color
+      d3.select(this)
+        .attr({
+          x: index * barWidth + barWidth / 2 + 10,
+          y: attr.height / 0.9 - 10,
+          fill: 'grey',
+          'font-family': 'sans-serif',
+          'font-size': `${fontSize}px`,
+          'text-anchor': 'middle',
+        })
+        .text(d)
+        .on('click', () => {
+          attr.dataTitleNum = index;
+          console.log('i am clieck ', attr.dataTitleNum);
+          context.updateBars();
+        });
+    });
+
+    // this.svg.selectAll('text.title')
+    //   .text('NOPE');
   }
 
 }

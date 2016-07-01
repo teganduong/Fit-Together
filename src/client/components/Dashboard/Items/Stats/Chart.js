@@ -6,14 +6,13 @@ let memData;
 [sleepData, memData] = sleepMemData();
 let dataset1 = sleepData.slice(0, 10).concat(sleepData.slice(20));
 
-
-console.log(d3Chart);
 class Chart extends Component {
   constructor(props) {
     super(props);
     this.svg = null;
     this.dataset = this.props.dataset;
-    this.subdata = this.dataset[0];
+    this.subdata = this.dataset;
+    this.D = this.props.D;
   }
 
   componentWillMount() {
@@ -32,13 +31,16 @@ class Chart extends Component {
   initChart() {
     const maxWidth = '900';
     const maxHeight = '600';
-    const svg = new d3Chart('#main-chart', { width: maxWidth, height: maxHeight }, this.subdata);
+    const dataTitles = this.dataTitles;
+    console.log('alldata, ', this.subdata, dataTitles);
+    console.log('ChartD', this.D);
+    const svg = new d3Chart('#main-chart', { width: maxWidth, height: maxHeight, D: this.D }, this.subdata);
     svg.makeBars();
     console.log(svg);
     this.svg = svg;
-    this.svg.makeDataTexts();
     this.svg.makeScatter();
     this.svg.makeAxis();
+    this.svg.makeTitleButtons(dataTitles);
   }
 
   render() {
