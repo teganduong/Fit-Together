@@ -10,6 +10,7 @@ import {
   RECEIVE_FOOD,
   RECEIVE_MEM,
   RECEIVE_ACTIVITIES,
+  RECEIVE_SLEEP
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
