@@ -1,5 +1,4 @@
 import d3 from 'd3';
-const scale = 20;
 const barPadding = 1;
 
 /* eslint-disable func-names */
@@ -62,6 +61,7 @@ class d3ChartClass {
     const wPad = this.wPad / 2;
     const dataset = this.allData[attr.dataNum];
     const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
+    const scale = (attr.D)[attr.dataNum].scale;
     console.log('dataset should change ', dataset, dataType);
     this.svg.selectAll('rect.bar')
       .data(dataset)  // array of daily sleep data
@@ -87,16 +87,16 @@ class d3ChartClass {
 
   updateBars(el, props, objects) {
     const attr = this.attr;
-    attr.dataType = attr.dataType || props.dataType;
     const barWidth = this.width / this.timeFrame;
     const chartH = this.height;
-    const units = this.units;
     const hPad = this.hPad;
     const wPad = this.wPad / 2;
-    const dataset = this.allData[attr.dataTitleNum];
-    console.log('dataset should change ', dataset);
+    const dataset = this.allData[attr.dataNum];
+    const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
+    const scale = (attr.D)[attr.dataNum].scale;
+    console.log('dataset should change ', dataset, dataType);
     this.svg.selectAll('rect.bar')
-      .data(dataset)
+      .data(dataset)  // array of daily sleep data
       .each(function (data, index) {
         // if based on time...
         //console.log('hey1', data);
@@ -106,12 +106,12 @@ class d3ChartClass {
         d3.select(this)
           .attr({
             x: `${i * barWidth + barWidth/2 + wPad}`,
-            y: `${chartH - (data[attr.dataType] * scale) - hPad}`,
+            y: `${chartH - (data[dataType] * scale) - hPad}`,
             width: `${barWidth-0.5}`,
-            height: `${data[attr.dataType] * scale}`,
-            fill: `rgb(0, 0, ${Math.floor(data[attr.dataType] * scale)})`,
+            height: `${data[dataType] * scale}`,
+            fill: `rgb(0, 0, ${Math.floor(data[dataType] * scale)})`,
           });
-      });    
+      });   
   }
 
   makeDataTexts(el, props, objects) {
@@ -149,6 +149,8 @@ class d3ChartClass {
     const attr = this.attr;
     const barWidth = attr.width / this.timeFrame - barPadding;
     const dataset = attr.dataset;
+    const scale = (attr.D)[attr.dataNum].scale;
+
     this.svg.selectAll('circle')
     .data(dataset)  // array of daily sleep data
     .enter()
@@ -188,19 +190,17 @@ class d3ChartClass {
             .call(mAxis);
   }
 
-  makeDateAxis(startDate, endDate, timeFrame) {
-    timeFrame = this.timeFrame;
-  }
-
-  makeTitleButtons(titles, options) {
-    console.log('MAKING TITLES!!!', titles);
+  makeTitleButtons(D, options) {
+    console.log('MAKING TITLES!!!', D);
     const context = this;
-    const attr = this.attr;
     // const dataset = sleepData;
     //  bar width based on chart width and number of data points
     // width based on chart width and number of data points
+    const attr = this.attr;
+    const titles = D.map(category => category.title);
     const barWidth = attr.width / titles.length;
     const fontSize = barWidth * 0.1;
+    console.log('Actual titles ', titles);
     this.svg.selectAll('text.title')
     .data(titles)  // array of daily titles
     .enter()
@@ -219,8 +219,9 @@ class d3ChartClass {
         })
         .text(d)
         .on('click', () => {
-          attr.dataTitleNum = index;
-          console.log('i am clieck ', attr.dataTitleNum);
+          attr.dataNum = index;
+          attr.dataFieldNum = 0;
+          console.log('i am clicked ', attr.dataNum);
           context.updateBars();
         });
     });

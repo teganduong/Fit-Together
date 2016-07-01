@@ -31,16 +31,16 @@ class Chart extends Component {
   initChart() {
     const maxWidth = '900';
     const maxHeight = '600';
-    const dataTitles = this.dataTitles;
-    console.log('alldata, ', this.subdata, dataTitles);
+    const D = this.D;
+    console.log('alldata, ', this.subdata);
     console.log('ChartD', this.D);
     const svg = new d3Chart('#main-chart', { width: maxWidth, height: maxHeight, D: this.D }, this.subdata);
     svg.makeBars();
     console.log(svg);
     this.svg = svg;
-    this.svg.makeScatter();
-    this.svg.makeAxis();
-    this.svg.makeTitleButtons(dataTitles);
+    // this.svg.makeScatter();
+    // this.svg.makeAxis();
+    this.svg.makeTitleButtons(D);
   }
 
   render() {

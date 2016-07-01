@@ -23,7 +23,6 @@ class Stats extends Component {
     console.log(this.props.activities);
     // data constants
     this.D = D;
-    console.log('D------------------', D);
   }
 
   componentWillMount() {
