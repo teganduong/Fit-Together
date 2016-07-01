@@ -23,5 +23,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
     dispatch(addMem(date_performed, mood, energy, motivation)),
   addSleep: (date_performed, duration, quality) =>
     dispatch(addSleep(date_performed, duration, quality)),
-
 */

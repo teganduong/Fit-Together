@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import LogData from './LogData';
 import moment from 'moment';
 
@@ -39,5 +39,9 @@ class LogbookExerciseView extends Component {
     );
   }
 }
+
+LogbookExerciseView.propTypes = {
+  addExercise: PropTypes.func
+};
 
 export default LogbookExerciseView;

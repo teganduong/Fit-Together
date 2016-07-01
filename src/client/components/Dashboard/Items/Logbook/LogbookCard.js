@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 const LogbookCard = ({ card }) => (
   <div className="log-activity card debug">
@@ -11,8 +11,9 @@ const LogbookCard = ({ card }) => (
   </div>
 );
 
+
 LogbookCard.propTypes = {
-  card: React.PropTypes.object.isRequired,
+  card: PropTypes.obj
 };
 
 export default LogbookCard;

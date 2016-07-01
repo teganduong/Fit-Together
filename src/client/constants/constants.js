@@ -12,3 +12,4 @@ export const RECEIVE_ENTRIES = 'RECEIVE_ENTRIES';
 export const JOIN_TEAM = 'JOIN_TEAM';
 export const REMOVE_OTHER_TEAM = 'REMOVE_OTHER_TEAM';
 export const ADD_OTHER_TEAM = 'ADD_OTHER_TEAM';
+export const RECEIVE_TIP = 'RECEIVE_TIP';

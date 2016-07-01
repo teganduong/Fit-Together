@@ -72,7 +72,7 @@ router.get('/auth/fitbit/callback',
         id: req.user.profile.id,
         username: req.user.profile.displayName
       };
-      queryHelper.getUserData(userData.id, userData.accessToken);
+
       res.redirect('/dashboard');
     }
   }
@@ -83,8 +83,10 @@ router.get('/auth/moves', passport.authenticate('moves'));
 router.get('/auth/moves/callback', 
   passport.authenticate('moves', { failureRedirect: '/login' }),
   (req, res) => {
-    console.log('inside callback', req.user);
+    console.log('inside callback of moves', req.user);
     const username = req.user;
+    var accessToken = req.user.accessToken;
+    queryHelper.getUsername(accessToken);
     res.redirect('/dashboard');
   }
 );

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import LogbookCard from './LogbookCard';
 import LogbookMemView from './LogbookMemView';
 import LogbookExerciseView from './LogbookExerciseView';
@@ -10,7 +10,14 @@ class Logbook extends Component {
   constructor(props) {
     super(props);
     console.log('INSIDE LOGBOOK===>', props);
+    // this.state = {
+    //   show: false
+    // };
   }
+
+  // onClick() {
+  //   this.setState({ show: true });
+  // }
 
   render() {
     return(
@@ -20,7 +27,7 @@ class Logbook extends Component {
             <p>Log Activity</p>
           </div>
           <div className="horizontal-dash debug">
-            {LogData.map((card, index) => <LogbookCard card={card} key={index} />)}
+            {LogData.map((card, index) => <LogbookCard card={card} key={index} onClick={this.handleClick} />)}
           </div>
           <div className="horizontal-dash debug">
             <LogbookMemView addMem={this.props.addMem} />
@@ -33,5 +40,12 @@ class Logbook extends Component {
     )
   }
 }
+
+Logbook.propTypes = {
+  adMem: PropTypes.func,
+  addExercise: PropTypes.func,
+  addFood: PropTypes.func,
+  addSleep: PropTypes.func
+};
 
 export default Logbook;

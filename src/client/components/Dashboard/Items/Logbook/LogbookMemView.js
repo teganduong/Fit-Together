@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import LogData from './LogData';
 import moment from 'moment';
 
@@ -37,5 +37,9 @@ class LogbookMemView extends Component {
     );
   }
 }
+
+LogbookMemView.propTypes = {
+  addMem: PropTypes.func
+};
 
 export default LogbookMemView;

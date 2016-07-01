@@ -15,6 +15,7 @@ export const joinUserTeam = team => ({ type: c.JOIN_TEAM, data: team });
 export const removeOtherTeam = team => ({ type: c.REMOVE_OTHER_TEAM, data: team });
 export const addOtherTeam = team => ({ type: c.ADD_OTHER_TEAM, data: team });
 export const receiveActivities = activities => ({ type: c.RECEIVE_ACTIVITIES, data: activities });
+export const receiveTips = tips => ({ type: c.RECEIVE_TIP, data: tips });
 
 export const addUser = (obj) => {
   const payload = JSON.stringify(obj);
@@ -246,10 +247,6 @@ export const addMem = (obj) => {
       body: payload,
     })
     .then(res => res.json())
-    .then(mem => {
-      console.log('successfully posted mem'); 
-      return dispatch(receiveMem(mem));
-    })
     .catch(err => dispatch(error(err)))
   );
 };
@@ -268,10 +265,6 @@ export const addExercise = (obj) => {
       body: payload,
     })
     .then(res => res.json())
-    .then(exercise => {
-      console.log('successfully posted exercise'); 
-      return dispatch(receiveExercise(exercise));
-    })
     .catch(err => dispatch(error(err)))
   );
 };
@@ -289,10 +282,6 @@ export const addFood = (obj) => {
       body: payload,
     })
     .then(res => res.json())
-    .then(food => {
-      console.log('successfully posted exercise'); 
-      return dispatch(receiveExercise(food));
-    })
     .catch(err => dispatch(error(err)))
   );
 };
@@ -310,7 +299,17 @@ export const addSleep = (obj) => {
       body: payload,
     })
     .then(res => res.json())
-    .then(sleep => dispatch(receiveSleep(sleep)))
     .catch(err => dispatch(error(err)))
   );
 };
+
+export const fetchTips = () => (
+  dispatch => (
+    fetch('/api/tips', {
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(tips => dispatch(receiveTips(tips)))
+    .catch(err => dispatch(error(err)))
+  )
+);
