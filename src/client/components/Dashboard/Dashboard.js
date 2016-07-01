@@ -36,7 +36,6 @@ export default class Dashboard extends Component {
 
   render() {
     const { user } = this.props;
-    console.log('user in Dashboard: ', user);
 
     return (
       <div>
@@ -54,6 +53,10 @@ Dashboard.propTypes = {
   children: PropTypes.element.isRequired,
   getUser: PropTypes.func,
   user: PropTypes.object,
+<<<<<<< b1b48d4cf085d4270f21914d47df181f7663b9bc
   getSleep: PropTypes.func,
   sleep: PropTypes.array
+=======
+  getSleep: PropTypes.func
+>>>>>>> Modify stats components
 };

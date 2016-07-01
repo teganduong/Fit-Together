@@ -47,7 +47,7 @@ const sleepMemData = () => {
     }
     exampleSleepData.push({
       date_performed: datePerf,
-      time: time2,
+      duration: time2,
       quality: quality2,
     });
     exampleMEMData.push({
