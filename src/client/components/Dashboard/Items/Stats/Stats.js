@@ -19,6 +19,7 @@ class Stats extends Component {
     super(props);
     console.log('component constructor stats ', this.props);
     this.activities = this.props.activities;
+    console.log(this.props.activities);
   }
 
   componentWillMount() {
@@ -34,10 +35,12 @@ class Stats extends Component {
   }
 
   render() {
+    const chartType = 'bar';
+    const dataType = 'sleep';
     return (
       <div className="main-container">
         {console.log('===================================== inside render', this.props.activities)}
-        <Chart dataset={this.props.activities.data} />
+        <Chart dataset={this.props.activities.data} chartType={chartType} dataType={dataType} />
       </div>);
   }
 }

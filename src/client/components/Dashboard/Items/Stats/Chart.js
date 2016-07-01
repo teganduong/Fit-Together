@@ -13,16 +13,26 @@ class Chart extends Component {
     super(props);
     this.svg = null;
     this.dataset = this.props.dataset;
+    this.subdata = this.dataset[0];
   }
+
+  componentWillMount() {
+    this.preProcessData();
+  }
+
 
   componentDidMount() {
     this.initChart();
   }
 
+  preProcessData(data, type) {
+
+  }
+
   initChart() {
     const maxWidth = '900';
     const maxHeight = '600';
-    const svg = new d3Chart('#main-chart', { width: maxWidth, height: maxHeight }, this.dataset);
+    const svg = new d3Chart('#main-chart', { width: maxWidth, height: maxHeight }, this.subdata);
     svg.makeBars();
     console.log(svg);
     this.svg = svg;

@@ -32,13 +32,12 @@ exports.addActivity = (req, res) => {
 
 exports.getActivities = (req, res) => {
   /** TESTING **/
-  console.log('-----req for get act------', req);
   console.log('FOR TESTING PURPOSES, user_id = 1');
   req.body.user_id = 1;
   db.tx(t => {
     return t.batch([
-      t.any('select users.id, sleep.date_performed, sleep.duration, ' +
-        'sleep.quality from users, sleep where users.id=${user_id} ' +
+      t.any('select users.id, sleep.date_performed, sleep.duration as duration, ' +
+        'sleep.quality as quality from users, sleep where users.id=${user_id} ' +
         'and sleep.user_id=${user_id}', req.body),
       t.any('select users.id, exercise.date_performed, exercise.type, exercise.duration, ' +
         'exercise.distance, exercise.reps, exercise.sets from users, exercise where users.id=${user_id} ' +
@@ -56,7 +55,7 @@ exports.getActivities = (req, res) => {
     res.status(200)
       .json({
         status: 'success',
-        data: data[0].concat(data[1]).concat(data[2]).concat(data[3]),
+        data: data,
         message: 'Retrieved user sleep information!'
       });
   });
