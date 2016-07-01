@@ -4,19 +4,9 @@ const db = require('../db/connection.js');
 // [1] Given a food --> insert into the food table --> return food_id
 // [2] Given a user_id and food_id --> insert into the users_food table
 exports.addMem = (req, res) => {
-  db.one('insert into mem(mood, energy, motivation, date_performed)' + 
-      ' values(${mood}, ${energy}, ${motivation}, ${date_performed})' +
-      ' returning id', req.body)
-    .then((memId) => {
-      const userMem = {
-        user_id: req.body.user_id,
-        mem_id: memId.id
-      };
-      console.log('Successfully inserted mem', userMem);
-      return db.none('insert into users_mem(user_id, mem_id)' + 
-        'values(${user_id}, (select id from mem where ' +
-        'id=${mem_id}))', userMem);
-    })
+  db.one('insert into mem(mood, energy, motivation, date_performed, user_id)' + 
+      ' values(${mood}, ${energy}, ${motivation}, ${date_performed},' + 
+      ' (select id from users where id=${user_id}))', req.body)
     .then(() => {
       res.status(201)
         .json({

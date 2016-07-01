@@ -1,6 +1,7 @@
 import {
   RECEIVE_USER,
   RECEIVE_TEAMS,
+  RECEIVE_OTHER_TEAMS,
   RECEIVE_MEMBERS,
   CREATE_TEAM,
   REMOVE_TEAM,
@@ -37,9 +38,31 @@ export const teams = (state, action) => {
   }
 };
 
+export const otherteams = (state, action) => {
+  switch (action.type) {
+    case RECEIVE_OTHER_TEAMS: {
+      return action.data || state;
+    }
+    default:
+      return state || {};
+  }
+};
+
 export const members = (state, action) => {
   switch (action.type) {
     case RECEIVE_MEMBERS: {
+      return action.data || state;
+    }
+    default:
+      return state || {};
+  }
+};
+
+
+export const sleep = (state, action) => {
+  console.log('--------------- inside reducer');
+  switch (action.type) {
+    case RECEIVE_SLEEP: {
       return action.data || state;
     }
     default:

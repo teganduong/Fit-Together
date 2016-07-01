@@ -8,9 +8,10 @@ export const receiveTeamMembers = members => ({ type: c.RECEIVE_MEMBERS, data: m
 export const addToTeams = team => ({ type: c.CREATE_TEAM, data: team });
 export const removeFromTeams = team => ({ type: c.REMOVE_TEAM, data: team });
 export const receiveExercise = exercise => ({ type: c.RECEIVE_Exercise, data: exercise });
+export const receiveOtherTeams = otherteams => ({ type: c.RECEIVE_OTHER_TEAMS, data: otherteams });
+export const receiveSleep = sleep => ({ type: c.RECEIVE_SLEEP, data: sleep });
 // export const receiveFood = food => ({ type: c.RECEIVE_FOOD, data: food });
 // export const receiveMem = mem => ({ type: c.RECEIVE_MEM, data: mem });
-// export const receiveSleep = sleep => ({ type: c.RECEIVE_SLEEP, data: sleep });
 
 export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
   const payload = JSON.stringify({ name, username, password, email, weight, bmi, goal, points });
@@ -75,7 +76,7 @@ export const updateUser = (userInfo) => {
 
 export const fetchUserTeams = (obj) => (
   dispatch => (
-    fetch('/userteams', {
+    fetch('/api/userteams', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -91,9 +92,28 @@ export const fetchUserTeams = (obj) => (
   )
 );
 
+export const fetchOtherTeams = (obj) => (
+  dispatch => (
+    fetch('/api/otherteams', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(obj)
+    })
+    .then(res => res.json())
+    .then(response => {
+      console.log('response', response.data);
+      dispatch(receiveOtherTeams(response.data));
+    })
+    .catch(err => dispatch(error(err)))
+  )
+);
+
 export const fetchTeamMembers = (obj) => (
   dispatch => (
-    fetch('/teammembers', {
+    fetch('/api/teammembers', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -111,11 +131,11 @@ export const fetchTeamMembers = (obj) => (
 );
 
 
-export const createTeam = () => {
-  const payload = JSON.stringify({ user_id: 1, name: 'test4', description: 'test4', team_icon: 'test4' });
+export const createTeam = (obj) => {
+  const payload = JSON.stringify(obj);
 
   return dispatch => (
-    fetch('/createteam', {
+    fetch('/api/createteam', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -134,7 +154,7 @@ export const deleteTeam = (obj) => {
   const payload = JSON.stringify(obj);
 
   return dispatch => (
-    fetch('/deleteteam', {
+    fetch('/api/deleteteam', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -150,6 +170,23 @@ export const deleteTeam = (obj) => {
     })
     .catch(err => dispatch(error(err)))
   );
+};
+
+
+export const getSleep = () => {
+  console.log('get sleep dispatch');
+  return dispatch => {
+    fetch('/api/usersleep', {
+      method: 'GET',
+      credentials: 'same-origin',
+    })
+    .then(res => res.json())
+    .then(sleep => {
+      console.log('dipatched to server', sleep); 
+      return dispatch(receiveSleep(sleep.data));
+    })
+    .catch(err => dispatch(error(err)));
+  };
 };
 
 // export const checkAuth = () => {

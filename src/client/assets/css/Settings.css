@@ -1,0 +1,82 @@
+.profile-image-container {
+	color: rgba(0, 0, 0, 0.7);
+}
+
+.profile-image {
+	width: 212px;
+	height: 212px;
+}
+
+.profile-text-box {
+  position: relative;
+  border-width: 0.5px;
+  border-color: transparent;
+  border-style: solid;
+  margin-top: -18em;
+  margin-left: 0em;
+  width: 15em;
+  height: 18em;
+  background: #CCC;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.profile-inner-text-box {
+  /*margin: 2em;*/
+  margin-top: 15.5em;
+  margin-left: 2.8em
+}
+
+.profile-text-small {
+ color: #ffffff;
+ font: 21px/1 'Roboto', sans-serif;
+}
+
+.profile-bottom-bar {
+  position: relative;
+  border-width: 0.5px;
+  border-color: transparent;
+  border-style: solid;
+  margin-top: 0em;
+  margin-left: 0em;
+  width: 212px;
+  height: 470px;
+  background: #CCC;
+  background-color: rgba(0, 24, 47, 0.6);
+}
+
+.profile-stat-row {
+	margin-top: 3em;
+	position: relative;
+	width: 100%;
+    text-align: center;
+/*	border-width: 0.5px;
+    border-color: red;
+    border-style: solid;*/
+}
+
+.profile-stat-row-item {
+	display: inline-block;
+	height: 58px;
+	width: 70px;
+
+	border-bottom-width: 0.5px;
+    border-bottom-color: white;
+    border-bottom-style: solid;
+}
+
+.first {
+	border-right-width: 0.5px;
+    border-right-color: white;
+    border-right-style: solid;
+}
+
+.profile-stat-value {
+ color: #ffffff;
+ font: 18px/1 'Roboto', sans-serif;
+ margin-top: 5px;
+}
+
+.profile-stat-description {
+ color: #ffffff;
+ font: 10px/1 'Roboto', sans-serif;
+}

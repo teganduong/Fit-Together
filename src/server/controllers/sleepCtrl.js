@@ -4,19 +4,9 @@ const db = require('../db/connection.js');
 // [1] Given a food --> insert into the food table --> return food_id
 // [2] Given a user_id and food_id --> insert into the users_food table
 exports.addSleep = (req, res) => {
-  db.one('insert into sleep(duration, quality, date_performed)' + 
-      ' values(${duration}, ${quality}, ${date_performed})' +
-      ' returning id', req.body)
-    .then((sleepId) => {
-      const userSleep = {
-        user_id: req.body.user_id,
-        sleep_id: sleepId.id
-      };
-      console.log('Successfully inserted sleep', userSleep);
-      return db.none('insert into users_sleep(user_id, sleep_id)' + 
-        'values(${user_id}, (select id from sleep where ' +
-        'id=${sleep_id}))', userSleep);
-    })
+  db.one('insert into sleep(duration, quality, date_performed, user_id)' + 
+      ' values(${duration}, ${quality}, ${date_performed},' + 
+      ' (select id from users where id=${user_id}))', req.body)
     .then(() => {
       res.status(201)
         .json({
@@ -27,6 +17,26 @@ exports.addSleep = (req, res) => {
     .catch((err) => {
       console.log('Error', err);
       res.status(400);
+    });
+};
+
+exports.getSleep = (req, res) => {
+  /** TESTING **/
+  console.log('FOR TESTING PURPOSES, user_id = 1');
+  req.body.user_id = 1;
+  db.any('select users.id, sleep.date_performed, sleep.duration, ' +
+    'sleep.quality from users, sleep where users.id=${user_id} ' +
+    'and sleep.user_id=${user_id}', req.body)
+    .then(user => {
+      res.status(200)
+        .json({
+          status: 'success',
+          data: user,
+          message: 'Retrieved user sleep information!'
+        });
+    })
+    .catch((err) => {
+      console.error('error in retrieving user info: ', err);
     });
 };
 

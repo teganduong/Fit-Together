@@ -137,3 +137,21 @@ exports.getTeamMembers = (req, res) => {
   });
 };
 
+// Given a user_id, get all of the teams that the user is not part of 
+exports.getOtherTeams = (req, res) => {
+  console.log('req.body', req.body);
+  db.query('select * from teams where id=ANY' + 
+      '(select team_id from users_teams where user_id!=${user_id})', req.body)
+    .then((data) => {
+      res.status(200)
+        .json({
+          status: 'success',
+          data: data,
+          message: 'successfully retrieved other teams'
+        });
+    })
+    .catch((err) => {
+      console.log('error in retrieving other teams', err);
+      res.status(400);
+    });
+};

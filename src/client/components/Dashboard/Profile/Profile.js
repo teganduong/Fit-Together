@@ -7,15 +7,17 @@ import BpChart from './Charts/BpChart';
 import WtChart from './Charts/WtChart';
 import GlucoseChart from './Charts/GlucoseChart';
 
-const Profile = ({ user }) => (
-  <div className="profile-container">
+const Profile = ({ user, sleep }) => (
+  <div className="main-container">
     <Info user={user} />
     <DetailedInfo user={user} />
+    <BmiChart sleep={sleep} />
   </div>
 );
 
 Profile.propTypes = {
-  user: PropTypes.object
+  user: PropTypes.object,
+  sleep: PropTypes.array
 };
 
 export default Profile;

@@ -27,18 +27,21 @@ class TeamsListItem extends Component {
 
   render() {
     return (
+      <div className="col-md-6">
       <div className="team-list-container">
         <div className="team-info-container">
           <div className="team-icon-container">
-            <img src={this.props.team.team_icon} className="team-icon img-circle" alt="test" />
+            <div className="team-image-container">
+              <img src={this.props.team.team_icon} className="team-icon img-circle" alt="test" />
+            </div>
           </div>
           <div className="team-title-container">
-            <p>{this.props.team.name}</p>
-            <p>{this.props.team.description}</p>
+            <p className="team-text-title">{this.props.team.name}</p>
+            <p className="team-text-body">{this.props.team.description}</p>
             <button 
               type="button" 
               onClick={() => this.props.deleteTeam({ team_id: this.props.team.id })} 
-              className="btn btn-danger"
+              className="btn btn-danger btn-sm"
             >
               Leave Team
             </button>
@@ -47,6 +50,7 @@ class TeamsListItem extends Component {
         <div className="team-members-container">
           <TeamMemberList members={exampleMembers} team={this.props.team} />
         </div>
+      </div>
       </div>
     );
   }

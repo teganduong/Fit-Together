@@ -4,6 +4,7 @@ const FitbitPassport = require('../authentication/FitbitPassport');
 const MovesPassport = require('../authentication/MovesPassport');
 const users = require('../controllers/usersCtrl');
 const teams = require('../controllers/teamsCtrl');
+const sleep = require('../controllers/sleepCtrl');
 const passport = require('passport');
 const flash = require('connect-flash');
 const db = require('../db/connection.js');
@@ -12,10 +13,14 @@ const queryHelper = require('../queryHelper');
 /**  Users **/
 router.get('/api/users/:username', users.getUserInfo);
 router.post('/api/users', users.addUser);
-router.post('/userteams', teams.getUserTeams);
-router.post('/teammembers', teams.getTeamMembers);
-router.post('/createteam', teams.createTeam);
-router.post('/deleteteam', teams.deleteTeam);
+router.post('/api/userteams', teams.getUserTeams);
+router.post('/api/teammembers', teams.getTeamMembers);
+router.post('/api/createteam', teams.createTeam);
+router.post('/api/deleteteam', teams.deleteTeam);
+router.post('/api/otherteams', teams.getOtherTeams);
+
+router.get('/api/usersleep', sleep.getSleep);
+
 router.get('/api/user', (req, res) => {
   if (req.user) {
     console.log('insider req', req.user.username);

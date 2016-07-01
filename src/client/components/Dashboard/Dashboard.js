@@ -4,8 +4,9 @@ import SideNavBar from './SideNavBar';
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
-
+    this.props.getSleep();
     this.props.getUser();
+    this.sleep = [];
   }
 
   // componentWillMount() {
@@ -18,8 +19,19 @@ export default class Dashboard extends Component {
 
   componentWillReceiveProps(nextProps) {
     console.log('these are nextProps in dashboard', nextProps);
-    // if (nextProps.user !== this.props.user) {
-    // }
+    this.sleep = nextProps.sleep;
+    console.log('adfasdfas', parseFloat(this.sleep[0].quality), parseFloat('7.7'));
+    let num = 0;
+    const test = this.sleep.map(function(s) {
+      const q = parseFloat(s.quality);
+      const d = parseFloat(s.duration);
+      s.quality = q;
+      s.duration = d;
+      s.index = num;
+      num++;
+      return s;
+    });
+    this.sleep = test;
   }
 
   render() {
@@ -27,15 +39,12 @@ export default class Dashboard extends Component {
     console.log('user in Dashboard: ', user);
 
     return (
-      <div className="row">
-        <div className="col-sm-2">
-          <SideNavBar />
-        </div>
-        <div className="col-sm-10">
+      <div>
+        <SideNavBar />
           {this.props.children && React.cloneElement(this.props.children, {
-            user: user
+            user: user,
+            sleep: this.sleep
           })}
-        </div>
       </div>
     );
   }
@@ -44,5 +53,7 @@ export default class Dashboard extends Component {
 Dashboard.propTypes = {
   children: PropTypes.element.isRequired,
   getUser: PropTypes.func,
-  user: PropTypes.object
+  user: PropTypes.object,
+  getSleep: PropTypes.func,
+  sleep: PropTypes.array
 };
