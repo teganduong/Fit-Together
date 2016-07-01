@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const db = require('../db/connection.js');
 
 const redis = require('redis');
@@ -33,38 +35,69 @@ exports.redisCopyTeams = (req, res) => {
 // query Postgres to get all team_id's for given user
 // save array of team_id's in a unsorted set (sadd) in Redis --> .saddAsync(user_id:xx:yes:, value)
 // query sadd by user_id --> .smembersAsync(user_id:xx:yes:)
-// use multi (transaction) to make multiple queries --> input (array of team_id's), output (array of team objects)
+// use multi (transaction) to make multiple queries --> 
+// -----> input (array of team_id's), output (array of team objects)
 // send response to specified route
 exports.getUserTeams = (req, res) => {
-  db.query('select team_id from users_teams where user_id=${user_id}', req.body)
-    .then((data) => {
-      console.log('data', data);
-      data.forEach((team) => {
-        console.log('id', team.team_id);
-        client.saddAsync('user_id:' + req.body.user_id + ':yes:', team.team_id);
-      });
+  client.smembersAsync('user_id:' + req.body.user_id + ':yes:')
+    .then((test) => {
+      if (test.length > 0) {
+        console.log('Data from Redis Only');
+        client.smembersAsync('user_id:' + req.body.user_id + ':yes:')
+          .then((data) => {
+            console.log('unordered set', data); // unordered set of team ids
+            const keys = data.map((key) => 'team_id:' + key + ':');
+            console.log('keys', keys);
+            let multi = client.multi({ pipeline: false });
+            keys.forEach((key, index) => {
+              multi = multi.hgetall(key);
+            });
+            return multi.execAsync();
+          })
+          .then((data) => {
+            console.log('rep', data);
+            res.status(200)
+              .json({
+                status: 'success',
+                data: data,
+                message: 'successfully retrieved user\'s teams'
+              });
+          })
+          .catch((err) => console.log('error in retrieving user teams', err)); 
+      } else {
+        console.log('Data from Postgres ---> Redis');
+        db.query('select team_id from users_teams where user_id=${user_id}', req.body)
+          .then((data) => {
+            console.log('data', data);
+            data.forEach((team) => {
+              console.log('id', team.team_id);
+              client.saddAsync('user_id:' + req.body.user_id + ':yes:', team.team_id);
+            });
+          })
+          .then(() => client.smembersAsync('user_id:' + req.body.user_id + ':yes:'))
+          .then((data) => {
+            console.log('unordered set', data); // unordered set of team ids
+            const keys = data.map((key) => 'team_id:' + key + ':');
+            console.log('keys', keys);
+            let multi = client.multi({ pipeline: false });
+            keys.forEach((key, index) => {
+              multi = multi.hgetall(key);
+            });
+            return multi.execAsync();
+          })
+          .then((data) => {
+            console.log('rep', data);
+            res.status(200)
+              .json({
+                status: 'success',
+                data: data,
+                message: 'successfully retrieved user\'s teams'
+              });
+          })
+          .catch((err) => console.log('error in retrieving user teams', err));   
+      }
     })
-    .then(() => client.smembersAsync('user_id:' + req.body.user_id + ':yes:'))
-    .then((data) => {
-      console.log('unordered set', data); // unordered set of team ids
-      const keys = data.map((key) => 'team_id:' + key + ':');
-      console.log('keys', keys);
-      let multi = client.multi({ pipeline: false });
-      keys.forEach((key, index) => {
-        multi = multi.hgetall(key);
-      });
-      return multi.execAsync();
-    })
-    .then((data) => {
-      console.log('rep', data);
-      res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'successfully retrieved user\'s teams'
-        });
-    })
-    .catch((err) => console.log('error in retrieving user teams', err));
+    .catch((err) => console.log('error redis query test', err)); 
 };
 
 // Current getOtherTeams
@@ -73,38 +106,68 @@ exports.getUserTeams = (req, res) => {
 // query sadd by user_id --> .smembersAsync(user_id:xx:no:)
 // use multi (transaction) to make multiple queries --> input (array of team_id's), output (array of team objects)
 // send response to specified route
-
 exports.getOtherTeams = (req, res) => {
-  db.query('select team_id from users_teams where user_id!=${user_id}', req.body)
-    .then((data) => {
-      console.log('data', data);
-      data.forEach((team) => {
-        console.log('id', team.team_id);
-        client.saddAsync('user_id:' + req.body.user_id + ':no:', team.team_id);
-      });
+  client.smembersAsync('user_id:' + req.body.user_id + ':no:')
+    .then((test) => {
+      if (test.length > 0) {
+        console.log('Data from Redis Only');
+        client.smembersAsync('user_id:' + req.body.user_id + ':no:')
+          .then((data) => {
+            console.log('unordered set', data); // unordered set of team ids
+            const keys = data.map((key) => 'team_id:' + key + ':');
+            console.log('keys', keys);
+            let multi = client.multi({ pipeline: false });
+            keys.forEach((key, index) => {
+              multi = multi.hgetall(key);
+            });
+            return multi.execAsync();
+          })
+          .then((data) => {
+            console.log('rep', data);
+            res.status(200)
+              .json({
+                status: 'success',
+                data: data,
+                message: 'successfully retrieved other teams'
+              });
+          })
+          .catch((err) => console.log('error in retrieving user teams', err));
+      } else {
+        console.log('Data from Postgres ---> Redis');
+        db.query('select team_id from users_teams where user_id!=${user_id}', req.body)
+          .then((data) => {
+            console.log('data', data);
+            data.forEach((team) => {
+              console.log('id', team.team_id);
+              client.saddAsync('user_id:' + req.body.user_id + ':no:', team.team_id);
+            });
+          })
+          .then(() => client.smembersAsync('user_id:' + req.body.user_id + ':no:'))
+          .then((data) => {
+            console.log('unordered set', data); // unordered set of team ids
+            const keys = data.map((key) => 'team_id:' + key + ':');
+            console.log('keys', keys);
+            let multi = client.multi({ pipeline: false });
+            keys.forEach((key, index) => {
+              multi = multi.hgetall(key);
+            });
+            return multi.execAsync();
+          })
+          .then((data) => {
+            console.log('rep', data);
+            res.status(200)
+              .json({
+                status: 'success',
+                data: data,
+                message: 'successfully retrieved other teams'
+              });
+          })
+          .catch((err) => console.log('error in retrieving user teams', err));
+      }
     })
-    .then(() => client.smembersAsync('user_id:' + req.body.user_id + ':no:'))
-    .then((data) => {
-      console.log('unordered set', data); // unordered set of team ids
-      const keys = data.map((key) => 'team_id:' + key + ':');
-      console.log('keys', keys);
-      let multi = client.multi({ pipeline: false });
-      keys.forEach((key, index) => {
-        multi = multi.hgetall(key);
-      });
-      return multi.execAsync();
-    })
-    .then((data) => {
-      console.log('rep', data);
-      res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'successfully retrieved other teams'
-        });
-    })
-    .catch((err) => console.log('error in retrieving user teams', err));
+    .catch((err) => console.log('error redis query test', err)); 
 };
+
 // create new team
 // -----given a user id, team --> add to users_teams and team table
 // ----- add team to hash using hmset, add team_id to :yes sadd
