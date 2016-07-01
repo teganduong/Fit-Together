@@ -7,7 +7,7 @@ const mapDispatchToProps = (dispatch) => ({
   getUser: () => dispatch(getUser()),
   addExercise: (date_performed, type, duration, distance, reps, sets) =>
     dispatch(addExercise(date_performed, type, duration, distance, reps, sets)),
-    getSleep: () => dispatch(getSleep())
+  getSleep: () => dispatch(getSleep()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -18,7 +18,7 @@ import Signup from './containers/Auth';
 import Profile from './components/Dashboard/Profile/Profile.js';
 import PlaceHolder from './components/PlaceHolder.js';
 
-import Stats from './components/Dashboard/Items/Stats.js';
+import Stats from './containers/Stats.js';
 import Challenges from './components/Dashboard/Items/Challenges/Challenges';
 import Teams from './containers/Teams'; // redux container
 // import TeamMemberList from './containers/TeamMemberList'; // redux container
@@ -34,8 +34,11 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App} >
+        <Route component={Dashboard}>
+          <IndexRoute component={Stats} />
+        </Route>
         <Route path="/signup" component={Signup} />
-        <IndexRoute component={Home} />
+        <Route component={Home} />
         <Route path="/dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />
           <Route path="/dashboard/settings"component={Settings} />

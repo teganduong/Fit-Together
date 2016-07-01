@@ -172,23 +172,6 @@ export const deleteTeam = (obj) => {
   );
 };
 
-
-export const getSleep = () => {
-  console.log('get sleep dispatch');
-  return dispatch => {
-    fetch('/api/usersleep', {
-      method: 'GET',
-      credentials: 'same-origin',
-    })
-    .then(res => res.json())
-    .then(sleep => {
-      console.log('dipatched to server', sleep); 
-      return dispatch(receiveSleep(sleep.data));
-    })
-    .catch(err => dispatch(error(err)));
-  };
-};
-
 // export const checkAuth = () => {
 //   return fetch('/api/checkAuth', {
 //     credentials: 'same-origin' 
@@ -250,3 +233,19 @@ export const getSleep = () => {
 //   );
 //   }
 // }
+
+export const getSleep = () => {
+  console.log('get sleep dispatch');
+  return dispatch => {
+    fetch('/api/usersleep', {
+      method: 'GET',
+      credentials: 'same-origin',
+    })
+    .then(res => res.json())
+    .then(sleep => {
+      console.log('dipatched to server', sleep); 
+      return dispatch(receiveSleep(sleep.data));
+    })
+    .catch(err => dispatch(error(err)));
+  };
+};

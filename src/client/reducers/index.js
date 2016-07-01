@@ -98,3 +98,15 @@ export const activity = (state, action) => {
       return state || {};
   }
 };
+
+export const sleep = (state, action) => {
+  console.log('--------------- inside reducer');
+  switch (action.type) {
+    case RECEIVE_SLEEP: {
+      return action.data || state;
+    }
+    default:
+      return state || {};
+  }
+};
+
