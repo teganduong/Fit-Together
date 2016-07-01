@@ -34,11 +34,8 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App} >
-        <Route component={Dashboard}>
-          <IndexRoute component={Stats} />
-        </Route>
         <Route path="/signup" component={Signup} />
-        <Route component={Home} />
+        <IndexRoute component={Home} />
         <Route path="/dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />
           <Route path="/dashboard/settings"component={Settings} />
@@ -53,3 +50,12 @@ render(
   </Provider>,
   document.getElementById('app')
 );
+
+  // <!--      <Route component={Dashboard}>
+  //         <IndexRoute component={Stats} />
+  //       </Route> 
+
+
+
+
+

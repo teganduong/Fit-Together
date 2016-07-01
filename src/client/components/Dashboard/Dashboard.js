@@ -7,6 +7,7 @@ export default class Dashboard extends Component {
     this.props.getSleep();
     this.props.getUser();
     this.sleep = [];
+    this.props.getActivities();
   }
 
   // componentWillMount() {
@@ -53,10 +54,14 @@ Dashboard.propTypes = {
   children: PropTypes.element.isRequired,
   getUser: PropTypes.func,
   user: PropTypes.object,
+<<<<<<< 395404aecd0dd8c0e2ad473fd9aa8eea1b9a402a
 <<<<<<< b1b48d4cf085d4270f21914d47df181f7663b9bc
   getSleep: PropTypes.func,
   sleep: PropTypes.array
 =======
   getSleep: PropTypes.func
 >>>>>>> Modify stats components
+=======
+  getActivities: PropTypes.func
+>>>>>>> Connect activities states and actions to client-side
 };

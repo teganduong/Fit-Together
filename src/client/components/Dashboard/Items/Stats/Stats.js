@@ -17,9 +17,8 @@ const dummyDomain = { x: [0, 30], y: [0, 100] };
 class Stats extends Component {
   constructor(props) {
     super(props);
-    // console.log('component constructor stats ', this.props);
-    this.props.getSleep();
-    this.sleep = this.props.sleep;
+    console.log('component constructor stats ', this.props);
+    this.activities = this.props.activities;
   }
 
   componentWillMount() {
@@ -31,21 +30,21 @@ class Stats extends Component {
   }
 
   componentWillReceiveProps(propsSoon) {
-    //this.sleep = propsSoon;
+    // this.sleep = propsSoon;
   }
 
   render() {
     return (
       <div className="main-container">
-      {console.log('===================================== inside render', this.props.sleep)}
-      <Chart dataset={this.props.sleep} />
+        {console.log('===================================== inside render', this.props.activities)}
+        <Chart dataset={this.props.activities.data} />
       </div>);
   }
 }
 
 Stats.propTypes = {
   getSleep: PropTypes.func,
-  sleep: PropTypes.object
+  activities: PropTypes.object
 };
 
 export default Stats;
