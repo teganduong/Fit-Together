@@ -9,7 +9,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const db = require('../db/connection.js');
 const queryHelper = require('../queryHelper');
-const sleep = require('../controllers/sleepCtrl');
+const activities = require('../controllers/activitiesCtrl');
 
 /**  Users **/
 router.get('/api/users/:username', users.getUserInfo);
@@ -51,7 +51,7 @@ router.get('/api/user', (req, res) => {
 });
 
 /** GET USER STATS **/
-router.get('/api/usersleep', sleep.getSleep);
+router.get('/api/useractivities', activities.getActivities);
 
 /**  Auth **/
 router.get('/auth/fitbit',
