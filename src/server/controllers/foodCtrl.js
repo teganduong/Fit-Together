@@ -4,7 +4,7 @@ const db = require('../db/connection.js');
 // [1] Given a food --> insert into the food table --> return food_id
 // [2] Given a user_id and food_id --> insert into the users_food table
 exports.addFood = (req, res) => {
-  db.one('insert into food(protein, fats, carbs, calories, date_performed, user_id)' + 
+  db.none('insert into food(protein, fats, carbs, calories, date_performed, user_id)' + 
       ' values(${protein}, ${fats}, ${carbs}, ${calories}, ${date_performed},' + 
       ' (select id from users where id=${user_id}))', req.body)
     .then(() => {

@@ -13,10 +13,11 @@ class LogbookMemView extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const formData = {
+      user_id: 1,
       date_performed: today,
       mood: this.refs.mood.value,
       energy: this.refs.energy.value,
-      motivation: this.refs.motivation.value
+      motivation: this.refs.motivation.value,
     };
     this.props.addMem(formData);
     console.log('added data');

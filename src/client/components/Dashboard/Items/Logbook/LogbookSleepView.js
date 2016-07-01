@@ -13,6 +13,7 @@ class LogbookSleepView extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const formData = {
+      user_id: 1,
       duration: this.refs.duration.value,
       quality: this.refs.quality.value,
       date_performed: today,

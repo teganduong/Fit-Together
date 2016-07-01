@@ -23,10 +23,14 @@ import Teams from './containers/Teams'; // redux container
 // import TeamMemberList from './containers/TeamMemberList'; // redux container
 import Tips from './components/Dashboard/Items/Tips/Tips';
 import Settings from './components/Dashboard/Items/Settings/Settings';
+<<<<<<< 539bacf0dcde8c50450edd5fa3f11b8d50a09cde
 import Logbook from './components/Dashboard/Items/Logbook/Logbook';
 import Trivia from './containers/Trivia';
 
 import { getEntries } from './actions';
+=======
+import Logbook from './containers/Logbook';
+>>>>>>> update logbook post methods to include user_id
 require('./assets/css/style.css');
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
@@ -37,11 +41,12 @@ render(
     <Router history={history}>
       <Route path="/" component={App} >
         <Route path="/signup" component={Signup} />
+        <Route path="/logbook" component={Logbook} />
         <IndexRoute component={Home} />
         <Route path="/dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />
           <Route path="/dashboard/settings"component={Settings} />
-          <Route path="/dashboard/log"component={PlaceHolder} />
+          <Route path="/dashboard/log"component={Logbook} />
           <Route path="/dashboard/stats"component={Stats} />
           <Route path="/dashboard/teams"component={Teams} />
           <Route path="/dashboard/tips"component={Tips} />

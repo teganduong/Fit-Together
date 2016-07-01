@@ -19,6 +19,7 @@ class LogbookExerciseView extends Component {
       reps: this.refs.reps.value,
       sets: this.refs.sets.value,
       date_performed: today,
+      user_id: 1
     };
     this.props.addExercise(formData);
     console.log('added data');

@@ -4,7 +4,7 @@ const db = require('../db/connection.js');
 // [1] Given a food --> insert into the food table --> return food_id
 // [2] Given a user_id and food_id --> insert into the users_food table
 exports.addSleep = (req, res) => {
-  db.one('insert into sleep(duration, quality, date_performed, user_id)' + 
+  db.none('insert into sleep(duration, quality, date_performed, user_id)' + 
       ' values(${duration}, ${quality}, ${date_performed},' + 
       ' (select id from users where id=${user_id}))', req.body)
     .then(() => {

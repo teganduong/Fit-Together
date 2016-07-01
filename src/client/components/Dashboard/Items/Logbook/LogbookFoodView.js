@@ -13,6 +13,7 @@ class LogbookFoodView extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const formData = {
+      user_id: 1,
       date_performed: today,
       protein: this.refs.protein.value,
       fats: this.refs.fats.value,
