@@ -39,7 +39,7 @@ class Chart extends Component {
     console.log(svg);
     this.svg = svg;
     // this.svg.makeScatter();
-    // this.svg.makeAxis();
+    this.svg.makeAxis();
     this.svg.makeTitleButtons(D);
   }
 

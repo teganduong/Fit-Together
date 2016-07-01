@@ -39,7 +39,9 @@ class d3ChartClass {
       .attr('class', 'd3')
       .attr('width', props.width)
       .attr('height', props.height);
-    // set up attributes
+
+    this.dataset = [];
+    // set up initial attributes
     this.attr = {
       dataset: this.dataset,
       width: this.width,
@@ -104,12 +106,14 @@ class d3ChartClass {
         console.log(i);
         // create bar graph based on x, y, width, and variant color
         d3.select(this)
+          .transition()
           .attr({
             x: `${i * barWidth + barWidth/2 + wPad}`,
             y: `${chartH - (data[dataType] * scale) - hPad}`,
             width: `${barWidth-0.5}`,
             height: `${data[dataType] * scale}`,
-            fill: `rgb(0, 0, ${Math.floor(data[dataType] * scale)})`,
+            // fill: `rgb(0, 0, ${Math.floor(data[dataType] * scale)})`,
+            fill: `#${0x008B8B * scale}`
           });
       });   
   }
@@ -145,6 +149,7 @@ class d3ChartClass {
   }
 
   makeScatter(el, props, objects) {
+    // make scatter plot
     const rSize = 4;
     const attr = this.attr;
     const barWidth = attr.width / this.timeFrame - barPadding;
@@ -166,7 +171,6 @@ class d3ChartClass {
           fill: datum => ("rgb(" + Math.floor(datum.time * scale) + ", 0, 0)"),
         });
     });
-    // console.log('DATES: ', getDateAxis(dataset[0].date, dataset[dataset.length-1].date));
   }
 
   makeScale(data, h, w, timeFrame) {
@@ -188,6 +192,11 @@ class d3ChartClass {
             .attr('class', 'axis')
             .attr('transform', `translate(0,${attr.height - attr.hPad})`)
             .call(mAxis);
+  }
+
+  makeYAxis() {
+    // TODO:
+    // MAKE Y AXIS
   }
 
   makeTitleButtons(D, options) {
@@ -218,10 +227,14 @@ class d3ChartClass {
           'text-anchor': 'middle',
         })
         .text(d)
-        .on('click', () => {
+        .on('click', function () {
           attr.dataNum = index;
           attr.dataFieldNum = 0;
           console.log('i am clicked ', attr.dataNum);
+          context.svg.selectAll('text.title')
+            .attr('fill', 'grey');
+          d3.select(this)
+            .attr('fill', 'red');
           context.updateBars();
         });
     });
