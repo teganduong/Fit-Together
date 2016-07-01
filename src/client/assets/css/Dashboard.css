@@ -31,8 +31,8 @@ body {
   height: 900px;
   overflow-y: auto;
   background: #edf1f2;
-  width: 220px;
-  background: linear-gradient(#21c2c5, #2f9be7); 
+  width: 150px;
+  background: #2a2a2a;
 }
 
 #sidebar-title {
@@ -41,8 +41,8 @@ body {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 6px;
-  color: #213648;
-  background: #63a9ce;
+  color: #eee;
+  background: #2a2a2a;
   margin-bottom: 0px;
   padding-left: 15px;
 }
@@ -53,8 +53,9 @@ body {
 
 .sidebar-nav li {
   position: relative;
-  width: 220px;
+  width: 150px;
   left: -40px;
+  height: 80px;
 }
 
 .sidebar-nav li a {
@@ -62,12 +63,13 @@ body {
   display: block;
   padding: 12px 0px 12px 28px;
   font: 12px/1 'Montserrat', sans-serif;
-  color: #fffef8;
+  color: #eee;
   text-decoration: none;
 }
 
 .sidebar-nav li:hover {
   background: rgba(51, 122, 183, 0.65);
+  background: #444;
 }
 
 
