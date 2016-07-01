@@ -18,6 +18,7 @@ exports.redisCopyTeams = (req, res) => {
     .then((data) => {
       data.forEach((team) => {
         client.hmsetAsync('team_id:' + team.id + ':', {
+          team_id: team.id,
           name: team.name,
           description: team.description,
           team_icon: team.team_icon
@@ -104,19 +105,53 @@ exports.getOtherTeams = (req, res) => {
     })
     .catch((err) => console.log('error in retrieving user teams', err));
 };
+// create new team
+// -----given a user id, team --> add to users_teams and team table
+// ----- add team to hash using hmset, add team_id to :yes sadd
+// send a response after input to redis, but continue to postgres
 
-// get other teams
-// save all teams user is not part of ---> user_id:XX:no: using a unordered set (sadd) --> can remove and add
-// ------> iterate through the set of team_ids to get the corresponding team using hmget
+exports.createTeam = (req, res) => {
+  db.one('insert into teams(name, description, team_icon)' + 
+      'values(${name}, ${description}, ${team_icon}) returning id', req.body)
+    .then((teamId) => {
+      const userTeam = {
+        user_id: req.body.user_id,
+        team_id: teamId.id
+      };
+      console.log('Successly inserted team', userTeam);
+      return db.one('insert into users_teams(user_id, team_id)' + 
+        'values(${user_id}, (select id from teams where id=${team_id}))' +
+        ' returning team_id', userTeam);
+    })
+    .then((data) => {  
+      client.hmsetAsync('team_id:' + data.team_id + ':', {
+        team_id: data.team_id,
+        name: req.body.name,
+        description: req.body.description,
+        team_icon: req.body.team_icon
+      });
+      return data.team_id;  
+    })
+    .then((teamId) => client.hgetallAsync('team_id:' + teamId + ':'))
+    .then((data) => {
+      console.log('created team', data);
+      res.status(200)
+        .json({
+          status: 'success',
+          data: data,
+          message: 'successfully created a new team'
+        });
+    })
+    .catch((err) => {
+      console.log('Error', err);
+      res.status(400);
+    });
+};
 
 // join team
 // -----given a user id, team_id --> add to users_teams table
 // -----add team_id to :yes sadd 
-// create new team
-//-----given a user id, team --> add to users_teams and team table
-//----- add team to hash using hmset, add team_id to :yes sadd
+  // add team_id to sadd --> user_id:xx:yes
+  // remove team_id to sadd --> user_id:xx:no
 
 // add team members to a team to a unsorted set ---> sadd
-
-
-

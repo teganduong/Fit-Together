@@ -19,7 +19,7 @@ const redis = require('../controllers/redisCtrl');
 router.post('/api/users', users.addUser);
 router.post('/api/userteams', redis.getUserTeams);
 router.post('/api/teammembers', teams.getTeamMembers);
-router.post('/api/createteam', teams.createTeam);
+router.post('/api/createteam', redis.createTeam);
 router.post('/api/deleteteam', teams.deleteTeam);
 router.post('/api/otherteams', redis.getOtherTeams);
 
