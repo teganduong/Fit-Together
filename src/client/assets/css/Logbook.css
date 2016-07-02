@@ -2,31 +2,43 @@
   border-width: 2px;
   border-color: purple;
   border-style: solid;
+  padding: 0px;
 }
-
+ 
 .horizontal-dash {
   width: 65%;
   overflow: scroll;
   white-space: nowrap;
   padding-right: 35%;
   margin:20px;
+  border-radius: 2px;
+  background-color: yellow;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border-width: 0.5px;
+  border-color: #CCCBCB;
+  border-style: solid;
 }
 
 .log-container p {
   font-size: 24px;
   padding: 5px 5px;
   margin: 0;
+  background-color: #f44336;
+  
 }
 
 .log-activity {
   margin: 5px 5px;
   padding: 5px 5px;
+ 
+
 }
 
 .log-activity.card {
   display: inline-block;
   height: 250px;
   width: 250px;
+
 }
 .log-activity.card > .image {
   height: 90%;
@@ -37,6 +49,7 @@
 .log-activity.card > .content {
   text-align: center;
   font-size: 24px;
+
 }
 
 .log-activity th, .log-activity td {
@@ -45,8 +58,24 @@
 
 .log-activity input {
   width: 100px;
+  border-width: 0.8px;
+  border-color: #CCCBCB;
+  border-style: solid;
 }
 
 .log-form {
   display: inline-block;
+}
+
+.log-button {
+  background-color: #e83a30;
+  border-radius: 3px;
+}
+
+.log-button:active {
+
+}
+
+.log-button:hover {
+
 }
