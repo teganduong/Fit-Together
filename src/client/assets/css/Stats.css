@@ -31,3 +31,14 @@
   width: 445px;
   margin-right: 10px;
 }
+
+.stats-box.inner {
+  display: block;
+  height: 49%;
+  width: 98%;
+  margin: auto auto;
+}
+
+button.stats-axis-type {
+  margin: auto 0;
+}

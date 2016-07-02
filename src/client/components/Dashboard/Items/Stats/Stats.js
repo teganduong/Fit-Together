@@ -43,8 +43,19 @@ class Stats extends Component {
     return (
       <div className="main-container">
         {console.log('===================================== inside render', this.props.activities, this.D)}
-        <div className="stats-box debug"></div>
-        <div className="stats-box debug"></div>
+        <div className="stats-box debug">
+          
+
+        </div>
+        <div className="stats-box debug">
+          <div className="stats-box inner debug">
+            <h1>X-Axis</h1>
+            {D.map(dayData => <button className="stats-axis-type">{dayData.title}</button>)}
+          </div>
+          <div className="stats-box inner debug">
+            <button>Y-Axis</button>
+          </div>
+        </div>
         <Chart 
           dataset={this.props.activities.data} 
           chartType={chartType} 
