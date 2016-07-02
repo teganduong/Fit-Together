@@ -12,6 +12,7 @@ export const receiveOtherTeams = otherteams => ({ type: c.RECEIVE_OTHER_TEAMS, d
 export const receiveSleep = sleep => ({ type: c.RECEIVE_SLEEP, data: sleep });
 // export const receiveFood = food => ({ type: c.RECEIVE_FOOD, data: food });
 // export const receiveMem = mem => ({ type: c.RECEIVE_MEM, data: mem });
+export const receiveActivities = activities => ({ type: c.RECEIVE_ACTIVITIES, data: activities });
 
 export const addUser = (name, username, password, email, weight, bmi, goal, points) => {
   const payload = JSON.stringify({ name, username, password, email, weight, bmi, goal, points });
@@ -172,7 +173,6 @@ export const deleteTeam = (obj) => {
   );
 };
 
-
 export const getSleep = () => {
   console.log('get sleep dispatch');
   return dispatch => {
@@ -184,6 +184,22 @@ export const getSleep = () => {
     .then(sleep => {
       console.log('dipatched to server', sleep); 
       return dispatch(receiveSleep(sleep.data));
+    })
+    .catch(err => dispatch(error(err)));
+  };
+};
+
+
+export const getActivities = () => {
+  return dispatch => {
+    fetch('/api/useractivities', {
+      method: 'GET',
+      credentials: 'same-origin',
+    })
+    .then(res => res.json())
+    .then(activities => {
+      console.log('actvity dipatched to server: ', activities); 
+      return dispatch(receiveActivities(activities));
     })
     .catch(err => dispatch(error(err)));
   };
@@ -250,3 +266,7 @@ export const getSleep = () => {
 //   );
 //   }
 // }
+
+
+
+

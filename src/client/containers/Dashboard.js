@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import Dashboard from '../components/Dashboard/Dashboard';
-import { getUser, addExercise, getSleep } from '../actions';
+import { getUser, addExercise, getActivities, getSleep } from '../actions';
 
-const mapStateToProps = ({ user, sleep }) => ({ user, sleep });
+const mapStateToProps = ({ user, activities, sleep }) => ({ user, activities, sleep });
 const mapDispatchToProps = (dispatch) => ({
   getUser: () => dispatch(getUser()),
   addExercise: (date_performed, type, duration, distance, reps, sets) =>
     dispatch(addExercise(date_performed, type, duration, distance, reps, sets)),
-    getSleep: () => dispatch(getSleep())
+  getActivities: () => dispatch(getActivities()),
+  getSleep: () => dispatch(getSleep()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

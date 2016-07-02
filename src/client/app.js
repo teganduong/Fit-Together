@@ -18,7 +18,7 @@ import Signup from './containers/Auth';
 import Profile from './components/Dashboard/Profile/Profile.js';
 import PlaceHolder from './components/PlaceHolder.js';
 
-import Stats from './components/Dashboard/Items/Stats.js';
+import Stats from './containers/Stats.js';
 import Challenges from './components/Dashboard/Items/Challenges/Challenges';
 import Teams from './containers/Teams'; // redux container
 // import TeamMemberList from './containers/TeamMemberList'; // redux container
@@ -50,3 +50,12 @@ render(
   </Provider>,
   document.getElementById('app')
 );
+
+  // <!--      <Route component={Dashboard}>
+  //         <IndexRoute component={Stats} />
+  //       </Route> 
+
+
+
+
+

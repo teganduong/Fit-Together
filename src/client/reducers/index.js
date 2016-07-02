@@ -9,7 +9,8 @@ import {
   RECEIVE_EXERCISE,
   RECEIVE_FOOD,
   RECEIVE_MEM,
-  RECEIVE_SLEEP,
+  RECEIVE_ACTIVITIES,
+  RECEIVE_SLEEP
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -80,21 +81,13 @@ export const error = (state, action) => {
   }
 };
 
-export const activity = (state, action) => {
+export const activities = (state, action) => {
   switch (action.type) {
-    case RECEIVE_EXERCISE: {
-      return action.data || state;
-    }
-    case RECEIVE_FOOD: {
-      return action.data || state;
-    }
-    case RECEIVE_MEM: {
-      return action.data || state;
-    }
-    case RECEIVE_SLEEP: {
+    case RECEIVE_ACTIVITIES: {
       return action.data || state;
     }
     default:
       return state || {};
   }
 };
+

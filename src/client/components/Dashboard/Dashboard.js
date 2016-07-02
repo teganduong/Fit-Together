@@ -7,6 +7,7 @@ export default class Dashboard extends Component {
     this.props.getSleep();
     this.props.getUser();
     this.sleep = [];
+    this.props.getActivities();
   }
 
   // componentWillMount() {
@@ -36,7 +37,6 @@ export default class Dashboard extends Component {
 
   render() {
     const { user } = this.props;
-    console.log('user in Dashboard: ', user);
 
     return (
       <div>
@@ -55,5 +55,6 @@ Dashboard.propTypes = {
   getUser: PropTypes.func,
   user: PropTypes.object,
   getSleep: PropTypes.func,
-  sleep: PropTypes.array
+  sleep: PropTypes.array,
+  getActivities: PropTypes.func
 };
