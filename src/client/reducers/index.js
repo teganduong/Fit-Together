@@ -10,7 +10,8 @@ import {
   RECEIVE_FOOD,
   RECEIVE_MEM,
   RECEIVE_ACTIVITIES,
-  RECEIVE_SLEEP
+  RECEIVE_SLEEP,
+  RECEIVE_ENTRIES
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -61,7 +62,6 @@ export const members = (state, action) => {
 
 
 export const sleep = (state, action) => {
-  console.log('--------------- inside reducer');
   switch (action.type) {
     case RECEIVE_SLEEP: {
       return action.data || state;
@@ -91,3 +91,12 @@ export const activities = (state, action) => {
   }
 };
 
+export const entries = (state, action) => {
+  switch (action.type) {
+    case RECEIVE_ENTRIES: {
+      return action.data || state;
+    }
+    default:
+      return state || [];
+  }
+};

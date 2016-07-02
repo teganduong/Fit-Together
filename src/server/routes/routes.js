@@ -10,9 +10,9 @@ const flash = require('connect-flash');
 const db = require('../db/connection.js');
 const queryHelper = require('../queryHelper');
 const activities = require('../controllers/activitiesCtrl');
+const entries = require('../controllers/entriesCtrl');
 
 /**  Users **/
-router.get('/api/users/:username', users.getUserInfo);
 router.post('/api/users', users.addUser);
 router.post('/api/userteams', teams.getUserTeams);
 router.post('/api/teammembers', teams.getTeamMembers);
@@ -35,20 +35,10 @@ router.get('/api/user', (req, res) => {
   }
 });
 
-router.get('/api/user', (req, res) => {
-  if (req.user) {
-    console.log('insider req', req.user.username);
-    db.any('select * from users where username=$1', [req.user.username])
-  .then(data => {
-    // success;
-    console.log('this is data', data);
-    res.json(data);
-  })
-  .catch(error => {
-    console.error('error in adding user: ', error);
-  });
-  }
-});
+
+/** Entries **/
+router.get('/api/entries', entries.getEntries);
+
 
 /** GET USER STATS **/
 router.get('/api/useractivities', activities.getActivities);

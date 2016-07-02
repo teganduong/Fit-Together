@@ -10,6 +10,7 @@ export const removeFromTeams = team => ({ type: c.REMOVE_TEAM, data: team });
 export const receiveExercise = exercise => ({ type: c.RECEIVE_Exercise, data: exercise });
 export const receiveOtherTeams = otherteams => ({ type: c.RECEIVE_OTHER_TEAMS, data: otherteams });
 export const receiveSleep = sleep => ({ type: c.RECEIVE_SLEEP, data: sleep });
+export const receiveEntries = entries => ({ type: c.RECEIVE_ENTRIES, data: entries });
 // export const receiveFood = food => ({ type: c.RECEIVE_FOOD, data: food });
 // export const receiveMem = mem => ({ type: c.RECEIVE_MEM, data: mem });
 export const receiveActivities = activities => ({ type: c.RECEIVE_ACTIVITIES, data: activities });
@@ -32,17 +33,6 @@ export const addUser = (name, username, password, email, weight, bmi, goal, poin
     .catch(err => dispatch(error(err)))
   );
 };
-
-export const fetchUser = (username) => (
-  dispatch => (
-    fetch(`/api/users/${username}`, {
-      credentials: 'same-origin'
-    })
-    .then(res => res.json())
-    .then(userInfo => dispatch(receiveUser(userInfo)))
-    .catch(err => dispatch(error(err)))
-  )
-);
 
 export const getUser = () => (
   dispatch => (
@@ -189,7 +179,6 @@ export const getSleep = () => {
   };
 };
 
-
 export const getActivities = () => {
   return dispatch => {
     fetch('/api/useractivities', {
@@ -204,6 +193,20 @@ export const getActivities = () => {
     .catch(err => dispatch(error(err)));
   };
 };
+
+export const getEntries = () => (
+  dispatch => {
+    fetch('/api/entries', {
+      method: 'GET',
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(entries => (
+      dispatch(receiveEntries(entries.data))
+    ))
+    .catch(err => dispatch(error(err)));
+  }
+);
 
 // export const checkAuth = () => {
 //   return fetch('/api/checkAuth', {

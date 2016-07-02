@@ -5,9 +5,12 @@ import { getUser, addExercise, getActivities, getSleep } from '../actions';
 const mapStateToProps = ({ user, activities, sleep }) => ({ user, activities, sleep });
 const mapDispatchToProps = (dispatch) => ({
   getUser: () => dispatch(getUser()),
+
   addExercise: (date_performed, type, duration, distance, reps, sets) =>
     dispatch(addExercise(date_performed, type, duration, distance, reps, sets)),
+
   getActivities: () => dispatch(getActivities()),
+  
   getSleep: () => dispatch(getSleep()),
 });
 

@@ -33,4 +33,3 @@ exports.getUserInfo = (req, res) => {
       console.error('error in retrieving user info: ', err);
     });
 };
-

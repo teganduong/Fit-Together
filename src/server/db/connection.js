@@ -12,6 +12,8 @@ const connectionString = {
   password: 'widget123'
 };
 
+// const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/fidgetywidget';
+
 const db = pgp(connectionString);
 
 module.exports = db;
