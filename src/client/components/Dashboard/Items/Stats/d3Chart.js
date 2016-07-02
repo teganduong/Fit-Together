@@ -32,6 +32,7 @@ class d3ChartClass {
     this.allData = allData;
     this.D = props.D;
     this.dataset = allData[this.dataNum];
+    this.dataType = (this.D)[this.dataNum].fields[this.dataFieldNum];
     // this.dataTypes = this.props.dataTitles; // this.dataset.fields[0];
     // this.dataType = this.dataTypes[0].fields[0];
     // svg element to draw on
@@ -40,9 +41,10 @@ class d3ChartClass {
       .attr('width', props.width)
       .attr('height', props.height);
 
-    this.dataset = [];
+    
     // set up initial attributes
     this.attr = {
+      allData: this.allData,
       dataset: this.dataset,
       width: this.width,
       height: this.height,
@@ -51,7 +53,9 @@ class d3ChartClass {
       timeFrame: this.timeFrame,
       dataNum: this.dataNum,
       dataFieldNum: this.dataFieldNum,
-      D: this.D
+      dataType: this.dataType,
+      D: this.D,
+      scale: 1
     };
   }
 
@@ -78,9 +82,9 @@ class d3ChartClass {
         // create bar graph based on x, y, width, and variant color
         d3.select(this)
           .attr({
-            x: `${i * barWidth + barWidth/2 + wPad}`,
+            x: `${i * (barWidth) + barWidth + wPad}`,
             y: `${chartH - (data[dataType] * scale) - hPad}`,
-            width: `${barWidth-0.5}`,
+            width: `${barWidth-1}`,
             height: `${data[dataType] * scale}`,
             fill: `rgb(0, 0, ${Math.floor(data[dataType] * scale)})`,
           });
@@ -95,7 +99,8 @@ class d3ChartClass {
     const wPad = this.wPad / 2;
     const dataset = this.allData[attr.dataNum];
     const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
-    const scale = (attr.D)[attr.dataNum].scale;
+    // const scale = (attr.D)[attr.dataNum].scale;
+    const yScale = this.makeYScale();
     console.log('dataset should change ', dataset, dataType);
     this.svg.selectAll('rect.bar')
       .data(dataset)  // array of daily sleep data
@@ -108,12 +113,12 @@ class d3ChartClass {
         d3.select(this)
           .transition()
           .attr({
-            x: `${i * barWidth + barWidth/2 + wPad}`,
-            y: `${chartH - (data[dataType] * scale) - hPad}`,
-            width: `${barWidth-0.5}`,
-            height: `${data[dataType] * scale}`,
-            // fill: `rgb(0, 0, ${Math.floor(data[dataType] * scale)})`,
-            fill: `#${0x008B8B * scale}`
+            x: `${i * barWidth + barWidth + wPad}`,
+            y: `${(yScale(data[dataType]))}`,
+            width: `${barWidth-1}`,
+            height: `${attr.height - attr.hPad - yScale(data[dataType])}`,
+            fill: `rgb(0, 0, ${Math.floor(yScale(data[dataType]))} )`,
+            // fill: `#${Math.floor(yScale(0x00)}8B8B))}`
           });
       });   
   }
@@ -194,9 +199,35 @@ class d3ChartClass {
             .call(mAxis);
   }
 
-  makeYAxis() {
+  makeYScale(data) {
+    const attr = this.attr;
+    const quantities = (attr.dataset).map(dayData => Number(dayData[attr.dataType]));
+    console.log('data type, quants ', attr.dataType, quantities);
+    const yScale = d3.scale.linear()
+      .domain([0, Math.max(...quantities)])
+      .range([attr.height - attr.hPad, attr.hPad]);   
+    return yScale; 
+  }
+
+  makeYAxis(m) {
     // TODO:
     // MAKE Y AXIS
+    // ISSUE: attr.dataset is an EMPTY ARRAY
+    const attr = this.attr;
+    console.log('attr', attr);
+    const barWidth = attr.width / this.timeFrame;
+    const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
+    console.log('set in y axis', attr.dataset);
+    const mScale = this.makeYScale(attr.dataset);
+    // this.makeScale(attr.dataset, attr.height, [attr.wPad, attr.width+attr.wPad], attr.timeFrame);
+    const mAxis = d3.svg.axis()
+                    .scale(mScale)
+                    .orient('left')
+                    .ticks(5);
+    this.svg.append('g')
+            .attr('class', 'y axis')
+            .attr('transform', `translate(${this.wPad}, 0)`)
+            .call(mAxis);
   }
 
   makeTitleButtons(D, options) {
@@ -230,17 +261,40 @@ class d3ChartClass {
         .on('click', function () {
           attr.dataNum = index;
           attr.dataFieldNum = 0;
+          const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
+          attr.dataType = dataType;
           console.log('i am clicked ', attr.dataNum);
+          attr.dataset = attr.allData[attr.dataNum];
+          const quantities = (attr.dataset).map(dayData => Number(dayData[dataType]));
+          attr.scale = quantities
           context.svg.selectAll('text.title')
             .attr('fill', 'grey');
           d3.select(this)
             .attr('fill', 'red');
           context.updateBars();
+          context.updateYAxis();
         });
     });
+  }
 
-    // this.svg.selectAll('text.title')
-    //   .text('NOPE');
+  updateYAxis() {
+    const attr = this.attr;
+    const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
+    console.log('set in y axis', attr.dataset);
+    const quantities = (attr.dataset).map(dayData => Number(dayData[dataType]));
+    console.log('data type, quants ', dataType, quantities);
+    const mScale = d3.scale.linear()
+                     .domain([0, Math.max(...quantities)])
+                     .range([attr.height - attr.hPad, attr.hPad]);
+    // this.makeScale(attr.dataset, attr.height, [attr.wPad, attr.width+attr.wPad], attr.timeFrame);
+    const mAxis = d3.svg.axis()
+                    .scale(mScale)
+                    .orient('left')
+                    .ticks(5);
+    console.log('max ', Math.max(...quantities));
+    this.svg.select('.y') // append('g')
+            .transition()
+            .call(mAxis);
   }
 
 }

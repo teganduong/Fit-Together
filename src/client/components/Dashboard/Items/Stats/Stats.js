@@ -43,6 +43,8 @@ class Stats extends Component {
     return (
       <div className="main-container">
         {console.log('===================================== inside render', this.props.activities, this.D)}
+        <div className="stats-box debug"></div>
+        <div className="stats-box debug"></div>
         <Chart 
           dataset={this.props.activities.data} 
           chartType={chartType} 

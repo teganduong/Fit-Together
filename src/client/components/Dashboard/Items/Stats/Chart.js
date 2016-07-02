@@ -30,7 +30,7 @@ class Chart extends Component {
 
   initChart() {
     const maxWidth = '900';
-    const maxHeight = '600';
+    const maxHeight = '350';
     const D = this.D;
     console.log('alldata, ', this.subdata);
     console.log('ChartD', this.D);
@@ -40,6 +40,7 @@ class Chart extends Component {
     this.svg = svg;
     // this.svg.makeScatter();
     this.svg.makeAxis();
+    this.svg.makeYAxis();
     this.svg.makeTitleButtons(D);
   }
 
