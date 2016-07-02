@@ -1,4 +1,5 @@
 -- from root directory -- psql < src/server/db/schema.sql
+
 \c fidgetywidget;
 
 DROP TABLE IF EXISTS users CASCADE;   
@@ -95,4 +96,9 @@ CREATE TABLE mem (
   user_id INTEGER REFERENCES users (id)
 );
 
-
+CREATE TABLE entries (
+  id SERIAL PRIMARY KEY,
+  question VARCHAR(255),
+  option1 jsonb,
+  option2 jsonb
+);
