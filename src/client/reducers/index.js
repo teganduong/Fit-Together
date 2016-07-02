@@ -11,7 +11,9 @@ import {
   RECEIVE_MEM,
   RECEIVE_ACTIVITIES,
   RECEIVE_SLEEP,
-  RECEIVE_ENTRIES
+  RECEIVE_ENTRIES,
+  JOIN_TEAM,
+  REMOVE_OTHER_TEAM
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -39,6 +41,9 @@ export const teams = (state, action) => {
         return c.team_id.toString() !== action.data.team_id.toString();
       });
     }
+    case JOIN_TEAM: {
+      return state.concat([action.data]);
+    }
     default:
       return state || {};
   }
@@ -48,6 +53,13 @@ export const otherteams = (state, action) => {
   switch (action.type) {
     case RECEIVE_OTHER_TEAMS: {
       return action.data || state;
+    }
+    case REMOVE_OTHER_TEAM: {
+      console.log('action.data', action.data.team_id);
+      return state.filter(c => {
+        console.log('c.team_id', c, c.team_id);
+        return c.team_id.toString() !== action.data.team_id.toString();
+      });
     }
     default:
       return state || {};

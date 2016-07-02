@@ -6,7 +6,7 @@ import JoinTeamModal from './JoinTeamModal';
 class TeamsView extends Component {
   constructor(props) {
     super(props);
-    console.log('team', props);
+    console.log('team props', props);
     this.props.fetchUserTeams({ user_id: 1 });
     this.props.fetchOtherTeams({ user_id: 1 });
     this.teams = [];
@@ -53,7 +53,7 @@ class TeamsView extends Component {
         </div>
         <div>
           <CreateNewTeamModal createTeam={this.props.createTeam.bind(this)} />
-          <JoinTeamModal teams={this.otherteams} />
+          <JoinTeamModal joinTeam={this.props.joinTeam.bind(this)} teams={this.otherteams} />
         </div>
       </div>
     );
@@ -66,7 +66,8 @@ TeamsView.propTypes = {
   fetchOtherTeams: PropTypes.func,
   fetchTeamMembers: PropTypes.func,
   createTeam: PropTypes.func,
-  deleteTeam: PropTypes.func
+  deleteTeam: PropTypes.func,
+  joinTeam: PropTypes.func
 };
 
 export default TeamsView;

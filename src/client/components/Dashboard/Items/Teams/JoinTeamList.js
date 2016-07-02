@@ -11,7 +11,7 @@ class JoinTeamList extends Component {
       <div>
         <ul>
           {this.props.teams.map(team =>
-            <JoinTeamListItem team={team} />
+            <JoinTeamListItem joinTeam={this.props.joinTeam.bind(this)} team={team} />
           )}
         </ul>
       </div>
@@ -20,7 +20,8 @@ class JoinTeamList extends Component {
 }
 
 JoinTeamList.propTypes = {
-  teams: PropTypes.object
+  teams: PropTypes.object,
+  joinTeam: PropTypes.func
 };
 
 export default JoinTeamList;

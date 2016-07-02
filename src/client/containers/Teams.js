@@ -5,7 +5,8 @@ import {
 	fetchTeamMembers, 
 	createTeam, 
 	deleteTeam, 
-	fetchOtherTeams
+	fetchOtherTeams,
+	joinTeam
 } from '../actions';
 
 const mapStateToProps = ({ teams, otherteams }) => ({ teams, otherteams });
@@ -14,7 +15,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchOtherTeams: (obj) => dispatch(fetchOtherTeams(obj)),
   fetchTeamMembers: (obj) => dispatch(fetchTeamMembers(obj)),
   createTeam: (obj) => dispatch(createTeam(obj)),
-  deleteTeam: (obj) => dispatch(deleteTeam(obj))
+  deleteTeam: (obj) => dispatch(deleteTeam(obj)),
+  joinTeam: (obj) => dispatch(joinTeam(obj))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Teams);

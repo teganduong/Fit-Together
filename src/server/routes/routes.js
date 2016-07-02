@@ -22,6 +22,7 @@ router.post('/api/teammembers', teams.getTeamMembers);
 router.post('/api/createteam', redis.createTeam);
 router.post('/api/leaveteam', redis.leaveTeam);
 router.post('/api/otherteams', redis.getOtherTeams);
+router.post('/api/jointeam', redis.joinTeam);
 
 router.get('/api/usersleep', sleep.getSleep);
 
