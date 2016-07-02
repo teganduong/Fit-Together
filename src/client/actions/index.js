@@ -145,7 +145,7 @@ export const deleteTeam = (obj) => {
   const payload = JSON.stringify(obj);
 
   return dispatch => (
-    fetch('/api/deleteteam', {
+    fetch('/api/leaveteam', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

@@ -20,7 +20,7 @@ router.post('/api/users', users.addUser);
 router.post('/api/userteams', redis.getUserTeams);
 router.post('/api/teammembers', teams.getTeamMembers);
 router.post('/api/createteam', redis.createTeam);
-router.post('/api/deleteteam', teams.deleteTeam);
+router.post('/api/leaveteam', redis.leaveTeam);
 router.post('/api/otherteams', redis.getOtherTeams);
 
 router.get('/api/usersleep', sleep.getSleep);

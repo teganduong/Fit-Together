@@ -186,23 +186,55 @@ exports.createTeam = (req, res) => {
         'values(${user_id}, (select id from teams where id=${team_id}))' +
         ' returning team_id', userTeam);
     })
-    .then((data) => {  
-      client.hmsetAsync('team_id:' + data.team_id + ':', {
+    .then((data) => {
+
+      let multi = client.multi({ pipeline: false });
+      multi = multi.hmset('team_id:' + data.team_id + ':', {
         team_id: data.team_id,
         name: req.body.name,
         description: req.body.description,
         team_icon: req.body.team_icon
       });
-      return data.team_id;  
+      multi = multi.sadd('user_id:' + req.body.user_id + ':yes:', data.team_id);
+      multi = multi.hgetall('team_id:' + data.team_id + ':');
+      return multi.execAsync(); 
     })
-    .then((teamId) => client.hgetallAsync('team_id:' + teamId + ':'))
     .then((data) => {
       console.log('created team', data);
       res.status(200)
         .json({
           status: 'success',
-          data: data,
+          data: data[2],
           message: 'successfully created a new team'
+        });
+    })
+    .catch((err) => {
+      console.log('Error', err);
+      res.status(400);
+    });
+};
+
+// delete team
+// given a user id, team_id --> remove row from users_teams
+// 
+// 
+// for the user --> remove team_id from :yes sadd
+// for the user --> add team_id from :yes sadd
+
+exports.leaveTeam = (req, res) => {
+  db.none('delete from users_teams where team_id=${team_id} and user_id=${user_id}', req.body)
+    .then(() => {
+      client.sremAsync('user_id:' + req.body.user_id + ':no:', req.body.team_id)      
+    })
+    .then(() => {
+      client.saddAsync('user_id:' + req.body.user_id + ':yes:', req.body.team_id)
+    })
+    .then(() => {
+      res.status(201)
+        .json({
+          status: 'success',
+          data: req.body,
+          message: 'successfully deleted team'
         });
     })
     .catch((err) => {
