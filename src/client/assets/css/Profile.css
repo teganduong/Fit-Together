@@ -118,34 +118,5 @@
 	border-style: solid;
 }
 
-#bp-heading {
-	color: #ffffff;
-	background-color: #e72713;
-}
-#bp-output {
-	color: #e72713;
-}
+/*///////////////////////////////*/
 
-#bmi-heading {
-	color: #ffffff;
-	background-color: #ff7f0e;
-}
-#bmi-output {
-	color: #ff7f0e;
-}
-
-#wt-heading {
-	color: #ffffff;
-	background-color: #40d652;
-}
-#wt-output {
-	color: #40d652;
-}
-
-#glucose-heading {
-	color: #ffffff;
-	background-color: #43abd9;
-}
-#glucose-output {
-	color: #43abd9;
-}
