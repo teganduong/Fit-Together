@@ -19,7 +19,7 @@ const getDateAxis = (startDate, endDate) => {
 };
 
 class d3ChartClass {
-  constructor(el, props, allData) {
+  constructor(el, props, allData, xyDataType) {
     // currently only compatible with pixels
     // width, width padding, height, height padding, timeframe
     this.width = Number((props.width).match(/\d+/)) * 0.9;
@@ -41,6 +41,9 @@ class d3ChartClass {
       .attr('width', props.width)
       .attr('height', props.height);
 
+    this.state = {
+      xyDataType
+    };
     
     // set up initial attributes
     this.attr = {
@@ -57,6 +60,48 @@ class d3ChartClass {
       D: this.D,
       scale: 1
     };
+  }
+
+  updateDataTypes() {
+
+  }
+
+  preProcessDataXy(xyDataType) {
+    // TODO: RETURN DATA FOR A SPECIFIC XDATANUM AND XFIELDNUM
+    const attr = this.attr;
+    // data for one
+    const xdataset = (attr.allData)[xyDataType.xdataNum];
+    const xdataType = (attr.D)[xyDataType.xdataNum].fields[xyDataType.xfieldNum];
+    const ydataset = (attr.allData)[xyDataType.ydataNum];
+    const ydataType = (attr.D)[xyDataType.ydataNum].fields[xyDataType.yfieldNum];
+    return ({ xdataset, xdataType, ydataset, ydataType });
+  }
+
+  makeScatterXy(xyDataType) {
+    // make scatter plot
+    const xyData = this.preProcessDataXy(xyDataType);
+
+    const rSize = 4;
+    const attr = this.attr;
+    const barWidth = attr.width / this.timeFrame - barPadding;
+    const dataset = attr.dataset;
+    const scale = (attr.D)[attr.dataNum].scale;
+    const xScale = this.makeXScale(xyData.xdataset, xyData.xdataType);
+    const yScale = this.makeYScale2(xyData.ydataset, xyData.ydataType);
+    this.svg.selectAll('circle')
+    .data(dataset)  // array of daily sleep data
+    .enter()
+    .append('circle')   // create the bar graph
+    .each(function (dayData, index) {
+      // create bar graph based on x, y, width, and variant color
+      d3.select(this)
+        .attr({
+          cx: `${xScale(dayData[xyData.xdataType])}`, // i * barWidth + attr.wPad + i + rSize,
+          cy: `${yScale(dayData[xyData.ydataType])}`, // attr.height - (d[attr.dataType] * scale) - attr.hPad,
+          r: rSize,
+          fill: datum => ("rgb(" + Math.floor(yScale(datum[xyData.xdataType])) + ", 0, 0)"),
+        });
+    });    
   }
 
   makeBars(el, props, objects) {
@@ -166,7 +211,6 @@ class d3ChartClass {
     .enter()
     .append('circle')   // create the bar graph
     .each(function (d, index) {
-      const i = getDaysDifference(dataset[0]['date_performed'], d.date_performed);
       // create bar graph based on x, y, width, and variant color
       d3.select(this)
         .attr({
@@ -199,6 +243,43 @@ class d3ChartClass {
             .call(mAxis);
   }
 
+  makeXScale(dataset, dataType) {
+    const attr = this.attr;
+    const quantities = (dataset).map(dayData => Number(dayData[dataType]));
+    console.log('data type, quants ', dataset, quantities);
+    const xScale = d3.scale.linear()
+      .domain([0, Math.max(...quantities)])
+      .range([attr.wPad, attr.wPad + attr.width]);   
+    return xScale; 
+  }
+
+  makeXAxis(ds) {
+    const attr = this.attr;
+    console.log('attr', attr);
+    const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
+    console.log('set in x axis', ds);
+    const mScale = this.makeXScale(ds);
+    // this.makeScale(attr.dataset, attr.height, [attr.wPad, attr.width+attr.wPad], attr.timeFrame);
+    const mAxis = d3.svg.axis()
+                    .scale(mScale)
+                    .orient('bottom')
+                    .ticks(5);
+    this.svg.append('g')
+            .attr('class', 'x axis')
+            .attr('transform', `translate(0,${attr.height - attr.hPad})`)
+            .call(mAxis);
+  }
+
+  makeYScale2(dataset, dataType) {
+    const attr = this.attr;
+    const quantities = (dataset).map(dayData => Number(dayData[dataType]));
+    console.log('data type, quants ', dataType, quantities);
+    const yScale = d3.scale.linear()
+      .domain([0, Math.max(...quantities)])
+      .range([attr.height - attr.hPad, attr.hPad]);   
+    return yScale; 
+  }
+
   makeYScale(data) {
     const attr = this.attr;
     const quantities = (attr.dataset).map(dayData => Number(dayData[attr.dataType]));
@@ -210,9 +291,6 @@ class d3ChartClass {
   }
 
   makeYAxis(m) {
-    // TODO:
-    // MAKE Y AXIS
-    // ISSUE: attr.dataset is an EMPTY ARRAY
     const attr = this.attr;
     console.log('attr', attr);
     const barWidth = attr.width / this.timeFrame;
@@ -266,7 +344,7 @@ class d3ChartClass {
           console.log('i am clicked ', attr.dataNum);
           attr.dataset = attr.allData[attr.dataNum];
           const quantities = (attr.dataset).map(dayData => Number(dayData[dataType]));
-          attr.scale = quantities
+          attr.scale = quantities;
           context.svg.selectAll('text.title')
             .attr('fill', 'grey');
           d3.select(this)

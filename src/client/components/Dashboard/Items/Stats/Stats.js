@@ -17,7 +17,7 @@ class Stats extends Component {
       xdataNum: 0,
       xfieldNum: 0,
       ydataNum: 0,
-      yfieldNum: 0,
+      yfieldNum: 1,
     };
   }
 
@@ -58,16 +58,17 @@ class Stats extends Component {
     const dataType = 'sleep';
     return (
       <div className="main-container">
-        {console.log('===================================== inside render', this.props.activities, this.D)}
-        <div className="stats-box debug">       
+        
+        <div className="stats-box debug">
+          {console.log('===================================== inside render', this.state)}       
           <Chart 
             dataset={this.props.activities.data} 
             chartType={chartType}
-            dataType={ {
-              xdataNum: this.xdataNum,
-              ydataNum: this.ydataNum,
-              xfieldNum: this.xfieldNum,
-              yfieldNum: this.yfieldNum,
+            xyDataType={ {
+              xdataNum: this.state.xdataNum,
+              ydataNum: this.state.ydataNum,
+              xfieldNum: this.state.xfieldNum,
+              yfieldNum: this.state.yfieldNum,
               }
             }
             dataTitle={dataType}
