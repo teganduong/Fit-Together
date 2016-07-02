@@ -217,23 +217,25 @@ exports.createTeam = (req, res) => {
 // delete team
 // given a user id, team_id --> remove row from users_teams
 // 
-// 
 // for the user --> remove team_id from :yes sadd
 // for the user --> add team_id from :yes sadd
 
 exports.leaveTeam = (req, res) => {
-  db.none('delete from users_teams where team_id=${team_id} and user_id=${user_id}', req.body)
+  console.log(req.body, 'req');
+  db.none('delete from users_teams where team_id=${team_id} and user_id=${user_id}' , req.body)
     .then(() => {
-      client.sremAsync('user_id:' + req.body.user_id + ':no:', req.body.team_id)      
+      return client.saddAsync('user_id:' + req.body.user_id + ':no:', req.body.team_id)    
     })
-    .then(() => {
-      client.saddAsync('user_id:' + req.body.user_id + ':yes:', req.body.team_id)
+    .then((data) => {
+      console.log('srem', data);
+      return client.sremAsync('user_id:' + req.body.user_id + ':yes:', req.body.team_id)
     })
-    .then(() => {
+    .then((data) => {
+      console.log('srem2', data);
       res.status(201)
         .json({
           status: 'success',
-          data: req.body,
+          data: { team_id: req.body.team_id },
           message: 'successfully deleted team'
         });
     })
