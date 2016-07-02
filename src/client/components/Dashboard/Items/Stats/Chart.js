@@ -13,6 +13,9 @@ class Chart extends Component {
     this.dataset = this.props.dataset;
     this.subdata = this.dataset;
     this.D = this.props.D;
+    this.height=this.props.size.height;
+    this.width=this.props.size.width;
+    this.id = this.props.id;
   }
 
   componentWillMount() {
@@ -29,12 +32,12 @@ class Chart extends Component {
   }
 
   initChart() {
-    const maxWidth = '900';
-    const maxHeight = '350';
+    const maxWidth = this.width;
+    const maxHeight = this.height;
     const D = this.D;
     console.log('alldata, ', this.subdata);
     console.log('ChartD', this.D);
-    const svg = new d3Chart('#main-chart', { width: maxWidth, height: maxHeight, D: this.D }, this.subdata);
+    const svg = new d3Chart(`#${this.id}`, { width: maxWidth, height: maxHeight, D: this.D }, this.subdata);
     svg.makeBars();
     console.log(svg);
     this.svg = svg;
@@ -46,7 +49,7 @@ class Chart extends Component {
 
   render() {
     return (
-      <div className="chart" id="main-chart"></div>
+      <div className="chart" id={this.id}></div>
     );
   }
 }

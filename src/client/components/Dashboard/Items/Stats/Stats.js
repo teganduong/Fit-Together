@@ -60,10 +60,24 @@ class Stats extends Component {
       <div className="main-container">
         {console.log('===================================== inside render', this.props.activities, this.D)}
         <div className="stats-box debug">       
-
+          <Chart 
+            dataset={this.props.activities.data} 
+            chartType={chartType}
+            dataType={ {
+              xdataNum: this.xdataNum,
+              ydataNum: this.ydataNum,
+              xfieldNum: this.xfieldNum,
+              yfieldNum: this.yfieldNum,
+              }
+            }
+            dataTitle={dataType}
+            D={this.D}
+            size={{ height: '445', width: '445'}} 
+            id='small_chart'
+          />
         </div>
         <div className="stats-box debug">
-          <div className="stats-box inner debug">
+          <div className="stats-box inner">
             <h1>X-Axis</h1>
             <div>
               {D.map((dayData, index) => 
@@ -82,7 +96,7 @@ class Stats extends Component {
                 }
             </div>
           </div>
-          <div className="stats-box inner debug">
+          <div className="stats-box inner">
             <h1>Y-Axis</h1>
             <div>
               {D.map((dayData, index) => 
@@ -107,6 +121,8 @@ class Stats extends Component {
           chartType={chartType} 
           dataTitle={dataType}
           D={this.D} 
+          size={{ height: '350', width: '900' }}
+          id='big_chart' 
         />
       </div>);
   }

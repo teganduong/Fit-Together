@@ -1,12 +1,17 @@
 .div {
-  border-width: 2px;
+/*  border-width: 2px;
   border-color: red;
-  border-style: solid;
+  border-style: solid;*/
 }
 
 .chart {
   height: 350px;
   width: 900px;
+}
+
+.chart#small_chart {
+  height: 445px;
+  width: 445px;
 }
 
 .bar {
