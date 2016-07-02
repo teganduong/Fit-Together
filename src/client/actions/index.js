@@ -142,10 +142,11 @@ export const createTeam = (obj) => {
 };
 
 export const deleteTeam = (obj) => {
+  console.log('obj', obj);
   const payload = JSON.stringify(obj);
 
   return dispatch => (
-    fetch('/api/deleteteam', {
+    fetch('/api/leaveteam', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -156,7 +157,6 @@ export const deleteTeam = (obj) => {
     })
     .then(res => res.json())
     .then(response => {
-      console.log('response', response.data);
       dispatch(removeFromTeams(response.data));
     })
     .catch(err => dispatch(error(err)))

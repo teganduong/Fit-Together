@@ -40,7 +40,7 @@ class TeamsListItem extends Component {
             <p className="team-text-body">{this.props.team.description}</p>
             <button 
               type="button" 
-              onClick={() => this.props.deleteTeam({ team_id: this.props.team.id })} 
+              onClick={() => this.props.deleteTeam({ team_id: parseInt(this.props.team.team_id, 10), user_id: 1 })} 
               className="btn btn-danger btn-sm"
             >
               Leave Team

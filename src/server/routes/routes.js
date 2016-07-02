@@ -2,9 +2,6 @@ const express = require('express');
 const router = express.Router();
 const FitbitPassport = require('../authentication/FitbitPassport');
 const MovesPassport = require('../authentication/MovesPassport');
-const users = require('../controllers/usersCtrl');
-const teams = require('../controllers/teamsCtrl');
-const sleep = require('../controllers/sleepCtrl');
 const passport = require('passport');
 const flash = require('connect-flash');
 const db = require('../db/connection.js');
@@ -12,13 +9,19 @@ const queryHelper = require('../queryHelper');
 const activities = require('../controllers/activitiesCtrl');
 const entries = require('../controllers/entriesCtrl');
 
+// ------------Controller Functions--------------- 
+const users = require('../controllers/usersCtrl');
+const teams = require('../controllers/teamsCtrl');
+const sleep = require('../controllers/sleepCtrl');
+const redis = require('../controllers/redisCtrl');
+
 /**  Users **/
 router.post('/api/users', users.addUser);
-router.post('/api/userteams', teams.getUserTeams);
+router.post('/api/userteams', redis.getUserTeams);
 router.post('/api/teammembers', teams.getTeamMembers);
-router.post('/api/createteam', teams.createTeam);
-router.post('/api/deleteteam', teams.deleteTeam);
-router.post('/api/otherteams', teams.getOtherTeams);
+router.post('/api/createteam', redis.createTeam);
+router.post('/api/leaveteam', redis.leaveTeam);
+router.post('/api/otherteams', redis.getOtherTeams);
 
 router.get('/api/usersleep', sleep.getSleep);
 

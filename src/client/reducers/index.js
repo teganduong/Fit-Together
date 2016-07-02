@@ -33,7 +33,11 @@ export const teams = (state, action) => {
       return state.concat([action.data]);
     }
     case REMOVE_TEAM: {
-      return state.filter(c => c.id !== action.data.team_id);
+      console.log('action.data', action.data.team_id);
+      return state.filter(c => {
+        console.log('c.team_id', c, c.team_id);
+        return c.team_id.toString() !== action.data.team_id.toString();
+      });
     }
     default:
       return state || {};
