@@ -32,7 +32,7 @@ class LogbookFoodView extends Component {
         <table>
           <tr>{LogData[0].chart.map(heading => <th>{heading}</th>)}</tr>
           <tr>{LogData[0].chart.map(heading => <td><input ref={heading} type="text" /></td>)}
-          <td><button type="submit" onClick={this.handleSubmit.bind(this)}>ADD</button></td></tr>
+          <td><button className="log-button" className="log-button" type="submit" onClick={this.handleSubmit.bind(this)}>ADD</button></td></tr>
         </table>
       </div>
     );

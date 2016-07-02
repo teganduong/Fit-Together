@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import SideNavBar from './SideNavBar';
+import Settings from './Items/Settings/Settings';
+import Profile from './Profile/Profile';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -36,11 +38,12 @@ export default class Dashboard extends Component {
 
     return (
       <div>
-        <SideNavBar />
-          {this.props.children && React.cloneElement(this.props.children, {
-            user: user,
-            sleep: this.sleep
-          })}
+        <div>
+          <SideNavBar />
+        </div>
+        <div>
+          <Settings />
+        </div>
       </div>
     );
   }

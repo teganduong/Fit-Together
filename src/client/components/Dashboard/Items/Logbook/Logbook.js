@@ -21,7 +21,7 @@ class Logbook extends Component {
 
   render() {
     return(
-      <div className="main-container">
+      <div className="main-log-container" >
         <div className="log-container top-container">
           <div className="horizontal-dash debug">
             <p>Log Activity</p>

@@ -1,18 +1,18 @@
 const LogData = [
   { name: 'Foods',
-    image: 'https://unsplash.com/photos/i0uHNWnwxVw',
+    image: 'http://www.womenshealthmag.com/sites/womenshealthmag.com/files/images/0410-youcan-hiking-0008.jpg',
     chart: ['protein', 'fats', 'carbs', 'calories']
   },
   { name: 'Exercise',
-    image: 'https://unsplash.com/photos/0wtaJS_nxBQ',
+    image: 'http://www.womenshealthmag.com/sites/womenshealthmag.com/files/images/0410-youcan-hiking-0008.jpg',
     chart: ['type', 'duration', 'distance', 'reps', 'sets']
   },
   { name: 'Sleep',
-    image: 'https://unsplash.com/photos/JCXANpeR2XI',
+    image: 'http://www.womenshealthmag.com/sites/womenshealthmag.com/files/images/0410-youcan-hiking-0008.jpg',
     chart: ['duration', 'quality']
   },
   { name: 'Mood, Energy and Motivation',
-    image: 'https://unsplash.com/photos/mMhPX6TJfAY',
+    image: 'http://www.womenshealthmag.com/sites/womenshealthmag.com/files/images/0410-youcan-hiking-0008.jpg',
     chart: ['mood', 'energy', 'motivation']
   }       
 ];
