@@ -22,7 +22,7 @@ class Entries extends Component {
     console.log('entries in Entries Component: ', entries);
     return (
       <div className="main-container">
-        <div>{entries[0].question}</div>
+        <div className="entryQuestion">{entries[0].question}</div>
         <OptionCard option={entries[0].option1} />
         <OptionCard option={entries[0].option2} />
       </div>
