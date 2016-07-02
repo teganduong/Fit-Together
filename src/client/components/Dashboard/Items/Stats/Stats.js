@@ -64,13 +64,7 @@ class Stats extends Component {
           <Chart 
             dataset={this.props.activities.data} 
             chartType={chartType}
-            xyDataType={ {
-              xdataNum: this.state.xdataNum,
-              ydataNum: this.state.ydataNum,
-              xfieldNum: this.state.xfieldNum,
-              yfieldNum: this.state.yfieldNum,
-              }
-            }
+            xyDataType={this.state}
             dataTitle={dataType}
             D={this.D}
             size={{ height: '445', width: '445'}} 

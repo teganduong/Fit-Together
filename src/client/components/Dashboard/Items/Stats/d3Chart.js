@@ -70,6 +70,7 @@ class d3ChartClass {
     // TODO: RETURN DATA FOR A SPECIFIC XDATANUM AND XFIELDNUM
     const attr = this.attr;
     // data for one
+    console.log('preprocess: ', xyDataType);
     const xdataset = (attr.allData)[xyDataType.xdataNum];
     const xdataType = (attr.D)[xyDataType.xdataNum].fields[xyDataType.xfieldNum];
     const ydataset = (attr.allData)[xyDataType.ydataNum];
@@ -88,13 +89,38 @@ class d3ChartClass {
     const scale = (attr.D)[attr.dataNum].scale;
     const xScale = this.makeXScale(xyData.xdataset, xyData.xdataType);
     const yScale = this.makeYScale2(xyData.ydataset, xyData.ydataType);
-    this.svg.selectAll('circle')
+    this.svg.selectAll('circle.plot')
     .data(dataset)  // array of daily sleep data
     .enter()
     .append('circle')   // create the bar graph
+    .attr('class', 'plot')
     .each(function (dayData, index) {
       // create bar graph based on x, y, width, and variant color
       d3.select(this)
+        .attr({
+          cx: `${xScale(dayData[xyData.xdataType])}`, // i * barWidth + attr.wPad + i + rSize,
+          cy: `${yScale(dayData[xyData.ydataType])}`, // attr.height - (d[attr.dataType] * scale) - attr.hPad,
+          r: rSize,
+          fill: datum => ("rgb(" + Math.floor(yScale(datum[xyData.xdataType])) + ", 0, 0)"),
+        });
+    });    
+  }
+
+  updateScatterXy(xyDataType) {
+    // make scatter plot
+    const xyData = this.preProcessDataXy(xyDataType);
+    console.log('in update, xyData: ', xyData);
+    const rSize = 4;
+    const attr = this.attr;
+    const dataset = attr.dataset;
+    const scale = (attr.D)[attr.dataNum].scale;
+    const xScale = this.makeXScale(xyData.xdataset, xyData.xdataType);
+    const yScale = this.makeYScale2(xyData.ydataset, xyData.ydataType);
+    this.svg.selectAll('circle.plot')
+    .each(function (dayData, index) {
+      // create bar graph based on x, y, width, and variant color
+      d3.select(this)
+        .transition()
         .attr({
           cx: `${xScale(dayData[xyData.xdataType])}`, // i * barWidth + attr.wPad + i + rSize,
           cy: `${yScale(dayData[xyData.ydataType])}`, // attr.height - (d[attr.dataType] * scale) - attr.hPad,

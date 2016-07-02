@@ -16,7 +16,11 @@ class Chart extends Component {
     this.height=this.props.size.height;
     this.width=this.props.size.width;
     this.id = this.props.id;
+    const xyDataType = this.props.xydataType;
     // make this into a state
+    this.state = {
+      xyDataType
+    };
     console.log('props passed down', this.props.xyDataType);
     this.xyDataType = this.props.xyDataType;
   }
@@ -28,6 +32,14 @@ class Chart extends Component {
 
   componentDidMount() {
     this.initChart();
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log('We gots the props, ', newProps);
+    if (this.svg.updateScatterXy) {
+      console.log('sending these props to updateScatter ', newProps);
+      this.svg.updateScatterXy(newProps.xyDataType);
+    }
   }
 
   preProcessData(data, type) {
@@ -49,6 +61,7 @@ class Chart extends Component {
     } else {
       console.log('In chart, our xy numerical data', this.xyDataType);
       this.svg.makeScatterXy(this.xyDataType);
+      this.svg.updateScatterXy(this.xyDataType);
     }
     console.log(svg);
     // this.svg.makeScatter();
