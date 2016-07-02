@@ -8,10 +8,6 @@ const db = require('../db/connection.js');
 const queryHelper = require('../queryHelper');
 const activities = require('../controllers/activitiesCtrl');
 const entries = require('../controllers/entriesCtrl');
-const logMem = require('../controllers/memCtrl');
-const logExercise = require('../controllers/exerciseCtrl');
-const logFood = require('../controllers/foodCtrl');
-const logSleep = require('../controllers/sleepCtrl');
 
 // ------------Controller Functions--------------- 
 const users = require('../controllers/usersCtrl');
@@ -28,14 +24,7 @@ router.post('/api/leaveteam', redis.leaveTeam);
 router.post('/api/otherteams', redis.getOtherTeams);
 router.post('/api/jointeam', redis.joinTeam);
 
-router.post('/api/createteam', teams.createTeam);
-router.post('/api/deleteteam', teams.deleteTeam);
-router.post('/api/otherteams', teams.getOtherTeams);
 router.get('/api/usersleep', sleep.getSleep);
-router.post('/api/addMem', logMem.addMem);
-router.post('/api/addExercise', logExercise.addExercise);
-router.post('/api/addFood', logFood.addFood);
-router.post('/api/addSleep', logSleep.addSleep);
 
 router.get('/api/user', (req, res) => {
   if (req.user) {
@@ -72,7 +61,7 @@ router.get('/auth/fitbit/callback',
         id: req.user.profile.id,
         username: req.user.profile.displayName
       };
-
+      // queryHelper.getUserData(userData.id, userData.accessToken);
       res.redirect('/dashboard');
     }
   }
@@ -83,13 +72,18 @@ router.get('/auth/moves', passport.authenticate('moves'));
 router.get('/auth/moves/callback', 
   passport.authenticate('moves', { failureRedirect: '/login' }),
   (req, res) => {
-    console.log('inside callback of moves', req.user);
+    console.log('inside callback', req.user);
     const username = req.user;
-    var accessToken = req.user.accessToken;
-    queryHelper.getUsername(accessToken);
     res.redirect('/dashboard');
   }
 );
+
+// router.post('/signout', (req, res) => {
+//   req.session.destroy((err) => {
+//     res.redirect('/'); 
+//   });
+//   console.log('logged out');
+// });
 
 router.get('/signout', (req, res) => {
   console.log('logging out');
@@ -105,5 +99,10 @@ router.get('/signup',
   })
 );
 
+router.post('/login', passport.authenticate('local-login', {
+  successRedirect: '/', // redirect to the secure profile section
+  failureRedirect: '/login', // redirect back to the signup page if there is an error
+  failureFlash: true // allow flash messages
+}));
 
 module.exports = router;

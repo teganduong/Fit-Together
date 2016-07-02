@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import SideNavBar from './SideNavBar';
-import Settings from './Items/Settings/Settings';
-import Profile from './Profile/Profile';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -12,7 +10,11 @@ export default class Dashboard extends Component {
     this.props.getActivities();
   }
 
-  componentWillMount() {
+  // componentWillMount() {
+  //   this.props.getUser();
+  // }
+
+  componentDidMount() {
     this.props.getUser();
   }
 
@@ -21,7 +23,7 @@ export default class Dashboard extends Component {
     this.sleep = nextProps.sleep;
     console.log('adfasdfas', parseFloat(this.sleep[0].quality), parseFloat('7.7'));
     let num = 0;
-    const test = this.sleep.map(s => {
+    const test = this.sleep.map(function(s) {
       const q = parseFloat(s.quality);
       const d = parseFloat(s.duration);
       s.quality = q;
@@ -38,12 +40,11 @@ export default class Dashboard extends Component {
 
     return (
       <div>
-        <div>
-          <SideNavBar />
-        </div>
-        <div>
-          <Settings />
-        </div>
+        <SideNavBar />
+          {this.props.children && React.cloneElement(this.props.children, {
+            user: user,
+            sleep: this.sleep
+          })}
       </div>
     );
   }
@@ -57,4 +58,3 @@ Dashboard.propTypes = {
   sleep: PropTypes.array,
   getActivities: PropTypes.func
 };
-

@@ -4,11 +4,13 @@ import BmiChart from './Charts/BmiChart';
 
 import ProfileBar from './ProfileBar.js';
 import ProfileActivityBar from './ProfileActivityBar.js';
+import Charts from './Charts';
 
 const Profile = ({ user, sleep }) => (
   <div className="main-container">
     <ProfileActivityBar />
     <ProfileBar />
+
   </div>
 );
 
