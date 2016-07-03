@@ -37,7 +37,7 @@ const JoinTeamModal = (props) => (
           <h4 className="modal-title">Join Existing Team</h4>
         </div>
         <div className="modal-body">
-          <JoinTeamList teams={props.teams} />
+          <JoinTeamList joinTeam={props.joinTeam.bind(this)} teams={props.teams} />
         </div>
         <div className="modal-footer">
           <button type="button" className="btn btn-default">Join Team</button>
@@ -49,7 +49,8 @@ const JoinTeamModal = (props) => (
 );
 
 JoinTeamModal.propTypes = {
-  teams: PropTypes.object
+  teams: PropTypes.object,
+  joinTeam: PropTypes.func
 };
 
 export default JoinTeamModal;

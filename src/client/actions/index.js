@@ -11,6 +11,9 @@ export const receiveExercise = exercise => ({ type: c.RECEIVE_Exercise, data: ex
 export const receiveOtherTeams = otherteams => ({ type: c.RECEIVE_OTHER_TEAMS, data: otherteams });
 export const receiveSleep = sleep => ({ type: c.RECEIVE_SLEEP, data: sleep });
 export const receiveEntries = entries => ({ type: c.RECEIVE_ENTRIES, data: entries });
+export const joinUserTeam = team => ({ type: c.JOIN_TEAM, data: team });
+export const removeOtherTeam = team => ({ type: c.REMOVE_OTHER_TEAM, data: team });
+export const addOtherTeam = team => ({ type: c.ADD_OTHER_TEAM, data: team });
 // export const receiveFood = food => ({ type: c.RECEIVE_FOOD, data: food });
 // export const receiveMem = mem => ({ type: c.RECEIVE_MEM, data: mem });
 export const receiveActivities = activities => ({ type: c.RECEIVE_ACTIVITIES, data: activities });
@@ -158,6 +161,31 @@ export const deleteTeam = (obj) => {
     .then(res => res.json())
     .then(response => {
       dispatch(removeFromTeams(response.data));
+      dispatch(addOtherTeam(response.data));
+    })
+    .catch(err => dispatch(error(err)))
+  );
+};
+
+export const joinTeam = (obj) => {
+  console.log('obj', obj);
+  const payload = JSON.stringify(obj);
+
+  return dispatch => (
+    fetch('/api/jointeam', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Content-length': payload.length,
+      },
+      credentials: 'same-origin',
+      body: payload,
+    })
+    .then(res => res.json())
+    .then(response => {
+      console.log('response', response);
+      dispatch(joinUserTeam(response.data));
+      dispatch(removeOtherTeam(response.data));
     })
     .catch(err => dispatch(error(err)))
   );

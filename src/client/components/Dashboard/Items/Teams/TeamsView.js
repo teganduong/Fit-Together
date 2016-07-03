@@ -2,11 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import TeamsList from './TeamsList';
 import CreateNewTeamModal from './CreateNewTeamModal';
 import JoinTeamModal from './JoinTeamModal';
+import Map from './Map';
 
 class TeamsView extends Component {
   constructor(props) {
     super(props);
-    console.log('team', props);
+    console.log('team props', props);
     this.props.fetchUserTeams({ user_id: 1 });
     this.props.fetchOtherTeams({ user_id: 1 });
     this.teams = [];
@@ -48,12 +49,15 @@ class TeamsView extends Component {
             </div>  
           </div>
           <div>
+            <Map />
+          </div>
+          <div>
             <TeamsList teams={this.teams} deleteTeam={this.props.deleteTeam.bind(this)} />
           </div>
         </div>
         <div>
           <CreateNewTeamModal createTeam={this.props.createTeam.bind(this)} />
-          <JoinTeamModal teams={this.otherteams} />
+          <JoinTeamModal joinTeam={this.props.joinTeam.bind(this)} teams={this.otherteams} />
         </div>
       </div>
     );
@@ -66,7 +70,8 @@ TeamsView.propTypes = {
   fetchOtherTeams: PropTypes.func,
   fetchTeamMembers: PropTypes.func,
   createTeam: PropTypes.func,
-  deleteTeam: PropTypes.func
+  deleteTeam: PropTypes.func,
+  joinTeam: PropTypes.func
 };
 
 export default TeamsView;
