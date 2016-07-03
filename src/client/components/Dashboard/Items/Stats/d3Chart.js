@@ -12,14 +12,19 @@ const getDaysDifference = (start, end) => {
 };
 
 const getTrendLine = (xdataset, xfield, ydataset, yfield) => {
-  const xReduceSum = (sum, dayData) => sum + dayData[xfield];
-  const yReduceSum = (sum, dayData) => sum + dayData[yfield];
-  const xBar = xdataset.reduce(xReduceSum) / xdataset.length;
-  const yBar = ydataset.reduce(yReduceSum) / ydataset.length;
-  const SSxx = xdataset.map(xi => Math.pow(xi - xBar, 2)).reduce(xReduceSum);
-  const SSyy = ydataset.map(yi => Math.pow(yi - xBar, 2)).reduce(yReduceSum);
-  const SSxy = xdataset.map((xi, index) => (xi - xBar) * (ydataset[index][yfield] - yBar))
-    .reduce(yReduceSum);
+
+  const xReduceSum = (sum, dayData) => sum + Number(dayData[xfield]);
+  const yReduceSum = (sum, dayData) => sum + Number(dayData[yfield]);
+  const reduceSum =(sum, num) => sum + num;
+  console.log('x data in trend: ', xdataset[0][xfield], ' field: ', xfield);
+  const xBar = xdataset.reduce(xReduceSum, 0) / xdataset.length;
+  const yBar = ydataset.reduce(yReduceSum, 0) / ydataset.length;
+  // GOOD
+  console.log('xbar and ybar: ', xBar, yBar);
+  const SSxx = xdataset.map(xi => Math.pow(Number(xi[xfield]) - xBar, 2)).reduce(reduceSum);
+  const SSyy = ydataset.map(yi => Math.pow(Number(yi[yfield]) - yBar, 2)).reduce(reduceSum);
+  const SSxy = xdataset.map((xi, index) => (Number(xi[xfield]) - xBar) * (Number(ydataset[index][yfield]) - yBar))
+    .reduce(reduceSum);
     
   const slope = SSxy / SSxx;
   const intercept = yBar - (xBar * slope);
@@ -154,14 +159,10 @@ class d3ChartClass {
     this.updateXAxis2(xyData.xdataset, xyData.xdataType);
     this.updateYAxis2(xyData.ydataset, xyData.ydataType);
     this.makeTrendline(xyData.xdataset, xyData.xdataType, xyData.ydataset, xyData.ydataType);
-    console.log('all for dataset in update scatter ', dataset);
     this.svg.selectAll('circle.plot')
     .data(dataset)
     .each(function (dayData, index) {
       // create bar graph based on x, y, width, and variant color
-      console.log('xydata: ', xyData, ' xdataType: ', xyData.xdataType);
-      console.log('day data: ', dayData);
-      console.log('x dayData: ', (dayData)[xyData.xdataType], ' scaled: ', xScale(dayData[xyData.xdataType]));
       d3.select(this)
         .transition()
         .attr({
@@ -182,7 +183,6 @@ class d3ChartClass {
     const dataset = this.allData[attr.dataNum];
     const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
     const scale = (attr.D)[attr.dataNum].scale;
-    console.log('dataset should change ', dataset, dataType);
     this.svg.selectAll('rect.bar')
       .data(dataset)  // array of daily sleep data
       .enter()
@@ -192,7 +192,6 @@ class d3ChartClass {
         // if based on time...
         //console.log('hey1', data);
         const i = getDaysDifference(dataset[0]['date_performed'], data.date_performed);
-        console.log(i);
         // create bar graph based on x, y, width, and variant color
         d3.select(this)
           .attr({
@@ -215,7 +214,6 @@ class d3ChartClass {
     const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
     // const scale = (attr.D)[attr.dataNum].scale;
     const yScale = this.makeYScale();
-    console.log('dataset should change ', dataset, dataType);
     this.svg.selectAll('rect.bar')
       .data(dataset)  // array of daily sleep data
       .each(function (data, index) {
@@ -315,19 +313,15 @@ class d3ChartClass {
   makeXScale(dataset, dataType) {
     const attr = this.attr;
     const quantities = (dataset).map(dayData => Number(dayData[dataType]));
-    console.log('data type, quants make x scale..... ', dataset, quantities);
     const xScale = d3.scale.linear()
       .domain([0, Math.max(...quantities)])
       .range([attr.wPad, attr.wPad + attr.width]);
-    console.log('xCales for this ---------------------------------', xScale);
     return xScale; 
   }
 
   makeXAxis(ds) {
     const attr = this.attr;
-    console.log('attr', attr);
     const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
-    console.log('set in x axis', ds);
     const mScale = this.makeXScale(ds);
     // this.makeScale(attr.dataset, attr.height, [attr.wPad, attr.width+attr.wPad], attr.timeFrame);
     const mAxis = d3.svg.axis()
@@ -371,7 +365,6 @@ class d3ChartClass {
   makeYScale2(dataset, dataType) {
     const attr = this.attr;
     const quantities = (dataset).map(dayData => Number(dayData[dataType]));
-    console.log('data type, quants ', dataType, quantities);
     const yScale = d3.scale.linear()
       .domain([0, Math.max(...quantities)])
       .range([attr.height - attr.hPad, attr.hPad]);   
@@ -411,7 +404,6 @@ class d3ChartClass {
   makeYScale(data) {
     const attr = this.attr;
     const quantities = (attr.dataset).map(dayData => Number(dayData[attr.dataType]));
-    console.log('data type, quants ', attr.dataType, quantities);
     const yScale = d3.scale.linear()
       .domain([0, Math.max(...quantities)])
       .range([attr.height - attr.hPad, attr.hPad]);   
@@ -420,10 +412,8 @@ class d3ChartClass {
 
   makeYAxis(m) {
     const attr = this.attr;
-    console.log('attr', attr);
     const barWidth = attr.width / this.timeFrame;
     const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
-    console.log('set in y axis', attr.dataset);
     const mScale = this.makeYScale(attr.dataset);
     // this.makeScale(attr.dataset, attr.height, [attr.wPad, attr.width+attr.wPad], attr.timeFrame);
     const mAxis = d3.svg.axis()
@@ -439,7 +429,6 @@ class d3ChartClass {
 
 
   makeTitleButtons(D, options) {
-    console.log('MAKING TITLES!!!', D);
     const context = this;
     // const dataset = sleepData;
     //  bar width based on chart width and number of data points
@@ -448,7 +437,6 @@ class d3ChartClass {
     const titles = D.map(category => category.title);
     const barWidth = attr.width / titles.length;
     const fontSize = barWidth * 0.1;
-    console.log('Actual titles ', titles);
     this.svg.selectAll('text.title')
     .data(titles)  // array of daily titles
     .enter()
@@ -471,7 +459,6 @@ class d3ChartClass {
           attr.dataFieldNum = 0;
           const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
           attr.dataType = dataType;
-          console.log('i am clicked ', attr.dataNum);
           attr.dataset = attr.allData[attr.dataNum];
           const quantities = (attr.dataset).map(dayData => Number(dayData[dataType]));
           attr.scale = quantities;
@@ -488,9 +475,7 @@ class d3ChartClass {
   updateYAxis() {
     const attr = this.attr;
     const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
-    console.log('set in y axis', attr.dataset);
     const quantities = (attr.dataset).map(dayData => Number(dayData[dataType]));
-    console.log('data type, quants ', dataType, quantities);
     const mScale = d3.scale.linear()
                      .domain([0, Math.max(...quantities)])
                      .range([attr.height - attr.hPad, attr.hPad]);
@@ -499,7 +484,6 @@ class d3ChartClass {
                     .scale(mScale)
                     .orient('left')
                     .ticks(5);
-    console.log('max ', Math.max(...quantities));
     this.svg.select('.y') // append('g')
             .transition()
             .call(mAxis);
@@ -508,9 +492,7 @@ class d3ChartClass {
   makeTitle(axis, dataNum) {
     const attr = this.attr;
     const fontSize = '20';
-    console.log('called... ');
     if (axis === 'x') {
-      console.log('in here... ');
       this.svg.selectAll('text.x.title')
         .data([dataNum])
         .enter()
