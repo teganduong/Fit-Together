@@ -25,7 +25,7 @@ import Teams from './containers/Teams'; // redux container
 import Tips from './components/Dashboard/Items/Tips/Tips';
 import Settings from './components/Dashboard/Items/Settings/Settings';
 import Logbook from './components/Dashboard/Items/Logbook/Logbook';
-import Entries from './containers/Entries';
+import Trivia from './containers/Trivia';
 
 import { getEntries } from './actions';
 require('./assets/css/style.css');
@@ -47,7 +47,7 @@ render(
           <Route path="/dashboard/challenges"component={Challenges} />
           <Route path="/dashboard/teams"component={Teams} />
           <Route path="/dashboard/tips"component={Tips} />
-          <Route path="/dashboard/community"component={Entries} />
+          <Route path="/dashboard/trivia" component={Trivia} />
         </Route>
       </Route>
     </Router>
@@ -55,4 +55,4 @@ render(
   document.getElementById('app')
 );
 
-store.dispatch(getEntries());
+// store.dispatch(getEntries());
