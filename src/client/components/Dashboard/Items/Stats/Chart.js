@@ -58,6 +58,7 @@ class Chart extends Component {
       svg.makeBars();
       this.svg.makeTitleButtons(D);
       this.svg.makeAxis();
+      this.svg.makeYAxis();
     } else {
       console.log('In chart, our xy numerical data', this.xyDataType);
       this.svg.makeScatterXy(this.xyDataType);
@@ -65,7 +66,6 @@ class Chart extends Component {
     }
     console.log(svg);
     // this.svg.makeScatter();
-    this.svg.makeYAxis();
   }
 
   render() {

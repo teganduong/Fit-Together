@@ -89,6 +89,9 @@ class d3ChartClass {
     const scale = (attr.D)[attr.dataNum].scale;
     const xScale = this.makeXScale(xyData.xdataset, xyData.xdataType);
     const yScale = this.makeYScale2(xyData.ydataset, xyData.ydataType);
+    this.makeXAxis2(xyData.xdataset, xyData.xdataType);
+    this.makeYAxis2(xyData.ydataset, xyData.ydataType);
+    this.makeTitle('x', 0);
     this.svg.selectAll('circle.plot')
     .data(dataset)  // array of daily sleep data
     .enter()
@@ -106,6 +109,7 @@ class d3ChartClass {
     });    
   }
 
+  /////////////////// maybe the scale stays the same??????? //////////////
   updateScatterXy(xyDataType) {
     // make scatter plot
     const xyData = this.preProcessDataXy(xyDataType);
@@ -116,14 +120,19 @@ class d3ChartClass {
     const scale = (attr.D)[attr.dataNum].scale;
     const xScale = this.makeXScale(xyData.xdataset, xyData.xdataType);
     const yScale = this.makeYScale2(xyData.ydataset, xyData.ydataType);
+    this.updateTitle('x', xyDataType.xdataNum, xyDataType.xfieldNum);
+    this.updateXAxis2(xyData.xdataset, xyData.xdataType);
+    this.updateYAxis2(xyData.ydataset, xyData.ydataType);
     this.svg.selectAll('circle.plot')
     .each(function (dayData, index) {
       // create bar graph based on x, y, width, and variant color
+      console.log('xydata: ', xyData, ' xdataType: ', xyData.xdataType);
+      console.log('x dayData: ', dayData[xyData.xdataType], ' scaled: ', xScale(dayData[xyData.xdataType]));
       d3.select(this)
         .transition()
         .attr({
-          cx: `${xScale(dayData[xyData.xdataType])}`, // i * barWidth + attr.wPad + i + rSize,
-          cy: `${yScale(dayData[xyData.ydataType])}`, // attr.height - (d[attr.dataType] * scale) - attr.hPad,
+          cx: `${Number(xScale(dayData[xyData.xdataType]))}`, // i * barWidth + attr.wPad + i + rSize,
+          cy: `${Number(yScale(dayData[xyData.ydataType]))}`, // attr.height - (d[attr.dataType] * scale) - attr.hPad,
           r: rSize,
           fill: datum => ("rgb(" + Math.floor(yScale(datum[xyData.xdataType])) + ", 0, 0)"),
         });
@@ -272,7 +281,7 @@ class d3ChartClass {
   makeXScale(dataset, dataType) {
     const attr = this.attr;
     const quantities = (dataset).map(dayData => Number(dayData[dataType]));
-    console.log('data type, quants ', dataset, quantities);
+    console.log('data type, quants make x scale..... ', dataset, quantities);
     const xScale = d3.scale.linear()
       .domain([0, Math.max(...quantities)])
       .range([attr.wPad, attr.wPad + attr.width]);   
@@ -296,6 +305,34 @@ class d3ChartClass {
             .call(mAxis);
   }
 
+  makeXAxis2(dataset, dataType) {
+    const attr = this.attr;
+    const mScale = this.makeXScale(dataset, dataType);
+    // this.makeScale(attr.dataset, attr.height, [attr.wPad, attr.width+attr.wPad], attr.timeFrame);
+    const mAxis = d3.svg.axis()
+                    .scale(mScale)
+                    .orient('bottom')
+                    .ticks(5);
+    this.svg.append('g')
+            .attr('class', 'x axis')
+            .attr('transform', `translate(0,${attr.height - attr.hPad})`)
+            .call(mAxis);
+  }
+
+  updateXAxis2(dataset, dataType) {
+    const attr = this.attr;
+    const mScale = this.makeXScale(dataset, dataType);
+    // this.makeScale(attr.dataset, attr.height, [attr.wPad, attr.width+attr.wPad], attr.timeFrame);
+    const mAxis = d3.svg.axis()
+                    .scale(mScale)
+                    .orient('bottom')
+                    .ticks(5);
+    this.svg.select('.x')
+            .transition()
+            .call(mAxis);
+  }  
+
+
   makeYScale2(dataset, dataType) {
     const attr = this.attr;
     const quantities = (dataset).map(dayData => Number(dayData[dataType]));
@@ -305,6 +342,36 @@ class d3ChartClass {
       .range([attr.height - attr.hPad, attr.hPad]);   
     return yScale; 
   }
+
+  makeYAxis2(dataset, dataType) {
+    const attr = this.attr;
+    const barWidth = attr.width / this.timeFrame;
+    const mScale = this.makeYScale(dataset);
+    // this.makeScale(attr.dataset, attr.height, [attr.wPad, attr.width+attr.wPad], attr.timeFrame);
+    const mAxis = d3.svg.axis()
+                    .scale(mScale)
+                    .orient('left')
+                    .ticks(5);
+    this.svg.append('g')
+            .attr('class', 'y axis')
+            .attr('transform', `translate(${attr.wPad}, 0)`)
+            .call(mAxis);
+  }
+
+  updateYAxis2(dataset, dataType) {
+    const attr = this.attr;
+    const quantities = (dataset).map(dayData => Number(dayData[dataType]));
+    const mScale = d3.scale.linear()
+                     .domain([0, Math.max(...quantities)])
+                     .range([attr.height - attr.hPad, attr.hPad]);
+    const mAxis = d3.svg.axis()
+                    .scale(mScale)
+                    .orient('left')
+                    .ticks(5);
+    this.svg.select('.y') // append('g')
+            .transition()
+            .call(mAxis);
+  }  
 
   makeYScale(data) {
     const attr = this.attr;
@@ -333,6 +400,8 @@ class d3ChartClass {
             .attr('transform', `translate(${this.wPad}, 0)`)
             .call(mAxis);
   }
+
+
 
   makeTitleButtons(D, options) {
     console.log('MAKING TITLES!!!', D);
@@ -399,6 +468,31 @@ class d3ChartClass {
     this.svg.select('.y') // append('g')
             .transition()
             .call(mAxis);
+  }
+
+  makeTitle(axis, dataNum) {
+    console.log('called... ');
+    if (axis === 'x') {
+      console.log('in here... ');
+      this.svg.selectAll('text.x.title')
+        .data([dataNum])
+        .enter()
+        .append('text')
+        .attr('class', 'x title')
+        .attr({
+          x: 200,
+          y: 50
+        })
+        .text('Hello!');
+    }
+  }
+
+  updateTitle(axis, dataNum, fieldNum) {
+    const attr = this.attr;
+    if (axis === 'x') {
+      this.svg.selectAll('text.x.title')
+        .text(`${(attr.D)[dataNum].title} with ${(attr.D)[dataNum].fields[fieldNum]}`);
+    }
   }
 
 }

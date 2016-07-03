@@ -14,10 +14,10 @@ class Stats extends Component {
     this.dataNum = 0;
     this.fieldNum = 0;
     this.state = {
-      xdataNum: 0,
+      xdataNum: 2,
       xfieldNum: 0,
-      ydataNum: 0,
-      yfieldNum: 1,
+      ydataNum: 2,
+      yfieldNum: 0,
     };
   }
 
@@ -35,7 +35,7 @@ class Stats extends Component {
 
   xsetDataNum(xdataNum) {
     console.log('clicked!!!'); //
-    this.setState({ xdataNum });
+    this.setState({ xdataNum, xfieldNum: 0 });
   }
 
   xsetFieldNum(xfieldNum) {
@@ -45,7 +45,7 @@ class Stats extends Component {
 
   ysetDataNum(ydataNum) {
     console.log('clicked!!!'); //
-    this.setState({ ydataNum });
+    this.setState({ ydataNum, yfieldNum: 0 });
   }
 
   ysetFieldNum(yfieldNum) {
