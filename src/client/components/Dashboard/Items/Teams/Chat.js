@@ -10,7 +10,7 @@ export default class Chat extends React.Component {
 
     this.state = {
       messages: []
-    }
+    };
   }
 
   recieveMessage(message) {
@@ -40,16 +40,17 @@ export default class Chat extends React.Component {
           {this.state.messages.map((message) => {
             return (
               <div className="message col-md-6">
-                <div><strong>{message.user}</strong></div>
-                <div>{message.text}</div>
+                <div><strong>{message.user}: </strong>
+                <span>{message.text} </span>
+              </div>
               </div>
             );
           })}
 
           <div>
-            <form onSubmit={(e) => { this.sendMessage(e) }}>
+            <form onSubmit={(e) => {this.sendMessage(e)}}>
               <input ref="inputfield" />
-              <button type="submit" onClick={(e) => { this.sendMessage(e) }}></button>
+              <button type="submit" onClick={(e) => {this.sendMessage(e)}}></button>
             </form>
           </div>
         </div>

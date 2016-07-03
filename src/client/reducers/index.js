@@ -14,7 +14,8 @@ import {
   RECEIVE_ENTRIES,
   JOIN_TEAM,
   REMOVE_OTHER_TEAM,
-  ADD_OTHER_TEAM
+  ADD_OTHER_TEAM,
+  RECEIVE_MESSAGES
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -43,6 +44,9 @@ export const teams = (state, action) => {
       });
     }
     case JOIN_TEAM: {
+      return state.concat([action.data]);
+    }
+    case RECEIVE_MESSAGES: {
       return state.concat([action.data]);
     }
     default:

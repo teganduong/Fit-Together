@@ -10,14 +10,7 @@ class Logbook extends Component {
   constructor(props) {
     super(props);
     console.log('INSIDE LOGBOOK===>', props);
-    // this.state = {
-    //   show: false
-    // };
   }
-
-  // onClick() {
-  //   this.setState({ show: true });
-  // }
 
   render() {
     return(

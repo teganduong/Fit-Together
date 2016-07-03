@@ -16,6 +16,7 @@ export const removeOtherTeam = team => ({ type: c.REMOVE_OTHER_TEAM, data: team 
 export const addOtherTeam = team => ({ type: c.ADD_OTHER_TEAM, data: team });
 export const receiveActivities = activities => ({ type: c.RECEIVE_ACTIVITIES, data: activities });
 export const receiveTips = tips => ({ type: c.RECEIVE_TIP, data: tips });
+export const receiveMessages = messages => ({ type: c.RECEIVE_MESSAGES, data: messages });
 
 export const addUser = (obj) => {
   const payload = JSON.stringify(obj);
@@ -313,3 +314,26 @@ export const fetchTips = () => (
     .catch(err => dispatch(error(err)))
   )
 );
+
+export const addMessages = (obj) => {
+  console.log('successfully sent message to serverside');
+  const payload = JSON.stringify(obj);
+
+  return dispatch => (
+    fetch('/api/messages', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Content-length': payload.length,
+      },
+      credentials: 'same-origin',
+      body: payload,
+    })
+    .then(res => res.json())
+    .then(response => {
+      console.log('response', response);
+      dispatch(receiveMessages(response.data));
+    })
+    .catch(err => dispatch(error(err)))
+  );
+};
