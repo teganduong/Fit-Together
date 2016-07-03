@@ -1,9 +1,12 @@
 .card-img-top {
-  width: 300px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
+  margin-left: 65px;
 }
+
 .card {
   float: left;
+  width: 300px;
   padding: 10px;
   margin-right: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -15,4 +18,16 @@
 .entryQuestion {
   font-size: 20px;
   padding: 20px;
+}
+.btn-primary {
+  background-color: #15C2DE;
+  border-color: #15C2DE;
+}
+
+.entry-card {
+  width: 620px;
+  margin-top: 15px;
+}
+.entry-block {
+  padding-left: 20px;
 }

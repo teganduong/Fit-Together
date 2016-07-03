@@ -95,10 +95,3 @@ CREATE TABLE mem (
   motivation DECIMAL,
   user_id INTEGER REFERENCES users (id)
 );
-
-CREATE TABLE entries (
-  id SERIAL PRIMARY KEY,
-  question VARCHAR(255),
-  option1 jsonb,
-  option2 jsonb
-);

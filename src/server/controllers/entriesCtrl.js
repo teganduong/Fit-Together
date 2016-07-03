@@ -1,8 +1,8 @@
 const db = require('../db/connection.js');
 
 exports.addEntry = (req, res) => {
-  db.none('insert into entries(question, option1, option2)' +
-  'values(${question}, ${option1}, ${option2})',
+  db.none('insert into entries(question, options)' +
+  'values(${question}, ${options})',
     req.body)
     .then(() => {
       res.status(201)

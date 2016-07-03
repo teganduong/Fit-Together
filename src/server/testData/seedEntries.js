@@ -1,134 +1,79 @@
 const entriesCtrl = require('../controllers/entriesCtrl.js');
 const entriesData = [
   {
-    question: 'Do you prefer yoga or pilates?',
-    option1: {
-      option: 'Yoga', 
-      votes: 0,
-      img: 'http://static1.squarespace.com/static/554a7cece4b0037c64932115/t/55526bf2e4b0da857ce3414c/1431464951121/three_new_yoga_poses.jpg?format=1500w'
-    },
-    option2: {
-      option: 'Pilates', 
-      votes: 0,
-      img: 'http://balancedbeingonline.com/wp-content/uploads/2015/07/pilates.jpg'
-    }
+    category: 'Nutrition',
+    question: 'Carrots contain a rich source of what vitamin?',
+    options: ['C', 'D', 'A', 'B'],
+    answer: 'A'
   },
   {
-    question: 'At the gym, is it best to do cardio first or weights first?',
-    option1: {
-      option: 'cardio', 
-      votes: 0,
-      img: 'http://cdn-mf1.heartyhosting.com/sites/mensfitness.com/files/styles/photo_gallery_full/public/am_cardio_rotator.jpg?itok=vTy79Czs'
-    },
-    option2: {
-      option: 'weights', 
-      votes: 0,
-      img: 'http://www.reaxxion.com/wp-content/uploads/2014/11/weight-lifting-decalartscom-1137x793-667x465.jpg'
-    }
+    category: 'Nutrition',
+    question: 'Oranges contain a rich source of what vitamin?',
+    options: ['C', 'A', 'E', 'K'],
+    answer: 'C'
   },
   {
-    question: 'What do you enjoy more?',
-    option1: {
-      option: 'Leg day', 
-      votes: 0,
-      img: 'https://s-media-cache-ak0.pinimg.com/564x/82/4d/55/824d55bf410c1ee2950551e8a9fb7c85.jpg'
-    },
-    option2: {
-      option: 'Upper body day', 
-      votes: 0,
-      img: 'http://gladstonenews.com.au/wordpress/wp-content/uploads/2016/02/cb3cda3c62bfa20055781bd89673ced0.gif'
-    }
+    category: 'Nutrition',
+    question: 'Fish is a good source of:',
+    options: ['vitamin C', 'carbs', 'beta carotene', 'omega-3 fats'],
+    answer: 'omega-3 fats'
   },
   {
-    question: 'When do you prefer to workout?',
-    option1: {
-      option: 'morning', 
-      votes: 0,
-      img: 'http://images.askmen.com/1080x540/top_10/fitness/top-10-reasons-to-train-in-the-morning-1035717-TwoByOne.jpg'
-    },
-    option2: {
-      option: 'afternoon/evening', 
-      votes: 0,
-      img: 'http://bellybanish.s3-us-west-2.amazonaws.com/wp-content/uploads/2015/07/07015600/Lose-20-Pounds-Don%E2%80%99t-skip-your-evening-workout-3.jpg'
-    }
+    category: 'Nutrition',
+    question: 'A label that lists trans fats as 0 means:',
+    options: [
+      'the food contains no trans fat', 
+      'it contains no partially hydrogenated oil', 
+      'it has less than 0.5 grams of trans fat per serving', 
+      'it is healthy for you'
+    ],
+    answer: 'it has less than 0.5 grams of trans fat per serving'
   },
   {
-    question: 'Which one do you prefer more?',
-    option1: {
-      option: 'biking', 
-      votes: 0,
-      img: 'http://cdn1.bostonmagazine.com/wp-content/uploads/2013/06/bostonbikinglarge.jpg'
-    },
-    option2: {
-      option: 'running', 
-      votes: 0,
-      img: 'http://semois-semoy.org/inc/uploads/2015/12/The-Best-Running-Shoes-for-Plantar-Fasciitis-1.jpg'
-    }
+    category: 'Nutrition',
+    question: 'How much fiber should you aim for every day?',
+    options: [
+      '5 grams', 
+      '10 to 15 grams', 
+      '21 to 35 grams', 
+      '50 grams'
+    ],
+    answer: '21 to 35 grams'
   },
   {
-    question: 'How often do you workout?',
-    option1: {
-      option: '1-3 times/week', 
-      votes: 0,
-      img: 'http://cliparts.co/cliparts/6Ty/55g/6Ty55g47c.jpg'
-    },
-    option2: {
-      option: '4 or more times/week', 
-      votes: 0,
-      img: 'http://4.bp.blogspot.com/-MinNE4NoZjc/T2qehlTU21I/AAAAAAAAAU0/SMhis-1yfB0/s1600/Workout_1_tnb.png'
-    }
+    category: 'Nutrition',
+    question: 'Which does not contain fiber?',
+    options: ['steak', 'broccoli', 'an apple', 'baked beans'],
+    answer: 'steak'
   },
   {
-    question: 'Do you prefer working out at the gym or outdoors?',
-    option1: {
-      option: 'gym', 
-      votes: 0,
-      img: 'http://www.qarmazi.com/5/2015/07/3-gym-gym-inside-a-house-black.jpg'
-    },
-    option2: {
-      option: 'outdoors', 
-      votes: 0,
-      img: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSQIHFyaCVXxW8-wm8ctNpOt-ZDB4sKohG1iWIaBdklHXR3Paum'
-    }
+    category: 'Nutrition',
+    question: 'Which juice is high in iron?',
+    options: [' orange', 'prune', 'carrot', 'apricot'],
+    answer: 'prune'
   },
   {
-    question: 'Are you trying to lose weight or gain muscle/get bulkier?',
-    option1: {
-      option: 'Lose weight', 
-      votes: 0,
-      img: 'http://www.nylabone.com/assets/010/41473.jpg'
-    },
-    option2: {
-      option: 'Gain muscle/get bulkier', 
-      votes: 0,
-      img: 'https://s-media-cache-ak0.pinimg.com/236x/64/ab/ec/64abece034bd8b81dcd98a1b9f62c183.jpg'
-    }
+    category: 'Nutrition',
+    question: 'If you are looking for the most fiber in a loaf of bread, the operative words are:',
+    options: ['unbleached', 'enriched wheat flour', 'twelve-grain', 'whole-wheat flour'],
+    answer: 'whole-wheat flour'
   },
   {
-    question: 'A "cheat day" is a day where people can eat whatever they want once a week. Good or bad idea?',
-    option1: {
-      option: 'Good idea', 
-      votes: 0,
-      img: 'http://clipartix.com/wp-content/uploads/2016/04/Smile-thumbs-up-clip-art-clipart-image-0.jpg'
-    },
-    option2: {
-      option: 'Bad idea', 
-      votes: 0,
-      img: 'http://www.clipartbest.com/cliparts/MiL/kAz/MiLkAzLgT.png'
-    }
+    category: 'Nutrition',
+    question: 'On a nutrition label, what does "% DV" stand for?',
+    options: [
+      'Percent daily value', 
+      'Percent dietary value', 
+      'Percent dietetic value', 
+      'Percent daily variety'
+    ],
+    answer: 'Percent daily value'
   },
   {
-    question: 'How far would you run for your favorite food?',
-    option1: {
-      option: '< 3 miles', 
-      votes: 0,
-      img: 'https://www.uwosh.edu/ploneprojects/plone-activities-blog/plone-slow-jog-4-friday-august-1-2008-idea-lab/image'
-    },
-    option2: {
-      option: '4 or more miles', 
-      votes: 0,
-      img: 'http://1.bp.blogspot.com/-CZZcmwrptkM/Th3ZcsCiArI/AAAAAAAAAFg/UaY1W8vQ5rk/s1600/RUNNING%20CARTOON.jpg'
-    }
+    category: 'Nutrition',
+    question: 'How many calories are in 1 gram of sugar?',
+    options: [5, 8, 4, 3],
+    answer: 4
   }
 ];
 
