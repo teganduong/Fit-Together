@@ -11,9 +11,7 @@ export default class Chat extends React.Component {
     this.state = {
       messages: []
     }
-
-  };
-
+  }
 
   recieveMessage(message) {
     console.log(this.state);
@@ -23,15 +21,13 @@ export default class Chat extends React.Component {
     });
   }
 
-
-
   sendMessage(e) {
-  if ( this.refs.inputfield.value !== '' ) {
-    socket.emit('chat message', {user: 'lynn', text: this.refs.inputfield.value});
-    this.refs.inputfield.value = '';
+    if (this.refs.inputfield.value !== '') {
+      this.connection.emit('chat message', {user: 'lynn', text: this.refs.inputfield.value});
+      this.refs.inputfield.value = '';
+    }
+    e.preventDefault();     
   }
-  e.preventDefault();     
-  };
 
   
   render() {
@@ -51,9 +47,9 @@ export default class Chat extends React.Component {
           })}
 
           <div>
-            <form onSubmit={(e) => {this.sendMessage(e)}}>
+            <form onSubmit={(e) => { this.sendMessage(e) }}>
               <input ref="inputfield" />
-              <button type="submit" onClick={(e) => {this.sendMessage(e)}}></button>
+              <button type="submit" onClick={(e) => { this.sendMessage(e) }}></button>
             </form>
           </div>
         </div>
