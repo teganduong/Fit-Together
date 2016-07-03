@@ -244,6 +244,12 @@ exports.leaveTeam = (req, res) => {
     });
 };
 
+// join team
+// -----given a user id, team_id --> add to users_teams table
+// -----add team_id to :yes sadd 
+  // add team_id to sadd --> user_id:xx:yes
+  // remove team_id to sadd --> user_id:xx:no
+
 exports.joinTeam = (req, res) => {
   db.none('insert into users_teams(user_id, team_id)' + 
       ' values((select id from users where id=${user_id}),' +
@@ -270,10 +276,6 @@ exports.joinTeam = (req, res) => {
     });
 }
 
-// join team
-// -----given a user id, team_id --> add to users_teams table
-// -----add team_id to :yes sadd 
-  // add team_id to sadd --> user_id:xx:yes
-  // remove team_id to sadd --> user_id:xx:no
+
 
 // add team members to a team to a unsorted set ---> sadd

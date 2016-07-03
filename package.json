@@ -18,7 +18,8 @@
     "test-votes": "mocha --compilers js:babel-core/register --require ./tests/testHelpers.js  --recursive",
     "seed-log": "node src/server/testData/seedSleep.js; node src/server/testData/seedMem.js; node src/server/testData/seedExercise.js; node src/server/testData/seedFood.js",
     "seed-test": "node src/server/testData/seedTeams.js;",
-    "json": "node src/server/testData/seedSleep.js"
+    "json": "node src/server/testData/seedSleep.js",
+    "mocha-db": "mocha "
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
