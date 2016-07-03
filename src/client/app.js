@@ -25,6 +25,7 @@ import Tips from './components/Dashboard/Items/Tips/Tips';
 import Settings from './components/Dashboard/Items/Settings/Settings';
 import Logbook from './components/Dashboard/Items/Logbook/Logbook';
 import Trivia from './containers/Trivia';
+import Chat from './components/Dashboard/Items/Teams/Chat';
 
 import { getEntries } from './actions';
 require('./assets/css/style.css');
@@ -37,6 +38,7 @@ render(
     <Router history={history}>
       <Route path="/" component={App} >
         <Route path="/signup" component={Signup} />
+        <Route path="/chat" component={Chat} />
         <IndexRoute component={Home} />
         <Route path="/dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />

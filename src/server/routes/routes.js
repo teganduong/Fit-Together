@@ -78,12 +78,9 @@ router.get('/auth/moves/callback',
   }
 );
 
-// router.post('/signout', (req, res) => {
-//   req.session.destroy((err) => {
-//     res.redirect('/'); 
-//   });
-//   console.log('logged out');
-// });
+router.get('/demo', (req, res) => {
+  res.redirect('/dashboard');
+});
 
 router.get('/signout', (req, res) => {
   console.log('logging out');
@@ -100,9 +97,9 @@ router.get('/signup',
 );
 
 router.post('/login', passport.authenticate('local-login', {
-  successRedirect: '/', // redirect to the secure profile section
-  failureRedirect: '/login', // redirect back to the signup page if there is an error
-  failureFlash: true // allow flash messages
+  successRedirect: '/', 
+  failureRedirect: '/login',
+  failureFlash: true 
 }));
 
 module.exports = router;

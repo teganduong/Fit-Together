@@ -59,3 +59,7 @@
   text-align: center;
 }
 
+.fitbit {
+background: url('../images/FitbitLogo.png') no-repeat center center fixed;
+
+}

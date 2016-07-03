@@ -15,6 +15,16 @@ const port = process.env.PORT || 3000;
 
 // const redisClient = require('./db/redisConnection.js');
 
+// Socket.io Config
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+io.on('connection', function(socket){
+  console.log('a user connected through socket!!!!!!!!!!!!!!!!!!!!!!!!');
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});
+
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(cookieParser(config.session.secret));
 app.use(bodyParser.json());
@@ -33,4 +43,4 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.listen(port, () => console.log('Server is listening on port ', port, '\nRefresh the browser '));
+server.listen(port, () => console.log('Server is listening on port ', port, '\nRefresh the browser '));
