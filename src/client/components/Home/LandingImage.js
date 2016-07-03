@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 const LandingImage = () => (
   <div>
-    <div className="home-image">
+    <div className="home-image" id="home">
       <div className="content">
         <h1>Fit Together</h1>
         <h3>Breathe Deep, Be Active, Stay Connected</h3>
         <button className="big-button">Demo</button>
       </div>
     </div>
-    <div className="about">
+    <div className="about" id="about">
       <div className="content">
         <h1>Are you Ready To Get Fit Together?</h1>
       </div>
@@ -40,7 +40,7 @@ const LandingImage = () => (
         </div>
       </div>
     </div>
-    <div className="section">
+    <div className="section" id="section1">
       <div className="content">
         <h1>Something Interesting</h1>
       </div>
@@ -71,7 +71,7 @@ const LandingImage = () => (
         </div>
       </div>
     </div>
-    <div className="footer">
+    <div className="footer" id="section2">
       <div className="content">
         <h1>Something Else Interesting</h1>
         <div className="row">
