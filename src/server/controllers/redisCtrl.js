@@ -224,16 +224,17 @@ exports.leaveTeam = (req, res) => {
   console.log(req.body, 'req');
   db.none('delete from users_teams where team_id=${team_id} and user_id=${user_id}' , req.body)
     .then(() => {
-      return client.saddAsync('user_id:' + req.body.user_id + ':no:', req.body.team_id)    
+      let multi = client.multi({ pipeline: false });
+      multi = multi.sadd('user_id:' + req.body.user_id + ':no:', req.body.team_id);    
+      multi = multi.srem('user_id:' + req.body.user_id + ':yes:', req.body.team_id);
+      multi = multi.hgetall('team_id:' + req.body.team_id + ':');
+      return multi.execAsync(); 
     })
-    .then(() => {
-      return client.sremAsync('user_id:' + req.body.user_id + ':yes:', req.body.team_id)
-    })
-    .then(() => {
+    .then((data) => {
       res.status(201)
         .json({
           status: 'success',
-          data: { team_id: req.body.team_id },
+          data: data[2],
           message: 'successfully deleted team'
         });
     })
@@ -266,9 +267,7 @@ exports.joinTeam = (req, res) => {
     .catch((err) => {
       console.log('Error', err);
       res.status(400);
-    })
-
-
+    });
 }
 
 // join team

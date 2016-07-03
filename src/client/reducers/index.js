@@ -13,7 +13,8 @@ import {
   RECEIVE_SLEEP,
   RECEIVE_ENTRIES,
   JOIN_TEAM,
-  REMOVE_OTHER_TEAM
+  REMOVE_OTHER_TEAM,
+  ADD_OTHER_TEAM
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -53,6 +54,10 @@ export const otherteams = (state, action) => {
   switch (action.type) {
     case RECEIVE_OTHER_TEAMS: {
       return action.data || state;
+    }
+    case ADD_OTHER_TEAM: {
+      console.log('we in', state, action.data);
+      return state.concat([action.data]);
     }
     case REMOVE_OTHER_TEAM: {
       console.log('action.data', action.data.team_id);
