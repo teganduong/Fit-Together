@@ -1,6 +1,17 @@
+.div {
+/*  border-width: 2px;
+  border-color: red;
+  border-style: solid;*/
+}
+
 .chart {
-  height: 600px;
+  height: 350px;
   width: 900px;
+}
+
+.chart#small_chart {
+  height: 445px;
+  width: 445px;
 }
 
 .bar {
@@ -19,3 +30,22 @@
     font-size: 11px;
 }
 
+.stats-box {
+  display: inline-block;
+  height: 445px;
+  width: 445px;
+  margin-right: 10px;
+  vertical-align: top;
+
+}
+
+.stats-box.inner {
+  display: block;
+  height: 49%;
+  width: 98%;
+  margin: auto auto;
+}
+
+button.stats-axis-type {
+  margin: auto 0;
+}

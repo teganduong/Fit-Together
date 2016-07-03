@@ -13,6 +13,16 @@ class Chart extends Component {
     this.dataset = this.props.dataset;
     this.subdata = this.dataset;
     this.D = this.props.D;
+    this.height=this.props.size.height;
+    this.width=this.props.size.width;
+    this.id = this.props.id;
+    const xyDataType = this.props.xydataType;
+    // make this into a state
+    this.state = {
+      xyDataType
+    };
+    console.log('props passed down', this.props.xyDataType);
+    this.xyDataType = this.props.xyDataType;
   }
 
   componentWillMount() {
@@ -24,28 +34,43 @@ class Chart extends Component {
     this.initChart();
   }
 
+  componentWillReceiveProps(newProps) {
+    console.log('We gots the props, ', newProps);
+    if (this.svg.updateScatterXy) {
+      console.log('sending these props to updateScatter ', newProps);
+      this.svg.updateScatterXy(newProps.xyDataType);
+    }
+  }
+
   preProcessData(data, type) {
 
   }
 
   initChart() {
-    const maxWidth = '900';
-    const maxHeight = '600';
+    const maxWidth = this.width;
+    const maxHeight = this.height;
     const D = this.D;
     console.log('alldata, ', this.subdata);
     console.log('ChartD', this.D);
-    const svg = new d3Chart('#main-chart', { width: maxWidth, height: maxHeight, D: this.D }, this.subdata);
-    svg.makeBars();
-    console.log(svg);
+    const svg = new d3Chart(`#${this.id}`, { width: maxWidth, height: maxHeight, D: this.D }, this.subdata, this.xyDataType);
     this.svg = svg;
+    if (!this.xyDataType) {
+      svg.makeBars();
+      this.svg.makeTitleButtons(D);
+      this.svg.makeAxis();
+      this.svg.makeYAxis();
+    } else {
+      console.log('In chart, our xy numerical data', this.xyDataType);
+      this.svg.makeScatterXy(this.xyDataType);
+      this.svg.updateScatterXy(this.xyDataType);
+    }
+    console.log(svg);
     // this.svg.makeScatter();
-    this.svg.makeAxis();
-    this.svg.makeTitleButtons(D);
   }
 
   render() {
     return (
-      <div className="chart" id="main-chart"></div>
+      <div className="chart" id={this.id}></div>
     );
   }
 }
