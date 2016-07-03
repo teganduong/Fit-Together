@@ -11,12 +11,21 @@ const getDaysDifference = (start, end) => {
   return Math.floor(convertToDays(endTime - startTime));
 };
 
-const getTrendLine = (xdataset, ydataset, xfield, yfield) => {
+const getTrendLine = (xdataset, xfield, ydataset, yfield) => {
   const xReduceSum = (sum, dayData) => sum + dayData[xfield];
   const yReduceSum = (sum, dayData) => sum + dayData[yfield];
   const xBar = xdataset.reduce(xReduceSum) / xdataset.length;
   const yBar = ydataset.reduce(yReduceSum) / ydataset.length;
-
+  const SSxx = xdataset.map(xi => Math.pow(xi - xBar, 2)).reduce(xReduceSum);
+  const SSyy = ydataset.map(yi => Math.pow(yi - xBar, 2)).reduce(yReduceSum);
+  const SSxy = xdataset.map((xi, index) => (xi - xBar) * (ydataset[index][yfield] - yBar))
+    .reduce(yReduceSum);
+    
+  const slope = SSxy / SSxx;
+  const intercept = yBar - (xBar * slope);
+  const rSquareValue = Math.pow(SSxy, 2) / (SSxx * SSyy);
+  
+  return [slope, intercept, rSquareValue];
 };
 
 // mapping a start date to a label
@@ -111,6 +120,7 @@ class d3ChartClass {
     this.makeYAxis2(xyData.ydataset, xyData.ydataType);
     this.makeTitle('x', 0);
     this.makeTitle('y', 0);
+    this.makeTrendline(xyData.xdataset, xyData.xdataType, xyData.ydataset, xyData.ydataType);
     this.svg.selectAll('circle.plot')
     .data(dataset)  // array of daily sleep data
     .enter()
@@ -143,6 +153,7 @@ class d3ChartClass {
     this.updateTitle('y', xyDataType.ydataNum, xyDataType.yfieldNum);
     this.updateXAxis2(xyData.xdataset, xyData.xdataType);
     this.updateYAxis2(xyData.ydataset, xyData.ydataType);
+    this.makeTrendline(xyData.xdataset, xyData.xdataType, xyData.ydataset, xyData.ydataType);
     console.log('all for dataset in update scatter ', dataset);
     this.svg.selectAll('circle.plot')
     .data(dataset)
@@ -537,6 +548,15 @@ class d3ChartClass {
       this.svg.selectAll('text.y.title')
         .text(`y: ${(attr.D)[dataNum].title} ${(attr.D)[dataNum].fields[fieldNum]}`);
     }
+  }
+
+  makeTrendline(xdataset, xfield, ydataset, yfield) {
+    const [slope, intercept, rSquareValue] = getTrendLine(xdataset, xfield, ydataset, yfield);
+    console.log('............slope, intercept, rsquared....... ', slope, intercept, rSquareValue);
+  }
+
+  updateTrendline(xdataset, xfield, ydataset, yfield) {
+
   }
 
 }
