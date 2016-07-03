@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import TeamsList from './TeamsList';
 import CreateNewTeamModal from './CreateNewTeamModal';
 import JoinTeamModal from './JoinTeamModal';
+import Map from './Map';
 
 class TeamsView extends Component {
   constructor(props) {
@@ -46,6 +47,9 @@ class TeamsView extends Component {
                 Join Team
               </button>
             </div>  
+          </div>
+          <div>
+            <Map />
           </div>
           <div>
             <TeamsList teams={this.teams} deleteTeam={this.props.deleteTeam.bind(this)} />
