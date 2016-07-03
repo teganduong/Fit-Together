@@ -119,5 +119,42 @@
 	border-style: solid;
 }
 
-/*///////////////////////////////*/
+/*//////////////CHARTS/////////////////*/
 
+.profile-chart-container {
+  position: absolute;
+  top: 0em;
+  left: 0em;
+	width: 12em;
+	height: 12em;
+		  border-width: 0.5px;
+	border-color: red;
+	border-style: solid;
+}
+.profile-chart {
+	width:12em;
+	height:12em;
+		  border-width: 0.5px;
+	border-color: red;
+	border-style: solid;
+}
+
+.chart-row {
+	position: relative;
+	width: 37em;
+	height: 12em;
+	border-width: 0.5px;
+	border-color: red;
+	border-style: solid;
+
+}
+
+.chart-item {
+	position: relative;
+	display: inline-block;
+	width: 12em;
+	height: 12em;
+	border-width: 0.5px;
+	border-color: red;
+	border-style: solid;
+}

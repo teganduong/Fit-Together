@@ -10,7 +10,7 @@ const {
   DropShadow, Gradient, helpers
 } = require('rumble-charts');
 
-exampleFoodData = [
+const exampleFoodData = [
   {
     user_id: 1,
     date_performed: '06/01/2016',
@@ -253,6 +253,19 @@ exampleFoodData = [
   }
 ];
 
+const proteinData = exampleFoodData.map(s => s.protein);
+const carbData = exampleFoodData.map(s => s.carbs);
+const fats = exampleFoodData.map(s => s.fats);
+
+
+const series = [{
+    data: proteinData
+}, {
+    data: carbData
+}, {
+    data: fats
+}];
+
 class FoodChart extends Component {
   constructor(props) {
     super(props);
@@ -260,7 +273,13 @@ class FoodChart extends Component {
 
   render() {
     return (
-
+      <div className="profile-chart-container">
+      <Chart
+        className="profile-chart"
+        width={300} height={100} series={series} minY={0}>
+        <Lines />
+      </Chart>
+      </div>
     );
   }
 }

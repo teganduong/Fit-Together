@@ -44,13 +44,9 @@ const exampleSleepData = [
   { user_id: 1, date_performed: '06/30/2016', duration: 5.6, quality: 8.9 } 
 ];
 
-var durationData = exampleSleepData.map(function(s) {
-  return s.duration;
-});
+const durationData = exampleSleepData.map(s => s.duration);
 
-var qualityData = exampleSleepData.map(function(s) {
-  return s.quality;
-});
+const qualityData = exampleSleepData.map(s => s.quality);
 
 
 const series = [{
@@ -68,8 +64,9 @@ class SleepChart extends Component {
 
   render() {
     return (
-      <div>
-        <Chart 
+      <div className="profile-chart-container">
+        <Chart
+          className="profile-chart" 
           width={300} height={100} series={series} minY={0}
           scaleX={{paddingStart: 0, paddingEnd: 0}}
           scaleY={{paddingTop: 10}}>
