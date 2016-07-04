@@ -252,6 +252,30 @@ export const addMem = (obj) => {
   );
 };
 
+export const receiveQuizQuestions = questions => ({ type: c.RECEIVE_QUESTIONS, data: questions });
+export const receiveCurrentQuestion = question => ({ 
+  type: c.RECEIVE_CURRENT_QUESTION, 
+  data: question
+});
+
+// fetches questions based on selected category/quiz id
+export const fetchQuizQuestions = () => (
+  dispatch => {
+    fetch('/api/trivia', {
+      method: 'GET',
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(questions => {
+      console.log('questions in fetchQuizQuestions: ', questions);
+      dispatch(receiveQuizQuestions(questions.data));
+      dispatch(receiveCurrentQuestion(questions.data[0]));
+    })
+    .catch(err => dispatch(error(err)));
+  }
+);
+
+export const selectOption = option => ({ type: c.SELECT_OPTION, data: option });
 
 export const addExercise = (obj) => {
   const payload = JSON.stringify(obj);
