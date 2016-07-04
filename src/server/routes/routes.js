@@ -7,7 +7,7 @@ const flash = require('connect-flash');
 const db = require('../db/connection.js');
 const queryHelper = require('../queryHelper');
 const activities = require('../controllers/activitiesCtrl');
-const entries = require('../controllers/entriesCtrl');
+const trivia = require('../controllers/triviaCtrl');
 
 // ------------Controller Functions--------------- 
 const users = require('../controllers/usersCtrl');
@@ -40,8 +40,8 @@ router.get('/api/user', (req, res) => {
 });
 
 
-/** Entries **/
-router.get('/api/entries', entries.getEntries);
+/** Quizzes/Questions **/
+router.get('/api/trivia', trivia.getQuizQuestions);
 
 
 /** GET USER STATS **/

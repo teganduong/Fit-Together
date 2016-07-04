@@ -1,4 +1,4 @@
-const entriesCtrl = require('../controllers/entriesCtrl.js');
+const triviaCtrl = require('../controllers/triviaCtrl.js');
 const entriesData = [
   {
     category: 'Nutrition',
@@ -79,7 +79,7 @@ const entriesData = [
 
 // seeds entries table with example data
 entriesData.forEach((entry, index) => {
-  setTimeout(() => entriesCtrl.addEntry({ body: entry }, null), index * 200);
+  setTimeout(() => triviaCtrl.addQuizQuestion({ body: entry }, null), index * 200);
 });
 
 setTimeout(process.exit, entriesData.length * 200);
