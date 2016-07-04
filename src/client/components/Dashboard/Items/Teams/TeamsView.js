@@ -3,6 +3,7 @@ import TeamsList from './TeamsList';
 import CreateNewTeamModal from './CreateNewTeamModal';
 import JoinTeamModal from './JoinTeamModal';
 import Map from './Map';
+import TeamChat from './TeamChat';
 
 class TeamsView extends Component {
   constructor(props) {
@@ -48,10 +49,11 @@ class TeamsView extends Component {
               </button>
             </div>  
           </div>
-          <div>
+          <div className="col-md-8">
+            <TeamChat />
             <Map />
           </div>
-          <div>
+          <div className="col-md-4 team-list">
             <TeamsList teams={this.teams} deleteTeam={this.props.deleteTeam.bind(this)} />
           </div>
         </div>

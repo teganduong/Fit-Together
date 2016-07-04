@@ -27,7 +27,6 @@ class TeamsListItem extends Component {
 
   render() {
     return (
-      <div className="col-md-6">
       <div className="team-list-container">
         <div className="team-info-container">
           <div className="team-icon-container">
@@ -50,7 +49,6 @@ class TeamsListItem extends Component {
         <div className="team-members-container">
           <TeamMemberList members={exampleMembers} team={this.props.team} />
         </div>
-      </div>
       </div>
     );
   }
