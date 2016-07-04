@@ -1,5 +1,6 @@
 import d3 from 'd3';
 const barPadding = 1;
+const transDuration = 1000;
 
 /* eslint-disable func-names */
 const getDaysDifference = (start, end) => {
@@ -9,6 +10,29 @@ const getDaysDifference = (start, end) => {
   const startTime = new Date(start).getTime();
   const endTime = new Date(end).getTime();
   return Math.floor(convertToDays(endTime - startTime));
+};
+
+const getTrendLine = (xdataset, xfield, ydataset, yfield) => {
+
+  const maxX = null;
+  const xReduceSum = (sum, dayData) => sum + Number(dayData[xfield]);
+  const yReduceSum = (sum, dayData) => sum + Number(dayData[yfield]);
+  const reduceSum =(sum, num) => sum + num;
+  console.log('x data in trend: ', xdataset[0][xfield], ' field: ', xfield);
+  const xBar = xdataset.reduce(xReduceSum, 0) / xdataset.length;
+  const yBar = ydataset.reduce(yReduceSum, 0) / ydataset.length;
+  // GOOD
+  console.log('xbar and ybar: ', xBar, yBar);
+  const SSxx = xdataset.map(xi => Math.pow(Number(xi[xfield]) - xBar, 2)).reduce(reduceSum);
+  const SSyy = ydataset.map(yi => Math.pow(Number(yi[yfield]) - yBar, 2)).reduce(reduceSum);
+  const SSxy = xdataset.map((xi, index) => (Number(xi[xfield]) - xBar) * (Number(ydataset[index][yfield]) - yBar))
+    .reduce(reduceSum);
+    
+  const slope = SSxy / SSxx;
+  const intercept = yBar - (xBar * slope);
+  const rSquareValue = Math.pow(SSxy, 2) / (SSxx * SSyy);
+  
+  return [slope, intercept, rSquareValue];
 };
 
 // mapping a start date to a label
@@ -22,10 +46,10 @@ class d3ChartClass {
   constructor(el, props, allData, xyDataType) {
     // currently only compatible with pixels
     // width, width padding, height, height padding, timeframe
-    this.width = Number((props.width).match(/\d+/)) * 0.9;
-    this.wPad = (props.width * 0.1) / 2;
-    this.height = Number((props.height).match(/\d+/)) * 0.9;
-    this.hPad = (props.height * 0.1) / 2;
+    this.width = Number((props.width).match(/\d+/)) * 0.83;
+    this.wPad = (props.width * 0.17) / 2;
+    this.height = Number((props.height).match(/\d+/)) * 0.92;
+    this.hPad = (props.height * 0.08) / 2;
     this.timeFrame = 30;
     this.dataNum = 0;
     this.dataFieldNum = 0;
@@ -75,7 +99,16 @@ class d3ChartClass {
     const xdataType = (attr.D)[xyDataType.xdataNum].fields[xyDataType.xfieldNum];
     const ydataset = (attr.allData)[xyDataType.ydataNum];
     const ydataType = (attr.D)[xyDataType.ydataNum].fields[xyDataType.yfieldNum];
-    return ({ xdataset, xdataType, ydataset, ydataType });
+
+    // TODO: Aggregate array of data based on dates, or have the x,y dataset arrays
+    // be in order of dates (which it is now w/ the dummy data)
+    const xydataset = [];
+    for (let i = 0; i < xdataset.length; i++) {
+      const datapoint = { x: xdataset[i], y: ydataset[i] };
+      xydataset.push(datapoint);
+    }
+
+    return ({ xdataset, xdataType, ydataset, ydataType, xydataset });
   }
 
   makeScatterXy(xyDataType) {
@@ -85,13 +118,16 @@ class d3ChartClass {
     const rSize = 4;
     const attr = this.attr;
     const barWidth = attr.width / this.timeFrame - barPadding;
-    const dataset = attr.dataset;
+    const dataset = xyData.xydataset;
     const scale = (attr.D)[attr.dataNum].scale;
     const xScale = this.makeXScale(xyData.xdataset, xyData.xdataType);
     const yScale = this.makeYScale2(xyData.ydataset, xyData.ydataType);
+
     this.makeXAxis2(xyData.xdataset, xyData.xdataType);
     this.makeYAxis2(xyData.ydataset, xyData.ydataType);
     this.makeTitle('x', 0);
+    this.makeTitle('y', 0);
+    this.makeTrendline(xyData.xdataset, xyData.xdataType, xyData.ydataset, xyData.ydataType, xScale, yScale);
     this.svg.selectAll('circle.plot')
     .data(dataset)  // array of daily sleep data
     .enter()
@@ -99,12 +135,13 @@ class d3ChartClass {
     .attr('class', 'plot')
     .each(function (dayData, index) {
       // create bar graph based on x, y, width, and variant color
+      const color = index * Math.floor( (255 - 100) / dataset.length) + 100;
       d3.select(this)
         .attr({
           cx: `${xScale(dayData[xyData.xdataType])}`, // i * barWidth + attr.wPad + i + rSize,
           cy: `${yScale(dayData[xyData.ydataType])}`, // attr.height - (d[attr.dataType] * scale) - attr.hPad,
           r: rSize,
-          fill: datum => ("rgb(" + Math.floor(yScale(datum[xyData.xdataType])) + ", 0, 0)"),
+          fill: datum => ("rgb(0, " + (255-color) + ", " + color + ")"),
         });
     });    
   }
@@ -116,26 +153,26 @@ class d3ChartClass {
     console.log('in update, xyData: ', xyData);
     const rSize = 4;
     const attr = this.attr;
-    const dataset = attr.dataset;
+    const dataset = xyData.xydataset;
     const scale = (attr.D)[attr.dataNum].scale;
     const xScale = this.makeXScale(xyData.xdataset, xyData.xdataType);
     const yScale = this.makeYScale2(xyData.ydataset, xyData.ydataType);
     this.updateTitle('x', xyDataType.xdataNum, xyDataType.xfieldNum);
+    this.updateTitle('y', xyDataType.ydataNum, xyDataType.yfieldNum);
     this.updateXAxis2(xyData.xdataset, xyData.xdataType);
     this.updateYAxis2(xyData.ydataset, xyData.ydataType);
+    this.updateTrendline(xyData.xdataset, xyData.xdataType, xyData.ydataset, xyData.ydataType, xScale, yScale);
     this.svg.selectAll('circle.plot')
+    .data(dataset)
     .each(function (dayData, index) {
       // create bar graph based on x, y, width, and variant color
-      console.log('xydata: ', xyData, ' xdataType: ', xyData.xdataType);
-      console.log('x dayData: ', dayData[xyData.xdataType], ' scaled: ', xScale(dayData[xyData.xdataType]));
       d3.select(this)
         .transition()
         .attr({
-          cx: `${Number(xScale(dayData[xyData.xdataType]))}`, // i * barWidth + attr.wPad + i + rSize,
-          cy: `${Number(yScale(dayData[xyData.ydataType]))}`, // attr.height - (d[attr.dataType] * scale) - attr.hPad,
+          cx: `${Number(xScale(dayData.x[xyData.xdataType]))}`, // i * barWidth + attr.wPad + i + rSize,
+          cy: `${Number(yScale(dayData.y[xyData.ydataType]))}`, // attr.height - (d[attr.dataType] * scale) - attr.hPad,
           r: rSize,
-          fill: datum => ("rgb(" + Math.floor(yScale(datum[xyData.xdataType])) + ", 0, 0)"),
-        });
+        }).duration(1000);
     });    
   }
 
@@ -148,7 +185,6 @@ class d3ChartClass {
     const dataset = this.allData[attr.dataNum];
     const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
     const scale = (attr.D)[attr.dataNum].scale;
-    console.log('dataset should change ', dataset, dataType);
     this.svg.selectAll('rect.bar')
       .data(dataset)  // array of daily sleep data
       .enter()
@@ -158,7 +194,6 @@ class d3ChartClass {
         // if based on time...
         //console.log('hey1', data);
         const i = getDaysDifference(dataset[0]['date_performed'], data.date_performed);
-        console.log(i);
         // create bar graph based on x, y, width, and variant color
         d3.select(this)
           .attr({
@@ -181,7 +216,6 @@ class d3ChartClass {
     const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
     // const scale = (attr.D)[attr.dataNum].scale;
     const yScale = this.makeYScale();
-    console.log('dataset should change ', dataset, dataType);
     this.svg.selectAll('rect.bar')
       .data(dataset)  // array of daily sleep data
       .each(function (data, index) {
@@ -281,18 +315,17 @@ class d3ChartClass {
   makeXScale(dataset, dataType) {
     const attr = this.attr;
     const quantities = (dataset).map(dayData => Number(dayData[dataType]));
-    console.log('data type, quants make x scale..... ', dataset, quantities);
     const xScale = d3.scale.linear()
       .domain([0, Math.max(...quantities)])
-      .range([attr.wPad, attr.wPad + attr.width]);   
+      .range([attr.wPad, attr.wPad + attr.width]);
     return xScale; 
   }
 
+
+
   makeXAxis(ds) {
     const attr = this.attr;
-    console.log('attr', attr);
     const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
-    console.log('set in x axis', ds);
     const mScale = this.makeXScale(ds);
     // this.makeScale(attr.dataset, attr.height, [attr.wPad, attr.width+attr.wPad], attr.timeFrame);
     const mAxis = d3.svg.axis()
@@ -336,7 +369,6 @@ class d3ChartClass {
   makeYScale2(dataset, dataType) {
     const attr = this.attr;
     const quantities = (dataset).map(dayData => Number(dayData[dataType]));
-    console.log('data type, quants ', dataType, quantities);
     const yScale = d3.scale.linear()
       .domain([0, Math.max(...quantities)])
       .range([attr.height - attr.hPad, attr.hPad]);   
@@ -376,7 +408,6 @@ class d3ChartClass {
   makeYScale(data) {
     const attr = this.attr;
     const quantities = (attr.dataset).map(dayData => Number(dayData[attr.dataType]));
-    console.log('data type, quants ', attr.dataType, quantities);
     const yScale = d3.scale.linear()
       .domain([0, Math.max(...quantities)])
       .range([attr.height - attr.hPad, attr.hPad]);   
@@ -385,10 +416,8 @@ class d3ChartClass {
 
   makeYAxis(m) {
     const attr = this.attr;
-    console.log('attr', attr);
     const barWidth = attr.width / this.timeFrame;
     const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
-    console.log('set in y axis', attr.dataset);
     const mScale = this.makeYScale(attr.dataset);
     // this.makeScale(attr.dataset, attr.height, [attr.wPad, attr.width+attr.wPad], attr.timeFrame);
     const mAxis = d3.svg.axis()
@@ -404,7 +433,6 @@ class d3ChartClass {
 
 
   makeTitleButtons(D, options) {
-    console.log('MAKING TITLES!!!', D);
     const context = this;
     // const dataset = sleepData;
     //  bar width based on chart width and number of data points
@@ -413,7 +441,6 @@ class d3ChartClass {
     const titles = D.map(category => category.title);
     const barWidth = attr.width / titles.length;
     const fontSize = barWidth * 0.1;
-    console.log('Actual titles ', titles);
     this.svg.selectAll('text.title')
     .data(titles)  // array of daily titles
     .enter()
@@ -436,7 +463,6 @@ class d3ChartClass {
           attr.dataFieldNum = 0;
           const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
           attr.dataType = dataType;
-          console.log('i am clicked ', attr.dataNum);
           attr.dataset = attr.allData[attr.dataNum];
           const quantities = (attr.dataset).map(dayData => Number(dayData[dataType]));
           attr.scale = quantities;
@@ -453,9 +479,7 @@ class d3ChartClass {
   updateYAxis() {
     const attr = this.attr;
     const dataType = (attr.D)[attr.dataNum].fields[attr.dataFieldNum];
-    console.log('set in y axis', attr.dataset);
     const quantities = (attr.dataset).map(dayData => Number(dayData[dataType]));
-    console.log('data type, quants ', dataType, quantities);
     const mScale = d3.scale.linear()
                      .domain([0, Math.max(...quantities)])
                      .range([attr.height - attr.hPad, attr.hPad]);
@@ -464,26 +488,40 @@ class d3ChartClass {
                     .scale(mScale)
                     .orient('left')
                     .ticks(5);
-    console.log('max ', Math.max(...quantities));
     this.svg.select('.y') // append('g')
             .transition()
             .call(mAxis);
   }
 
   makeTitle(axis, dataNum) {
-    console.log('called... ');
+    const attr = this.attr;
+    const fontSize = '20';
     if (axis === 'x') {
-      console.log('in here... ');
       this.svg.selectAll('text.x.title')
         .data([dataNum])
         .enter()
         .append('text')
         .attr('class', 'x title')
         .attr({
-          x: 200,
-          y: 50
+          x: attr.width / 2 - attr.wPad,
+          y: attr.height - 2 * attr.hPad,
+          'font-family': 'sans-serif',
+          'font-size': `${fontSize}px`,
         })
         .text('Hello!');
+    } else if (axis === 'y') {
+      this.svg.selectAll('text.y.title')
+        .data([dataNum])
+        .enter()
+        .append('text')
+        .attr('class', 'y title')
+        .attr({
+          x: 2 * attr.wPad,
+          y: attr.hPad,
+          'font-family': 'sans-serif',
+          'font-size': `${fontSize}px`,
+        })
+        .text('Hello!');      
     }
   }
 
@@ -491,8 +529,104 @@ class d3ChartClass {
     const attr = this.attr;
     if (axis === 'x') {
       this.svg.selectAll('text.x.title')
-        .text(`${(attr.D)[dataNum].title} with ${(attr.D)[dataNum].fields[fieldNum]}`);
+        .text(`x: ${(attr.D)[dataNum].title} ${(attr.D)[dataNum].fields[fieldNum]}`);
+    } else if (axis === 'y') {
+      this.svg.selectAll('text.y.title')
+        .text(`y: ${(attr.D)[dataNum].title} ${(attr.D)[dataNum].fields[fieldNum]}`);
     }
+  }
+
+  makeTrendline(xdataset, xfield, ydataset, yfield, xScale, yScale) {
+    const [slope, intercept, rSquareValue] = getTrendLine(xdataset, xfield, ydataset, yfield);
+    console.log('............slope, intercept, rsquared....... ', slope, intercept, rSquareValue);
+    const xquantities = (xdataset).map(dayData => Number(dayData[xfield]));
+    const xMax = Math.max(...xquantities);
+    const attr = this.attr;
+    const pathinfo = [{ x: xScale(0), y: yScale(intercept) }, 
+                      { x: xScale(xMax), 
+                        y: yScale(slope * xMax + intercept) }
+                     ];
+    // Specify the function for generating path data             
+    const d3line = d3.svg.line()
+                    .x(d => d.x)
+                    .y(d => d.y);
+                    // .interpolate("linear"); 
+    this.svg.append('path')
+        .attr('d', d3line(pathinfo))
+        .attr('class', 'trendline')
+        .style('stroke-width', 6)
+        .style('stroke', 'steelblue')
+        .style('opacity', rSquareValue);
+
+    const fontSize = 10;
+    this.svg.append('text')
+      .attr('class', 'rsquare')
+      .attr({
+        x: attr.width / 2 + attr.wPad,
+        y: attr.height / 2 + attr.hPad,
+        'font-family': 'sans-serif',
+        'font-size': `${fontSize}px`,
+        'text-anchor': 'middle',        
+      })
+      .text(`r square value: ${rSquareValue}`);
+
+    // this.svg.selectAll('path.trendline')
+    //   .data([0])
+    //   .enter()
+    //   .append('line')
+    //   .attr('class', 'trendline')
+    //   .attr("d","M 5 5 L 10 10 L 90 70 L 140 100")
+    //   .style("stroke-width", 2)
+    //   .style("stroke", "steelblue")
+    //   .style("fill", "none");      
+    //   // .attr({
+    //   //   x1: 5, //attr.wPad,
+    //   //   y1: 5, //yScale(intercept),
+    //   //   x2: 10, //attr.width + attr.wPad,
+    //   //   y2: 10 //yScale(slope * xScale(attr.width) + intercept),
+    //   });
+  }
+
+  updateTrendline(xdataset, xfield, ydataset, yfield, xScale, yScale) {
+    const [slope, intercept, rSquareValue] = getTrendLine(xdataset, xfield, ydataset, yfield);
+    console.log('............slope, intercept, rsquared....... ', slope, intercept, rSquareValue);
+    const xquantities = (xdataset).map(dayData => Number(dayData[xfield]));
+    const xMax = Math.max(...xquantities);
+    const attr = this.attr;
+    const pathinfo = [{ x: xScale(0), y: yScale(intercept) }, 
+                      { x: xScale(xMax), 
+                        y: yScale(slope * xMax + intercept) }
+                     ];
+    let lineColor = 'rgb(0, 255, 0)';
+    if (slope < 0) {
+      lineColor = 'rgb(255, 0, 0)';
+    }
+    // Specify the function for generating path data             
+    const d3line = d3.svg.line()
+                    .x(d => d.x)
+                    .y(d => d.y);
+                    // .interpolate("linear"); 
+    this.svg.selectAll('path.trendline')
+        .transition()
+        .attr('d', d3line(pathinfo))
+        .style('stroke-width', 4)
+        .style('stroke', lineColor)
+        .style('opacity', rSquareValue + 0.05)
+        .duration(transDuration);
+
+    const fontSize = 10;
+    this.svg.selectAll('text.rsquare')
+      .transition(transDuration)
+      .text(`r square value: ${rSquareValue}`);
+
+    // this.svg.selectAll('path.trendline')
+    //   .transition()
+    //   .attr({
+    //     x1: attr.wPad,
+    //     y1: yScale(intercept),
+    //     x2: attr.width + attr.wPad,
+    //     y2: yScale(slope * xScale(attr.width) + intercept),
+    //   });
   }
 
 }
