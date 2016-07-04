@@ -1,23 +1,33 @@
 import React, { Component, PropTypes } from 'react';
 import TeamMemberList from './TeamMemberList';
 
+const exampleUser = {
+  name: 'Jessica Jones',
+  user_icon: 'https://s-media-cache-ak0.pinimg.com/564x/7c/1d/15/7c1d156f6e62f5559e8fada72b2117f7.jpg'
+};
+
+
 const exampleMembers = [
   {
     name: 'Jeffrey James',
-    user_icon: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg'
+    user_icon: 'https://zsuttonphoto.com/wp-content/uploads/2015/11/Trevor-Wayne-LA-Headshot-Photography-1.jpg'
+  },
+  {
+    name: 'Stephanie Mills',
+    user_icon: 'http://getparade.com/media/imagic/square3.jpg'
   },
   {
     name: 'Jeffrey James',
-    user_icon: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg'
+    user_icon: 'http://www.timo-wadenpohl.de/files/tw/content/about/timo_wadenpohl_portrait.jpg'
   },
   {
-    name: 'Jeffrey James',
-    user_icon: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg'
-  },
-  {
-    name: 'Jeffrey James',
-    user_icon: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg'
+    name: 'Allison Graham',
+    user_icon: 'http://d38we5ntdyxyje.cloudfront.net/857749/profile/KZPZNEAZ_avatar_medium_square.jpg'
   }
+];
+
+const exampleTeamMessages = [
+
 ];
 
 
@@ -32,7 +42,7 @@ class TeamChat extends Component {
       <div className="chat">
         <div className="chat-header">
           <div>
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
+            <img className="img-circle user-icon" src={exampleUser.user_icon} alt="avatar" />
           </div>
           <div className="chat-about">
             <div className="chat-with">Chat with Bay Area Hikers</div>

@@ -234,3 +234,15 @@ gray: #92959E;*/
   float: right;
 }
 
+.user-icon {
+  width: 4em;
+  height: 4em;
+  border: 3px solid #86BB71; 
+}
+
+.member-icon {
+  width: 4em;
+  height: 4em;
+  border: 3px solid #92959E; 
+}
+

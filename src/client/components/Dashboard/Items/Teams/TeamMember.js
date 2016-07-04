@@ -8,7 +8,7 @@ class TeamMember extends Component {
   render() {
     return (
       <li className="clearfix">
-        <img src={this.props.member.user_icon} alt="avatar" />
+        <img className="img-circle member-icon" src={this.props.member.user_icon} alt="avatar" />
         <div className="about">
           <div className="name">{this.props.member.name}</div>
           <div className="status">
