@@ -558,6 +558,18 @@ class d3ChartClass {
         .style('stroke', 'steelblue')
         .style('opacity', rSquareValue);
 
+    const fontSize = 10;
+    this.svg.append('text')
+      .attr('class', 'rsquare')
+      .attr({
+        x: attr.width / 2 + attr.wPad,
+        y: attr.height / 2 + attr.hPad,
+        'font-family': 'sans-serif',
+        'font-size': `${fontSize}px`,
+        'text-anchor': 'middle',        
+      })
+      .text(`r square value: ${rSquareValue}`);
+
     // this.svg.selectAll('path.trendline')
     //   .data([0])
     //   .enter()
@@ -601,6 +613,11 @@ class d3ChartClass {
         .style('stroke', lineColor)
         .style('opacity', rSquareValue + 0.05)
         .duration(transDuration);
+
+    const fontSize = 10;
+    this.svg.selectAll('text.rsquare')
+      .transition(transDuration)
+      .text(`r square value: ${rSquareValue}`);
 
     // this.svg.selectAll('path.trendline')
     //   .transition()
