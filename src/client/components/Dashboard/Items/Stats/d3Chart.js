@@ -13,6 +13,7 @@ const getDaysDifference = (start, end) => {
 
 const getTrendLine = (xdataset, xfield, ydataset, yfield) => {
 
+  const maxX = null;
   const xReduceSum = (sum, dayData) => sum + Number(dayData[xfield]);
   const yReduceSum = (sum, dayData) => sum + Number(dayData[yfield]);
   const reduceSum =(sum, num) => sum + num;
@@ -125,7 +126,7 @@ class d3ChartClass {
     this.makeYAxis2(xyData.ydataset, xyData.ydataType);
     this.makeTitle('x', 0);
     this.makeTitle('y', 0);
-    this.makeTrendline(xyData.xdataset, xyData.xdataType, xyData.ydataset, xyData.ydataType);
+    this.makeTrendline(xyData.xdataset, xyData.xdataType, xyData.ydataset, xyData.ydataType, xScale, yScale);
     this.svg.selectAll('circle.plot')
     .data(dataset)  // array of daily sleep data
     .enter()
@@ -158,7 +159,7 @@ class d3ChartClass {
     this.updateTitle('y', xyDataType.ydataNum, xyDataType.yfieldNum);
     this.updateXAxis2(xyData.xdataset, xyData.xdataType);
     this.updateYAxis2(xyData.ydataset, xyData.ydataType);
-    this.makeTrendline(xyData.xdataset, xyData.xdataType, xyData.ydataset, xyData.ydataType);
+    this.updateTrendline(xyData.xdataset, xyData.xdataType, xyData.ydataset, xyData.ydataType, xScale, yScale);
     this.svg.selectAll('circle.plot')
     .data(dataset)
     .each(function (dayData, index) {
@@ -318,6 +319,8 @@ class d3ChartClass {
       .range([attr.wPad, attr.wPad + attr.width]);
     return xScale; 
   }
+
+
 
   makeXAxis(ds) {
     const attr = this.attr;
@@ -532,13 +535,75 @@ class d3ChartClass {
     }
   }
 
-  makeTrendline(xdataset, xfield, ydataset, yfield) {
+  makeTrendline(xdataset, xfield, ydataset, yfield, xScale, yScale) {
     const [slope, intercept, rSquareValue] = getTrendLine(xdataset, xfield, ydataset, yfield);
     console.log('............slope, intercept, rsquared....... ', slope, intercept, rSquareValue);
+    const xquantities = (xdataset).map(dayData => Number(dayData[xfield]));
+    const xMax = Math.max(...xquantities);
+    const attr = this.attr;
+    const pathinfo = [{ x: xScale(0), y: yScale(intercept) }, 
+                      { x: xScale(xMax), 
+                        y: yScale(slope * xMax + intercept) }
+                     ];
+    // Specify the function for generating path data             
+    const d3line = d3.svg.line()
+                    .x(d => d.x)
+                    .y(d => d.y);
+                    // .interpolate("linear"); 
+    this.svg.append('path')
+        .attr('d', d3line(pathinfo))
+        .attr('class', 'trendline')
+        .style('stroke-width', 6)
+        .style('stroke', 'steelblue')
+        .style('opacity', rSquareValue);
+
+    // this.svg.selectAll('path.trendline')
+    //   .data([0])
+    //   .enter()
+    //   .append('line')
+    //   .attr('class', 'trendline')
+    //   .attr("d","M 5 5 L 10 10 L 90 70 L 140 100")
+    //   .style("stroke-width", 2)
+    //   .style("stroke", "steelblue")
+    //   .style("fill", "none");      
+    //   // .attr({
+    //   //   x1: 5, //attr.wPad,
+    //   //   y1: 5, //yScale(intercept),
+    //   //   x2: 10, //attr.width + attr.wPad,
+    //   //   y2: 10 //yScale(slope * xScale(attr.width) + intercept),
+    //   });
   }
 
-  updateTrendline(xdataset, xfield, ydataset, yfield) {
+  updateTrendline(xdataset, xfield, ydataset, yfield, xScale, yScale) {
+    const [slope, intercept, rSquareValue] = getTrendLine(xdataset, xfield, ydataset, yfield);
+    console.log('............slope, intercept, rsquared....... ', slope, intercept, rSquareValue);
+    const xquantities = (xdataset).map(dayData => Number(dayData[xfield]));
+    const xMax = Math.max(...xquantities);
+    const attr = this.attr;
+    const pathinfo = [{ x: xScale(0), y: yScale(intercept) }, 
+                      { x: xScale(xMax), 
+                        y: yScale(slope * xMax + intercept) }
+                     ];
+    // Specify the function for generating path data             
+    const d3line = d3.svg.line()
+                    .x(d => d.x)
+                    .y(d => d.y);
+                    // .interpolate("linear"); 
+    this.svg.selectAll('path.trendline')
+        .transition()
+        .attr('d', d3line(pathinfo))
+        .style('stroke-width', 6)
+        .style('stroke', 'steelblue')
+        .style('opacity', rSquareValue);
 
+    // this.svg.selectAll('path.trendline')
+    //   .transition()
+    //   .attr({
+    //     x1: attr.wPad,
+    //     y1: yScale(intercept),
+    //     x2: attr.width + attr.wPad,
+    //     y2: yScale(slope * xScale(attr.width) + intercept),
+    //   });
   }
 
 }
