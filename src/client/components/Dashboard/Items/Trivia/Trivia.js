@@ -1,13 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Categories from './Categories';
 import Entry from './Entry';
-
-// const entry = {
-//   category: 'Nutrition',
-//   question: 'Carrots contain a rich source of what vitamin?',
-//   options: ['C', 'D', 'A', 'B'],
-//   answer: 'A'
-// };
+import Results from './Results';
 
 class Trivia extends Component {
   constructor(props) {
@@ -21,6 +15,7 @@ class Trivia extends Component {
     this.questions = [{ options: [] }];
     this.entry = { options: [] };
     this.index = 0;
+    this.score = 0;
   }
 
   componentWillMount() {
@@ -30,30 +25,34 @@ class Trivia extends Component {
   componentWillReceiveProps(nextProps) {
     this.questions = nextProps.questions;
     this.entry = nextProps.question;
+    this.score = nextProps.score;
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('submit button clicked!');
-    // console.log('this.state.selectedOption: ', this.state.selectedOption);
-    // const { selectedOption, entry } = this.state;
-    // if (selectedOption === entry.answer) {
-    //   console.log('answer correct!');
-    // } else {
-    //   console.log('answer wrong!');
-    // }
+    const { selectedOption, updateScore, score, selectOption } = this.props;
+
+    if (selectedOption === this.entry.answer) {
+      console.log('answer correct!');
+      this.score++;
+      updateScore(this.score);
+    } else {
+      console.log('answer wrong!');
+      this.score--;
+      updateScore(this.score);
+    }
   }
 
   handleSelection(event) {
+    const { selectOption } = this.props;
     console.log('event.target.value for handleSelection: ', event.target.value);
+    selectOption(event.target.value);
   }
 
   // next question
   next() {
     const { receiveCurrentQuestion } = this.props;
     this.index++;
-    console.log('next index: ', this.index);
-    console.log('next question: ', this.questions[this.index]);
     const nextQuestion = this.questions[this.index];
     if (nextQuestion) {
       receiveCurrentQuestion(nextQuestion);
@@ -61,7 +60,6 @@ class Trivia extends Component {
   }
 
   render() {
-    console.log('this.entry in Trivia: ', this.entry);
 
     return (
       <div className="main-container">
@@ -72,18 +70,24 @@ class Trivia extends Component {
           handleSubmit={this.handleSubmit} 
           next={this.next}
         />
+        <Results score={this.score} />
       </div>
     );
   }
 }
 
 Trivia.propTypes = {
-  entries: PropTypes.array,
-  getEntries: PropTypes.func,
   fetchQuizQuestions: PropTypes.func,
   questions: PropTypes.array,
   question: PropTypes.object,
-  receiveCurrentQuestion: PropTypes.func
+  receiveCurrentQuestion: PropTypes.func,
+  selectOption: PropTypes.func,
+  selectedOption: PropTypes.oneOfType([       
+    PropTypes.string,
+    PropTypes.number 
+  ]),
+  score: PropTypes.number,
+  updateScore: PropTypes.func
 };
 
 export default Trivia;

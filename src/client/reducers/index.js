@@ -17,7 +17,8 @@ import {
   RECEIVE_MESSAGES,
   RECEIVE_QUESTIONS,
   RECEIVE_CURRENT_QUESTION,
-  SELECT_OPTION
+  SELECT_OPTION,
+  UPDATE_SCORE
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -145,5 +146,15 @@ export const selectedOption = (state, action) => {
     }
     default:
       return state || '';
+  }
+};
+
+export const score = (state, action) => {
+  switch (action.type) {
+    case UPDATE_SCORE: {
+      return action.data || state;
+    }
+    default:
+      return state || 0;
   }
 };

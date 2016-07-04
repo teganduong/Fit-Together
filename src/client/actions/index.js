@@ -276,6 +276,7 @@ export const fetchQuizQuestions = () => (
 );
 
 export const selectOption = option => ({ type: c.SELECT_OPTION, data: option });
+export const updateScore = score => ({ type: c.UPDATE_SCORE, data: score });
 
 export const addExercise = (obj) => {
   const payload = JSON.stringify(obj);
