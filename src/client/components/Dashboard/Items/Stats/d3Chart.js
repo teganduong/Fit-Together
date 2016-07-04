@@ -1,5 +1,6 @@
 import d3 from 'd3';
 const barPadding = 1;
+const transDuration = 1000;
 
 /* eslint-disable func-names */
 const getDaysDifference = (start, end) => {
@@ -134,12 +135,13 @@ class d3ChartClass {
     .attr('class', 'plot')
     .each(function (dayData, index) {
       // create bar graph based on x, y, width, and variant color
+      const color = index * Math.floor( (255 - 100) / dataset.length) + 100;
       d3.select(this)
         .attr({
           cx: `${xScale(dayData[xyData.xdataType])}`, // i * barWidth + attr.wPad + i + rSize,
           cy: `${yScale(dayData[xyData.ydataType])}`, // attr.height - (d[attr.dataType] * scale) - attr.hPad,
           r: rSize,
-          fill: datum => ("rgb(" + Math.floor(yScale(datum[xyData.xdataType])) + ", 0, 0)"),
+          fill: datum => ("rgb(0, " + (255-color) + ", " + color + ")"),
         });
     });    
   }
@@ -170,8 +172,7 @@ class d3ChartClass {
           cx: `${Number(xScale(dayData.x[xyData.xdataType]))}`, // i * barWidth + attr.wPad + i + rSize,
           cy: `${Number(yScale(dayData.y[xyData.ydataType]))}`, // attr.height - (d[attr.dataType] * scale) - attr.hPad,
           r: rSize,
-          fill: datum => ("rgb(" + Math.floor(yScale(datum[xyData.xdataType])) + ", 0, 0)"),
-        });
+        }).duration(1000);
     });    
   }
 
@@ -584,6 +585,10 @@ class d3ChartClass {
                       { x: xScale(xMax), 
                         y: yScale(slope * xMax + intercept) }
                      ];
+    let lineColor = 'rgb(0, 255, 0)';
+    if (slope < 0) {
+      lineColor = 'rgb(255, 0, 0)';
+    }
     // Specify the function for generating path data             
     const d3line = d3.svg.line()
                     .x(d => d.x)
@@ -592,9 +597,10 @@ class d3ChartClass {
     this.svg.selectAll('path.trendline')
         .transition()
         .attr('d', d3line(pathinfo))
-        .style('stroke-width', 6)
-        .style('stroke', 'steelblue')
-        .style('opacity', rSquareValue);
+        .style('stroke-width', 4)
+        .style('stroke', lineColor)
+        .style('opacity', rSquareValue + 0.05)
+        .duration(transDuration);
 
     // this.svg.selectAll('path.trendline')
     //   .transition()
