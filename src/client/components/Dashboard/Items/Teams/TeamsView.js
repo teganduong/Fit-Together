@@ -50,8 +50,8 @@ class TeamsView extends Component {
             </div>  
           </div>
           <div className="col-md-8">
-            <TeamChat />
             <Map />
+            <TeamChat />
           </div>
           <div className="col-md-4 team-list">
             <TeamsList teams={this.teams} deleteTeam={this.props.deleteTeam.bind(this)} />

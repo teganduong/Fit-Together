@@ -1,9 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
  /*add element to the list below to show red borders */
 /*.team-header , .team-icon-container, .team-image-container, .team-title-container, .team-members-container{
-  border-width: 0.5px;
-  border-color: red;
-  border-style: solid;
+  border: 1px solid black; testing
 }*/
+
+.team-list {
+  /*padding: 30px 30px 20px;*/
+  border-bottom: 2px solid white;
+  overflow-y: scroll;
+  height: 29em;
+  border: 1px solid black; 
+  margin-top: 1em;
+}
 
 .team-list-container {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -11,60 +19,25 @@
   background: #fff;
   border-radius: 2px;
   width: 100%;
-  margin: 0;
+  margin: 0.5em;
   position: relative;
+  font: 14px/20px "Lato", Arial, sans-serif;
 }
 
 .team-list-container:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-.team-info-container {
-  position: relative;
-  width: 100%;
-  height: 10em;
-}
-
-.team-icon-container {
-  /*position: relative;*/
-  display: inline-block;
-  width: 25%;
-/*  height: 10em;
-  vertical-align: top;
-  overflow: auto;*/
-}
-
-/*.team-icon-container:before{
-  content: "";
-  display: block;
-  padding-top: 100%;  /* initial ratio of 1:1
-}*/
-
-.team-image-container {
-  position: relative;
-  padding-bottom: 44.25%;
-  padding-top: 47px;
-  height: 0;
-}
-
 .team-icon {
-  position: absolute; 
-  top: 22px; 
-  left: 0; 
-  width: 100%; 
-  height: 100%;
-  padding: 1rem;
+  position: relative; 
+  width: 6em; 
+  height: 6em;
+  margin: 1em;
   border-width: 0.5px;
   border-color: #CCCBCB;
   border-style: solid;
 }
 
-.team-title-container {
-  position: relative;
-  display: inline-block;
-  width: 75%;
-  height: 10em;
-}
 
 .team-members-container {
   position: relative;
@@ -72,7 +45,7 @@
   height: 6em;
 }
 
-.user-icon {
+/*.user-icon {
   position: relative;
   width: 3.5rem;
   height: 3.5rem;
@@ -85,7 +58,7 @@
 .team-member {
   display: inline-block;
   width: 20%;
-}
+}*/
 
 .team-header-items {
   display: inline-block;
@@ -104,8 +77,8 @@
   margin-top: 10px;
   margin-left: 3px;
   margin-right: 3px;
-  font-size: 14px;
-  color: #AFADAD;
+  font-size: 16px;
+  color: black;
 }
 
 .team-text-body {
@@ -113,7 +86,13 @@
   margin-left: 3px;
   margin-right: 3px;
   font-size: 12px;
-  color: #CCCBCB;
+  color: #92959E;
+}
+
+.col-md-6 {
+  text-align: center;
+  padding: 1em;
+  width: 4em;
 }
 
 /*Join Team Modal styling*/
@@ -129,9 +108,10 @@
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   background: #fff;
   border-radius: 2px;
-  width: 45rem;
-  margin: 1%;
+  width: 34rem;
+  margin: 0.5em;
   position: relative;
+  font: 14px/20px "Lato", Arial, sans-serif;
 }
 
 .join-list-container:hover {
@@ -151,7 +131,7 @@
 .join-title-container {
   position: relative;
   display: inline-block;
-  width: 35rem;
+  width: 24rem;
   height: 10rem;
   /*margin: 0;*/
 }
@@ -170,8 +150,9 @@
   margin-top: 10px;
   margin-left: 3px;
   margin-right: 3px;
-  font-size: 14px;
-  color: #AFADAD;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .join-text-body {
@@ -179,7 +160,7 @@
   margin-left: 3px;
   margin-right: 3px;
   font-size: 12px;
-  color: #CCCBCB;
+  color: #92959E;
 }
 
 /*Create new team modal styling */
@@ -202,45 +183,4 @@
 
 /*//////////////////////*/
 
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
-
-$green: #86BB71;
-$blue: #94C2ED;
-$orange: #E38968;
-$gray: #92959E;
-
-.chat {
-  width: 490px;
-  float:left;
-  background: #F2F5F8;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  
-  color: #434651;
-  
-  .chat-header {
-    padding: 20px;
-    border-bottom: 2px solid white;
-    
-    img {
-      float: left;
-    }
-    
-    .chat-about {
-      float: left;
-      padding-left: 10px;
-      margin-top: 6px;
-    }
-    
-    .chat-with {
-      font-weight: bold;
-      font-size: 16px;
-    }
-    
-    .chat-num-messages {
-      color: $gray;
-    }
-    
-  }
-}
 

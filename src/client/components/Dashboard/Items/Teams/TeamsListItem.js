@@ -1,25 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import TeamMemberList from './TeamMemberList';
 
-const exampleMembers = [
-  {
-    username: 'Mom',
-    user_icon: 'https://camo.githubusercontent.com/5e6eb0b00d714eb5b8ec84254205c61c2a97c68d/687474703a2f2f6f63746f6465782e6769746875622e636f6d2f696d616765732f77616c646f6361742e6a7067'
-  },
-  {
-    username: 'Sis',
-    user_icon: 'https://assets-cdn.github.com/images/modules/styleguide/linktocat.png'
-  },
-  {
-    username: 'Bro',
-    user_icon: 'https://octodex.github.com/images/gangnamtocat.png'
-  },
-  {
-    username: 'Grandpa',
-    user_icon: 'https://stevegrunwell.github.io/wordpress-git/assets/heisencat.png'
-  }
-];
-
 class TeamsListItem extends Component {
   constructor(props) {
     super(props);
@@ -28,26 +9,35 @@ class TeamsListItem extends Component {
   render() {
     return (
       <div className="team-list-container">
-        <div className="team-info-container">
-          <div className="team-icon-container">
+        <div className="row">
+          <div className="col-md-4">
             <div className="team-image-container">
               <img src={this.props.team.team_icon} className="team-icon img-circle" alt="test" />
             </div>
           </div>
-          <div className="team-title-container">
+          <div className="col-md-8">
             <p className="team-text-title">{this.props.team.name}</p>
             <p className="team-text-body">{this.props.team.description}</p>
-            <button 
-              type="button" 
-              onClick={() => this.props.deleteTeam({ team_id: parseInt(this.props.team.team_id, 10), user_id: 1 })} 
-              className="btn btn-danger btn-sm"
-            >
-              Leave Team
-            </button>
+            <div className="row">
+              <div className="col-md-6">
+                <button 
+                  type="button"  
+                  className="btn btn-success btn-sm"
+                >
+                  Chat
+                </button>
+              </div>
+              <div className="col-md-6">
+                <button 
+                  type="button" 
+                  onClick={() => this.props.deleteTeam({ team_id: parseInt(this.props.team.team_id, 10), user_id: 1 })} 
+                  className="btn btn-danger btn-sm"
+                >
+                  Leave Team
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="team-members-container">
-          <TeamMemberList members={exampleMembers} team={this.props.team} />
         </div>
       </div>
     );

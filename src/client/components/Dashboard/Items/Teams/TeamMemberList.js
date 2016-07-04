@@ -13,7 +13,7 @@ class TeamMemberList extends Component {
 
   render() {
     return (
-      <ul>
+      <ul className="list">
        {this.props.members.map(member =>
          <TeamMember member={member} />
        )};
