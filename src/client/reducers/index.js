@@ -19,7 +19,8 @@ import {
   RECEIVE_CURRENT_QUESTION,
   SELECT_OPTION,
   UPDATE_SCORE,
-  ADD_MESSAGE
+  ADD_MESSAGE,
+  UPDATE_STATUS
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -161,5 +162,15 @@ export const messages = (state, action) => {
     }
     default:
       return state || {};
+  }
+};
+
+export const quizStatus = (state, action) => {
+  switch (action.type) {
+    case UPDATE_STATUS: {
+      return action.data || state;
+    }
+    default:
+      return state || false;
   }
 };

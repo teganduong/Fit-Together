@@ -16,12 +16,14 @@ class Trivia extends Component {
     this.entry = { options: [], category: '' };
     this.index = 0;
     this.score = 0;
+    this.quizStatus = '';
   }
 
   componentWillReceiveProps(nextProps) {
     this.questions = nextProps.questions;
     this.entry = nextProps.question;
     this.score = nextProps.score;
+    this.quizStatus = nextProps.quizStatus;
   }
 
   handleQuizSelection(category) {
@@ -50,13 +52,14 @@ class Trivia extends Component {
 
   // next question
   next() {
-    const { receiveCurrentQuestion } = this.props;
+    const { receiveCurrentQuestion, updateQuizStatus } = this.props;
     this.index++;
     const nextQuestion = this.questions[this.index];
     if (nextQuestion) {
       receiveCurrentQuestion(nextQuestion);
     } else {
       console.log('Finished quiz!');
+      updateQuizStatus('finished');
     }
   }
 
@@ -75,6 +78,7 @@ class Trivia extends Component {
             handleSelection={this.handleSelection}
             handleSubmit={this.handleSubmit} 
             next={this.next}
+            quizStatus={this.quizStatus}
           />
           <Results score={this.score} />
         </div>
@@ -94,7 +98,9 @@ Trivia.propTypes = {
     PropTypes.number 
   ]),
   score: PropTypes.number,
-  updateScore: PropTypes.func
+  updateScore: PropTypes.func,
+  updateQuizStatus: PropTypes.func,
+  quizStatus: PropTypes.string
 };
 
 export default Trivia;

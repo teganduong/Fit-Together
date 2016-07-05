@@ -18,3 +18,4 @@ export const SELECT_OPTION = 'SELECT_OPTION';
 export const UPDATE_SCORE = 'UPDATE_SCORE';
 export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const UPDATE_STATUS = 'UPDATE_STATUS';

@@ -1,6 +1,13 @@
 import React, { PropTypes } from 'react';
+import DisplayMsg from './DisplayMsg';
 
-const Entry = ({ entry, handleSubmit, handleSelection, next }) => {
+const Entry = ({ entry, handleSubmit, handleSelection, next, quizStatus }) => {
+  if (quizStatus === 'finished') {
+    return (
+      <DisplayMsg message="Congrats on finishing the quiz! You've earned: " />
+    );
+  }
+  
   const options = entry.options.map(option => (
     <div className="radio">
       <label>
@@ -12,17 +19,7 @@ const Entry = ({ entry, handleSubmit, handleSelection, next }) => {
 
   if (options.length === 0) {
     return (
-      <div className="card-deck-wrapper col-sm-8">
-        <div className="card-deck">
-          <div className="card entry-card">
-            <div className="entry-block">
-              <h4 className="card-title">
-                Select a category from above to start a quiz!
-              </h4>
-            </div>
-          </div>
-        </div>
-      </div>
+      <DisplayMsg message="Select a category from above to start a quiz!" />
     );
   }
 
@@ -51,7 +48,8 @@ Entry.propTypes = {
   entry: PropTypes.object,
   handleSubmit: PropTypes.func,
   handleSelection: PropTypes.func,
-  next: PropTypes.func
+  next: PropTypes.func,
+  quizStatus: PropTypes.string
 };
 
 export default Entry;
