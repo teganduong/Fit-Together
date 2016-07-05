@@ -1,7 +1,8 @@
 const passport = require('passport');
 const FitbitStrategy = require('passport-fitbit-oauth2').FitbitOAuth2Strategy;
 const usersCtrl = require('../controllers/usersCtrl.js');
-const config = require('../config/api-keys.js');
+const fileHelper = require(__dirname + '/../fileHelper.js');
+const config = require(fileHelper.apiKeyPath);
 const db = require('../db/connection.js');
 
 const addFitbitUser = (userData, done, accessToken, profile) => {

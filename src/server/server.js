@@ -7,9 +7,10 @@ const db = require('./db/connection.js');
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
-// const FitbitPassport = require('./authentication/FitbitPassport');
-// const MovesPassport = require('./authentication/MovesPassport');
-// const config = require('./config/api-keys');
+const FitbitPassport = require('./authentication/FitbitPassport');
+const MovesPassport = require('./authentication/MovesPassport');
+const fileHelper = require(__dirname + '/fileHelper.js');
+const config = require(fileHelper.apiKeyPath);
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -26,12 +27,12 @@ io.on('connection', function(socket){
 });
 
 app.use(express.static(path.join(__dirname, '../client')));
-//app.use(cookieParser(config.session.secret));
+app.use(cookieParser(config.session.secret));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ 
-  secret: 'REPLACE', // config.session.secret,
+  secret: config.session.secret,
   resave: false,
   saveUninitialized: false
 }));
