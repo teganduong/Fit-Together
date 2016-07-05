@@ -6,12 +6,6 @@ const baseLinkMessages = 'https://api.mlab.com/api/1/databases/fit-together/coll
 // used for get
 const baseLinkMessagesQuery = 'https://api.mlab.com/api/1/databases/fit-together/collections/messages/';
 
-// const baseLink_users = 'https://api.mlab.com/api/1/databases/frantic-rust/collections/users?apiKey=';
-// const baseLink_users_query = 'https://api.mlab.com/api/1/databases/frantic-rust/collections/users/';
-// const baseLink_pictures = 'https://api.mlab.com/api/1/databases/frantic-rust/collections/pictures?apiKey=';
-// const baseLink_pictures_query = 'https://api.mlab.com/api/1/databases/frantic-rust/collections/pictures/';
-
-
 exports.sendMessage = (req, res) => {
   const obj = {
     user_id: req.body.user_id,
