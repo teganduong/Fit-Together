@@ -13,6 +13,7 @@ class TeamsView extends Component {
     this.props.fetchOtherTeams({ user_id: 1 });
     this.props.fetchMessages({ team_id: 1 });
     this.props.fetchTeamMembers({ team_id: 1, user_id: 1 });
+    // this.props.sendMessage({ team_id: 1, user_id: 1, message: 'hey hey hey', date_entered: new Date() });
 
     this.teams = [];
     this.otherteams = [];
@@ -60,7 +61,7 @@ class TeamsView extends Component {
           </div>
           <div className="col-md-8">
             <Map />
-            <TeamChat members={this.members} messages={this.messages} />
+            <TeamChat members={this.members} messages={this.messages} sendMessage={this.props.sendMessage.bind(this)} />
           </div>
           <div className="col-md-4 team-list">
             <TeamsList teams={this.teams} deleteTeam={this.props.deleteTeam.bind(this)} />
@@ -83,6 +84,7 @@ TeamsView.propTypes = {
   deleteTeam: PropTypes.func,
   joinTeam: PropTypes.func,
   fetchMessages: PropTypes.func,
+  sendMessage: PropTypes.func, 
   teams: PropTypes.array,
   otherTeams: PropTypes.array,
   messages: PropTypes.array,

@@ -26,9 +26,16 @@ exports.sendMessage = (req, res) => {
     })
     .then(() => {
       console.log('success');
+      res.status(200)
+        .json({
+          status: 'success',
+          data: obj,
+          message: 'successfully retrieved user\'s teams'
+        });
     })
     .catch((err) => {
       console.log('Error', err);
+      res.status(400);
     });
 };
 
@@ -54,5 +61,6 @@ exports.getMessagesByTeam = (req, res) => {
     })
     .catch((err) => {
       console.log('Error', err);
+      res.status(400);
     });
 };

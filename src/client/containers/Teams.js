@@ -7,7 +7,7 @@ import {
 	deleteTeam, 
 	fetchOtherTeams,
 	joinTeam,
-  addMessages,
+  sendMessage,
   fetchMessages
 } from '../actions';
 
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
   createTeam: (obj) => dispatch(createTeam(obj)),
   deleteTeam: (obj) => dispatch(deleteTeam(obj)),
   joinTeam: (obj) => dispatch(joinTeam(obj)),
-  addMessages: (obj) => dispatch(addMessages(obj)),
+  sendMessage: (obj) => dispatch(sendMessage(obj)),
   fetchMessages: (obj) => dispatch(fetchMessages(obj))
 });
 

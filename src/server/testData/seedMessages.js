@@ -53,8 +53,8 @@ const exampleTeamMessages = [
 
 // mongoCtrl.getMessagesByTeam({ body: { team_id: 1 }});
 
-// exampleTeamMessages.forEach((message, index) => {
-//   setTimeout(() => mongoCtrl.sendMessage({ body: message }, null), index * 200);
-// });
+exampleTeamMessages.forEach((message, index) => {
+  setTimeout(() => mongoCtrl.sendMessage({ body: message }, null), index * 200);
+});
 
-// setTimeout(process.exit, exampleTeamMessages.length * 200);
+setTimeout(process.exit, exampleTeamMessages.length * 200);
