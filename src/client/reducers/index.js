@@ -11,11 +11,14 @@ import {
   RECEIVE_MEM,
   RECEIVE_ACTIVITIES,
   RECEIVE_SLEEP,
-  RECEIVE_ENTRIES,
   JOIN_TEAM,
   REMOVE_OTHER_TEAM,
   ADD_OTHER_TEAM,
-  RECEIVE_MESSAGES
+  RECEIVE_MESSAGES,
+  RECEIVE_QUESTIONS,
+  RECEIVE_CURRENT_QUESTION,
+  SELECT_OPTION,
+  UPDATE_SCORE
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -116,12 +119,42 @@ export const activities = (state, action) => {
   }
 };
 
-export const entries = (state, action) => {
+export const questions = (state, action) => {
   switch (action.type) {
-    case RECEIVE_ENTRIES: {
+    case RECEIVE_QUESTIONS: {
       return action.data || state;
     }
     default:
       return state || [];
+  }
+};
+
+export const question = (state, action) => {
+  switch (action.type) {
+    case RECEIVE_CURRENT_QUESTION: {
+      return action.data || state;
+    }
+    default:
+      return state || {};
+  }
+};
+
+export const selectedOption = (state, action) => {
+  switch (action.type) {
+    case SELECT_OPTION: {
+      return action.data || state;
+    }
+    default:
+      return state || '';
+  }
+};
+
+export const score = (state, action) => {
+  switch (action.type) {
+    case UPDATE_SCORE: {
+      return action.data || state;
+    }
+    default:
+      return state || 0;
   }
 };

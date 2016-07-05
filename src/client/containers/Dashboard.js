@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch) => ({
 
   getActivities: () => dispatch(getActivities()),
   
-  getSleep: () => dispatch(getSleep()),
+  getSleep: () => dispatch(getSleep())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
