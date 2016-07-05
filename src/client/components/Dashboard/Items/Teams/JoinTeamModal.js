@@ -48,7 +48,7 @@ const JoinTeamModal = (props) => (
 );
 
 JoinTeamModal.propTypes = {
-  teams: PropTypes.object,
+  teams: PropTypes.array,
   joinTeam: PropTypes.func
 };
 

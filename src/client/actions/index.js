@@ -3,20 +3,24 @@ import fetch from 'isomorphic-fetch';
 
 export const error = err => ({ type: c.REQUEST_ERROR, data: err });
 export const receiveUser = user => ({ type: c.RECEIVE_USER, data: user });
-export const receiveUserTeams = teams => ({ type: c.RECEIVE_TEAMS, data: teams });
 export const receiveTeamMembers = members => ({ type: c.RECEIVE_MEMBERS, data: members });
+
 export const addToTeams = team => ({ type: c.CREATE_TEAM, data: team });
+export const receiveUserTeams = teams => ({ type: c.RECEIVE_TEAMS, data: teams });
 export const removeFromTeams = team => ({ type: c.REMOVE_TEAM, data: team });
-export const receiveExercise = exercise => ({ type: c.RECEIVE_EXERCISE, data: exercise });
 export const receiveOtherTeams = otherteams => ({ type: c.RECEIVE_OTHER_TEAMS, data: otherteams });
+export const removeOtherTeam = team => ({ type: c.REMOVE_OTHER_TEAM, data: team });
+export const joinUserTeam = team => ({ type: c.JOIN_TEAM, data: team });
+export const addOtherTeam = team => ({ type: c.ADD_OTHER_TEAM, data: team });
+
+export const receiveExercise = exercise => ({ type: c.RECEIVE_EXERCISE, data: exercise });
 export const receiveSleep = sleep => ({ type: c.RECEIVE_SLEEP, data: sleep });
 export const receiveEntries = entries => ({ type: c.RECEIVE_ENTRIES, data: entries });
-export const joinUserTeam = team => ({ type: c.JOIN_TEAM, data: team });
-export const removeOtherTeam = team => ({ type: c.REMOVE_OTHER_TEAM, data: team });
-export const addOtherTeam = team => ({ type: c.ADD_OTHER_TEAM, data: team });
 export const receiveActivities = activities => ({ type: c.RECEIVE_ACTIVITIES, data: activities });
 export const receiveTips = tips => ({ type: c.RECEIVE_TIP, data: tips });
+
 export const receiveMessages = messages => ({ type: c.RECEIVE_MESSAGES, data: messages });
+export const addMessage = message => ({ type: c.ADD_MESSAGE, data: message });
 
 export const addUser = (obj) => {
   const payload = JSON.stringify(obj);
@@ -97,7 +101,6 @@ export const fetchOtherTeams = (obj) => (
     })
     .then(res => res.json())
     .then(response => {
-      console.log('response', response.data);
       dispatch(receiveOtherTeams(response.data));
     })
     .catch(err => dispatch(error(err)))
@@ -116,7 +119,7 @@ export const fetchTeamMembers = (obj) => (
     })
     .then(res => res.json())
     .then(response => {
-      console.log('response', response.data);
+      console.log('team members', response.data);
       dispatch(receiveTeamMembers(response.data));
     })
     .catch(err => dispatch(error(err)))
@@ -144,7 +147,6 @@ export const createTeam = (obj) => {
 };
 
 export const deleteTeam = (obj) => {
-  console.log('obj', obj);
   const payload = JSON.stringify(obj);
 
   return dispatch => (
@@ -167,7 +169,6 @@ export const deleteTeam = (obj) => {
 };
 
 export const joinTeam = (obj) => {
-  console.log('obj', obj);
   const payload = JSON.stringify(obj);
 
   return dispatch => (
@@ -182,7 +183,6 @@ export const joinTeam = (obj) => {
     })
     .then(res => res.json())
     .then(response => {
-      console.log('response', response);
       dispatch(joinUserTeam(response.data));
       dispatch(removeOtherTeam(response.data));
     })
@@ -198,8 +198,7 @@ export const getSleep = () => {
       credentials: 'same-origin',
     })
     .then(res => res.json())
-    .then(sleep => {
-      console.log('dipatched to server', sleep); 
+    .then(sleep => {   
       return dispatch(receiveSleep(sleep.data));
     })
     .catch(err => dispatch(error(err)));
@@ -214,7 +213,6 @@ export const getActivities = () => {
     })
     .then(res => res.json())
     .then(activities => {
-      console.log('actvity dipatched to server: ', activities); 
       return dispatch(receiveActivities(activities));
     })
     .catch(err => dispatch(error(err)));
@@ -339,12 +337,10 @@ export const fetchTips = () => (
   )
 );
 
-export const addMessages = (obj) => {
-  console.log('successfully sent message to serverside');
+export const fetchMessages = (obj) => {
   const payload = JSON.stringify(obj);
-
   return dispatch => (
-    fetch('/api/messages', {
+    fetch('/api/getmessages', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

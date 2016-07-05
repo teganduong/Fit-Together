@@ -14,6 +14,8 @@ const users = require('../controllers/usersCtrl');
 const teams = require('../controllers/teamsCtrl');
 const sleep = require('../controllers/sleepCtrl');
 const redis = require('../controllers/redisCtrl');
+const mongo = require('../controllers/mongoCtrl');
+
 
 /**  Users **/
 router.post('/api/users', users.addUser);
@@ -23,6 +25,8 @@ router.post('/api/createteam', redis.createTeam);
 router.post('/api/leaveteam', redis.leaveTeam);
 router.post('/api/otherteams', redis.getOtherTeams);
 router.post('/api/jointeam', redis.joinTeam);
+router.post('/api/sendmessage', mongo.sendMessage);
+router.post('/api/getmessages', mongo.getMessagesByTeam);
 
 router.get('/api/usersleep', sleep.getSleep);
 

@@ -20,7 +20,7 @@ class JoinTeamList extends Component {
 }
 
 JoinTeamList.propTypes = {
-  teams: PropTypes.object,
+  teams: PropTypes.array,
   joinTeam: PropTypes.func
 };
 

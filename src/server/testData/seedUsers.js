@@ -12,7 +12,7 @@ const exampleUserData = [
     bmi: 21.3,
     goal: 'Live a healthy lifestyle',
     points: 0,
-    user_icon: 'https://assets-cdn.github.com/images/modules/styleguide/linktocat.png'
+    user_icon: 'https://s-media-cache-ak0.pinimg.com/564x/7c/1d/15/7c1d156f6e62f5559e8fada72b2117f7.jpg'
   },
   {
     name: 'John Jacobs',
@@ -25,7 +25,7 @@ const exampleUserData = [
     bmi: 24.5,
     goal: 'Get super swole',
     points: 0,
-    user_icon: 'https://octodex.github.com/images/gangnamtocat.png'
+    user_icon: 'https://tutsplus-media.s3.amazonaws.com/photo.tutsplus.com/uploads/2013/09/benlucas-web-portrait-16.jpg'
   },
   {
     name: 'Jeffrey Jordan',
@@ -38,20 +38,33 @@ const exampleUserData = [
     bmi: 22.5,
     goal: 'Get more tone',
     points: 0,
-    user_icon: 'https://stevegrunwell.github.io/wordpress-git/assets/heisencat.png'
+    user_icon: 'http://www.timo-wadenpohl.de/files/tw/content/about/timo_wadenpohl_portrait.jpg'
   },
   {
-    name: 'Alex Adams',
-    username: 'alexa',
-    password: 'alexa',
-    email: 'alexa@gmail.com',
+    name: 'Stephanie Mills',
+    username: 'stephm',
+    password: 'stephm',
+    email: 'stephm@gmail.com',
     age: 26,
     weight: 130,
     height: 156.2,
     bmi: 20.5,
     goal: 'Get super tone',
     points: 0,
-    user_icon: 'https://assets-cdn.github.com/images/modules/styleguide/linktocat.png'
+    user_icon: 'http://getparade.com/media/imagic/square3.jpg'
+  },
+  {
+    name: 'Allison Graham',
+    username: 'allyg',
+    password: 'allyg',
+    email: 'allyg@gmail.com',
+    age: 28,
+    weight: 135,
+    height: 158.2,
+    bmi: 22.5,
+    goal: 'Get super tone',
+    points: 0,
+    user_icon: 'http://d38we5ntdyxyje.cloudfront.net/857749/profile/KZPZNEAZ_avatar_medium_square.jpg'
   }
 ];
 

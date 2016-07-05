@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react';
 class JoinTeamListItem extends Component {
   constructor(props) {
     super(props);
-    console.log('JoinTeamListItem', props);
   }
 
   render() {

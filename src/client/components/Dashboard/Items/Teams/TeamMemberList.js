@@ -3,12 +3,12 @@ import TeamMember from './TeamMember';
 
 class TeamMemberList extends Component {
   constructor(props) {
-    super(props); 
-    this.members = [];
+    super(props);
+    console.log(this.props.members, 'TeamMemberList');
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('members', nextProps);
+
   }
 
   render() {

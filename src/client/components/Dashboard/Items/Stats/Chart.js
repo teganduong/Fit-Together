@@ -13,8 +13,8 @@ class Chart extends Component {
     this.dataset = this.props.dataset;
     this.subdata = this.dataset;
     this.D = this.props.D;
-    this.height=this.props.size.height;
-    this.width=this.props.size.width;
+    this.height = this.props.size.height;
+    this.width = this.props.size.width;
     this.id = this.props.id;
     const xyDataType = this.props.xydataType;
     // make this into a state
@@ -29,15 +29,12 @@ class Chart extends Component {
     this.preProcessData();
   }
 
-
   componentDidMount() {
     this.initChart();
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('We gots the props, ', newProps);
     if (this.svg.updateScatterXy) {
-      console.log('sending these props to updateScatter ', newProps);
       this.svg.updateScatterXy(newProps.xyDataType);
     }
   }
@@ -50,8 +47,6 @@ class Chart extends Component {
     const maxWidth = this.width;
     const maxHeight = this.height;
     const D = this.D;
-    console.log('alldata, ', this.subdata);
-    console.log('ChartD', this.D);
     const svg = new d3Chart(`#${this.id}`, { width: maxWidth, height: maxHeight, D: this.D }, this.subdata, this.xyDataType);
     this.svg = svg;
     if (!this.xyDataType) {
@@ -60,7 +55,6 @@ class Chart extends Component {
       this.svg.makeAxis();
       this.svg.makeYAxis();
     } else {
-      console.log('In chart, our xy numerical data', this.xyDataType);
       this.svg.makeScatterXy(this.xyDataType);
       this.svg.updateScatterXy(this.xyDataType);
     }
