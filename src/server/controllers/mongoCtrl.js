@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
-const mongoApiKey = 'b0NtET0Tz9RnFAFE5IdPw9ui_DSZ1cok';
+const config = require('../config/api-keys');
+const mongoApiKey = config.mongo.key;
 // used to post
 const baseLinkMessages = 'https://api.mlab.com/api/1/databases/fit-together/collections/messages?apiKey=';
 // used for get
