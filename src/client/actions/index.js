@@ -15,7 +15,6 @@ export const addOtherTeam = team => ({ type: c.ADD_OTHER_TEAM, data: team });
 
 export const receiveExercise = exercise => ({ type: c.RECEIVE_EXERCISE, data: exercise });
 export const receiveSleep = sleep => ({ type: c.RECEIVE_SLEEP, data: sleep });
-export const receiveEntries = entries => ({ type: c.RECEIVE_ENTRIES, data: entries });
 export const receiveActivities = activities => ({ type: c.RECEIVE_ACTIVITIES, data: activities });
 export const receiveTips = tips => ({ type: c.RECEIVE_TIP, data: tips });
 
