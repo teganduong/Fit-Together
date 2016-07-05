@@ -121,7 +121,6 @@ export const questions = (state, action) => {
   }
 };
 
-<<<<<<< 21adbd62363499824cb1c1ac6444ac4fc62e42cf
 export const question = (state, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_QUESTION: {
@@ -149,7 +148,9 @@ export const score = (state, action) => {
     }
     default:
       return state || 0;
-=======
+  }
+};
+
 export const messages = (state, action) => {
   switch (action.type) {
     case RECEIVE_MESSAGES: {
@@ -160,6 +161,5 @@ export const messages = (state, action) => {
     }
     default:
       return state || {};
->>>>>>> Messages and team members data pulled from mongo and postgres respectively
   }
 };
