@@ -2,7 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import Chart from './Chart.js';
 import sleepMemData from './dataSeedAlgo.js';
 import D from './dataConstants.js';
-import LogbookExerciseModal from '../Logbook/LogbookExerciseModal';
+
+import LogbookMemView from './LogbookMemView';
+import LogbookExerciseView from './LogbookExerciseView';
+import LogbookFoodView from './LogbookFoodView';
+import LogbookSleepView from './LogbookSleepView';
+
 
 class Stats extends Component {
   constructor(props) {
@@ -60,16 +65,20 @@ class Stats extends Component {
     return (
       <div>
       <div className="main-container">
-        
-        <div className="stats-box debug">
-          {console.log('===================================== inside render', this.state)}       
+
+        <LogbookMemView addMem={this.props.addMem} />
+        <LogbookExerciseView addExercise={this.props.addExercise} />
+        <LogbookFoodView addFood={this.props.addFood} />
+        <LogbookSleepView addSleep={this.props.addSleep} />
+
+        <div className="stats-box debug">       
           <Chart 
             dataset={this.props.activities.data} 
             chartType={chartType}
             xyDataType={this.state}
             dataTitle={dataType}
             D={this.D}
-            size={{ height: '445', width: '445'}} 
+            size={{ height: '445', width: '445' }} 
             id='small_chart'
           />
         </div>
@@ -119,7 +128,7 @@ class Stats extends Component {
           dataTitle={dataType}
           D={this.D} 
           size={{ height: '350', width: '900' }}
-          id='big_chart' 
+          id="big_chart" 
         />
       </div>
       </div>);
@@ -128,7 +137,11 @@ class Stats extends Component {
 
 Stats.propTypes = {
   getSleep: PropTypes.func,
-  activities: PropTypes.object
+  activities: PropTypes.object,
+  addMem: PropTypes.func,
+  addExercise: PropTypes.func,
+  addFood: PropTypes.func,
+  addSleep: PropTypes.func
 };
 
 export default Stats;
