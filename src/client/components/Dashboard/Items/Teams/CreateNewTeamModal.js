@@ -14,8 +14,7 @@ class CreateNewTeamModal extends Component {
       name: this.refs.teamName.value,
       description: this.refs.teamDescription.value
     };
-    this.props.createTeam(formData);
-    console.log('formData', formData);  
+    this.props.createTeam(formData); 
   }
   
   render() {

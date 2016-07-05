@@ -23,7 +23,7 @@ export default class Chat extends React.Component {
 
   sendMessage(e) {
     if (this.refs.inputfield.value !== '') {
-      this.connection.emit('chat message', {user: 'lynn', text: this.refs.inputfield.value});
+      this.connection.emit('chat message', { user: 'lynn', text: this.refs.inputfield.value });
       this.refs.inputfield.value = '';
     }
     e.preventDefault();     
@@ -41,12 +41,11 @@ export default class Chat extends React.Component {
             return (
               <div className="message col-md-6">
                 <div><strong>{message.user}: </strong>
-                <span>{message.text} </span>
-              </div>
+                  <span>{message.text} </span>
+                </div>
               </div>
             );
           })}
-
           <div>
             <form onSubmit={(e) => {this.sendMessage(e)}}>
               <input ref="inputfield" />
@@ -61,4 +60,4 @@ export default class Chat extends React.Component {
 
 Chat.propTypes = {
   user: PropTypes.object
-}
+};

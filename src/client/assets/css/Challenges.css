@@ -13,11 +13,12 @@
 .map-container {
 	height: 100%;
 	width: 100%;
+	margin-top: 2em;
 }
 
  #map {
-	height: 400px;
-	width: 600px;
+	height: 29em;
+	width: 39em;
 	margin: auto;
 }
 

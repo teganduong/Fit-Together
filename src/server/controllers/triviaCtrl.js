@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
-const mongoApiKey = require('../config/api-keys').mongoApiKey;
+const config = require('../config/api-keys');
+const mongoApiKey = config.mongo.key;
 const baseLinkQuizzes = 'https://api.mlab.com/api/1/databases/fit-together/collections/Quizzes?apiKey=';
 
 exports.addQuizQuestion = (req, res) => {

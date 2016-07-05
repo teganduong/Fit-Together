@@ -11,13 +11,22 @@ class TeamsView extends Component {
     console.log('team props', props);
     this.props.fetchUserTeams({ user_id: 1 });
     this.props.fetchOtherTeams({ user_id: 1 });
+    this.props.fetchMessages({ team_id: 1 });
+    this.props.fetchTeamMembers({ team_id: 1, user_id: 1 });
+
     this.teams = [];
     this.otherteams = [];
+    this.messages = [];
+    this.members = [];
   }
 
   componentWillReceiveProps(nextProps) {
     this.teams = nextProps.teams;
     this.otherteams = nextProps.otherteams;
+    this.messages = nextProps.messages;
+    this.members = nextProps.members;
+    // console.log('this.teams', this.teams);
+    // console.log('this.otherteams', this.otherteams);
   }
 
   render() {
@@ -50,8 +59,8 @@ class TeamsView extends Component {
             </div>  
           </div>
           <div className="col-md-8">
-            <TeamChat />
             <Map />
+            <TeamChat members={this.members} messages={this.messages} />
           </div>
           <div className="col-md-4 team-list">
             <TeamsList teams={this.teams} deleteTeam={this.props.deleteTeam.bind(this)} />
@@ -67,13 +76,17 @@ class TeamsView extends Component {
 }
 
 TeamsView.propTypes = {
-  teams: PropTypes.object,
   fetchUserTeams: PropTypes.func,
   fetchOtherTeams: PropTypes.func,
   fetchTeamMembers: PropTypes.func,
   createTeam: PropTypes.func,
   deleteTeam: PropTypes.func,
-  joinTeam: PropTypes.func
+  joinTeam: PropTypes.func,
+  fetchMessages: PropTypes.func,
+  teams: PropTypes.array,
+  otherTeams: PropTypes.array,
+  messages: PropTypes.array,
+  members: PropTypes.array
 };
 
 export default TeamsView;

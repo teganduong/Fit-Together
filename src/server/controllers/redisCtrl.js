@@ -31,6 +31,25 @@ exports.redisCopyTeams = (req, res) => {
     .catch((err) => console.log('error in sending to redis', err));
 };
 
+// Current redisCopyUsers
+// query Postgres to get all users
+// save array of users in a hash (hmset) by user_id in Redis --> .hmsetAsync(user_id:#:, user_obj)
+exports.redisCopyUsers = (req, res) => {
+  db.query('select * from users')
+    .then((data) => {
+      data.forEach((user) => {
+        client.hmsetAsync('user_id:' + user.id + ':', {
+          user_id: user.id,
+          name: user.name,
+          user_icon: user.user_icon
+        });
+      });
+    })
+    .then(() => console.log('successfully added all users to redis'))
+    .catch((err) => console.log('error in sending to redis', err));
+};
+
+
 // Current getUserTeams
 // query Postgres to get all team_id's for given user
 // save array of team_id's in a unsorted set (sadd) in Redis --> .saddAsync(user_id:xx:yes:, value)
@@ -47,7 +66,6 @@ exports.getUserTeams = (req, res) => {
           .then((data) => {
             console.log('unordered set', data); // unordered set of team ids
             const keys = data.map((key) => 'team_id:' + key + ':');
-            console.log('keys', keys);
             let multi = client.multi({ pipeline: false });
             keys.forEach((key, index) => {
               multi = multi.hgetall(key);
@@ -55,7 +73,6 @@ exports.getUserTeams = (req, res) => {
             return multi.execAsync();
           })
           .then((data) => {
-            console.log('rep', data);
             res.status(200)
               .json({
                 status: 'success',
@@ -68,9 +85,7 @@ exports.getUserTeams = (req, res) => {
         console.log('Data from Postgres ---> Redis');
         db.query('select team_id from users_teams where user_id=${user_id}', req.body)
           .then((data) => {
-            console.log('data', data);
             data.forEach((team) => {
-              console.log('id', team.team_id);
               client.saddAsync('user_id:' + req.body.user_id + ':yes:', team.team_id);
             });
           })
@@ -78,7 +93,6 @@ exports.getUserTeams = (req, res) => {
           .then((data) => {
             console.log('unordered set', data); // unordered set of team ids
             const keys = data.map((key) => 'team_id:' + key + ':');
-            console.log('keys', keys);
             let multi = client.multi({ pipeline: false });
             keys.forEach((key, index) => {
               multi = multi.hgetall(key);
@@ -86,7 +100,6 @@ exports.getUserTeams = (req, res) => {
             return multi.execAsync();
           })
           .then((data) => {
-            console.log('rep', data);
             res.status(200)
               .json({
                 status: 'success',
@@ -115,7 +128,6 @@ exports.getOtherTeams = (req, res) => {
           .then((data) => {
             console.log('unordered set', data); // unordered set of team ids
             const keys = data.map((key) => 'team_id:' + key + ':');
-            console.log('keys', keys);
             let multi = client.multi({ pipeline: false });
             keys.forEach((key, index) => {
               multi = multi.hgetall(key);
@@ -123,7 +135,6 @@ exports.getOtherTeams = (req, res) => {
             return multi.execAsync();
           })
           .then((data) => {
-            console.log('rep', data);
             res.status(200)
               .json({
                 status: 'success',
@@ -136,9 +147,7 @@ exports.getOtherTeams = (req, res) => {
         console.log('Data from Postgres ---> Redis');
         db.query('select team_id from users_teams where user_id!=${user_id}', req.body)
           .then((data) => {
-            console.log('data', data);
             data.forEach((team) => {
-              console.log('id', team.team_id);
               client.saddAsync('user_id:' + req.body.user_id + ':no:', team.team_id);
             });
           })
@@ -146,7 +155,6 @@ exports.getOtherTeams = (req, res) => {
           .then((data) => {
             console.log('unordered set', data); // unordered set of team ids
             const keys = data.map((key) => 'team_id:' + key + ':');
-            console.log('keys', keys);
             let multi = client.multi({ pipeline: false });
             keys.forEach((key, index) => {
               multi = multi.hgetall(key);
@@ -154,7 +162,6 @@ exports.getOtherTeams = (req, res) => {
             return multi.execAsync();
           })
           .then((data) => {
-            console.log('rep', data);
             res.status(200)
               .json({
                 status: 'success',

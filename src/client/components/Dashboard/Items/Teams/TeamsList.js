@@ -20,7 +20,7 @@ class TeamsList extends Component {
 }
 
 TeamsList.propTypes = {
-  teams: PropTypes.object,
+  teams: PropTypes.array,
   deleteTeam: PropTypes.func
 };
 

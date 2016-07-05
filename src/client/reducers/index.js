@@ -18,7 +18,8 @@ import {
   RECEIVE_QUESTIONS,
   RECEIVE_CURRENT_QUESTION,
   SELECT_OPTION,
-  UPDATE_SCORE
+  UPDATE_SCORE,
+  ADD_MESSAGE
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -40,16 +41,9 @@ export const teams = (state, action) => {
       return state.concat([action.data]);
     }
     case REMOVE_TEAM: {
-      console.log('action.data', action.data.team_id);
-      return state.filter(c => {
-        console.log('c.team_id', c, c.team_id);
-        return c.team_id.toString() !== action.data.team_id.toString();
-      });
+      return state.filter(c => c.team_id.toString() !== action.data.team_id.toString());
     }
     case JOIN_TEAM: {
-      return state.concat([action.data]);
-    }
-    case RECEIVE_MESSAGES: {
       return state.concat([action.data]);
     }
     default:
@@ -63,11 +57,9 @@ export const otherteams = (state, action) => {
       return action.data || state;
     }
     case ADD_OTHER_TEAM: {
-      console.log('we in', state, action.data);
       return state.concat([action.data]);
     }
     case REMOVE_OTHER_TEAM: {
-      console.log('action.data', action.data.team_id);
       return state.filter(c => {
         console.log('c.team_id', c, c.team_id);
         return c.team_id.toString() !== action.data.team_id.toString();
@@ -156,5 +148,18 @@ export const score = (state, action) => {
     }
     default:
       return state || 0;
+  }
+};
+
+export const messages = (state, action) => {
+  switch (action.type) {
+    case RECEIVE_MESSAGES: {
+      return action.data || state;
+    }
+    case ADD_MESSAGE: {
+      return state.concat([action.data]);
+    }
+    default:
+      return state || {};
   }
 };

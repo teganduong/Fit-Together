@@ -114,6 +114,9 @@ const exampleUserTeamData = [
   }
 ];
 
+// add members in postgres cli
+// INSERT INTO users_teams (user_id, team_id) VALUES ((select id from users where id=2), (select id from teams where id=1));
+
 // find team and members given a user_id and team_id
 // teamsCtrl.findTeam({ body: { user_id: 1, team_id: 1 } }, null);
 

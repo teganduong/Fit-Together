@@ -99,13 +99,14 @@ exports.addToTeam = (req, res) => {
       res.status(404);
     });
 };
+// given a team_id ---> get all members of a team
 
 exports.getTeamMembers = (req, res) => {
-  db.query('select * from users where id=' + 
+  db.any('select * from users where id=ANY' + 
       '(select user_id from users_teams where team_id=${team_id} and ' + 
       'user_id!=${user_id})', req.body)
   .then((data) => {
-    console.log(data);
+    console.log('team members', data);
     res.status(200)
       .json({
         status: 'success',

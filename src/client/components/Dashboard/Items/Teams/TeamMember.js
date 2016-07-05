@@ -7,10 +7,15 @@ class TeamMember extends Component {
 
   render() {
     return (
-      <div className="team-member">
-        <img src={this.props.member.user_icon} className="user-icon img-circle" alt="test" />
-        <p className="team-text-body">{this.props.member.username}</p>
-      </div>
+      <li className="clearfix">
+        <img className="img-circle member-icon" src={this.props.member.user_icon} alt="avatar" />
+        <div className="about">
+          <div className="name">{this.props.member.name}</div>
+          <div className="status">
+            <i className="fa fa-circle offline"></i> left 7 mins ago
+          </div>
+        </div>
+      </li>
     );
   }
 }

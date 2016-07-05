@@ -34,14 +34,13 @@ const JoinTeamModal = (props) => (
       <div className="modal-content">
         <div className="modal-header">
           <button type="button" className="close" data-dismiss="modal">&times;</button>
-          <h4 className="modal-title">Join Existing Team</h4>
+          <h4 className="modal-title">Click to Join Existing Team</h4>
         </div>
         <div className="modal-body">
           <JoinTeamList joinTeam={props.joinTeam.bind(this)} teams={props.teams} />
         </div>
         <div className="modal-footer">
-          <button type="button" className="btn btn-default">Join Team</button>
-          <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" className="btn btn-default" data-dismiss="modal">Exit</button>
         </div>
       </div>
     </div>
@@ -49,7 +48,7 @@ const JoinTeamModal = (props) => (
 );
 
 JoinTeamModal.propTypes = {
-  teams: PropTypes.object,
+  teams: PropTypes.array,
   joinTeam: PropTypes.func
 };
 
