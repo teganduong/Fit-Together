@@ -1,9 +1,6 @@
 const fetch = require('node-fetch');
 const mongoApiKey = require('../config/api-keys').mongoApiKey;
-// used to post
 const baseLinkQuizzes = 'https://api.mlab.com/api/1/databases/fit-together/collections/Quizzes?apiKey=';
-// used for get
-const baseLinkQuizzesQuery = 'https://api.mlab.com/api/1/databases/fit-together/collections/Quizzes/';
 
 exports.addQuizQuestion = (req, res) => {
   fetch(baseLinkQuizzes + mongoApiKey,
@@ -19,7 +16,9 @@ exports.addQuizQuestion = (req, res) => {
 };
 
 exports.getQuizQuestions = (req, res) => {
-  fetch(baseLinkQuizzes + mongoApiKey)
+  console.log('req.params.category in getQuizQuestions: ', req.params.category);
+  const category = JSON.stringify(req.params.category);
+  fetch(baseLinkQuizzes + mongoApiKey + '&q={"category":' + category + '}')
   .then(response => response.json())
   .then(data => {
     console.log('data from getQuizQuestions: ', data);

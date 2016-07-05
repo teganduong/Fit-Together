@@ -41,7 +41,7 @@ router.get('/api/user', (req, res) => {
 
 
 /** Quizzes/Questions **/
-router.get('/api/trivia', trivia.getQuizQuestions);
+router.get('/api/trivia/:category', trivia.getQuizQuestions);
 
 
 /** GET USER STATS **/
