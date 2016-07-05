@@ -52,7 +52,7 @@ class Trivia extends Component {
 
   // next question
   next() {
-    const { receiveCurrentQuestion, updateQuizStatus } = this.props;
+    const { receiveCurrentQuestion, updateQuizStatus, updateUserPoints } = this.props;
     this.index++;
     const nextQuestion = this.questions[this.index];
     if (nextQuestion) {
@@ -60,6 +60,7 @@ class Trivia extends Component {
     } else {
       console.log('Finished quiz!');
       updateQuizStatus('finished');
+      updateUserPoints(this.score);
     }
   }
 
@@ -100,7 +101,8 @@ Trivia.propTypes = {
   score: PropTypes.number,
   updateScore: PropTypes.func,
   updateQuizStatus: PropTypes.func,
-  quizStatus: PropTypes.string
+  quizStatus: PropTypes.string,
+  updateUserPoints: PropTypes.func
 };
 
 export default Trivia;

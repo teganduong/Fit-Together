@@ -171,6 +171,6 @@ export const quizStatus = (state, action) => {
       return action.data || state;
     }
     default:
-      return state || false;
+      return state || '';
   }
 };

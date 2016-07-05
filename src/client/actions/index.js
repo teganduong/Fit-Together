@@ -53,22 +53,21 @@ export const getUser = () => (
   )
 );
 
-export const updateUser = (userInfo) => {
-  const info = JSON.stringify({ userInfo });
-  return dispatch => (
-    fetch('/api/users', {
+export const updateUserPoints = (points) => (
+  dispatch => (
+    fetch('/api/user/points', {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
       },
       credentials: 'same-origin',
-      body: info,
+      body: JSON.stringify({ points })
     })
-    .then(() => dispatch({ type: c.UPDATE_USER, data: userInfo }))
-    .then(() => dispatch(fetchUser()))
+    .then(res => res.json())
+    .then(userInfo => dispatch(receiveUser(userInfo)))
     .catch(err => dispatch(error(err)))
-  );
-};
+  )
+);
 
 export const fetchUserTeams = (obj) => (
   dispatch => (
@@ -211,12 +210,13 @@ export const getActivities = () => {
       credentials: 'same-origin',
     })
     .then(res => res.json())
-    .then(activities => {
-      return dispatch(receiveActivities(activities));
-    })
+    .then(activities => (
+      dispatch(receiveActivities(activities))
+    ))
     .catch(err => dispatch(error(err)));
   };
 };
+
 
 export const addMem = (obj) => {
   const payload = JSON.stringify(obj);

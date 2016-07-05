@@ -10,7 +10,7 @@ const activities = require('../controllers/activitiesCtrl');
 const trivia = require('../controllers/triviaCtrl');
 const tips = require('../controllers/tipsCtrl');
 
-// ------------Controller Functions--------------- 
+// ------------ Controllers --------------- 
 const users = require('../controllers/usersCtrl');
 const teams = require('../controllers/teamsCtrl');
 const sleep = require('../controllers/sleepCtrl');
@@ -46,6 +46,8 @@ router.get('/api/user', (req, res) => {
 
 /** Tips **/
 router.get('/api/tips', tips.getTips);
+
+router.put('/api/user/points', users.updateUserPoints);
 
 
 /** Quizzes/Questions **/

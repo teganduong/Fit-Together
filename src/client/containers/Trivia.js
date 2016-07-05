@@ -6,7 +6,8 @@ import {
   fetchQuizQuestions, 
   receiveCurrentQuestion, 
   updateScore,
-  updateQuizStatus 
+  updateQuizStatus,
+  updateUserPoints 
 } from '../actions';
 
 const mapStateToProps = ({ questions, question, selectedOption, score, quizStatus }) => 
@@ -18,7 +19,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchQuizQuestions: (category) => dispatch(fetchQuizQuestions(category)),
   receiveCurrentQuestion: (question) => dispatch(receiveCurrentQuestion(question)),
   updateScore: (score) => dispatch(updateScore(score)),
-  updateQuizStatus: (status) => dispatch(updateQuizStatus(status))
+  updateQuizStatus: (status) => dispatch(updateQuizStatus(status)),
+  updateUserPoints: (points) => dispatch(updateUserPoints(points))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Trivia);
