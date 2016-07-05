@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
 import BmiChart from './Charts/BmiChart';
 
@@ -9,24 +9,25 @@ import FoodChart from './FoodChart.js';
 import MemChart from './MemChart.js';
 import ExerciseChart from './ExerciseChart.js';
 
-const Profile = ({ user, sleep }) => (
-  <div className="main-container">
-  
-    <div className="chart-row">
-      <div className="chart-item">
-        <MemChart />
-      </div>
-      <div className="chart-item">
-        <MemChart />
-      </div>
-      <div className="chart-item">
-        <MemChart />
-      </div>
-    </div>
-    <ProfileActivityBar />
-    <ProfileBar />
-  </div>
-);
+class Profile extends Component {
+  constructor(props) {
+    super(props);
+    console.log('this is profile props', props);
+  }
+
+  render() {
+    return (
+      <div className="main-container">  
+        <SleepChart activities={this.props.activities} />
+        <FoodChart activities={this.props.activities} />
+        <MemChart activities={this.props.activities} />
+        <ExerciseChart activities={this.props.activities} />
+        <ProfileActivityBar activities={this.props.activities} />
+        <ProfileBar />
+      </div>  
+    );
+  }
+}
 
 Profile.propTypes = {
   user: PropTypes.object,

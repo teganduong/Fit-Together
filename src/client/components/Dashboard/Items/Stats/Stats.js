@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Chart from './Chart.js';
 import sleepMemData from './dataSeedAlgo.js';
 import D from './dataConstants.js';
+import LogbookExerciseModal from '../Logbook/LogbookExerciseModal';
 
 class Stats extends Component {
   constructor(props) {
@@ -57,6 +58,8 @@ class Stats extends Component {
     const chartType = 'bar';
     const dataType = 'sleep';
     return (
+      <div>
+      <LogbookExerciseModal />
       <div className="main-container">
         
         <div className="stats-box debug">
@@ -119,6 +122,7 @@ class Stats extends Component {
           size={{ height: '350', width: '900' }}
           id='big_chart' 
         />
+      </div>
       </div>);
   }
 }
