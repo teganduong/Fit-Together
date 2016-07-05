@@ -10,6 +10,22 @@ const Entry = ({ entry, handleSubmit, handleSelection, next }) => {
     </div>
   ));
 
+  if (options.length === 0) {
+    return (
+      <div className="card-deck-wrapper col-sm-8">
+        <div className="card-deck">
+          <div className="card entry-card">
+            <div className="entry-block">
+              <h4 className="card-title">
+                Select a category from above to start a quiz!
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="card-deck-wrapper col-sm-8">
       <div className="card-deck">
