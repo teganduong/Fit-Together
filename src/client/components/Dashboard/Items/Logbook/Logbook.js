@@ -35,7 +35,7 @@ class Logbook extends Component {
 }
 
 Logbook.propTypes = {
-  adMem: PropTypes.func,
+  addMem: PropTypes.func,
   addExercise: PropTypes.func,
   addFood: PropTypes.func,
   addSleep: PropTypes.func

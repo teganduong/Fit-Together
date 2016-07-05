@@ -200,26 +200,13 @@
 }
 
 .profile-body-left {
-  position: relative;
   display: inline-block;
-  height: 3.5em;
-  width: 3.5em;
-  margin: auto;
-  border-width: 0.5px;
-  border-color: red;
-  border-style: solid;
+  vertical-align: middle;
 }
 
 .profile-body-right {
-  position: relative;
   display: inline-block;
-  height: 3.5em;
-  width: 11.5em;
-  margin: auto;
-  border-width: 0.5px;
-  border-color: red;
-  border-style: solid;
-
+  vertical-align: middle;
 }
 
 .activity-icon {
