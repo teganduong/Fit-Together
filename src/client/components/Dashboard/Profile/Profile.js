@@ -17,13 +17,31 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className="main-container">  
-        <SleepChart activities={this.props.activities} />
-        <FoodChart activities={this.props.activities} />
-        <MemChart activities={this.props.activities} />
-        <ExerciseChart activities={this.props.activities} />
-        <ProfileActivityBar activities={this.props.activities} />
-        <ProfileBar />
+      <div className="main-container">
+        <div className="row">
+          <div className="col-md-3">
+            <ProfileBar />
+          </div>
+          <div className="col-md-6">
+            <div className="row">
+              <div className="col-md-6">
+                <FoodChart activities={this.props.activities} />
+              </div>
+              <div className="col-md-6">
+                <ExerciseChart activities={this.props.activities} />
+              </div>
+            </div>
+            <div className="row">
+              <MemChart activities={this.props.activities} />
+            </div>
+            <div className="row">
+              <SleepChart activities={this.props.activities} />
+            </div>
+          </div>
+          <div className="col-md-3">
+            <ProfileActivityBar activities={this.props.activities} />
+          </div>
+        </div>
       </div>  
     );
   }

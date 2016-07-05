@@ -23,8 +23,8 @@ class FoodChart extends Component {
   }
 
   render() {
-    if(this.foodData) { 
-      this.foodData = this.foodData[2].slice(-7).map(s => parseInt(s.calories));
+    if (this.foodData) { 
+      this.foodData = this.foodData[2].slice(-7).map(s => parseInt(s.calories, 10));
       console.log('this is food data', this.durationData);
       console.log('this is food with map data', this.foodData);
     }  
@@ -34,17 +34,18 @@ class FoodChart extends Component {
     console.log('this is duration', this.foodData);
 
     return (
-      <div className="profile-chart-container">
-      <div>
-      <Chart
-        className="profile-chart"
-        width={300} height={300} series={series} minY={0}>
-        <Lines />
-        <Title position='top center' style={{textAnchor:'middle'}}>
-          Calorie Intake
-        </Title>
-      </Chart>
-      </div>
+      <div className="food-chart-container">
+        <div className="chart-title">Daily Caloric Intake</div>
+        <Chart
+          className="food-chart"
+          width={200} height={100} series={series} minY={0}
+        >
+          <Lines />
+          <Title position="top center" style={{ textAnchor: 'middle' }}>
+            Calorie Intake
+          </Title>
+        </Chart>
+        <div className="chart-result">2250</div>
       </div>
     );
   }

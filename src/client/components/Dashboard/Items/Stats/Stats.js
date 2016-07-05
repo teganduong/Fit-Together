@@ -65,7 +65,7 @@ class Stats extends Component {
     return (
       <div>
       <div className="main-container">
-
+        
         <LogbookMemView addMem={this.props.addMem} />
         <LogbookExerciseView addExercise={this.props.addExercise} />
         <LogbookFoodView addFood={this.props.addFood} />
