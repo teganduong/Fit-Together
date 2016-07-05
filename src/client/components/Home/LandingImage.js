@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 
 const LandingImage = () => (
   <div>
@@ -6,7 +7,8 @@ const LandingImage = () => (
       <div className="content">
         <h1>Fit Together</h1>
         <h3>Breathe Deep, Be Active, Stay Connected</h3>
-        <button className="big-button">Demo</button>
+        <button className="big-button" onClick={() => browserHistory.push('/dashboard')}>Demo
+        </button>
       </div>
     </div>
     <div className="about" id="about">

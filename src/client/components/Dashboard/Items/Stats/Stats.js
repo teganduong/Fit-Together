@@ -59,7 +59,6 @@ class Stats extends Component {
     const dataType = 'sleep';
     return (
       <div>
-      <LogbookExerciseModal />
       <div className="main-container">
         
         <div className="stats-box debug">

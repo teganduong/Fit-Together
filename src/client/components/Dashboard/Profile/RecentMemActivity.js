@@ -1,9 +1,23 @@
 import React, { Component, PropTypes } from 'react';
+import RecentMemActivityView from './RecentMemActivityView';
+
 const icon = {
   mem: 'http://rappingmanual.com/wp-content/uploads/2013/02/Motivate-self.jpg'
 };
 
 class RecentMemActivity extends Component {
+  constructor(props) {
+    super(props);
+    console.log('recent Mem here', props);
+    this.MemData = [1, 2, 3];
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('these are nextProps in RecentMemActivity activities', nextProps);
+    this.MemData = nextProps.activities.activities.data[3];
+    console.log('INSIDE mem PROFILE PAGE', this.MemData);
+  }
+
   render() {
     return (
       <div>
@@ -15,29 +29,17 @@ class RecentMemActivity extends Component {
         <div className="profile-activity-body">
           <div className="profile-text-body-container">
             <div className="profile-body-left">
-              <img src={icon.mem} className="activity-icon img-circle" alt="test" />
+              <ul>
+                <img src={icon.Mem} className="activity-icon img-circle" alt="test" />
+              </ul>
             </div>
             <div className="profile-body-right">
-              <p className="profile-text-body-title">Jessica Jones - 06/30/16</p>
-              <p className="profile-text-body">I ate food today, yayay!</p>
-            </div>
-          </div>
-          <div className="profile-text-body-container">
-            <div className="profile-body-left">
-              <img src={icon.mem} className="activity-icon img-circle" alt="test" />
-            </div>
-            <div className="profile-body-right">
-              <p className="profile-text-body-title">Jessica Jones - 06/30/16</p>
-              <p className="profile-text-body">I ate food today, yayay!</p>
-            </div>
-          </div>
-          <div className="profile-text-body-container">
-            <div className="profile-body-left">
-              <img src={icon.mem} className="activity-icon img-circle" alt="test" />
-            </div>
-            <div className="profile-body-right">
-              <p className="profile-text-body-title">Jessica Jones - 06/30/16</p>
-              <p className="profile-text-body">I ate food today, yayay!</p>
+              <ul>
+                <p className="profile-text-body">{this.MemData.slice(-3).map(m => 
+                  <RecentMemActivityView mood={m.mood} energy={m.energy} motivation={m.motivation} date={m.date_performed} />
+                )}
+                </p>
+              </ul>
             </div>
           </div>
         </div>
