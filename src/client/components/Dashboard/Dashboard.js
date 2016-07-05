@@ -8,7 +8,6 @@ export default class Dashboard extends Component {
     this.props.getUser();
     this.sleep = [];
     this.props.getActivities();
-    this.props.fetchQuizQuestions();
   }
 
   // componentWillMount() {
