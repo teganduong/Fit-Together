@@ -11,10 +11,11 @@ const Entry = ({ entry, handleSubmit, handleSelection, next }) => {
   ));
 
   return (
-    <div className="card-deck-wrapper">
+    <div className="card-deck-wrapper col-sm-8">
       <div className="card-deck">
         <div className="card entry-card">
           <div className="entry-block">
+            <h3>Category: {entry.category}</h3>
             <h4 className="card-title">{entry.question}</h4>
             <form onSubmit={handleSubmit}>
               <div className="options">

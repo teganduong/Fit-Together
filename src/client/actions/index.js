@@ -259,15 +259,14 @@ export const receiveCurrentQuestion = question => ({
 });
 
 // fetches questions based on selected category/quiz id
-export const fetchQuizQuestions = () => (
+export const fetchQuizQuestions = (category) => (
   dispatch => {
-    fetch('/api/trivia', {
+    fetch(`/api/trivia/${category}`, {
       method: 'GET',
       credentials: 'same-origin'
     })
     .then(res => res.json())
     .then(questions => {
-      console.log('questions in fetchQuizQuestions: ', questions);
       dispatch(receiveQuizQuestions(questions.data));
       dispatch(receiveCurrentQuestion(questions.data[0]));
     })

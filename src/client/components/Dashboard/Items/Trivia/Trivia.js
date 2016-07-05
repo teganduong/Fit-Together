@@ -2,24 +2,20 @@ import React, { Component, PropTypes } from 'react';
 import Categories from './Categories';
 import Entry from './Entry';
 import Results from './Results';
+import Leaderboard from './Leaderboard';
 
 class Trivia extends Component {
   constructor(props) {
     super(props);
 
-    this.props.fetchQuizQuestions();
-
+    this.handleQuizSelection = this.handleQuizSelection.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSelection = this.handleSelection.bind(this);
     this.next = this.next.bind(this);
     this.questions = [{ options: [] }];
-    this.entry = { options: [] };
+    this.entry = { options: [], category: '' };
     this.index = 0;
     this.score = 0;
-  }
-
-  componentWillMount() {
-    this.props.fetchQuizQuestions();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,9 +24,13 @@ class Trivia extends Component {
     this.score = nextProps.score;
   }
 
+  handleQuizSelection(category) {
+    this.props.fetchQuizQuestions(category);
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-    const { selectedOption, updateScore, score, selectOption } = this.props;
+    const { selectedOption, updateScore, score } = this.props;
 
     if (selectedOption === this.entry.answer) {
       console.log('answer correct!');
@@ -45,7 +45,6 @@ class Trivia extends Component {
 
   handleSelection(event) {
     const { selectOption } = this.props;
-    console.log('event.target.value for handleSelection: ', event.target.value);
     selectOption(event.target.value);
   }
 
@@ -56,21 +55,29 @@ class Trivia extends Component {
     const nextQuestion = this.questions[this.index];
     if (nextQuestion) {
       receiveCurrentQuestion(nextQuestion);
+    } else {
+      console.log('Finished quiz!');
     }
   }
 
   render() {
-
     return (
       <div className="main-container">
-        <Categories />
-        <Entry 
-          entry={this.questions[this.index]}
-          handleSelection={this.handleSelection}
-          handleSubmit={this.handleSubmit} 
-          next={this.next}
-        />
-        <Results score={this.score} />
+        <div className="row">
+          <Categories 
+            handleQuizSelection={this.handleQuizSelection}
+          />
+          <Leaderboard />
+        </div>
+        <div className="row">
+          <Entry 
+            entry={this.questions[this.index]}
+            handleSelection={this.handleSelection}
+            handleSubmit={this.handleSubmit} 
+            next={this.next}
+          />
+          <Results score={this.score} />
+        </div>
       </div>
     );
   }

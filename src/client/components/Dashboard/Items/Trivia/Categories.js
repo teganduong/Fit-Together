@@ -6,7 +6,7 @@ const categories = [
     id: 1,
     name: 'Nutrition',
     description: 'See how much you know about the foods necessary for health and growth.',
-    img: 'https://www.organicconsumers.org/sites/default/files/nutrition-food.jpg'
+    img: 'https://www.fodsupport.org/images/NutritioniStock_000017664170Small.jpg'
   },
   {
     id: 2,
@@ -16,13 +16,17 @@ const categories = [
   }
 ];
 
-const Categories = () => {
+const Categories = ({ handleQuizSelection }) => {
   const quizzes = categories.map((category) => (
-    <Category category={category} key={category.id} />
+    <Category 
+      key={category.id} 
+      category={category} 
+      handleQuizSelection={handleQuizSelection}
+    />
   ));
 
   return (
-    <div className="card-deck-wrapper">
+    <div className="card-deck-wrapper col-sm-8">
       <div className="card-deck">
         {quizzes}
       </div>
@@ -31,7 +35,8 @@ const Categories = () => {
 };
 
 Categories.propTypes = {
-  categories: PropTypes.array
+  categories: PropTypes.array,
+  handleQuizSelection: PropTypes.func
 };
 
 export default Categories;

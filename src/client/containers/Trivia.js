@@ -9,7 +9,7 @@ const mapStateToProps = ({ questions, question, selectedOption, score }) =>
 const mapDispatchToProps = (dispatch) => ({
   getEntries: () => dispatch(getEntries()),
   selectOption: (option) => dispatch(selectOption(option)),
-  fetchQuizQuestions: () => dispatch(fetchQuizQuestions()),
+  fetchQuizQuestions: (category) => dispatch(fetchQuizQuestions(category)),
   receiveCurrentQuestion: (question) => dispatch(receiveCurrentQuestion(question)),
   updateScore: (score) => dispatch(updateScore(score))
 });
