@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
-const config = require('../config/api-keys');
+const fileHelper = require(__dirname + '/../fileHelper.js');
+const config = require(fileHelper.apiKeyPath);
 const mongoApiKey = config.mongo.key;
 const baseLinkQuizzes = 'https://api.mlab.com/api/1/databases/fit-together/collections/Quizzes?apiKey=';
 

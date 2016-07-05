@@ -8,6 +8,8 @@
   "scripts": {
     "build": "babel src/server -d dev/server --copy-files; webpack; npm run move-assets",
     "start": "npm run watch & nodemon dev/server/server.js & open http://localhost:3000",
+    "build-prod": "npm run build",
+    "start-prod": "node dev/server/server.js",
     "watch": "npm run watch-c & npm run watch-s",
     "watch-c": "npm run move-assets & webpack --watch --progress",
     "watch-s": "babel --watch src/server -d dev/server --copy-files",
@@ -58,7 +60,6 @@
     "express": "~4.13.1",
     "express-cors": "0.0.3",
     "express-session": "^1.13.0",
-    "file": "^0.2.2",
     "file-loader": "^0.9.0",
     "fs": "0.0.2",
     "immutable": "^3.8.1",
@@ -70,6 +71,7 @@
     "passport-fitbit-oauth2": "^1.0.1",
     "passport-local": "^1.0.0",
     "passport-moves": "0.0.1",
+    "path": "^0.12.7",
     "pg": "^5.1.0",
     "pg-promise": "^4.6.4",
     "react": "^15.0.2",
@@ -87,7 +89,8 @@
     "serve-favicon": "~2.3.0",
     "socket.io": "^1.4.8",
     "socket.io-client": "^1.4.8",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1"
   },
   "peerDependencies": {
     "react-dom": "^0.14.7"
