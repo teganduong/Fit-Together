@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-const RecentExerciseActivityView = ({type}) => (
+const RecentExerciseActivityView = (props) => (
   <div>
     <li>
-      {type} 
+      {props.date} - {props.type} for {props.duration} mins 
     </li>
   </div>
 );

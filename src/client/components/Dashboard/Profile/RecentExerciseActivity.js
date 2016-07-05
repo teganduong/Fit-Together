@@ -18,19 +18,6 @@ class RecentExerciseActivity extends Component {
   }
 
   render() {
-    console.log('inside exercise render for exercise data!', this.exerciseData);
-    this.type = [1, 2, 3];
-    this.duration = [1, 2, 3];
-    this.date_performed = [1, 2, 3];
-
-    if(this.exerciseData) {
-    console.log('inside activities for excercise====', this.exerciseData); 
-      this.type = this.exerciseData.slice(-3).map(s => s.type);
-      this.duration = this.exerciseData.slice(-3).map(s => parseInt(s.duration));
-      this.date_performed = this.exerciseData.slice(-3).map(s => s.date_performed);
-
-      console.log('this is exercise with map data', this.type, this.duration, this.date_performed);
-    }
     return (
       <div>
         <div className="profile-activity-header">
@@ -47,9 +34,8 @@ class RecentExerciseActivity extends Component {
             </div>
             <div className="profile-body-right">
               <ul>
-                <p className="profile-text-body-title">Jessica Jones - 06/30/16</p>
-                <p className="profile-text-body">{this.type.map(type => 
-                  <RecentExerciseActivityView type={type} />
+                <p className="profile-text-body">{this.exerciseData.slice(-3).map(e => 
+                  <RecentExerciseActivityView type={e.type} duration={e.duration} date={e.date_performed} />
                 )}
                 </p>
               </ul>

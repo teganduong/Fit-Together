@@ -207,6 +207,7 @@
 .profile-body-right {
   display: inline-block;
   vertical-align: middle;
+  padding: 10px;
 }
 
 .activity-icon {
