@@ -27,7 +27,6 @@ class MemChart extends Component {
     this.energyData = nextProps.activities.data;
   }
 
-
   render() {
     console.log('this is mood data', this.moodData);
     if(this.moodData) { 
