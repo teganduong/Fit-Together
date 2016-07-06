@@ -97,7 +97,7 @@ class Stats extends Component {
               <div className="chart-control-container">
                 <div className="stat-chart-title">Chart Control</div>
                 <div className="stats-box-inner">
-                  <h1>X-Axis</h1>
+                  <h1>X-Axis: Category</h1>
                   <div>
                     {D.map((dayData, index) => 
                       <button 
@@ -105,6 +105,9 @@ class Stats extends Component {
                         onClick={this.xsetDataNum.bind(this, index)}
                       >{dayData.title}</button>)
                       }
+                  </div>
+                  <h1>X-Axis: Field</h1>
+                  <div>
                     {D[this.state.xdataNum].fields.map((fields, index) => 
                       <button 
                         className="stats-axis-type btn btn-primary" 
@@ -114,7 +117,7 @@ class Stats extends Component {
                   </div>
                 </div>
                 <div className="stats-box-inner">
-                  <h1>Y-Axis</h1>
+                  <h1>Y-Axis: Category</h1>
                   <div>
                     {D.map((dayData, index) => 
                       <button 
@@ -122,6 +125,9 @@ class Stats extends Component {
                         onClick={this.ysetDataNum.bind(this, index)}
                       >{dayData.title}</button>)
                       }
+                  </div>
+                  <h1>Y-Axis: Field</h1>
+                  <div>
                     {D[this.state.ydataNum].fields.map((fields, index) => 
                       <button 
                         className="stats-axis-type btn btn-primary" 

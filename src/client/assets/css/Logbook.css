@@ -39,7 +39,7 @@
   text-align: center;
 }
 
-.food-log {
+/*.food-log {
   background-color: #ba34e3;
 }
 
@@ -53,14 +53,14 @@
 
 .sleep-log {
   background-color: #e37934;
-}
+}*/
 
 
 .log-title {
-  color: white;
+  color: black;
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
-  font-weight: 400;
+  font-weight: 300;
   letter-spacing: 0.04em;
   -webkit-font-smoothing: antialiased;
   padding: 0.5em;

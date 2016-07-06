@@ -33,7 +33,7 @@ class LogbookMemView extends Component {
           <p>Date: {today}</p>
           {LogData[3].chart.map(heading => <li><input ref={heading} type="text" placeholder={heading} /></li>)}
         </ul>
-        <button className="btn" type="submit" onClick={this.handleSubmit.bind(this)}>ADD</button>
+        <button className="btn btn-primary" type="submit" onClick={this.handleSubmit.bind(this)}>ADD</button>
       </div>
     );
   }
