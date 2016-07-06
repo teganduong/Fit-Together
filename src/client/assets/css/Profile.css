@@ -5,6 +5,7 @@
 	transition: transform .3s;
 	/* size of navbar, changed for now */
 	margin-left: 220px;
+	border: 1px solid red;
 }
 
 .main-container.isOpen {

@@ -22,24 +22,18 @@ class RecentFoodActivity extends Component {
       <div>
         <div className="profile-activity-header">
           <div className="profile-text-header-container">
+            <img src={icon.food} className="activity-icon img-circle" alt="test" />
             <p className="profile-text-header">Recent Food</p>
           </div>
         </div>
         <div className="profile-activity-body">
           <div className="profile-text-body-container">
-            <div className="profile-body-left">
-              <ul>
-                <img src={icon.food} className="activity-icon img-circle" alt="test" />
-              </ul>
-            </div>
-            <div className="profile-body-right">
-              <ul>
-                <p className="profile-text-body">{this.foodData.slice(-3).map(f => 
-                  <RecentFoodActivityView carbs={f.carbs} fats={f.fats} protein={f.protein} date={f.date_performed} />
-                )}
-                </p>
-              </ul>
-            </div>
+            <ul>
+              <p className="profile-text-body">{this.foodData.slice(-3).map(f => 
+                <RecentFoodActivityView carbs={f.carbs} fats={f.fats} protein={f.protein} date={f.date_performed} />
+              )}
+              </p>
+            </ul>
           </div>
         </div>
       </div>
