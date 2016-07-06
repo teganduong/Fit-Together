@@ -19,8 +19,8 @@ class ExerciseChart extends Component {
   }
 
   render() {  
-    if(this.exerciseData) { 
-      this.exerciseData = this.exerciseData[1].slice(-7).map(s => parseInt(s.duration));
+    if (this.exerciseData) { 
+      this.exerciseData = this.exerciseData[1].slice(-7).map(s => parseInt(s.duration, 10));
       console.log('this is exercise data', this.durationData);
       console.log('this is exercise with map data', this.exerciseData);
     }  
@@ -30,10 +30,16 @@ class ExerciseChart extends Component {
     console.log('this is duration', this.exerciseData);
 
     return (
-      <div className="profile-chart-container">
-        <Chart width={300} height={100} series={series} minY={0}>
+      <div className="exercise-chart-container">
+        <div className="chart-title">Daily Exercise Duration</div>
+        <Chart 
+          className="exercise-chart"
+          width={200} height={150} 
+          series={series} minY={0}
+        >
           <Lines />
         </Chart>
+        <div className="chart-result">15:30</div>
       </div>
     );
   }

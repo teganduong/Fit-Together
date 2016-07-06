@@ -218,20 +218,6 @@ export const getActivities = () => {
   };
 };
 
-export const getEntries = () => (
-  dispatch => {
-    fetch('/api/entries', {
-      method: 'GET',
-      credentials: 'same-origin'
-    })
-    .then(res => res.json())
-    .then(entries => (
-      dispatch(receiveEntries(entries.data))
-    ))
-    .catch(err => dispatch(error(err)));
-  }
-);
-
 export const addMem = (obj) => {
   const payload = JSON.stringify(obj);
   return dispatch => (
@@ -356,3 +342,25 @@ export const fetchMessages = (obj) => {
     .catch(err => dispatch(error(err)))
   );
 };
+
+export const sendMessage = (obj) => {
+  const payload = JSON.stringify(obj);
+  return dispatch => (
+    fetch('/api/sendmessage', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Content-length': payload.length,
+      },
+      credentials: 'same-origin',
+      body: payload,
+    })
+    .then(res => res.json())
+    .then(response => {
+      console.log('response add message', response);
+      dispatch(addMessage(response.data));
+    })
+    .catch(err => dispatch(error(err)))
+  );
+};
+

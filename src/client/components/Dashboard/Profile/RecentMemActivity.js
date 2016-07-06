@@ -23,24 +23,18 @@ class RecentMemActivity extends Component {
       <div>
         <div className="profile-activity-header">
           <div className="profile-text-header-container">
+            <img src={icon.Mem} className="activity-icon img-circle" alt="test" />
             <p className="profile-text-header">Recent Mem</p>
           </div>
         </div>
         <div className="profile-activity-body">
           <div className="profile-text-body-container">
-            <div className="profile-body-left">
-              <ul>
-                <img src={icon.Mem} className="activity-icon img-circle" alt="test" />
-              </ul>
-            </div>
-            <div className="profile-body-right">
-              <ul>
-                <p className="profile-text-body">{this.MemData.slice(-3).map(m => 
-                  <RecentMemActivityView mood={m.mood} energy={m.energy} motivation={m.motivation} date={m.date_performed} />
-                )}
-                </p>
-              </ul>
-            </div>
+            <ul>
+              <p className="profile-text-body">{this.MemData.slice(-3).map(m => 
+                <RecentMemActivityView mood={m.mood} energy={m.energy} motivation={m.motivation} date={m.date_performed} />
+              )}
+              </p>
+            </ul>
           </div>
         </div>
       </div>

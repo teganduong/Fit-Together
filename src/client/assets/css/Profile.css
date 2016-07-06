@@ -5,6 +5,7 @@
 	transition: transform .3s;
 	/* size of navbar, changed for now */
 	margin-left: 220px;
+	border: 1px solid red;
 }
 
 .main-container.isOpen {
@@ -121,22 +122,71 @@
 
 /*//////////////CHARTS/////////////////*/
 
-.profile-chart-container {
-  position: absolute;
-  top: 0em;
-  left: 0em;
-	width: 12em;
-	height: 12em;
-		  border-width: 0.5px;
-	border-color: red;
-	border-style: solid;
+.sleep-chart-container, .mem-chart-container {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+/*  border-width: 0.5px;
+  border-color: red;
+  border-style: solid;*/
+  margin-top: 1em;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  background: #fff;
+  border-radius: 2px;
 }
-.profile-chart {
-	width:12em;
-	height:12em;
-		  border-width: 0.5px;
+.sleep-chart, .mem-chart {
+	width: 500px;
+	height: 160px;
+/*    border-width: 0.5px;
 	border-color: red;
-	border-style: solid;
+	border-style: solid;*/
+}
+
+.food-chart-container, .exercise-chart-container {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+/*  border-width: 0.5px;
+  border-color: red;
+  border-style: solid;*/
+  margin-top: 1em;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  background: #fff;
+  border-radius: 2px;
+  font: 14px/20px "Lato", Arial, sans-serif;
+}
+.food-chart, .exercise-chart {
+	margin-top: 1em;
+	width: 200px;
+	height: 110px;
+/*    border-width: 0.5px;
+	border-color: red;
+	border-style: solid;*/
+}
+
+.chart-title {
+	color: black;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	-webkit-font-smoothing: antialiased;
+	padding-top: 0.4em;
+}
+
+.chart-result {
+	color: black;
+	font-family: 'Roboto', sans-serif;
+	font-size: 44px;
+	font-weight: 900;
+	letter-spacing: 0.15em;
+	-webkit-font-smoothing: antialiased;
+	margin-top: -0.5em;
+	margin-bottom: 0.5em;
 }
 
 .chart-row {

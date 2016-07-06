@@ -29,29 +29,31 @@ class MemChart extends Component {
 
   render() {
     console.log('this is mood data', this.moodData);
-    if(this.moodData) { 
-      this.moodData = MemData.slice(-7).map(s => parseInt(s.mood));
-      this.energyData = MemData.slice(-7).map(s => parseInt(s.energy));
-      this.motivationData = MemData.slice(-7).map(s => parseInt(s.motivation));
+    if (this.moodData) { 
+      this.moodData = MemData.slice(-7).map(s => parseInt(s.mood, 10));
+      this.energyData = MemData.slice(-7).map(s => parseInt(s.energy, 10));
+      this.motivationData = MemData.slice(-7).map(s => parseInt(s.motivation, 10));
     }  
 
     const series = [{
-        data: this.moodData
+      data: this.moodData
     }, {
-        data: this.energyData
+      data: this.energyData
     }, {
-        data: this.motivationData
+      data: this.motivationData
     }];
 
 
     console.log('this is mood!', this.moodData);
 
     return (
-      <div className="profile-chart-container">
-        <Chart 
-          width={300} height={100} series={series} minY={0}
-          scaleX={{paddingStart: 0, paddingEnd: 0}}
-          scaleY={{paddingTop: 10}}>
+      <div className="mem-chart-container">
+        <div className="chart-title">Mood, Energy, Motivation</div>
+        <Chart
+          className="mem-chart" 
+          width={500} height={150} series={series} minY={0}
+
+        >
           <Lines />
         </Chart>
 
