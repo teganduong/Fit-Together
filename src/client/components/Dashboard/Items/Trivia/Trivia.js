@@ -24,10 +24,15 @@ class Trivia extends Component {
     this.entry = nextProps.question;
     this.score = nextProps.score;
     this.quizStatus = nextProps.quizStatus;
+    this.index = nextProps.index;
   }
 
   handleQuizSelection(category) {
-    this.props.fetchQuizQuestions(category);
+    const { updateQuizStatus, fetchQuizQuestions, updateScore, updateIndex } = this.props;
+    updateIndex(0);
+    updateQuizStatus('');
+    updateScore(0);
+    fetchQuizQuestions(category);
   }
 
   handleSubmit(event) {
@@ -52,8 +57,9 @@ class Trivia extends Component {
 
   // next question
   next() {
-    const { receiveCurrentQuestion, updateQuizStatus, updateUserPoints } = this.props;
+    const { receiveCurrentQuestion, updateQuizStatus, updateUserPoints, updateIndex } = this.props;
     this.index++;
+    updateIndex(this.index);
     const nextQuestion = this.questions[this.index];
     if (nextQuestion) {
       receiveCurrentQuestion(nextQuestion);
@@ -68,20 +74,22 @@ class Trivia extends Component {
     return (
       <div className="main-container">
         <div className="row">
-          <Categories 
-            handleQuizSelection={this.handleQuizSelection}
-          />
-          <Leaderboard />
-        </div>
-        <div className="row">
-          <Entry 
-            entry={this.questions[this.index]}
-            handleSelection={this.handleSelection}
-            handleSubmit={this.handleSubmit} 
-            next={this.next}
-            quizStatus={this.quizStatus}
-          />
-          <Results score={this.score} />
+          <div className="col-sm-8">
+            <Categories 
+              handleQuizSelection={this.handleQuizSelection}
+            />
+            <Entry 
+              entry={this.questions[this.index]}
+              handleSelection={this.handleSelection}
+              handleSubmit={this.handleSubmit} 
+              next={this.next}
+              quizStatus={this.quizStatus}
+            />
+          </div>
+          <div className="col-sm-4">
+            <Leaderboard />
+            <Results score={this.score} />
+          </div>
         </div>
       </div>
     );
@@ -102,7 +110,9 @@ Trivia.propTypes = {
   updateScore: PropTypes.func,
   updateQuizStatus: PropTypes.func,
   quizStatus: PropTypes.string,
-  updateUserPoints: PropTypes.func
+  updateUserPoints: PropTypes.func,
+  updateIndex: PropTypes.func,
+  index: PropTypes.number
 };
 
 export default Trivia;

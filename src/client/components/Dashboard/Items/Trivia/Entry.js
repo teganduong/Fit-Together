@@ -7,7 +7,7 @@ const Entry = ({ entry, handleSubmit, handleSelection, next, quizStatus }) => {
       <DisplayMsg message="Congrats on finishing the quiz! You've earned: " />
     );
   }
-  
+
   const options = entry.options.map(option => (
     <div className="radio">
       <label>
@@ -24,7 +24,7 @@ const Entry = ({ entry, handleSubmit, handleSelection, next, quizStatus }) => {
   }
 
   return (
-    <div className="card-deck-wrapper col-sm-8">
+    <div className="card-deck-wrapper">
       <div className="card-deck">
         <div className="card entry-card">
           <div className="entry-block">
