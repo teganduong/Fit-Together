@@ -38,13 +38,13 @@ const config = {
     ],
   },
 
-  plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
-  ]
+  // plugins: [
+  //   new webpack.optimize.DedupePlugin(),
+  //   new webpack.optimize.UglifyJsPlugin({
+  //     compress: {
+  //       warnings: false
+  //     }
+  //   }),
+  // ]
 };
 module.exports = config;

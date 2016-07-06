@@ -8,6 +8,7 @@ const db = require('../db/connection.js');
 const queryHelper = require('../queryHelper');
 const activities = require('../controllers/activitiesCtrl');
 const trivia = require('../controllers/triviaCtrl');
+const tips = require('../controllers/tipsCtrl');
 
 // ------------Controller Functions--------------- 
 const users = require('../controllers/usersCtrl');
@@ -42,6 +43,9 @@ router.get('/api/user', (req, res) => {
   });
   }
 });
+
+/** Tips **/
+router.get('/api/tips', tips.getTips);
 
 
 /** Quizzes/Questions **/

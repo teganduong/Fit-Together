@@ -363,4 +363,3 @@ export const sendMessage = (obj) => {
     .catch(err => dispatch(error(err)))
   );
 };
-

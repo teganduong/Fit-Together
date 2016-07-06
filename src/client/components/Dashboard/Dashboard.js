@@ -9,6 +9,7 @@ export default class Dashboard extends Component {
     this.sleep = [];
     this.activities = [];
     this.props.getActivities();
+    this.props.fetchTips();
   }
 
   // componentWillMount() {
@@ -61,5 +62,6 @@ Dashboard.propTypes = {
   activities: PropTypes.object,
   getSleep: PropTypes.func,
   sleep: PropTypes.array,
-  getActivities: PropTypes.func
+  getActivities: PropTypes.func,
+  fetchTips: PropTypes.func
 };
