@@ -260,6 +260,7 @@ export const fetchQuizQuestions = (category) => (
 export const selectOption = option => ({ type: c.SELECT_OPTION, data: option });
 export const updateScore = score => ({ type: c.UPDATE_SCORE, data: score });
 export const updateQuizStatus = status => ({ type: c.UPDATE_STATUS, data: status });
+export const updateIndex = index => ({ type: c.UPDATE_INDEX, data: index });
 
 export const addExercise = (obj) => {
   const payload = JSON.stringify(obj);

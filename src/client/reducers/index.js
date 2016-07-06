@@ -20,7 +20,8 @@ import {
   SELECT_OPTION,
   UPDATE_SCORE,
   ADD_MESSAGE,
-  UPDATE_STATUS
+  UPDATE_STATUS,
+  UPDATE_INDEX
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -172,5 +173,15 @@ export const quizStatus = (state, action) => {
     }
     default:
       return state || '';
+  }
+};
+
+export const index = (state, action) => {
+  switch (action.type) {
+    case UPDATE_INDEX: {
+      return action.data || state;
+    }
+    default:
+      return state || 0;
   }
 };

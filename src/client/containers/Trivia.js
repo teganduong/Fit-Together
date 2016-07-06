@@ -7,11 +7,12 @@ import {
   receiveCurrentQuestion, 
   updateScore,
   updateQuizStatus,
-  updateUserPoints 
+  updateUserPoints,
+  updateIndex 
 } from '../actions';
 
-const mapStateToProps = ({ questions, question, selectedOption, score, quizStatus }) => 
-  ({ questions, question, selectedOption, score, quizStatus });
+const mapStateToProps = ({ questions, question, selectedOption, score, quizStatus, index }) => 
+  ({ questions, question, selectedOption, score, quizStatus, index });
 
 const mapDispatchToProps = (dispatch) => ({
   getEntries: () => dispatch(getEntries()),
@@ -20,7 +21,8 @@ const mapDispatchToProps = (dispatch) => ({
   receiveCurrentQuestion: (question) => dispatch(receiveCurrentQuestion(question)),
   updateScore: (score) => dispatch(updateScore(score)),
   updateQuizStatus: (status) => dispatch(updateQuizStatus(status)),
-  updateUserPoints: (points) => dispatch(updateUserPoints(points))
+  updateUserPoints: (points) => dispatch(updateUserPoints(points)),
+  updateIndex: (index) => dispatch(updateIndex(index))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Trivia);
