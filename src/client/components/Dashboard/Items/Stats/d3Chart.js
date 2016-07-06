@@ -115,7 +115,7 @@ class d3ChartClass {
     // make scatter plot
     const xyData = this.preProcessDataXy(xyDataType);
 
-    const rSize = 4;
+    const rSize = 8;
     const attr = this.attr;
     const barWidth = attr.width / this.timeFrame - barPadding;
     const dataset = xyData.xydataset;
@@ -151,7 +151,7 @@ class d3ChartClass {
     // make scatter plot
     const xyData = this.preProcessDataXy(xyDataType);
     console.log('in update, xyData: ', xyData);
-    const rSize = 4;
+    const rSize = 8;
     const attr = this.attr;
     const dataset = xyData.xydataset;
     const scale = (attr.D)[attr.dataNum].scale;
@@ -269,7 +269,7 @@ class d3ChartClass {
 
   makeScatter(el, props, objects) {
     // make scatter plot
-    const rSize = 4;
+    const rSize = 8;
     const attr = this.attr;
     const barWidth = attr.width / this.timeFrame - barPadding;
     const dataset = attr.dataset;

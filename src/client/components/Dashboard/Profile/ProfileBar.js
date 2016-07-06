@@ -17,6 +17,11 @@ const user = {
 const heightIcon = 'http://www.clker.com/cliparts/L/D/O/L/0/7/male-restroom-symbol-white-on-transparent-hi.png';
 
 class ProfileBar extends Component {
+  constructor(props) {
+    super(props);
+    console.log('inside profileBar!! =====?============', props);
+  }
+
   render() {
     return (
       <div>

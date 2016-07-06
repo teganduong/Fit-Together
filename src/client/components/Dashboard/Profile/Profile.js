@@ -12,7 +12,7 @@ import ExerciseChart from './ExerciseChart.js';
 class Profile extends Component {
   constructor(props) {
     super(props);
-    console.log('this is profile props', props);
+    console.log('this is profile props!!!!!!!!!!!!!!!!!', props);
   }
 
   render() {
@@ -20,7 +20,7 @@ class Profile extends Component {
       <div className="main-container">
         <div className="row">
           <div className="col-md-3">
-            <ProfileBar />
+            <ProfileBar fetchUser={this.props.fetchUser} />
           </div>
           <div className="col-md-6">
             <div className="row dummy">
