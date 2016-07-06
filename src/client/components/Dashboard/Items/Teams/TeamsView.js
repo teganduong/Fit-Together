@@ -13,7 +13,7 @@ class TeamsView extends Component {
     this.props.fetchOtherTeams({ user_id: 1 });
     this.props.fetchMessages({ team_id: 1 });
     this.props.fetchTeamMembers({ team_id: 1, user_id: 1 });
-    // this.props.sendMessage({ team_id: 1, user_id: 1, message: 'hey hey hey', date_entered: new Date() });
+    // this.props.sendMessage({ tem_id: 1, user_id: 1, message: 'hey hey hey', date_entered: new Date() });
 
     this.teams = [];
     this.otherteams = [];
@@ -28,6 +28,11 @@ class TeamsView extends Component {
     this.members = nextProps.members;
     // console.log('this.teams', this.teams);
     // console.log('this.otherteams', this.otherteams);
+  }
+
+  fetchTeamChat(teamId, userId) {
+    this.props.fetchMessages({ team_id: teamId });
+    this.props.fetchTeamMembers({ team_id: teamId, user_id: userId });
   }
 
   render() {
@@ -64,7 +69,7 @@ class TeamsView extends Component {
             <TeamChat members={this.members} messages={this.messages} sendMessage={this.props.sendMessage.bind(this)} />
           </div>
           <div className="col-md-4 team-list">
-            <TeamsList teams={this.teams} deleteTeam={this.props.deleteTeam.bind(this)} />
+            <TeamsList teams={this.teams} deleteTeam={this.props.deleteTeam.bind(this)} fetchTeamChat={this.fetchTeamChat.bind(this)} />
           </div>
         </div>
         <div>
@@ -84,7 +89,7 @@ TeamsView.propTypes = {
   deleteTeam: PropTypes.func,
   joinTeam: PropTypes.func,
   fetchMessages: PropTypes.func,
-  sendMessage: PropTypes.func, 
+  sendMessage: PropTypes.func,
   teams: PropTypes.array,
   otherTeams: PropTypes.array,
   messages: PropTypes.array,

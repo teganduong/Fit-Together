@@ -1,3 +1,7 @@
+.dummy {
+  height: 15em;
+  border: 1px solid red;
+}
 
 .main-container {
 	flex: 1;
@@ -6,6 +10,7 @@
 	/* size of navbar, changed for now */
 	margin-left: 220px;
 	border: 1px solid red;
+	background-color: #e3e6e8;
 }
 
 .main-container.isOpen {
@@ -103,8 +108,8 @@
 	width: 100%;
 }
 
-.chart {
-	/*position: relative;*/
+/*.chart {
+	position: relative;
 	width: 100%;
 	border-width: 3px;
 	border-color: #c0392b;
@@ -112,13 +117,13 @@
 }
 
 .chart-info {
-	/*position: relative;*/
+	position: relative;
 	width: 100%;
 	text-align: center;
 	border-width: 3px;
 	border-color: #c0392b;
 	border-style: solid;
-}
+}*/
 
 /*//////////////CHARTS/////////////////*/
 

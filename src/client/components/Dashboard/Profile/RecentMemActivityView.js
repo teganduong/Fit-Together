@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 const RecentMemActivityView = (props) => (
   <div>
     <li>
-      {props.date} - mood: {props.mood} energy: {props.energy} and motivation: {props.motivation} 
+      {props.mood} [Md], {props.energy} [En], {props.motivation} [Mt] ({props.date})
     </li>
   </div>
 );

@@ -46,6 +46,7 @@ class SleepChart extends Component {
         >
           <Transform method="stack">
             <Lines asAreas={true} />
+            <Dots />
           </Transform>
         </Chart>
       </div>

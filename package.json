@@ -21,6 +21,7 @@
     "seed-log": "node src/server/testData/seedSleep.js; node src/server/testData/seedMem.js; node src/server/testData/seedExercise.js; node src/server/testData/seedFood.js",
     "seed-test": "node src/server/testData/seedTeams.js;",
     "seed-mongo": "node src/server/testData/seedMessages.js;",
+    "seed-redis": "node src/server/testData/seedRedis.js;",
     "json": "node src/server/testData/seedSleep.js",
     "mocha-db": "mocha "
   },

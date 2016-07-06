@@ -23,6 +23,9 @@ class Profile extends Component {
             <ProfileBar />
           </div>
           <div className="col-md-6">
+            <div className="row dummy">
+
+            </div>
             <div className="row">
               <div className="col-md-6">
                 <FoodChart activities={this.props.activities} />

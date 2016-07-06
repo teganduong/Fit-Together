@@ -23,6 +23,7 @@ class TeamsListItem extends Component {
                 <button 
                   type="button"  
                   className="btn btn-success btn-sm"
+                  onClick={() => this.props.fetchTeamChat(parseInt(this.props.team.team_id, 10), 1)}
                 >
                   Chat
                 </button>
@@ -47,7 +48,8 @@ class TeamsListItem extends Component {
 TeamsListItem.propTypes = {
   team: PropTypes.object,
   members: PropTypes.array,
-  deleteTeam: PropTypes.func
+  deleteTeam: PropTypes.func,
+  fetchTeamChat: PropTypes.func
 };
 
 export default TeamsListItem;

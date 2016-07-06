@@ -29,9 +29,44 @@
 .log-activity {
   margin: 5px 5px;
   padding: 5px 5px;
- 
-
+  margin-top: 1em;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  background: #fff;
+  border-radius: 2px;
+  font: 14px/20px "Lato", Arial, sans-serif;
+  height: 25em;
+  text-align: center;
 }
+
+/*.food-log {
+  background-color: #ba34e3;
+}
+
+.exercise-log {
+  background-color: #34e386;
+}
+
+.mem-log {
+  background-color: #e3de34;
+}
+
+.sleep-log {
+  background-color: #e37934;
+}*/
+
+
+.log-title {
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  -webkit-font-smoothing: antialiased;
+  padding: 0.5em;
+}
+
+
 
 .log-activity.card {
   display: inline-block;
