@@ -27,14 +27,15 @@ class LogbookExerciseView extends Component {
 
   render() {
     return (
-      <div className="log-activity">
-        <p>Logging {LogData[1].name}</p>
-        <p>Date: {today}</p>
-        <table>
-          <tr>{LogData[1].chart.map(heading => <th>{heading}</th>)}</tr>
-          <tr>{LogData[1].chart.map(heading => <td><input ref={heading} type="text" /></td>)}
-          <td><button className="log-button" type="submit" onClick={this.handleSubmit.bind(this)}>ADD</button></td></tr>
-        </table>
+      <div className="log-activity exercise-log">
+        <div>
+          <p className="log-title">{LogData[1].name}</p>
+        </div>
+        <ul>
+          <p>Date: {today}</p>
+          {LogData[1].chart.map(heading => <li><input ref={heading} type="text" placeholder={heading} /></li>)}
+        </ul>
+        <button className="btn" type="submit" onClick={this.handleSubmit.bind(this)}>ADD</button>
       </div>
     );
   }

@@ -64,73 +64,91 @@ class Stats extends Component {
     const dataType = 'sleep';
     return (
       <div>
-      <div className="main-container">
-        
-        <LogbookMemView addMem={this.props.addMem} />
-        <LogbookExerciseView addExercise={this.props.addExercise} />
-        <LogbookFoodView addFood={this.props.addFood} />
-        <LogbookSleepView addSleep={this.props.addSleep} />
+        <div className="main-container">
+          <div className="col-md-3">
+            <LogbookFoodView addFood={this.props.addFood} />
+          </div>
+          <div className="col-md-3">
+            <LogbookExerciseView addExercise={this.props.addExercise} />
+          </div>
+          <div className="col-md-3">
+            <LogbookMemView addMem={this.props.addMem} />
+          </div>
+          <div className="col-md-3">
+            <LogbookSleepView addSleep={this.props.addSleep} />
+          </div>
 
-        <div className="stats-box debug">       
-          <Chart 
-            dataset={this.props.activities.data} 
-            chartType={chartType}
-            xyDataType={this.state}
-            dataTitle={dataType}
-            D={this.D}
-            size={{ height: '445', width: '445' }} 
-            id='small_chart'
-          />
-        </div>
-        <div className="stats-box debug">
-          <div className="stats-box inner">
-            <h1>X-Axis</h1>
-            <div>
-              {D.map((dayData, index) => 
-                <button 
-                  className="stats-axis-type" 
-                  onClick={this.xsetDataNum.bind(this, index)}
-                >{dayData.title}</button>)
-                }
+          <div className="row">
+            <div className="col-md-6">
+              <div className="regression-chart-container">
+                <div className="stat-chart-title">Daily Activity Regression</div>
+                <Chart 
+                  dataset={this.props.activities.data} 
+                  chartType={chartType}
+                  xyDataType={this.state}
+                  dataTitle={dataType}
+                  D={this.D}
+                  size={{ height: '400', width: '400' }} 
+                  id='regression-chart'
+                />
+              </div>
             </div>
-            <div>
-              {D[this.state.xdataNum].fields.map((fields, index) => 
-                <button 
-                  className="stats-axis-type" 
-                  onClick={this.xsetFieldNum.bind(this, index)}
-                >{fields}</button>)
-                }
+            <div className="col-md-6">
+              <div className="chart-control-container">
+                <div className="stat-chart-title">Chart Control</div>
+                <div className="stats-box-inner">
+                  <h1>X-Axis</h1>
+                  <div>
+                    {D.map((dayData, index) => 
+                      <button 
+                        className="stats-axis-type btn btn-primary" 
+                        onClick={this.xsetDataNum.bind(this, index)}
+                      >{dayData.title}</button>)
+                      }
+                    {D[this.state.xdataNum].fields.map((fields, index) => 
+                      <button 
+                        className="stats-axis-type btn btn-primary" 
+                        onClick={this.xsetFieldNum.bind(this, index)}
+                      >{fields}</button>)
+                      }
+                  </div>
+                </div>
+                <div className="stats-box-inner">
+                  <h1>Y-Axis</h1>
+                  <div>
+                    {D.map((dayData, index) => 
+                      <button 
+                        className="stats-axis-type btn btn-primary" 
+                        onClick={this.ysetDataNum.bind(this, index)}
+                      >{dayData.title}</button>)
+                      }
+                    {D[this.state.ydataNum].fields.map((fields, index) => 
+                      <button 
+                        className="stats-axis-type btn btn-primary" 
+                        onClick={this.ysetFieldNum.bind(this, index)}
+                      >{fields}</button>)
+                      }
+                  </div>
+                </div>
+                <div className="stats-box-inner">
+                </div>
+              </div>
             </div>
           </div>
-          <div className="stats-box inner">
-            <h1>Y-Axis</h1>
-            <div>
-              {D.map((dayData, index) => 
-                <button 
-                  className="stats-axis-type" 
-                  onClick={this.ysetDataNum.bind(this, index)}
-                >{dayData.title}</button>)
-                }
-            </div>
-            <div>
-              {D[this.state.ydataNum].fields.map((fields, index) => 
-                <button 
-                  className="stats-axis-type" 
-                  onClick={this.ysetFieldNum.bind(this, index)}
-                >{fields}</button>)
-                }
+          <div className="row">
+            <div className="daily-stat-container">
+              <div className="stat-chart-title">30 Day Overview of Daily Entries</div>
+              <Chart 
+                dataset={this.props.activities.data} 
+                chartType={chartType} 
+                dataTitle={dataType}
+                D={this.D} 
+                size={{ height: '350', width: '900' }}
+                id="daily-stat-chart" 
+              />
             </div>
           </div>
         </div>
-        <Chart 
-          dataset={this.props.activities.data} 
-          chartType={chartType} 
-          dataTitle={dataType}
-          D={this.D} 
-          size={{ height: '350', width: '900' }}
-          id="big_chart" 
-        />
-      </div>
       </div>);
   }
 }

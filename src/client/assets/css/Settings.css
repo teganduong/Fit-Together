@@ -126,10 +126,6 @@
      font-weight: 300;
      letter-spacing: 0.05em;
      -webkit-font-smoothing: antialiased;
-
-/*     border-bottom-width: 0.5px;
-     border-bottom-color: white;
-     border-bottom-style: solid;*/
      width: 4.75em;
 }
 
@@ -155,7 +151,7 @@
   width: 100%;
   height: 100%;
   background: #CCC;
-  background-color: #ecf0f1; 
+  background-color: rgba(0, 24, 47, 0.6);
   /*rgba(0, 24, 47, 0.6);*/
 }
 
@@ -169,8 +165,14 @@
   border-style: solid;*/
 }
 .profile-text-header {
- color: #768589;
- font: 100% 'Roboto', sans-serif;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  -webkit-font-smoothing: antialiased;
+/* color: #768589;
+ font: 100% 'Roboto', sans-serif;*/
 }
 
 .profile-text-header-container {
@@ -178,7 +180,7 @@
   height: 100%;
   width: 72%;
   border-bottom-width: 0.5px;
-  border-bottom-color: #768589;
+  border-bottom-color: white;
   border-bottom-style: solid;
 }
 
@@ -193,8 +195,14 @@
 }
 
 .profile-text-body {
- color: #768589;
- font: 68% 'Roboto', sans-serif;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  -webkit-font-smoothing: antialiased;
+/* color: #768589;
+ font: 68% 'Roboto', sans-serif;*/
 }
 
 .profile-text-body-title {
@@ -219,7 +227,7 @@
   height: 2.5rem;
   margin: 0.35rem;
   border-width: 0.5px;
-  border-color: #CCCBCB;
+  border-color: white;
   border-style: solid;
 }
 
