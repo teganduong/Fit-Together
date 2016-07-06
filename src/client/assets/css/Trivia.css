@@ -1,3 +1,8 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
 .card-img-top {
   width: 150px;
   height: 150px;
@@ -15,9 +20,14 @@
 .card-block {
   text-align: center;
 }
+.card-title {
+  text-align: center;
+  font-size: 20px;
+}
 .entryQuestion {
   font-size: 20px;
-  padding: 20px;
+  padding: 20px 0;
+  text-align: left;
 }
 .btn-primary {
   background-color: #15C2DE;
@@ -25,7 +35,7 @@
 }
 
 .entry-card {
-  width: 620px;
+  width: 600px;
   margin-top: 15px;
   height: 27em;
 }
@@ -59,4 +69,13 @@ div.results {
 }
 .leaderboard-head {
   padding-bottom: 5px;
+}
+
+.start-quiz {
+  background: url("http://evolutionfitnessorlando.com/wp-content/uploads/2012/09/NutritionTrainingLogo-copy41-499x389.png") no-repeat center;
+  background-size: cover;
+}
+.star-img {
+  height: 500px;
+  width: 400px;
 }

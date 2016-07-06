@@ -196,15 +196,15 @@ export const getSleep = () => {
       credentials: 'same-origin',
     })
     .then(res => res.json())
-    .then(sleep => {   
-      return dispatch(receiveSleep(sleep.data));
-    })
+    .then(sleep => (  
+      dispatch(receiveSleep(sleep.data))
+    ))
     .catch(err => dispatch(error(err)));
   };
 };
 
-export const getActivities = () => {
-  return dispatch => {
+export const getActivities = () => (
+  dispatch => {
     fetch('/api/useractivities', {
       method: 'GET',
       credentials: 'same-origin',
@@ -214,8 +214,8 @@ export const getActivities = () => {
       dispatch(receiveActivities(activities))
     ))
     .catch(err => dispatch(error(err)));
-  };
-};
+  }
+);
 
 
 export const addMem = (obj) => {

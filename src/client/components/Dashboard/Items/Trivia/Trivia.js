@@ -40,11 +40,9 @@ class Trivia extends Component {
     const { selectedOption, updateScore, score } = this.props;
 
     if (selectedOption === this.entry.answer) {
-      console.log('answer correct!');
       this.score++;
       updateScore(this.score);
     } else {
-      console.log('answer wrong!');
       this.score--;
       updateScore(this.score);
     }
@@ -64,7 +62,6 @@ class Trivia extends Component {
     if (nextQuestion) {
       receiveCurrentQuestion(nextQuestion);
     } else {
-      console.log('Finished quiz!');
       updateQuizStatus('finished');
       updateUserPoints(this.score);
     }
@@ -84,6 +81,7 @@ class Trivia extends Component {
               handleSubmit={this.handleSubmit} 
               next={this.next}
               quizStatus={this.quizStatus}
+              score={this.score}
             />
           </div>
           <div className="col-sm-4">

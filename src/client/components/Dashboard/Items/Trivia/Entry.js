@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import DisplayMsg from './DisplayMsg';
 
-const Entry = ({ entry, handleSubmit, handleSelection, next, quizStatus }) => {
+const Entry = ({ entry, handleSubmit, handleSelection, next, quizStatus, score }) => {
   if (quizStatus === 'finished') {
     return (
-      <DisplayMsg message="Congrats on finishing the quiz! You've earned: " />
+      <DisplayMsg message="Congrats on finishing the quiz! You've earned: " score={score} />
     );
   }
 
@@ -19,7 +19,17 @@ const Entry = ({ entry, handleSubmit, handleSelection, next, quizStatus }) => {
 
   if (options.length === 0) {
     return (
-      <DisplayMsg message="Select a category from above to start a quiz!" />
+      <div className="card-deck-wrapper col-sm-8">
+        <div className="card-deck">
+          <div className="card entry-card start-quiz">
+            <div className="entry-block">
+              <h4 className="card-title">
+                Select a category from above to start a quiz!
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 
@@ -29,7 +39,7 @@ const Entry = ({ entry, handleSubmit, handleSelection, next, quizStatus }) => {
         <div className="card entry-card">
           <div className="entry-block">
             <h3>Category: {entry.category}</h3>
-            <h4 className="card-title">{entry.question}</h4>
+            <h4 className="entryQuestion">{entry.question}</h4>
             <form onSubmit={handleSubmit}>
               <div className="options">
                 {options}
@@ -49,7 +59,8 @@ Entry.propTypes = {
   handleSubmit: PropTypes.func,
   handleSelection: PropTypes.func,
   next: PropTypes.func,
-  quizStatus: PropTypes.string
+  quizStatus: PropTypes.string,
+  score: PropTypes.number
 };
 
 export default Entry;
