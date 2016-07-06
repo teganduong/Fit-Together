@@ -258,6 +258,8 @@
 }
 
 .fitbit {
-background: url('../images/FitbitLogo.png') no-repeat center center fixed;
+  background: url('../images/FitbitLogo.png') no-repeat center center fixed;
+  width: 1rem;
+  height: 1rem;
 
 }

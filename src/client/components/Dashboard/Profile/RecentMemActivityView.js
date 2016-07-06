@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
 const RecentMemActivityView = (props) => (
-  <div>
-    <li>
-      {props.mood} [Md], {props.energy} [En], {props.motivation} [Mt] ({props.date})
-    </li>
-  </div>
+  <li>
+    {props.carbs}g [Cb], {props.fats}g [Ft], {props.protein}g [Pr] ({props.date})
+  </li>
 );
 
 export default RecentMemActivityView;

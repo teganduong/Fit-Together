@@ -14,24 +14,19 @@ class FoodChart extends Component {
   constructor(props) {
     super(props);
     const foodData = [];
-    console.log('inside foodchRT', props);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('foodchart', nextProps);
     this.foodData = nextProps.activities.data;
   }
 
   render() {
     if (this.foodData) { 
       this.foodData = this.foodData[2].slice(-7).map(s => parseInt(s.calories, 10));
-      console.log('this is food data', this.durationData);
-      console.log('this is food with map data', this.foodData);
     }  
     const series = [{
       data: this.foodData
     }];
-    console.log('this is duration', this.foodData);
 
     return (
       <div className="food-chart-container">

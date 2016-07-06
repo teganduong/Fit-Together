@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
 const RecentExerciseActivityView = (props) => (
-  <div>
-    <li>
-       {props.duration} mins [{props.type}] ({props.date})
-    </li>
-  </div>
+  <li>
+     {props.duration} mins [{props.type}] ({props.date})
+  </li>
 );
 
 export default RecentExerciseActivityView;

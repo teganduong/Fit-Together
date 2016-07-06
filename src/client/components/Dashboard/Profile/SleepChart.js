@@ -14,11 +14,9 @@ class SleepChart extends Component {
   constructor(props) {
     super(props);
     const sleepData = [];
-    console.log('inside sleep chart');
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('sleep', nextProps);
     this.sleepData = nextProps.activities.data;
   }
 
@@ -26,9 +24,6 @@ class SleepChart extends Component {
     if (this.sleepData) { 
       this.durationData = this.sleepData[0].slice(-7).map(s => parseInt(s.duration, 10));
       this.qualityData = this.sleepData[0].slice(-7).map(s => parseInt(s.quality, 10));
-
-      console.log('this is sleep data', this.durationData);
-      console.log('this is sleep with map data', this.sleepData);
     }  
     const series = [{
       data: this.durationData

@@ -8,14 +8,11 @@ const icon = {
 class RecentMemActivity extends Component {
   constructor(props) {
     super(props);
-    console.log('recent Mem here', props);
     this.MemData = [1, 2, 3];
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('these are nextProps in RecentMemActivity activities', nextProps);
     this.MemData = nextProps.activities.activities.data[3];
-    console.log('INSIDE mem PROFILE PAGE', this.MemData);
   }
 
   render() {
@@ -30,8 +27,8 @@ class RecentMemActivity extends Component {
         <div className="profile-activity-body">
           <div className="profile-text-body-container">
             <ul>
-              <p className="profile-text-body">{this.MemData.slice(-3).map(m => 
-                <RecentMemActivityView mood={m.mood} energy={m.energy} motivation={m.motivation} date={m.date_performed} />
+              <p className="profile-text-body">{this.MemData.slice(-3).map((m, index) => 
+                <RecentMemActivityView mood={m.mood} energy={m.energy} key={index} motivation={m.motivation} date={m.date_performed} />
               )}
               </p>
             </ul>

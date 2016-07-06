@@ -21,7 +21,6 @@ import PlaceHolder from './components/PlaceHolder.js';
 import Stats from './containers/Stats.js';
 import Teams from './containers/Teams'; // redux container
 // import TeamMemberList from './containers/TeamMemberList'; // redux container
-import Tips from './components/Dashboard/Items/Tips/Tips';
 import Settings from './components/Dashboard/Items/Settings/Settings';
 import Logbook from './components/Dashboard/Items/Logbook/Logbook';
 import Trivia from './containers/Trivia';
@@ -48,7 +47,6 @@ render(
           <Route path="/dashboard/log"component={PlaceHolder} />
           <Route path="/dashboard/stats"component={Stats} />
           <Route path="/dashboard/teams"component={Teams} />
-          <Route path="/dashboard/tips"component={Tips} />
           <Route path="/dashboard/trivia" component={Trivia} />
         </Route>
       </Route>

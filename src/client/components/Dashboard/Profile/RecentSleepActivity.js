@@ -8,14 +8,11 @@ const icon = {
 class RecentSleepActivity extends Component {
   constructor(props) {
     super(props);
-    console.log('recent Sleep here', props);
     this.SleepData = [1, 2, 3];
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('these are nextProps in RecentSleepActivity activities', nextProps);
     this.SleepData = nextProps.activities.activities.data[0];
-    console.log('INSIDE Sleep PROFILE PAGE', this.SleepData);
   }
 
   render() {
@@ -30,8 +27,8 @@ class RecentSleepActivity extends Component {
         <div className="profile-activity-body">
           <div className="profile-text-body-container">
             <ul>
-              <p className="profile-text-body">{this.SleepData.slice(-3).map(m => 
-                <RecentSleepActivityView duration={m.duration} quality={m.quality} date={m.date_performed} />
+              <p className="profile-text-body">{this.SleepData.slice(-3).map((m, index) => 
+                <RecentSleepActivityView duration={m.duration} quality={m.quality} key={index} date={m.date_performed} />
               )}
               </p>
             </ul>

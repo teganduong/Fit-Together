@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import BmiChart from '../../Profile/Charts/BmiChart';
 
-const Tips = () => (
+const Tips = (props) => (
   <div className="main-container">
+    {props.tips}
   </div>
 );
 

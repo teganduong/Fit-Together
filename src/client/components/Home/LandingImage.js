@@ -7,7 +7,7 @@ const LandingImage = () => (
       <div className="content">
         <h1>Fit Together</h1>
         <h3>Breathe Deep, Be Active, Stay Connected</h3>
-        <button className="big-button" onClick={() => browserHistory.push('/dashboard')}>Demo
+        <button className="big-button" onClick={() => browserHistory.push('/dashboard/jjones')}>Demo
         </button>
       </div>
     </div>
@@ -113,10 +113,3 @@ const LandingImage = () => (
 );
 
 export default LandingImage;
-
-    // <div className="text-box">
-    //   <div className="inner-text-box">
-    //     <h5 className="home-text-small">Breathe Deep, Be Active, Stay Connected</h5>
-    //     <h2 className="home-text-large">GET FIT TOGETHER</h2>
-    //   </div>
-    // </div>

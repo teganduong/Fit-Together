@@ -17,18 +17,15 @@ class MemChart extends Component {
     const moodData = [];
     const motivationData = [];
     const energyData = [];
-    console.log('inside mem chart', props);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('exercisechart', nextProps);
     this.moodData = nextProps.activities.data;
     this.motivationData = nextProps.activities.data;
     this.energyData = nextProps.activities.data;
   }
 
   render() {
-    console.log('this is mood data', this.moodData);
     if (this.moodData) { 
       this.moodData = MemData.slice(-7).map(s => parseInt(s.mood, 10));
       this.energyData = MemData.slice(-7).map(s => parseInt(s.energy, 10));
@@ -42,9 +39,6 @@ class MemChart extends Component {
     }, {
       data: this.motivationData
     }];
-
-
-    console.log('this is mood!', this.moodData);
 
     return (
       <div className="mem-chart-container">

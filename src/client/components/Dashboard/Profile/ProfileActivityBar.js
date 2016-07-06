@@ -7,11 +7,6 @@ import RecentMemActivity from './RecentMemActivity.js';
 class ProfileActivityBar extends Component {
   constructor(props) {
     super(props);
-    console.log('this is profile activity!!!!!!!!!!!!!!!!!', props);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('these are nextProps in profile activities', nextProps);
   }
 
   render() {

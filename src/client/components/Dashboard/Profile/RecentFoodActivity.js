@@ -7,14 +7,11 @@ const icon = {
 class RecentFoodActivity extends Component {
   constructor(props) {
     super(props);
-    console.log('recent food here', props);
     this.foodData = [1, 2, 3];
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('these are nextProps in RecentfoodActivity activities', nextProps);
     this.foodData = nextProps.activities.activities.data[2];
-    console.log('INSIDE FOOOOOOD PROFILE PAGE', this.foodData);
   }
 
   render() {
@@ -29,8 +26,8 @@ class RecentFoodActivity extends Component {
         <div className="profile-activity-body">
           <div className="profile-text-body-container">
             <ul>
-              <p className="profile-text-body">{this.foodData.slice(-3).map(f => 
-                <RecentFoodActivityView carbs={f.carbs} fats={f.fats} protein={f.protein} date={f.date_performed} />
+              <p className="profile-text-body">{this.foodData.slice(-3).map((f, index) => 
+                <RecentFoodActivityView carbs={f.carbs} fats={f.fats} protein={f.protein} key={index} date={f.date_performed} />
               )}
               </p>
             </ul>

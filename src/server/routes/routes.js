@@ -30,6 +30,7 @@ router.post('/api/sendmessage', mongo.sendMessage);
 router.post('/api/getmessages', mongo.getMessagesByTeam);
 router.get('/api/users/:username', users.getUserInfo);
 router.get('/api/usersleep', sleep.getSleep);
+router.get('/api/users/:username', users.getUserInfo);
 
 router.get('/api/user', (req, res) => {
   if (req.user) {

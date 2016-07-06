@@ -4,24 +4,21 @@ import SideNavBar from './SideNavBar';
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.props.getSleep();
-    this.props.getUser();
+    // this.props.getUser();
     this.sleep = [];
     this.activities = [];
     this.props.getActivities();
     this.props.fetchTips();
+    this.tips = [];
+    this.props.fetchUser('jjones');
   }
 
-  // componentWillMount() {
+  // componentDidMount() {
   //   this.props.getUser();
   // }
 
-  componentDidMount() {
-    this.props.getUser();
-  }
-
   componentWillReceiveProps(nextProps) {
-    console.log('these are nextProps in dashboard', nextProps);
+    console.log('these are nextProps in dashboard!!! should have tips', nextProps);
     // this.sleep = nextProps.sleep;
     // console.log('adfasdfas', parseFloat(this.sleep[0].quality), parseFloat('7.7'));
     // let num = 0;
@@ -36,19 +33,22 @@ export default class Dashboard extends Component {
     // });
     // this.sleep = test;
     this.activities = nextProps.activities;
+    this.tips = nextProps.tips;
   }
 
   render() {
     const { user } = this.props;
     const { activities } = this.activities; 
 
+    console.log('inside render of dashboard tips and user', this.tips, user);
     return (
       <div>
         <SideNavBar />
           {this.props.children && React.cloneElement(this.props.children, {
             user: user,
             // sleep: this.sleep,
-            activities: this.activities
+            activities: this.activities,
+            tips: this.tips
           })}
       </div>
     );
@@ -60,7 +60,6 @@ Dashboard.propTypes = {
   getUser: PropTypes.func,
   user: PropTypes.object,
   activities: PropTypes.object,
-  getSleep: PropTypes.func,
   sleep: PropTypes.array,
   getActivities: PropTypes.func,
   fetchTips: PropTypes.func
