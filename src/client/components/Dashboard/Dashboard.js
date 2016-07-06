@@ -4,7 +4,6 @@ import SideNavBar from './SideNavBar';
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
-    // this.props.getUser();
     this.sleep = [];
     this.activities = [];
     this.props.getActivities();
@@ -13,9 +12,6 @@ export default class Dashboard extends Component {
     this.props.fetchUser('jjones');
   }
 
-  // componentDidMount() {
-  //   this.props.getUser();
-  // }
 
   componentWillReceiveProps(nextProps) {
     console.log('these are nextProps in dashboard!!! should have tips', nextProps);
@@ -57,9 +53,9 @@ export default class Dashboard extends Component {
 
 Dashboard.propTypes = {
   children: PropTypes.element.isRequired,
-  getUser: PropTypes.func,
   user: PropTypes.object,
   activities: PropTypes.object,
+  getSleep: PropTypes.func,
   sleep: PropTypes.array,
   getActivities: PropTypes.func,
   fetchTips: PropTypes.func

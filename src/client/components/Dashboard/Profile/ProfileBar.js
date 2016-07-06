@@ -1,4 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+ 
+const user = {
+  user_icon: 'http://i988.photobucket.com/albums/af3/TheLightChasers/Portraits/portrait-sigma-50mm-f14-hsm-canon-eos-5d-mk2-face-Favimcom-473053_zpsd55e8d8e.jpg'
+};
 
 const heightIcon = 'http://www.clker.com/cliparts/L/D/O/L/0/7/male-restroom-symbol-white-on-transparent-hi.png';
 

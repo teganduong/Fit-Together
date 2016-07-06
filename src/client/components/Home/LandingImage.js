@@ -7,7 +7,7 @@ const LandingImage = () => (
       <div className="content">
         <h1>Fit Together</h1>
         <h3>Breathe Deep, Be Active, Stay Connected</h3>
-        <button className="big-button" onClick={() => browserHistory.push('/dashboard/jjones')}>Demo
+        <button className="big-button" onClick={() => browserHistory.push('/dashboard')}>Demo
         </button>
       </div>
     </div>
@@ -113,3 +113,4 @@ const LandingImage = () => (
 );
 
 export default LandingImage;
+
