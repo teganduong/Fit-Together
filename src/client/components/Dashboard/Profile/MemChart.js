@@ -55,6 +55,7 @@ class MemChart extends Component {
 
         >
           <Lines />
+          <Dots />
         </Chart>
 
       </div>

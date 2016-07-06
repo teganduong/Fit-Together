@@ -1,3 +1,7 @@
+.dummy {
+  height: 15em;
+  border: 1px solid red;
+}
 
 .main-container {
 	flex: 1;
