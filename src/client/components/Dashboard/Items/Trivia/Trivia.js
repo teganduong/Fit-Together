@@ -16,16 +16,23 @@ class Trivia extends Component {
     this.entry = { options: [], category: '' };
     this.index = 0;
     this.score = 0;
+    this.quizStatus = '';
   }
 
   componentWillReceiveProps(nextProps) {
     this.questions = nextProps.questions;
     this.entry = nextProps.question;
     this.score = nextProps.score;
+    this.quizStatus = nextProps.quizStatus;
+    this.index = nextProps.index;
   }
 
   handleQuizSelection(category) {
-    this.props.fetchQuizQuestions(category);
+    const { updateQuizStatus, fetchQuizQuestions, updateScore, updateIndex } = this.props;
+    updateIndex(0);
+    updateQuizStatus('');
+    updateScore(0);
+    fetchQuizQuestions(category);
   }
 
   handleSubmit(event) {
@@ -33,11 +40,9 @@ class Trivia extends Component {
     const { selectedOption, updateScore, score } = this.props;
 
     if (selectedOption === this.entry.answer) {
-      console.log('answer correct!');
       this.score++;
       updateScore(this.score);
     } else {
-      console.log('answer wrong!');
       this.score--;
       updateScore(this.score);
     }
@@ -50,13 +55,15 @@ class Trivia extends Component {
 
   // next question
   next() {
-    const { receiveCurrentQuestion } = this.props;
+    const { receiveCurrentQuestion, updateQuizStatus, updateUserPoints, updateIndex } = this.props;
     this.index++;
+    updateIndex(this.index);
     const nextQuestion = this.questions[this.index];
     if (nextQuestion) {
       receiveCurrentQuestion(nextQuestion);
     } else {
-      console.log('Finished quiz!');
+      updateQuizStatus('finished');
+      updateUserPoints(this.score);
     }
   }
 
@@ -64,19 +71,23 @@ class Trivia extends Component {
     return (
       <div className="main-container">
         <div className="row">
-          <Categories 
-            handleQuizSelection={this.handleQuizSelection}
-          />
-          <Leaderboard />
-        </div>
-        <div className="row">
-          <Entry 
-            entry={this.questions[this.index]}
-            handleSelection={this.handleSelection}
-            handleSubmit={this.handleSubmit} 
-            next={this.next}
-          />
-          <Results score={this.score} />
+          <div className="col-sm-8">
+            <Categories 
+              handleQuizSelection={this.handleQuizSelection}
+            />
+            <Entry 
+              entry={this.questions[this.index]}
+              handleSelection={this.handleSelection}
+              handleSubmit={this.handleSubmit} 
+              next={this.next}
+              quizStatus={this.quizStatus}
+              score={this.score}
+            />
+          </div>
+          <div className="col-sm-4">
+            <Leaderboard />
+            <Results score={this.score} />
+          </div>
         </div>
       </div>
     );
@@ -94,7 +105,12 @@ Trivia.propTypes = {
     PropTypes.number 
   ]),
   score: PropTypes.number,
-  updateScore: PropTypes.func
+  updateScore: PropTypes.func,
+  updateQuizStatus: PropTypes.func,
+  quizStatus: PropTypes.string,
+  updateUserPoints: PropTypes.func,
+  updateIndex: PropTypes.func,
+  index: PropTypes.number
 };
 
 export default Trivia;

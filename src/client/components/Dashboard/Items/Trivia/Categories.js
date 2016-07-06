@@ -26,7 +26,7 @@ const Categories = ({ handleQuizSelection }) => {
   ));
 
   return (
-    <div className="card-deck-wrapper col-sm-8">
+    <div className="card-deck-wrapper">
       <div className="card-deck">
         {quizzes}
       </div>

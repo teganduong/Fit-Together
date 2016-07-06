@@ -53,22 +53,21 @@ export const getUser = () => (
   )
 );
 
-export const updateUser = (userInfo) => {
-  const info = JSON.stringify({ userInfo });
-  return dispatch => (
-    fetch('/api/users', {
+export const updateUserPoints = (points) => (
+  dispatch => (
+    fetch('/api/user/points', {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
       },
       credentials: 'same-origin',
-      body: info,
+      body: JSON.stringify({ points })
     })
-    .then(() => dispatch({ type: c.UPDATE_USER, data: userInfo }))
-    .then(() => dispatch(fetchUser()))
+    .then(res => res.json())
+    .then(userInfo => dispatch(receiveUser(userInfo)))
     .catch(err => dispatch(error(err)))
-  );
-};
+  )
+);
 
 export const fetchUserTeams = (obj) => (
   dispatch => (
@@ -197,26 +196,27 @@ export const getSleep = () => {
       credentials: 'same-origin',
     })
     .then(res => res.json())
-    .then(sleep => {   
-      return dispatch(receiveSleep(sleep.data));
-    })
+    .then(sleep => (  
+      dispatch(receiveSleep(sleep.data))
+    ))
     .catch(err => dispatch(error(err)));
   };
 };
 
-export const getActivities = () => {
-  return dispatch => {
+export const getActivities = () => (
+  dispatch => {
     fetch('/api/useractivities', {
       method: 'GET',
       credentials: 'same-origin',
     })
     .then(res => res.json())
-    .then(activities => {
-      return dispatch(receiveActivities(activities));
-    })
+    .then(activities => (
+      dispatch(receiveActivities(activities))
+    ))
     .catch(err => dispatch(error(err)));
-  };
-};
+  }
+);
+
 
 export const addMem = (obj) => {
   const payload = JSON.stringify(obj);
@@ -259,6 +259,8 @@ export const fetchQuizQuestions = (category) => (
 
 export const selectOption = option => ({ type: c.SELECT_OPTION, data: option });
 export const updateScore = score => ({ type: c.UPDATE_SCORE, data: score });
+export const updateQuizStatus = status => ({ type: c.UPDATE_STATUS, data: status });
+export const updateIndex = index => ({ type: c.UPDATE_INDEX, data: index });
 
 export const addExercise = (obj) => {
   const payload = JSON.stringify(obj);
