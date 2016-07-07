@@ -30,7 +30,7 @@ class Profile extends Component {
           </div>
           <div className="col-md-6">
             <div className="row dummy">
-
+              <Tips />
             </div>
             <div className="row">
               <div className="col-md-6">
@@ -45,7 +45,6 @@ class Profile extends Component {
             </div>
             <div className="row">
               <SleepChart activities={this.props.activities} />
-              <Tips tips={this.props.tips} />
             </div>
           </div>
           <div className="col-md-3">

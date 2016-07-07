@@ -20,6 +20,7 @@ import PlaceHolder from './components/PlaceHolder.js';
 
 import Stats from './containers/Stats.js';
 import Teams from './containers/Teams'; // redux container
+
 // import TeamMemberList from './containers/TeamMemberList'; // redux container
 import Settings from './components/Dashboard/Items/Settings/Settings';
 import Logbook from './components/Dashboard/Items/Logbook/Logbook';
