@@ -7,10 +7,7 @@ const SideNavBar = () => (
     <ul className="sidebar-nav">
       <li><Link to="/dashboard">My Dashboard</Link></li>
       <li><Link to="/dashboard/teams">Teams</Link></li>
-      <li><Link to="/dashboard/log">Log</Link></li>
       <li><Link to="/dashboard/stats">Stats</Link></li>
-      <li><Link to="/dashboard/settings">Settings</Link></li>
-      <li><Link to="/dashboard/tips">Tips</Link></li>
       <li><Link to="/dashboard/trivia">Trivia</Link></li>
       <li><a href="/signout" action="post">Signout</a></li>
     </ul>

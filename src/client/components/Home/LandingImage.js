@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 
+const images = {
+  team: 'https://www.rmiguides.com/blog/images/uploads/Archived/ElbrusS_Archived/CGrom-ELB13_7-19-13_team_on_acclimatization_hike_near_Cheget.JPG',
+  trivia: 'http://img.mindbodygreen.com/image/upload/c_limit,w_738,f_auto/ftr/MuesliBerries-850x567.jpg',
+  stat: 'https://www.inspire.nl/app/uploads/2013/07/svg-line-graph.png'
+};
+
 const LandingImage = () => (
   <div>
     <div className="home-image" id="home">
@@ -18,7 +24,7 @@ const LandingImage = () => (
       <div className="row">
         <div className="about-info col-md-4">
           <div>
-            <img className="icon" src="images/run.png" alt="Stats Icon" />
+            <img className="icon" src={images.stat} alt="Stats Icon" />
           </div>
           <div>
             <h3>Log & View your health statistics</h3>
@@ -26,7 +32,7 @@ const LandingImage = () => (
         </div>
         <div className="about-info col-md-4">
           <div>
-            <img className="icon" src="images/run.png" alt="Teams Icon" />
+            <img className="icon" src={images.team} alt="Teams Icon" />
           </div>
           <div>
             <h3>Interact with teams in your area</h3>
@@ -34,7 +40,7 @@ const LandingImage = () => (
         </div>
         <div className="about-info col-md-4">
           <div>
-            <img className="icon" src="images/run.png" alt="Health Icon" />
+            <img className="icon" src={images.trivia} alt="Health Icon" />
           </div>
           <div>
             <h3>Gain knowledge on health topics</h3>

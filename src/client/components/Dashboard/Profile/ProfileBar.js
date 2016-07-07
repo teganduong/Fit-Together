@@ -32,12 +32,12 @@ class ProfileBar extends Component {
         </div>
         <div className="profile-bottom-bar">
           <div className="profile-stat-header">
-            <p className="profile-stat-header-text">SUMMARY</p>
+            <p className="profile-stat-header-text"><strong>SUMMARY</strong></p>
           </div>  
           <div className="profile-stat-row">
             <div className="profile-stat-row-item first bottom">
               <p className="profile-stat-value">{this.user.age}</p>
-              <p className="profile-stat-description">age</p>
+              <p className="profile-stat-description">Age</p>
             </div>
             <div className="profile-stat-row-item bottom">
               <p className="profile-stat-value">{this.user.weight}</p>
@@ -64,8 +64,8 @@ class ProfileBar extends Component {
             </div>
           </div>
           <div className="profile-stat-header">
-            <p className="profile-stat-header-text">GOAL</p>
-            <p className="profile-stat-description">{this.user.goal}</p>
+            <p className="profile-stat-header-text-goal"><strong>GOAL</strong></p>
+            <p className="profile-stat-description-goal">{this.user.goal}</p>
           </div> 
         </div>
       </div>
