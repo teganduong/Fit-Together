@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import TeamMemberList from './TeamMemberList';
 import TeamChatMessage from './TeamChatMessage';
+import io from 'socket.io-client';
 
 const exampleUser = {
   name: 'Jessica Jones',
@@ -10,7 +11,9 @@ const exampleUser = {
 class TeamChat extends Component {
 	constructor(props) {
     super(props);
-	}
+
+    this.socket = io.connect();
+  }
 
   handleSubmit(event) {
     event.preventDefault();
@@ -21,7 +24,9 @@ class TeamChat extends Component {
       description: new Date()
     };
     this.props.sendMessage(formData); 
+    this.socket.emit('new message', formData);
   }
+
 
   render() {
     return (
@@ -36,7 +41,7 @@ class TeamChat extends Component {
               <div className="chat-num-messages">already have 902 messages</div>
             </div>
           </div>
-          <div className="chat-history">
+          <div className="chat-history messagebody">
             <ul>
               <li className="clearfix">
                 <div className="message-data align-right">

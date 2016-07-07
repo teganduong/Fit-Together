@@ -115,7 +115,7 @@ class d3ChartClass {
     // make scatter plot
     const xyData = this.preProcessDataXy(xyDataType);
 
-    const rSize = 4;
+    const rSize = 8;
     const attr = this.attr;
     const barWidth = attr.width / this.timeFrame - barPadding;
     const dataset = xyData.xydataset;
@@ -141,7 +141,7 @@ class d3ChartClass {
           cx: `${xScale(dayData[xyData.xdataType])}`, // i * barWidth + attr.wPad + i + rSize,
           cy: `${yScale(dayData[xyData.ydataType])}`, // attr.height - (d[attr.dataType] * scale) - attr.hPad,
           r: rSize,
-          fill: datum => ("rgb(0, " + (255-color) + ", " + color + ")"),
+          fill: datum => ("rgb(20, " + (255-color) + ", " + color + ")"),
         });
     });    
   }
@@ -151,7 +151,7 @@ class d3ChartClass {
     // make scatter plot
     const xyData = this.preProcessDataXy(xyDataType);
     console.log('in update, xyData: ', xyData);
-    const rSize = 4;
+    const rSize = 8;
     const attr = this.attr;
     const dataset = xyData.xydataset;
     const scale = (attr.D)[attr.dataNum].scale;
@@ -201,7 +201,7 @@ class d3ChartClass {
             y: `${chartH - (data[dataType] * scale) - hPad}`,
             width: `${barWidth-1}`,
             height: `${data[dataType] * scale}`,
-            fill: `rgb(0, 0, ${Math.floor(data[dataType] * scale)})`,
+            fill: `rgb(20, 22, ${Math.floor(data[dataType] * scale)})`,
           });
       });
   }
@@ -231,7 +231,7 @@ class d3ChartClass {
             y: `${(yScale(data[dataType]))}`,
             width: `${barWidth-1}`,
             height: `${attr.height - attr.hPad - yScale(data[dataType])}`,
-            fill: `rgb(0, 0, ${Math.floor(yScale(data[dataType]))} )`,
+            fill: `rgb(20, 22, ${Math.floor(yScale(data[dataType]))} )`,
             // fill: `#${Math.floor(yScale(0x00)}8B8B))}`
           });
       });   
@@ -269,7 +269,7 @@ class d3ChartClass {
 
   makeScatter(el, props, objects) {
     // make scatter plot
-    const rSize = 4;
+    const rSize = 8;
     const attr = this.attr;
     const barWidth = attr.width / this.timeFrame - barPadding;
     const dataset = attr.dataset;
@@ -597,9 +597,9 @@ class d3ChartClass {
                       { x: xScale(xMax), 
                         y: yScale(slope * xMax + intercept) }
                      ];
-    let lineColor = 'rgb(0, 255, 0)';
+    let lineColor = 'rgb(20, 22, 89)';
     if (slope < 0) {
-      lineColor = 'rgb(255, 0, 0)';
+      lineColor = 'rgb(20, 22, 89)';
     }
     // Specify the function for generating path data             
     const d3line = d3.svg.line()

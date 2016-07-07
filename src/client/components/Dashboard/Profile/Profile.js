@@ -8,23 +8,29 @@ import SleepChart from './SleepChart.js';
 import FoodChart from './FoodChart.js';
 import MemChart from './MemChart.js';
 import ExerciseChart from './ExerciseChart.js';
+import Tips from './Tips.js';
+
 
 class Profile extends Component {
   constructor(props) {
     super(props);
-    console.log('this is profile props', props);
+    console.log('PROPS INSIDE PROFILE PAGE!!!', props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('next props inside profile PROFILE page!!!!!!!!!!!!', nextProps);
   }
 
   render() {
     return (
       <div className="main-container">
-        <div className="row">
+        <div className="row profile-body">
           <div className="col-md-3">
-            <ProfileBar />
+            <ProfileBar user={this.props.user} />
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 dummy">
             <div className="row dummy">
-
+              <Tips tips={this.props.tips} />
             </div>
             <div className="row">
               <div className="col-md-6">
@@ -44,6 +50,7 @@ class Profile extends Component {
           <div className="col-md-3">
             <ProfileActivityBar activities={this.props.activities} />
           </div>
+
         </div>
       </div>  
     );

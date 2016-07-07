@@ -21,7 +21,8 @@ import {
   UPDATE_SCORE,
   ADD_MESSAGE,
   UPDATE_STATUS,
-  UPDATE_INDEX
+  UPDATE_INDEX,
+  RECEIVE_TIP,
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -183,5 +184,15 @@ export const index = (state, action) => {
     }
     default:
       return state || 0;
+  }
+};
+
+export const tips = (state, action) => {
+  switch (action.type) {
+    case RECEIVE_TIP: {
+      return action.data || state;
+    }
+    default:
+      return state || {};
   }
 };

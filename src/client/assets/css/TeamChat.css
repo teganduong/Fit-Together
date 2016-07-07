@@ -68,8 +68,6 @@ gray: #92959E;*/
 .people-list .name {
   color: white;
 }
-  
-
 
 .chat {
   width: 53em;
@@ -124,9 +122,13 @@ gray: #92959E;*/
 .message-data {
   margin-bottom: 15px;
 }
-    
+
+.message-data-name {
+  color: black;
+}    
+
 .message-data-time {
-  color: lighten(#92959E, 8%);
+  color: black;
   padding-left: 6px;
 }
 

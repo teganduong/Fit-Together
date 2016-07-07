@@ -4,7 +4,6 @@ import fetch from 'isomorphic-fetch';
 export const error = err => ({ type: c.REQUEST_ERROR, data: err });
 export const receiveUser = user => ({ type: c.RECEIVE_USER, data: user });
 export const receiveTeamMembers = members => ({ type: c.RECEIVE_MEMBERS, data: members });
-
 export const addToTeams = team => ({ type: c.CREATE_TEAM, data: team });
 export const receiveUserTeams = teams => ({ type: c.RECEIVE_TEAMS, data: teams });
 export const removeFromTeams = team => ({ type: c.REMOVE_TEAM, data: team });
@@ -12,12 +11,10 @@ export const receiveOtherTeams = otherteams => ({ type: c.RECEIVE_OTHER_TEAMS, d
 export const removeOtherTeam = team => ({ type: c.REMOVE_OTHER_TEAM, data: team });
 export const joinUserTeam = team => ({ type: c.JOIN_TEAM, data: team });
 export const addOtherTeam = team => ({ type: c.ADD_OTHER_TEAM, data: team });
-
 export const receiveExercise = exercise => ({ type: c.RECEIVE_EXERCISE, data: exercise });
 export const receiveSleep = sleep => ({ type: c.RECEIVE_SLEEP, data: sleep });
 export const receiveActivities = activities => ({ type: c.RECEIVE_ACTIVITIES, data: activities });
 export const receiveTips = tips => ({ type: c.RECEIVE_TIP, data: tips });
-
 export const receiveMessages = messages => ({ type: c.RECEIVE_MESSAGES, data: messages });
 export const addMessage = message => ({ type: c.ADD_MESSAGE, data: message });
 
@@ -62,6 +59,18 @@ export const updateUserPoints = (points) => (
       },
       credentials: 'same-origin',
       body: JSON.stringify({ points })
+    })
+    .then(res => res.json())
+    .then(userInfo => dispatch(receiveUser(userInfo)))
+    .catch(err => dispatch(error(err)))
+  )
+);
+
+export const fetchUser = (username) => (
+
+  dispatch => (
+    fetch(`/api/users/${username}`, {
+      credentials: 'same-origin'
     })
     .then(res => res.json())
     .then(userInfo => dispatch(receiveUser(userInfo)))

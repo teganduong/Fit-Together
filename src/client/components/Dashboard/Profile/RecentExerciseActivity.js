@@ -8,12 +8,10 @@ const icon = {
 class RecentExerciseActivity extends Component {
   constructor(props) {
     super(props);
-    console.log('RecentExerciseActivity here', props);
     this.exerciseData = [1, 2, 3];
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('these are nextProps in RecentExerciseActivity activities', nextProps);
     this.exerciseData = nextProps.activities.activities.data[1];
   }
 
@@ -29,8 +27,8 @@ class RecentExerciseActivity extends Component {
         <div className="profile-activity-body">
           <div className="profile-text-body-container">
             <ul>
-              <p className="profile-text-body">{this.exerciseData.slice(-3).map(e => 
-                <RecentExerciseActivityView type={e.type} duration={e.duration} date={e.date_performed} />
+              <p className="profile-text-body">{this.exerciseData.slice(-3).map((e, index) => 
+                <RecentExerciseActivityView type={e.type} duration={e.duration} key={index} date={e.date_performed} />
               )}
               </p>
             </ul>
