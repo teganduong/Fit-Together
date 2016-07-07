@@ -1,3 +1,4 @@
+/* eslint-disable */
 const { assert, expect } = require('chai');
 const dataTest = require('./testingData.js');
 

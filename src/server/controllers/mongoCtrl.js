@@ -26,7 +26,7 @@ exports.sendMessage = (req, res) => {
     })
     .then(() => {
       console.log('success');
-      res.status(200)
+      res.status(201)
         .json({
           status: 'success',
           data: obj,
