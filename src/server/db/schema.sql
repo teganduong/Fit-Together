@@ -1,6 +1,8 @@
 -- from root directory -- psql < src/server/db/schema.sql
 
 \c fidgetywidget;
+-- DROP TABLE IF EXISTS doctors;
+-- DROP TABLE IF EXISTS patients; 
 
 DROP TABLE IF EXISTS users CASCADE;   
 DROP TABLE IF EXISTS users_teams;      
