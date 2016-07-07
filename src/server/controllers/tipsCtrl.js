@@ -8,7 +8,6 @@ exports.getTips = (req, res) => {
   fetch(baseLinkTips + mongoApiKey)
   .then(response => response.json())
   .then(data => {
-    console.log('data from getTips: ', data);
     res.status(200)
       .json({
         status: 'success',

@@ -18,12 +18,10 @@ exports.addQuizQuestion = (req, res) => {
 };
 
 exports.getQuizQuestions = (req, res) => {
-  console.log('req.params.category in getQuizQuestions: ', req.params.category);
   const category = JSON.stringify(req.params.category);
   fetch(baseLinkQuizzes + mongoApiKey + '&q={"category":' + category + '}')
   .then(response => response.json())
   .then(data => {
-    console.log('data from getQuizQuestions: ', data);
     res.status(200)
       .json({
         status: 'success',

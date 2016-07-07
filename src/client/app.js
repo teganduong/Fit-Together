@@ -16,19 +16,16 @@ import Signup from './containers/Auth';
 
 // Dashbboard Components
 import Profile from './components/Dashboard/Profile/Profile.js';
-import PlaceHolder from './components/PlaceHolder.js';
 
 import Stats from './containers/Stats.js';
-import Teams from './containers/Teams'; // redux container
-
-// import TeamMemberList from './containers/TeamMemberList'; // redux container
+import Teams from './containers/Teams'; 
+import Tips from './components/Dashboard/Items/Tips/Tips';
 import Settings from './components/Dashboard/Items/Settings/Settings';
 import Logbook from './components/Dashboard/Items/Logbook/Logbook';
 import Trivia from './containers/Trivia';
 import Chat from './components/Dashboard/Items/Teams/Chat';
-import Charts from './containers/charts';
+import Charts from './containers/Charts';
 
-import { getEntries } from './actions';
 require('./assets/css/style.css');
 
 const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
@@ -45,7 +42,6 @@ render(
         <Route path="/dashboard" component={Dashboard} >
           <IndexRoute component={Profile} />
           <Route path="/dashboard/settings"component={Settings} />
-          <Route path="/dashboard/log"component={PlaceHolder} />
           <Route path="/dashboard/stats"component={Stats} />
           <Route path="/dashboard/teams"component={Teams} />
           <Route path="/dashboard/trivia" component={Trivia} />

@@ -65,7 +65,6 @@ export const otherteams = (state, action) => {
     }
     case REMOVE_OTHER_TEAM: {
       return state.filter(c => {
-        console.log('c.team_id', c, c.team_id);
         return c.team_id.toString() !== action.data.team_id.toString();
       });
     }
@@ -115,7 +114,7 @@ export const activities = (state, action) => {
   }
 };
 
-export const questions = (state, action) => {
+export const questions = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_QUESTIONS: {
       return action.data || state;

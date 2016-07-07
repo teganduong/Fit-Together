@@ -21,4 +21,7 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const UPDATE_STATUS = 'UPDATE_STATUS';
 export const UPDATE_INDEX = 'UPDATE_INDEX';
 export const RECEIVE_LEADERBOARD = 'RECEIVE_LEADERBOARD';
+
 export const RESET_GAME = 'RESET_GAME';
+export const REQUEST_GAME = 'REQUEST_GAME';
+export const RECEIVE_GAME = 'RECEIVE_GAME';
