@@ -1,38 +1,17 @@
 const { assert, expect } = require('chai');
+const dataTest = require('./testingData.js');
 
-
-// set up testing database
 process.env.NODE_ENV = 'testing';
 const db = require('../src/server/db/testConnection.js');
-console.log('test');
+
 /* global describe, it, expect, before, after */
 /* eslint-disable func-names, prefer-arrow-callback */
-describe('User Methods', function () {
+describe('Postgres User Ctrl Methods:', function () {
   before(function (done) {
-    // test data
-    const user1 = {
-      name: 'AJ Grande',
-      username: 'ajgrande',
-      password: 'ajgrande',
-      email: 'ajgrande@gmail.com',
-      weight: 145,
-      bmi: 21.3,
-      goal: 'Live happy',
-      points: 9000,
-      user_icon: 'https://s-media-cache-ak0.pinimg.com/564x/7c/1d/15/7c1d156f6e62f5559e8fada72b2117f7.jpg'
-    }; 
-    const user2 = {
-      name: 'Peter Chim',
-      username: 'peterc',
-      password: 'peterc',
-      email: 'peterc@gmail.com',
-      weight: 130,
-      bmi: 21.4,
-      goal: 'Be Calm',
-      points: 8000,
-      user_icon: 'https://s-media-cache-ak0.pinimg.com/564x/7c/1d/15/7c1d156f6e62f5559e8fada72b2117f7.jpg'
-    };  
-    // clear out the database of doctors, restart sequence id and insert a doc
+    
+    const user1 = dataTest.users[0];
+    const user2 = dataTest.users[1];
+    
     db.none('delete from users')
       .then(() => {
         db.none('ALTER SEQUENCE users_id_seq RESTART WITH 1')
@@ -73,3 +52,63 @@ describe('User Methods', function () {
   });
 });
 
+describe('Postgres Teams Ctrl Methods:', function () {
+  before(function (done) {
+    
+    const team = dataTest.team;
+    const user1 = dataTest.users[0];
+    
+    db.tx((t) => {
+      const q1 = t.none('delete from users_teams');
+      const q2 = t.none('delete from users');
+      const q3 = t.none('delete from teams');
+      const q4 = t.none('ALTER SEQUENCE users_id_seq RESTART WITH 1');
+      const q5 = t.none('ALTER SEQUENCE teams_id_seq RESTART WITH 1');
+      const q6 = t.none('ALTER SEQUENCE users_teams_id_seq RESTART WITH 1');
+      const q7 = t.one('insert into users(name, username, password, email, weight, bmi, goal, points, user_icon) values(${name}, ${username}, ${password}, ${email}, ${weight}, ${bmi}, ${goal}, ${points}, ${user_icon}) returning id', user1);
+      const q8 = t.one('insert into teams(name, description, team_icon) values(${name}, ${description}, ${team_icon}) returning id', team);
+      return t.batch([q7, q8]);
+    })
+    .then((data) => {
+      const userTeam = {
+        user_id: data[0].id,
+        team_id: data[1].id
+      };
+      return db.none('insert into users_teams(user_id, team_id) values((select id from users where id=${user_id}), (select id from teams where id=${team_id}))', userTeam);
+    })
+    .then(() => {
+      done();        
+    })
+    .catch((err) => {
+      console.log('err', err);
+    });
+  });
+  
+  after(function (done) {
+    db.none('delete from users_teams')
+      .then(() => {
+        db.none('delete from users');
+      })
+      .then(() => {
+        db.none('delete from teams');
+      })
+      .then(() => {
+        done();        
+      });
+  });
+
+  it('should retrieve a team from the database', function () {
+    db.any('select * from teams where id=${id}', { id: 1 }).then(data => {
+      expect(data.length).to.not.equal(0);
+      expect(data[0].name).to.not.equal(null);
+      expect(data[0].name).to.equal('Bay Area Hikers');
+    });
+  });
+
+  it('should retrieve all users_teams from the database', function () {
+    db.any('select * from users_teams').then(data => {
+      expect(data.length).to.equal(1);
+      expect(data[0].user_id).to.equal(1);
+    });
+  });
+});
