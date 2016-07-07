@@ -4,10 +4,18 @@
 
 ## Team
 
-  - Tegan Duong
-  - Lynn Chen
-  - AJ Grande
-  - Peter Chim
+[![Tegan Duong](https://s31.postimg.org/60kowz7or/Tegan.png)](http://github.com/teganduong)
+Tegan Duong
+
+[![Lynn Chen](https://s31.postimg.org/6njlmi4kr/lynn.png)](http://github.com/lcbits)
+Lynn Chen
+
+[![AJ Grande](https://s31.postimg.org/whteca4kr/image.png)](http://github.com/ajgrande924)
+AJ Grande
+
+[![Peter Chim](https://s31.postimg.org/ph5eji2sr/peter.png)](http://github.com/pchim)
+Peter Chim
+
 
 ## Table of Contents
 
@@ -39,7 +47,7 @@ sudo npm install -g webpack
 
 From within the root directory:
 
-Install repo's dependencies:
+Install dependencies:
 ```sh
 npm install
 ```
@@ -51,6 +59,7 @@ npm run seed
 
 To build and run:
 ```sh
+npm run build
 npm start
 ```
 
@@ -59,13 +68,13 @@ just hit the refresh button once to see the page.
 
 If you want to autoupdate on saved changes made to client files, run in a separate terminal window:
 ```sh
-npm watch-c
+npm run watch-c
 ```
 You may need to refresh the browser to see it change.
 
 If you want to autoupdate on saved changes made to server files, run in a separate terminal window:
 ```sh
-npm watch-s
+npm run watch-s
 ```
 
 Before making any pull requests, be sure to run the command below to make sure no tests are broken and the linting is okay.
@@ -73,20 +82,13 @@ Before making any pull requests, be sure to run the command below to make sure n
 npm test
 ```
 
-Also, after every rebase be sure to run 
-```sh
-npm start
-```
-to see check that the code still works.
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/Fit-Together/Fit-Together/issues)
 
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
-## TODO
-UPDATE README 6/23/16
