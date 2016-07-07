@@ -21,6 +21,7 @@ Peter Chim
 
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
+1. [System Architecture](#system-architecture)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
@@ -40,6 +41,10 @@ Webpack needs to be installed globally
 ```sh
 sudo npm install -g webpack 
 ```
+
+## System Architecture
+
+![System Architecture](https://github.com/Fit-Together/Fit-Together/blob/develop/system-architecture.png)
 
 ## Development
 
