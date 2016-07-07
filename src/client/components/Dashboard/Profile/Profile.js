@@ -18,7 +18,7 @@ class Profile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('next props inside profile page!!!!!!!!!!!!', nextProps);
+    console.log('next props inside profile PROFILE page!!!!!!!!!!!!', nextProps);
   }
 
   render() {

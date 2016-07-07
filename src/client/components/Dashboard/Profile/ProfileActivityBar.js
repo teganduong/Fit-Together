@@ -1,3 +1,4 @@
+
 import React, { Component, PropTypes } from 'react';
 import RecentFoodActivity from './RecentFoodActivity.js';
 import RecentExerciseActivity from './RecentExerciseActivity.js';
@@ -7,6 +8,10 @@ import RecentMemActivity from './RecentMemActivity.js';
 class ProfileActivityBar extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('these are nextProps in profile activities', nextProps);
   }
 
   render() {
