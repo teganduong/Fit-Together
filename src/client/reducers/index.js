@@ -23,6 +23,7 @@ import {
   UPDATE_STATUS,
   UPDATE_INDEX,
   RECEIVE_TIP,
+  RECEIVE_LEADERBOARD
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -64,7 +65,6 @@ export const otherteams = (state, action) => {
     }
     case REMOVE_OTHER_TEAM: {
       return state.filter(c => {
-        console.log('c.team_id', c, c.team_id);
         return c.team_id.toString() !== action.data.team_id.toString();
       });
     }
@@ -114,7 +114,7 @@ export const activities = (state, action) => {
   }
 };
 
-export const questions = (state, action) => {
+export const questions = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_QUESTIONS: {
       return action.data || state;
@@ -194,5 +194,15 @@ export const tips = (state, action) => {
     }
     default:
       return state || {};
+  }
+};
+
+export const leaderboard = (state, action) => {
+  switch (action.type) {
+    case RECEIVE_LEADERBOARD: {
+      return action.data || state;
+    }
+    default:
+      return state || [];
   }
 };

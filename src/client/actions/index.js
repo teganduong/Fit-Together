@@ -250,6 +250,8 @@ export const receiveCurrentQuestion = question => ({
   data: question
 });
 
+export const updateIndex = index => ({ type: c.UPDATE_INDEX, data: index });
+export const updateQuizStatus = status => ({ type: c.UPDATE_STATUS, data: status });
 // fetches questions based on selected category/quiz id
 export const fetchQuizQuestions = (category) => (
   dispatch => {
@@ -261,6 +263,8 @@ export const fetchQuizQuestions = (category) => (
     .then(questions => {
       dispatch(receiveQuizQuestions(questions.data));
       dispatch(receiveCurrentQuestion(questions.data[0]));
+      dispatch(updateIndex(0));
+      dispatch(updateQuizStatus(''));
     })
     .catch(err => dispatch(error(err)));
   }
@@ -268,8 +272,21 @@ export const fetchQuizQuestions = (category) => (
 
 export const selectOption = option => ({ type: c.SELECT_OPTION, data: option });
 export const updateScore = score => ({ type: c.UPDATE_SCORE, data: score });
-export const updateQuizStatus = status => ({ type: c.UPDATE_STATUS, data: status });
-export const updateIndex = index => ({ type: c.UPDATE_INDEX, data: index });
+
+export const receiveLeaderboardRanks = ranks => ({ type: c.RECEIVE_LEADERBOARD, data: ranks });
+export const fetchLeaderboardRanks = () => (
+  dispatch => {
+    fetch('/api/leaderboard', {
+      method: 'GET',
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(ranks => {
+      dispatch(receiveLeaderboardRanks(ranks.data));
+    })
+    .catch(err => dispatch(error(err)));
+  }
+);
 
 export const addExercise = (obj) => {
   const payload = JSON.stringify(obj);

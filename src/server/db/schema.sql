@@ -3,23 +3,13 @@
 \c fidgetywidget;
 
 DROP TABLE IF EXISTS users CASCADE;   
-DROP TABLE IF EXISTS users_teams;    
--- DROP TABLE IF EXISTS users_food; 
--- DROP TABLE IF EXISTS users_exercise; 
--- DROP TABLE IF EXISTS users_sleep;
--- DROP TABLE IF EXISTS users_mem;
--- DROP TABLE IF EXISTS users_daily_activities;    
--- DROP TABLE IF EXISTS users_incentives;     
-
+DROP TABLE IF EXISTS users_teams;      
 DROP TABLE IF EXISTS food; 
 DROP TABLE IF EXISTS exercise; 
 DROP TABLE IF EXISTS sleep;
 DROP TABLE IF EXISTS mem;      
 DROP TABLE IF EXISTS challenges;    
 DROP TABLE IF EXISTS teams;
-
--- DROP TABLE IF EXISTS daily_activities;    
--- DROP TABLE IF EXISTS incentives;    
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,

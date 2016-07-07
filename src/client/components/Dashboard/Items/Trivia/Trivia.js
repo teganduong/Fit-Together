@@ -4,19 +4,34 @@ import Entry from './Entry';
 import Results from './Results';
 import Leaderboard from './Leaderboard';
 
+const categories = [
+  {
+    id: 1,
+    name: 'Nutrition',
+    description: 'See how much you know about the foods necessary for health and growth.',
+    img: 'https://www.fodsupport.org/images/NutritioniStock_000017664170Small.jpg'
+  },
+  {
+    id: 2,
+    name: 'Fitness',
+    description: 'How much do you know about being physically fit and healthy?',
+    img: 'https://lh3.ggpht.com/DOaemztdSlf8OD6PqWKo3ooF9qYCHZQVgrRvJnvZqWOb5NUnyqc1VmC0hxMYPu2BWjk=w170'
+  }
+];
+
 class Trivia extends Component {
   constructor(props) {
     super(props);
 
+    this.props.fetchLeaderboardRanks();
     this.handleQuizSelection = this.handleQuizSelection.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSelection = this.handleSelection.bind(this);
     this.next = this.next.bind(this);
-    this.questions = [{ options: [] }];
-    this.entry = { options: [], category: '' };
-    this.index = 0;
+    this.questions = [{ options: [], category: '' }];
+    this.entry = {};
     this.score = 0;
-    this.quizStatus = '';
+    this.leaderboard = [];
   }
 
   componentWillReceiveProps(nextProps) {
@@ -25,13 +40,11 @@ class Trivia extends Component {
     this.score = nextProps.score;
     this.quizStatus = nextProps.quizStatus;
     this.index = nextProps.index;
+    this.leaderboard = nextProps.leaderboard;
   }
 
   handleQuizSelection(category) {
-    const { updateQuizStatus, fetchQuizQuestions, updateScore, updateIndex } = this.props;
-    updateIndex(0);
-    updateQuizStatus('');
-    updateScore(0);
+    const { fetchQuizQuestions } = this.props;
     fetchQuizQuestions(category);
   }
 
@@ -56,10 +69,10 @@ class Trivia extends Component {
   // next question
   next() {
     const { receiveCurrentQuestion, updateQuizStatus, updateUserPoints, updateIndex } = this.props;
-    this.index++;
-    updateIndex(this.index);
+    this.index += 1;
     const nextQuestion = this.questions[this.index];
     if (nextQuestion) {
+      updateIndex(this.index);
       receiveCurrentQuestion(nextQuestion);
     } else {
       updateQuizStatus('finished');
@@ -74,9 +87,10 @@ class Trivia extends Component {
           <div className="col-sm-8">
             <Categories 
               handleQuizSelection={this.handleQuizSelection}
+              categories={categories}
             />
             <Entry 
-              entry={this.questions[this.index]}
+              entry={this.entry}
               handleSelection={this.handleSelection}
               handleSubmit={this.handleSubmit} 
               next={this.next}
@@ -85,7 +99,7 @@ class Trivia extends Component {
             />
           </div>
           <div className="col-sm-4">
-            <Leaderboard />
+            <Leaderboard leaderboard={this.leaderboard} />
             <Results score={this.score} />
           </div>
         </div>
@@ -110,7 +124,9 @@ Trivia.propTypes = {
   quizStatus: PropTypes.string,
   updateUserPoints: PropTypes.func,
   updateIndex: PropTypes.func,
-  index: PropTypes.number
+  index: PropTypes.number,
+  fetchLeaderboardRanks: PropTypes.func,
+  leaderboard: PropTypes.array
 };
 
 export default Trivia;

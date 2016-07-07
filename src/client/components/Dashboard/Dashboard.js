@@ -58,5 +58,6 @@ Dashboard.propTypes = {
   getSleep: PropTypes.func,
   sleep: PropTypes.array,
   getActivities: PropTypes.func,
-  fetchTips: PropTypes.func
+  fetchTips: PropTypes.func,
+  fetchLeaderboardRanks: PropTypes.func
 };
