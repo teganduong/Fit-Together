@@ -19,9 +19,7 @@ import Profile from './components/Dashboard/Profile/Profile.js';
 
 import Stats from './containers/Stats.js';
 import Teams from './containers/Teams'; 
-import Tips from './components/Dashboard/Items/Tips/Tips';
 import Settings from './components/Dashboard/Items/Settings/Settings';
-import Logbook from './components/Dashboard/Items/Logbook/Logbook';
 import Trivia from './containers/Trivia';
 import Chat from './components/Dashboard/Items/Teams/Chat';
 import Charts from './containers/Charts';
