@@ -4,10 +4,11 @@
 
 ## Team
 
-  - Tegan Duong
-  - Lynn Chen
-  - AJ Grande
-  - Peter Chim
+[![Tegan Duong](https://www.dropbox.com/s/5w5tpmensck6mr3/Tegan.png?dl=0)](http://github.com/teganduong)
+[![Lynn Chen](https://www.dropbox.com/s/a0vmlzfh6y1lk21/lynn.png?dl=0)](http://github.com/lcbits)
+[![AJ Grande](https://www.dropbox.com/s/e98jsppebxhrnx5/aj.png?dl=0)](http://github.com/ajgrande924)
+[![Peter Chim](https://www.dropbox.com/s/ukn6wbhehbbdo61/peter.png?dl=0)](http://github.com/pchim)
+
 
 ## Table of Contents
 
