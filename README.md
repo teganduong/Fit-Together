@@ -4,10 +4,10 @@
 
 ## Team
 
-[![Tegan Duong](https://www.dropbox.com/s/5w5tpmensck6mr3/Tegan.png?dl=0)](http://github.com/teganduong)
-[![Lynn Chen](https://www.dropbox.com/s/a0vmlzfh6y1lk21/lynn.png?dl=0)](http://github.com/lcbits)
-[![AJ Grande](https://www.dropbox.com/s/e98jsppebxhrnx5/aj.png?dl=0)](http://github.com/ajgrande924)
-[![Peter Chim](https://www.dropbox.com/s/ukn6wbhehbbdo61/peter.png?dl=0)](http://github.com/pchim)
+[![Tegan Duong](https://s31.postimg.org/60kowz7or/Tegan.png)](http://github.com/teganduong)
+[![Lynn Chen](https://s31.postimg.org/6njlmi4kr/lynn.png)](http://github.com/lcbits)
+[![AJ Grande](https://s31.postimg.org/whteca4kr/image.png)](http://github.com/ajgrande924)
+[![Peter Chim](https://s31.postimg.org/ph5eji2sr/peter.png)](http://github.com/pchim)
 
 
 ## Table of Contents
