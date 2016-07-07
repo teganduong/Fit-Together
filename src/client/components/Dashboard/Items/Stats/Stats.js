@@ -136,8 +136,6 @@ class Stats extends Component {
                       }
                   </div>
                 </div>
-                <div className="stats-box-inner">
-                </div>
               </div>
             </div>
           </div>

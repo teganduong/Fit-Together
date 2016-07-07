@@ -91,10 +91,15 @@
 } 
 
 .log-activity input {
-  width: 100px;
+  width: 8em;
+  margin-top: 0.7em;
   border-width: 0.8px;
   border-color: #CCCBCB;
   border-style: solid;
+}
+
+.log-activity ul {
+  height: 15em;
 }
 
 .log-form {

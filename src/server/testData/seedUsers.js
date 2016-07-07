@@ -1,5 +1,13 @@
 // to seed users table, do 'npm run seed' from root directory
 const usersCtrl = require('../controllers/usersCtrl.js');
+
+const exampleUserLocation = [
+  { lat: 37.790629, lng: -122.401800
+  { lat: 37.786063, lng: -122.431807
+  { lat: 37.759391, lng: -122.412258
+  { lat: 37.762762, lng: -122.434837
+];
+
 const exampleUserData = [
   {
     name: 'Jessica Jones',
@@ -78,7 +86,6 @@ const exampleUserData = [
     goal: 'Get buff',
     points: 160,
     user_icon: 'http://i.imgur.com/4RhhCZK.png',
-    rank: 1
   },
   {
     name: 'Erlich Bachman',
@@ -91,8 +98,7 @@ const exampleUserData = [
     bmi: 25.5,
     goal: 'Get buff',
     points: 156,
-    user_icon: 'http://i.imgur.com/zLCxI02.png',
-    rank: 2
+    user_icon: 'http://i.imgur.com/zLCxI02.png'
   },
   {
     name: 'Jared Dunn',
@@ -105,8 +111,7 @@ const exampleUserData = [
     bmi: 22.1,
     goal: 'Get swole',
     points: 142,
-    user_icon: 'http://i.imgur.com/qXFHqxc.png',
-    rank: 3
+    user_icon: 'http://i.imgur.com/qXFHqxc.png'
   },
   {
     name: 'Bertram Gilfoyle',
@@ -119,8 +124,7 @@ const exampleUserData = [
     bmi: 23.2,
     goal: 'Get strong',
     points: 133,
-    user_icon: 'http://i.imgur.com/kSnJSMb.png',
-    rank: 4
+    user_icon: 'http://i.imgur.com/kSnJSMb.png'
   },
   {
     name: 'Dinesh Chugtai',
@@ -133,13 +137,10 @@ const exampleUserData = [
     bmi: 23.7,
     goal: 'Get fit',
     points: 121,
-    user_icon: 'http://i.imgur.com/kPyPCur.png',
-    rank: 5
+    user_icon: 'http://i.imgur.com/kPyPCur.png'
   }
 ];
 
-// finds a user in the database
-// usersCtrl.findUser({ body: { username: 'jjones' } }, null);
 
 // seeds users table with example data
 exampleUserData.forEach((user, index) => {

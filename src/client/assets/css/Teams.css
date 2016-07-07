@@ -4,13 +4,21 @@
   border: 1px solid black; testing
 }*/
 
+.team-bar {
+  border-bottom: 2px solid white;
+  height: 31em;
+  border: 1px solid black; 
+  margin-top: 0.5em;
+
+}
+
 .team-list {
   /*padding: 30px 30px 20px;*/
   border-bottom: 2px solid white;
   overflow-y: scroll;
-  height: 29em;
+  height: 26em;
   border: 1px solid black; 
-  margin-top: 1em;
+  /*margin-top: 1em;*/
 }
 
 .team-list-container {
@@ -62,11 +70,11 @@
 
 .team-header-items {
   display: inline-block;
-  margin: 10px;
+  margin: 1em;
 }
 
 .team-header-button-container {
-  float: right;
+  /*float: right;*/
 }
 
 #createNewTeamModal {
