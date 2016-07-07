@@ -20,7 +20,7 @@ class RecentSleepActivity extends Component {
       <div>
         <div className="profile-activity-header">
           <div className="profile-text-header-container">
-            <img src={icon.Sleep} className="activity-icon img-circle" alt="test" />
+            <img src={icon.sleep} className="activity-icon img-circle" alt="test" />
             <p className="profile-text-header">Recent Sleep</p>
           </div>
         </div>

@@ -21,7 +21,7 @@ class Tips extends Component {
 
     return (
       <div> 
-        <img className="icon" src={tipOftheDay.image} alt="Stats Icon" />
+        <img className="img-circle tip-icon" className="icon" src={tipOftheDay.image} alt="avatar" />
         {tipOftheDay.tip}
       </div>
     );

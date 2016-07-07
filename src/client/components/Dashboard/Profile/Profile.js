@@ -24,7 +24,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="main-container">
-        <div className="row">
+        <div className="row profile-body">
           <div className="col-md-3">
             <ProfileBar user={this.props.user} />
           </div>

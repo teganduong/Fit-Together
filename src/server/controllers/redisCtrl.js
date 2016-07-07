@@ -100,6 +100,7 @@ exports.getUserTeams = (req, res) => {
             return multi.execAsync();
           })
           .then((data) => {
+            console.log('DATA inside redis teams', data);
             res.status(200)
               .json({
                 status: 'success',

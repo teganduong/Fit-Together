@@ -20,7 +20,7 @@ class RecentMemActivity extends Component {
       <div>
         <div className="profile-activity-header">
           <div className="profile-text-header-container">
-            <img src={icon.Mem} className="activity-icon img-circle" alt="test" />
+            <img src={icon.mem} className="activity-icon img-circle" alt="test" />
             <p className="profile-text-header">Recent Mem</p>
           </div>
         </div>
