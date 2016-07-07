@@ -16,7 +16,10 @@ const teams = require('../controllers/teamsCtrl');
 const sleep = require('../controllers/sleepCtrl');
 const redis = require('../controllers/redisCtrl');
 const mongo = require('../controllers/mongoCtrl');
-
+const logMem = require('../controllers/memCtrl');
+const logExercise = require('../controllers/exerciseCtrl');
+const logFood = require('../controllers/foodCtrl');
+const logSleep = require('../controllers/sleepCtrl');
 
 /**  Users **/
 router.post('/api/users', users.addUser);
@@ -31,6 +34,10 @@ router.post('/api/getmessages', mongo.getMessagesByTeam);
 router.get('/api/users/:username', users.getUserInfo);
 router.get('/api/usersleep', sleep.getSleep);
 router.get('/api/users/:username', users.getUserInfo);
+router.post('/api/addMem', logMem.addMem);
+router.post('/api/addExercise', logExercise.addExercise);
+router.post('/api/addFood', logFood.addFood);
+router.post('/api/addSleep', logSleep.addSleep);
 
 router.get('/api/user', (req, res) => {
   if (req.user) {

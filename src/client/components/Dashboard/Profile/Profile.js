@@ -28,9 +28,9 @@ class Profile extends Component {
           <div className="col-md-3">
             <ProfileBar user={this.props.user} />
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 dummy">
             <div className="row dummy">
-              <Tips />
+              <Tips tips={this.props.tips} />
             </div>
             <div className="row">
               <div className="col-md-6">

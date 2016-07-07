@@ -1,4 +1,3 @@
-
 import React, { Component, PropTypes } from 'react';
 import RecentFoodActivity from './RecentFoodActivity.js';
 import RecentExerciseActivity from './RecentExerciseActivity.js';
