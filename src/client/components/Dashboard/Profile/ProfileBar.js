@@ -49,7 +49,7 @@ class ProfileBar extends Component {
               <img className="height-image" src={heightIcon} alt="test" />
             </div>
             <div className="profile-stat-row-item">
-              <p className="profile-stat-value">{this.user.height}</p>
+              <p className="profile-stat-value">{((this.user.height)/30).toFixed(0)} ft</p>
               <p className="profile-stat-description">Height</p>
             </div>
           </div>

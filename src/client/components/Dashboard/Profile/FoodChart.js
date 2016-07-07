@@ -14,10 +14,13 @@ class FoodChart extends Component {
   constructor(props) {
     super(props);
     const foodData = [];
+    const mostRecent = [];
   }
 
   componentWillReceiveProps(nextProps) {
     this.foodData = nextProps.activities.data;
+    this.mostRecent = nextProps.activities.data[2].slice(-1)[0].calories;
+    console.log('most recent food', this.mostRecent);
   }
 
   render() {
@@ -40,7 +43,7 @@ class FoodChart extends Component {
             Calorie Intake
           </Title>
         </Chart>
-        <div className="chart-result">2250</div>
+        <div className="chart-result">Last Entry: {this.mostRecent} cals</div>
       </div>
     );
   }

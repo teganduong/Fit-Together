@@ -10,15 +10,19 @@ class ExerciseChart extends Component {
   constructor(props) {
     super(props);
     const exerciseData = [];
+    const mostRecent = [];
   }
 
   componentWillReceiveProps(nextProps) {
     this.exerciseData = nextProps.activities.data;
+    this.mostRecent = nextProps.activities.data[1].slice(-1)[0].duration;
+    console.log('this is exerciseData', this.mostRecent);
   }
 
   render() {  
     if (this.exerciseData) { 
       this.exerciseData = this.exerciseData[1].slice(-7).map(s => parseInt(s.duration, 10));
+      this.mostRecent = this.mostRecent;
     }  
     const series = [{
       data: this.exerciseData
@@ -34,7 +38,7 @@ class ExerciseChart extends Component {
         >
           <Lines />
         </Chart>
-        <div className="chart-result">15:30</div>
+        <div className="chart-result">Last Entry: {this.mostRecent} mins</div>
       </div>
     );
   }
