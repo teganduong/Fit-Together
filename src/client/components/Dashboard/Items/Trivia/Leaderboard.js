@@ -1,53 +1,17 @@
 import React, { PropTypes } from 'react';
 
-const users = [
-  {
-    name: 'Richard Hendricks',
-    username: 'piedpiper',
-    points: 160,
-    user_icon: 'http://i.imgur.com/4RhhCZK.png',
-    rank: 1
-  },
-  {
-    name: 'Erlich Bachman',
-    username: 'bachman',
-    points: 156,
-    user_icon: 'http://i.imgur.com/zLCxI02.png',
-    rank: 2
-  },
-  {
-    name: 'Jared Dunn',
-    username: 'jared',
-    points: 142,
-    user_icon: 'http://i.imgur.com/qXFHqxc.png',
-    rank: 3
-  },
-  {
-    name: 'Bertram Gilfoyle',
-    username: 'bertman',
-    points: 133,
-    user_icon: 'http://i.imgur.com/kSnJSMb.png',
-    rank: 4
-  },
-  {
-    name: 'Dinesh Chugtai',
-    username: 'dineshc',
-    points: 121,
-    user_icon: 'http://i.imgur.com/kPyPCur.png',
-    rank: 5
-  }
-];
-
 const Leaderboard = ({ leaderboard }) => {
-  console.log('leaderboard in component: ', leaderboard);
-  const board = users.map(user => (
-    <tr>
-      <td className="user-rank">{user.rank}</td>
-      <td><img className="user-img" src={user.user_icon} alt="" /></td>
-      <td className="user-name">{user.name}</td>
-      <td>{user.points}</td>
-    </tr>
-  ));
+  const board = leaderboard.map((user, index) => {
+    const rank = index + 1;
+    return (
+      <tr key={index}>
+        <td className="user-rank">{rank}</td>
+        <td><img className="user-img" src={user.user_icon} alt="" /></td>
+        <td className="user-name">{user.name}</td>
+        <td>{user.points}</td>
+      </tr>
+    );
+  });
 
   return (
     <div className="leaderboard">

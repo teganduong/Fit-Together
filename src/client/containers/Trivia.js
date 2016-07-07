@@ -8,8 +8,7 @@ import {
   updateQuizStatus,
   updateUserPoints,
   updateIndex,
-  fetchLeaderboardRanks,
-  resetGame 
+  fetchLeaderboardRanks
 } from '../actions';
 
 const mapStateToProps = ({ questions, question, selectedOption, score, quizStatus, index, leaderboard }) => 
@@ -23,8 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
   updateQuizStatus: (status) => dispatch(updateQuizStatus(status)),
   updateUserPoints: (points) => dispatch(updateUserPoints(points)),
   updateIndex: (index) => dispatch(updateIndex(index)),
-  fetchLeaderboardRanks: () => dispatch(fetchLeaderboardRanks()),
-  resetGame: () => dispatch(resetGame())
+  fetchLeaderboardRanks: () => dispatch(fetchLeaderboardRanks())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Trivia);

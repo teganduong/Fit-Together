@@ -2,22 +2,7 @@ import React, { PropTypes } from 'react';
 import DisplayMsg from './DisplayMsg';
 
 const Entry = ({ entry, handleSubmit, handleSelection, next, quizStatus, score }) => {
-  if (quizStatus === 'finished') {
-    return (
-      <DisplayMsg message="Congrats on finishing the quiz! You've earned: " score={score} />
-    );
-  }
-
-  const options = entry.options.map(option => (
-    <div className="radio">
-      <label>
-        <input name="option" type="radio" value={option} onChange={handleSelection} />
-        {option}
-      </label>
-    </div>
-  ));
-
-  if (options.length === 0) {
+  if (!entry.options) {
     return (
       <div className="card-deck-wrapper col-sm-8">
         <div className="card-deck">
@@ -32,6 +17,20 @@ const Entry = ({ entry, handleSubmit, handleSelection, next, quizStatus, score }
       </div>
     );
   }
+  if (quizStatus === 'finished') {
+    return (
+      <DisplayMsg message="Congrats on finishing the quiz! You've earned: " score={score} />
+    );
+  }
+
+  const options = entry.options.map((option, index) => (
+    <div className="radio" key={index}>
+      <label>
+        <input name="option" type="radio" value={option} onChange={handleSelection} />
+        {option}
+      </label>
+    </div>
+  ));
 
   return (
     <div className="card-deck-wrapper">
