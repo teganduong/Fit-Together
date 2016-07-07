@@ -38,8 +38,9 @@ const users = [
   }
 ];
 
-const Leaderboard = () => {
-  const leaderboard = users.map(user => (
+const Leaderboard = ({ leaderboard }) => {
+  console.log('leaderboard in component: ', leaderboard);
+  const board = users.map(user => (
     <tr>
       <td className="user-rank">{user.rank}</td>
       <td><img className="user-img" src={user.user_icon} alt="" /></td>
@@ -58,10 +59,14 @@ const Leaderboard = () => {
           <th>Name</th>
           <th>Points</th>
         </tr>
-        {leaderboard}
+        {board}
       </table>
     </div>
   );
+};
+
+Leaderboard.propTypes = {
+  leaderboard: PropTypes.array
 };
 
 export default Leaderboard;

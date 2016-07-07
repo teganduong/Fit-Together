@@ -9,6 +9,7 @@ const queryHelper = require('../queryHelper');
 const activities = require('../controllers/activitiesCtrl');
 const trivia = require('../controllers/triviaCtrl');
 const tips = require('../controllers/tipsCtrl');
+const leaderboard = require('../controllers/leaderboardCtrl');
 
 // ------------ Controllers --------------- 
 const users = require('../controllers/usersCtrl');
@@ -56,6 +57,8 @@ router.get('/api/user', (req, res) => {
 router.get('/api/tips', tips.getTips);
 
 router.put('/api/user/points', users.updateUserPoints);
+
+router.get('/api/leaderboard', leaderboard.getLeaderboardRanks);
 
 
 /** Quizzes/Questions **/

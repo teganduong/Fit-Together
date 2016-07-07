@@ -23,6 +23,7 @@ import {
   UPDATE_STATUS,
   UPDATE_INDEX,
   RECEIVE_TIP,
+  RECEIVE_LEADERBOARD
 } from '../constants/constants.js';
 
 export const user = (state, action) => {
@@ -194,5 +195,15 @@ export const tips = (state, action) => {
     }
     default:
       return state || {};
+  }
+};
+
+export const leaderboard = (state, action) => {
+  switch (action.type) {
+    case RECEIVE_LEADERBOARD: {
+      return action.data || state;
+    }
+    default:
+      return state || [];
   }
 };

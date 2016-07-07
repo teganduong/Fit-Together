@@ -271,6 +271,23 @@ export const updateScore = score => ({ type: c.UPDATE_SCORE, data: score });
 export const updateQuizStatus = status => ({ type: c.UPDATE_STATUS, data: status });
 export const updateIndex = index => ({ type: c.UPDATE_INDEX, data: index });
 
+export const receiveLeaderboardRanks = ranks => ({ type: c.RECEIVE_LEADERBOARD, data: ranks });
+export const fetchLeaderboardRanks = () => (
+  dispatch => {
+    fetch('/api/leaderboard', {
+      method: 'GET',
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(ranks => {
+      dispatch(receiveLeaderboardRanks(ranks.data));
+    })
+    .catch(err => dispatch(error(err)));
+  }
+);
+
+export const resetGame = () => ({ type: c.RESET_GAME });
+
 export const addExercise = (obj) => {
   const payload = JSON.stringify(obj);
   return dispatch => (

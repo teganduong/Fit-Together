@@ -8,6 +8,7 @@ class Trivia extends Component {
   constructor(props) {
     super(props);
 
+    this.props.fetchLeaderboardRanks();
     this.handleQuizSelection = this.handleQuizSelection.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSelection = this.handleSelection.bind(this);
@@ -17,6 +18,11 @@ class Trivia extends Component {
     this.index = 0;
     this.score = 0;
     this.quizStatus = '';
+    this.leaderboard = [];
+  }
+
+  componentWillMount() {
+    this.props.fetchLeaderboardRanks();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -25,9 +31,11 @@ class Trivia extends Component {
     this.score = nextProps.score;
     this.quizStatus = nextProps.quizStatus;
     this.index = nextProps.index;
+    this.leaderboard = nextProps.leaderboard;
   }
 
   handleQuizSelection(category) {
+    // window.localStorage.set('index', 0);
     const { updateQuizStatus, fetchQuizQuestions, updateScore, updateIndex } = this.props;
     updateIndex(0);
     updateQuizStatus('');
@@ -53,10 +61,15 @@ class Trivia extends Component {
     selectOption(event.target.value);
   }
 
+  // updateCurrentIndex() {
+  //   const current = window.localStorage.get('index');
+  //   window.localStorage.set('index', current + 1);
+  // }
+
   // next question
   next() {
-    const { receiveCurrentQuestion, updateQuizStatus, updateUserPoints, updateIndex } = this.props;
-    this.index++;
+    const { receiveCurrentQuestion, updateQuizStatus, updateUserPoints, updateIndex, resetGame } = this.props;
+    this.index += 1;
     updateIndex(this.index);
     const nextQuestion = this.questions[this.index];
     if (nextQuestion) {
@@ -64,10 +77,12 @@ class Trivia extends Component {
     } else {
       updateQuizStatus('finished');
       updateUserPoints(this.score);
+      resetGame();
     }
   }
 
   render() {
+    // const { leaderboard } = this.props;
     return (
       <div className="main-container">
         <div className="row">
@@ -85,7 +100,7 @@ class Trivia extends Component {
             />
           </div>
           <div className="col-sm-4">
-            <Leaderboard />
+            <Leaderboard leaderboard={this.leaderboard} />
             <Results score={this.score} />
           </div>
         </div>
@@ -110,7 +125,10 @@ Trivia.propTypes = {
   quizStatus: PropTypes.string,
   updateUserPoints: PropTypes.func,
   updateIndex: PropTypes.func,
-  index: PropTypes.number
+  index: PropTypes.number,
+  fetchLeaderboardRanks: PropTypes.func,
+  leaderboard: PropTypes.array,
+  resetGame: PropTypes.func
 };
 
 export default Trivia;
